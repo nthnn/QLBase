@@ -19,7 +19,7 @@
 
     function sessionCleanUp() {
         if(isset($_COOKIE["sess_id"]))
-            deleteSession($_COOKIE["sess_id"]);
+            deleteSession();
     }
 
     if(isset($_COOKIE["sess_id"]) && validateSession($sess_id)) {
