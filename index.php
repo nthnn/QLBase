@@ -1,20 +1,45 @@
 <?php
-    include_once("controller/session_validator.php");
+    include_once("controller/session_ctrl.php");
 
     $view = "home";
     $title = "QLBase | Home";
     $sess_id = $_COOKIE["sess_id"];
 
+    function getPage($viewName, $pageTitle) {
+        global $view;
+        global $title;
+
+        $view = $viewName;
+        $title = "QLBase | ".$pageTitle;
+    }
+
+    function defaultPage() {
+        getPage("home", "Home");
+    }
+
+    function sessionCleanUp() {
+        if(isset($_COOKIE["sess_id"]))
+            deleteSession($_COOKIE["sess_id"]);
+    }
+
     if(isset($_COOKIE["sess_id"]) && validateSession($sess_id)) {
-        if(!isset($_GET['page'])) {
-            $view = "dashboard";
-            $title = "QLBase | Dashboard";
-        }
+        if(!isset($_GET['page']))
+            getPage("dashboard", "Dashboard");
         else { }
     }
+    else if(isset($_GET["page"])) {
+        $page = $_GET["page"];
+        sessionCleanUp();
+
+        if($page == "sign-up")
+            getPage("sign-up", "Sign-up");
+        else if($page == "log-in")
+            getPage("log-in", "Log-in");
+        else defaultPage();
+    }
     else {
-        $view = "home";
-        $title = "QLBase | Home";
+        sessionCleanUp();
+        defaultPage();
     }
 ?>
 <!DOCTYPE html>

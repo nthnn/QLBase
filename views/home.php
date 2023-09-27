@@ -23,8 +23,8 @@
                     <br/>
 
                     <div class="btn-group w-100" role="group">
-                        <a class="btn btn-light" href="#"><i class="bi bi-plus"></i> Sign-up</a>
-                        <a class="btn btn-outline-light" href="#"><i class="bi bi-box-arrow-in-left"></i> Log-in</a>
+                        <a class="btn btn-light" href="?page=sign-up"><i class="bi bi-plus"></i> Sign-up</a>
+                        <a class="btn btn-outline-light" href="?page=log-in"><i class="bi bi-box-arrow-in-left"></i> Log-in</a>
                     </div>
                 </div>
             </div>
