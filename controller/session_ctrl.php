@@ -32,14 +32,8 @@ function createSession($user_id) {
 function deleteSession() {
     global $db_conn;
 
-    if($result = mysqli_query($db_conn, "DELETE FROM sessions WHERE hash=\"".$_COOKIE["sess_id"]."\"")) {
-        mysqli_free_result($result);
-        setcookie("sess_id", "", time() - 3600);
-
-        return true;
-    }
-
-    return false;
+    mysqli_query($db_conn, "DELETE FROM sessions WHERE hash=\"".$_COOKIE["sess_id"]."\"");
+    setcookie("sess_id", "", time() - 3600, "/");
 }
 
 ?>
