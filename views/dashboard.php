@@ -32,4 +32,6 @@
     <h1>Hello!</h1>
 </div>
 
+<script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
+<script src="scripts/dashboard.js"></script>

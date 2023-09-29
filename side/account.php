@@ -99,8 +99,10 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
             return;
     }
 }
-else if(isset($_GET["logout"]) && empty($_GET["logout"]))
+else if(isset($_GET["logout"]) && empty($_GET["logout"])) {
     deleteSession();
+    return;
+}
 
 http_response_code(403);
 
