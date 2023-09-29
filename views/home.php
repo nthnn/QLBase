@@ -146,6 +146,7 @@
     <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
     <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
     <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
+    <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
 </div>
 
 <?php include_once("components/footer.html"); ?>
