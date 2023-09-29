@@ -21,7 +21,20 @@
                         <input type="password" id="password" class="form-control" placeholder="Password" />
                         <br/>
 
-                        <button class="btn btn-primary w-100">Sign-up</button>
+                        <div class="btn-group w-100">
+                            <button class="btn btn-primary w-75">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="18" height="18" class="mb-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Sign-up
+                            </button>
+
+                            <a class="btn btn-outline-primary" href="?">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                </svg>
+                            </a>
+                        </div>
                         <hr/>
 
                         <p align="center">Or <a href="?page=log-in" class="text-decoration-none">log-in</a> if you already have an account.</p>
