@@ -11,7 +11,19 @@ function validateSession($hash) {
     if(!$db_conn)
         return false;
 
-    return true;
+    $res1 = mysqli_query($db_conn, "SELECT user_id FROM sessions WHERE hash=\"".$hash."\"".
+        " AND user_agent=\"".$_SERVER["HTTP_USER_AGENT"]."\" AND remote_addr=\"".
+        $_SERVER["REMOTE_ADDR"]."\"");
+    if(!$res1 || mysqli_num_rows($res1) != 1)
+        return false;
+
+    $id = mysqli_fetch_array($res1)[0];
+    return mysqli_num_rows(
+        mysqli_query(
+            $db_conn,
+            "SELECT * FROM accounts WHERE id=".$id
+        )
+    ) == 1;
 }
 
 function createSession($user_id) {
