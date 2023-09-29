@@ -14,7 +14,7 @@ $(document).ready(()=> {
         const defaultErrorMessage = "Something went wrong, please try again later.";
         let hasError = false;
 
-        for(let id of ["username", "name", "email", "password"]) {
+        for(let id of ["username", "name", "email", "password", "signup"]) {
             $("#" + id + "-error").removeClass("d-block")
             $("#" + id + "-error").addClass("d-none");
         }
