@@ -20,7 +20,7 @@ function hasAccountForEmail($email) {
             $db_conn,
             "SELECT * FROM accounts WHERE email=\"".$email."\""
         )
-    ) == 0;
+    ) != 0;
 }
 
 function hasAccountForUsername($username) {
@@ -31,7 +31,7 @@ function hasAccountForUsername($username) {
             $db_conn,
             "SELECT * FROM accounts WHERE username=\"".$username."\""
         )
-    ) == 0;
+    ) != 0;
 }
 
 function createAccount($name, $username, $email, $password) {

@@ -44,6 +44,11 @@
 ?>
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="QLBase" />
+    <meta name="keywords" content="nthnn" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title><?php echo $title; ?></title>
 
     <link href="./styles/global.css" rel="stylesheet" />
@@ -62,6 +67,10 @@
             
             case "log-in":
                 require("views/log-in.php");
+                break;
+
+            case "dashboard":
+                require("views/dashboard.php");
                 break;
 
             default:

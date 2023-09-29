@@ -7,10 +7,11 @@ global $db_conn;
 
 function validateSession($hash) {
     global $db_conn;
+
     if(!$db_conn)
         return false;
 
-    return false;
+    return true;
 }
 
 function createSession($user_id) {
