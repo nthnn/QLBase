@@ -31,4 +31,4 @@ Understanding how your application is performing is crucial for making informed 
 
 ## License
 
-Currently, QLBase is under the [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
+Currently, QLBase is under the [GNU General Public License 3.0](https://www.gnu.org/licenses/gpl-3.0.txt).
