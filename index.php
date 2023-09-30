@@ -23,9 +23,7 @@
     }
 
     if(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) && validateSession($sess_id)) {
-        if(!isset($_GET['page']))
-            getPage("dashboard", "Dashboard");
-        else { }
+        getPage("dashboard", "Dashboard");
     }
     else if(isset($_GET["page"]) && !empty($_GET["page"])) {
         $page = $_GET["page"];

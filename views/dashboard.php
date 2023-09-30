@@ -29,7 +29,15 @@
 <br/><br/><br/>
 
 <div class="container">
-    <h1>Hello!</h1>
+    <div class="rows equal-cols">
+        <div class="col-lg-4">
+            <div class="card card-body border-primary">
+                <br/><br/><br/>
+                <h3>Add New App</h3>
+                <br/><br/><br/>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="scripts/vendors/jquery.min.js"></script>
