@@ -1,18 +1,22 @@
 package main
 
 import (
-	"fmt"
+	"database/sql"
+	"os"
 )
 
 func main() {
-	db_config := ConfigDB(DBUsername, DBPassword, DBName, DBServer, DBPort)
-	db_conn, err := ConnectDB(db_config)
-
-	if err != nil {
-		fmt.Println(err)
+	if len(os.Args) < 2 {
 		return
 	}
-	defer db_conn.Close()
 
-	fmt.Println("Connected to MySQL database!")
+	var callback func(*sql.DB)
+	args := os.Args[1:]
+
+	switch args[0] {
+	case "validate_sess":
+		break
+	}
+
+	DispatchWithCallback(callback)
 }

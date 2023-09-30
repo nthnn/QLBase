@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -40,4 +41,17 @@ func ConnectDB(config DBConfig) (*sql.DB, error) {
 	}
 
 	return db, err
+}
+
+func DispatchWithCallback(callback func(*sql.DB)) {
+	db_config := ConfigDB(DBUsername, DBPassword, DBName, DBServer, DBPort)
+	db_conn, err := ConnectDB(db_config)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer db_conn.Close()
+
+	callback(db_conn)
 }
