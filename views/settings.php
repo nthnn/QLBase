@@ -52,3 +52,13 @@ $username = getAccountUsername(getIdOfSession());
     <h1>Settings</h1>
     <hr/>
 </div>
+
+<script src="scripts/vendors/jquery.min.js"></script>
+<script src="scripts/vendors/bootstrap.bundle.min.js"></script>
+<script src="scripts/settings.js"></script>
+
+<?php
+
+include_once("components/footer.html");
+
+?>
