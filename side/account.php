@@ -100,7 +100,10 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
     }
 }
 else if(isset($_GET["logout"]) && empty($_GET["logout"])) {
-    deleteSession();
+    if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) && validateSession($_COOKIE["sess_id"])))
+        http_response_code(403);
+    else deleteSession();
+
     return;
 }
 
