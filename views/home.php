@@ -9,7 +9,7 @@
                 <br />
                 <br class="desktop-only" />
                 
-                <div class="card card-body border-primary">
+                <div class="card card-body border-primary shadow">
                     <center class="mobile-only">
                         <br />
                         <img src="assets/qlbase-logo.png" width="70%" />
