@@ -27,10 +27,38 @@
     flex: 1 1 auto; 
 }
 
+.hover-btn {
+    cursor: pointer;
+    color: var(--bs-primary) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-btn:hover {
+    background-color: var(--bs-primary);
+    color: var(--bs-white) !important;
+}
+
+.floating-btn {
+    position: fixed;
+    right: 60px;
+    bottom: 60px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--bs-primary);
+    color: var(--bs-white) !important;
+    border: none;
+    border-radius: 100%;
+}
+
 @media only screen and (max-width: 771px) {
     .desktop-only { display: none; }
 
     .mobile-only { display: block; }
+
+    .floating-btn {
+        right: 30px;
+        bottom: 30px;
+    }
 }
 
 @media only screen and (min-width: 770px) {
