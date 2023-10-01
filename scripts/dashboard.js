@@ -3,22 +3,42 @@ const appCard = (name, appId)=> {
 };
 
 const renderApps = (apps)=> {
+    let keys = Object.keys(apps);
+    if(keys.length == 0) {
+        $("#no-app").removeClass("d-none");
+        $("#no-app").addClass("d-block");
+    }
+    else {
+        $("#no-app").removeClass("d-block");
+        $("#no-app").addClass("d-none");
+    }
+
     let count = 0;
     let stringified = "<div class=\"row\">";
-    let keys = Object.keys(apps), values = Object.values(apps);
+    let values = Object.values(apps);
 
     for(let i = 0; i < keys.length; i++) {
-        count++;
-        if(count == 2) {
-            stringified += "</div><div class=\"row\">";
+        if(count == 3) {
+            stringified += "</div><br/><div class=\"row\">";
             count = 0;
         }
 
         stringified += appCard(keys[i], values[i]);
+        count++;
     }
 
     $("#apps").html(stringified + "</div>");
 };
+
+const fetchApps = ()=>
+    $.post(
+        "side/apps.php?fetch",
+        {},
+        (data)=> {
+            if(data.result == '1')
+                renderApps(data.apps);
+        }
+    ).fail(()=> {});
 
 $(document).ready(()=> {
     $("#logout").click(()=> {
@@ -29,12 +49,43 @@ $(document).ready(()=> {
         );
     });
 
-    $.post(
-        "side/apps.php?fetch",
-        {},
-        (data)=> {
-            if(data.result == '1')
-                renderApps(data.apps);
+    $("#add-btn").click(()=> {
+        let name = $("#app-name").val();
+        if(name.length < 6 || !/^[a-z0-9_]+$/.test(name)) {
+            $("#app-name-error").removeClass("d-none");
+            $("#app-name-error").addClass("d-block");
+            $("#app-name-error").html("Invalid app name. It must only contain lower case alphabet, digits, and/or an underscore and must be greater than 6 characters.");
+
+            return;
         }
-    );
+
+        $("#app-name-error").removeClass("d-block");
+        $("#app-name-error").addClass("d-none");
+
+        $.post(
+            "side/apps.php?create",
+            {name: name},
+            (data)=> {
+                if(data.result == '0') {
+                    $("#app-name-error").removeClass("d-none");
+                    $("#app-name-error").addClass("d-block");
+                    $("#app-name-error").html("Something went wrong.");
+
+                    return;
+                }
+
+                $("#add-new-modal").modal("hide");
+                $("#app-name-error").removeClass("d-block");
+                $("#app-name-error").addClass("d-none");
+                $("#app-name").val("");
+
+                $("#new-app-name").html(name);
+                $("#success-modal").modal("show");
+
+                fetchApps();
+            }
+        );
+    });
+
+    fetchApps();
 });

@@ -21,6 +21,11 @@ function failedResponse() {
     echo "{\"result\": \"0\"}";
 }
 
+function successResponse() {
+    jsonContentResponse();
+    echo "{\"result\": \"1\"}";
+}
+
 if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
     jsonContentResponse();
     echo "{\"result\": \"1\", \"apps\": {";
@@ -32,6 +37,20 @@ if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
 
     $str = substr($str, 0, strlen($str) - 1);
     echo $str."}}";
+    return;
+}
+else if(isset($_GET["create"]) && empty($_GET["create"]) &&
+    isset($_POST["name"]) && !empty($_POST["name"])) {
+
+    $name = $_POST["name"];
+    if(!validateAppName($name)) {
+        failedResponse();
+        return;
+    }
+
+    if(addNewApp($name))
+        successResponse();
+    else failedResponse();
     return;
 }
 
