@@ -8,9 +8,6 @@ global $db_conn;
 function validateSession($hash) {
     global $db_conn;
 
-    if(!$db_conn)
-        return false;
-
     $res1 = mysqli_query($db_conn, "SELECT user_id FROM sessions WHERE hash=\"".$hash."\"".
         " AND user_agent=\"".$_SERVER["HTTP_USER_AGENT"]."\" AND remote_addr=\"".
         $_SERVER["REMOTE_ADDR"]."\"");
@@ -47,6 +44,23 @@ function deleteSession() {
 
     mysqli_query($db_conn, "DELETE FROM sessions WHERE hash=\"".$_COOKIE["sess_id"]."\"");
     setcookie("sess_id", "", time() - 3600, "/");
+}
+
+function getIdOfSession() {
+    global $db_conn;
+
+    $res = mysqli_query(
+        $db_conn,
+        "SELECT user_id FROM sessions WHERE hash=\"".$_COOKIE["sess_id"]."\""
+    );
+
+    if(!$res || mysqli_num_rows($res) != 1)
+        return -1;
+
+    $id = mysqli_fetch_array($res)[0];
+    mysqli_free_result($res);
+
+    return $id;
 }
 
 ?>

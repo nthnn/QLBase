@@ -72,4 +72,21 @@ function loginAccount($username, $password) {
     return true;
 }
 
+function getAccountUsername($id) {
+    global $db_conn;
+
+    $res = mysqli_query(
+        $db_conn,
+        "SELECT username FROM accounts WHERE id=".$id
+    );
+
+    if(!$res || mysqli_num_rows($res) != 1)
+        return null;
+
+    $username = mysqli_fetch_array($res)[0];
+    mysqli_free_result($res);
+
+    return $username;
+}
+
 ?>

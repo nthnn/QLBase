@@ -11,4 +11,14 @@ function guidv4($data = null) {
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
+function generateAppID() {
+    $bytes = random_bytes(8);
+    $hexStr = bin2hex($bytes);
+
+    return substr($hexStr, 0, 4) . '-' .
+        substr($hexStr, 4, 4) . '-' .
+        substr($hexStr, 8, 4) . '-' .
+        substr($hexStr, 12, 4);
+}
+
 ?>
