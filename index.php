@@ -23,7 +23,17 @@
     }
 
     if(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) && validateSession($sess_id)) {
-        getPage("dashboard", "Dashboard");
+        if(isset($_GET["page"]) && !empty($_GET["page"]))
+            switch($_GET["page"]) {
+                case "settings":
+                    getPage("settings", "Settings");
+                    break;
+
+                default:
+                    getPage("dashboard", "Dashboard");
+                    break;
+            }
+        else getPage("dashboard", "Dashboard");
     }
     else if(isset($_GET["page"]) && !empty($_GET["page"])) {
         $page = $_GET["page"];
@@ -69,6 +79,10 @@
 
             case "dashboard":
                 require("views/dashboard.php");
+                break;
+            
+            case "settings":
+                require("views/settings.php");
                 break;
 
             default:
