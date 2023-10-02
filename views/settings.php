@@ -3,7 +3,13 @@
 include_once("controller/account.php");
 include_once("controller/session_ctrl.php");
 
-$username = getAccountUsername(getIdOfSession());
+$user_id = getIdOfSession();
+
+$username = getAccountUsername($user_id);
+$user_info = getAccountInfo($user_id);
+
+$name = $user_info[0];
+$email = $user_info[1];
 
 ?>
 <nav class="navbar navbar-expand-lg bg-primary fixed-top shadow" data-bs-theme="dark">
@@ -63,33 +69,33 @@ $username = getAccountUsername(getIdOfSession());
                     </div>
 
                     <div class="col-9">
-                        <input type="text" id="name" name="name" class="form-control" />
+                        <input type="text" id="name" name="name" class="form-control" value="<?php echo $name; ?>" />
                     </div>
                 </div>
                 <p class="text-danger d-none" id="name-error"></p>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-3">
                         <label for="username" class="form-label">Username</label>
                     </div>
 
                     <div class="col-9">
-                        <input type="text" id="username" name="username" class="form-control" disabled />
+                        <input type="text" id="username" name="username" class="form-control" value="<?php echo $username; ?>" disabled />
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-3">
                         <label for="email" class="form-label">Email</label>
                     </div>
                     
                     <div class="col-9">
-                        <input type="email" id="email" name="email" class="form-control" />
+                        <input type="email" id="email" name="email" class="form-control" value="<?php echo $email; ?>" />
                     </div>
                 </div>
                 <p class="text-danger d-none" id="email-error"></p>
 
-                <div class="row">
+                <div class="row mt-2">
                     <div class="col-3">
                         <label for="password" class="form-label">Password</label>
                     </div>
