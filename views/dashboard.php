@@ -110,7 +110,7 @@ $username = getAccountUsername(getIdOfSession());
                 </button>
             </div>
             <div class="modal-body">
-                <p><span id="new-app-name"></span> was successfully created!</p>
+                <p>&quot;<span id="new-app-name"></span>&quot; was successfully created!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

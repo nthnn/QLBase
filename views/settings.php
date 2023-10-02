@@ -49,8 +49,65 @@ $username = getAccountUsername(getIdOfSession());
 <br/><br/><br/><br/>
 
 <div class="container">
-    <h1>Settings</h1>
-    <hr/>
+    <div class="row">
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+            <div class="card card-body border-primary animate__animated animate__slideInDown">
+                <h1>Settings</h1>
+                <hr/>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="name" class="form-label">Name</label>
+                    </div>
+
+                    <div class="col-9">
+                        <input type="text" id="name" name="name" class="form-control" />
+                    </div>
+                </div>
+                <p class="text-danger d-none" id="name-error"></p>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="username" class="form-label">Username</label>
+                    </div>
+
+                    <div class="col-9">
+                        <input type="text" id="username" name="username" class="form-control" disabled />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="email" class="form-label">Email</label>
+                    </div>
+                    
+                    <div class="col-9">
+                        <input type="email" id="email" name="email" class="form-control" />
+                    </div>
+                </div>
+                <p class="text-danger d-none" id="email-error"></p>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label for="password" class="form-label">Password</label>
+                    </div>
+                    
+                    <div class="col-9">
+                        <input type="password" id="password" name="password" class="form-control" />
+                    </div>
+                </div>
+                <p class="text-danger d-none" id="password-error"></p>
+
+                <hr/>
+                <p class="text-danger d-none" id="save-error"></p>
+                <button type="button" class="btn btn-primary" id="save-settings">Save</button>
+            </div>
+        </div>
+
+        <div class="col-lg-3"></div>
+    </div>
 </div>
 
 <script src="scripts/vendors/jquery.min.js"></script>
