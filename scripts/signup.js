@@ -20,28 +20,28 @@ $(document).ready(()=> {
         }
 
         if(!username ||
-            username === "" ||
+            username.length < 6 ||
             !/^[a-zA-Z0-9_]+$/.test(username)) {
             showError("#username-error", "Invalid username.");
             hasError = true;
         }
 
         if(!name ||
-            name === "" ||
+            name.length < 5 ||
             !/^[A-Za-z\s]+$/.test(name)) {
             showError("#name-error", "Invalid name of user.");
             hasError = true;
         }
 
         if(!email ||
-            email === "" ||
+            email.length == 0 ||
             !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
             showError("#email-error", "Invalid email address.");
             hasError = true;
         }
 
         if(!password ||
-            password === "" ||
+            password < 6 ||
             !isStrongPassword(password)) {
             showError("#password-error", "Input password is not strong. ");
             hasError = true;

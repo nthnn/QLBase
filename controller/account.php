@@ -54,6 +54,9 @@ function createAccount($name, $username, $email, $password) {
         CreateAccountResponse::DB_ERROR;
 }
 
+function updateAccount($id, $name, $email, $password) {
+}
+
 function loginAccount($username, $password) {
     if(!hasAccountForUsername($username))
         return false;
