@@ -29,6 +29,10 @@
                     getPage("settings", "Settings");
                     break;
 
+                case "app":
+                    getPage("app", "App");
+                    break;
+
                 default:
                     getPage("dashboard", "Dashboard");
                     break;
@@ -83,6 +87,10 @@
             
             case "settings":
                 require("views/settings.php");
+                break;
+
+            case "app":
+                require("views/app.php");
                 break;
 
             default:
