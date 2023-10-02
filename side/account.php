@@ -106,6 +106,43 @@ else if(isset($_GET["logout"]) && empty($_GET["logout"])) {
 
     return;
 }
+else if(isset($_GET["update"]) && empty($_GET["update"]) &&
+    isset($_POST["username"]) && !empty($_POST["username"]) &&
+    isset($_POST["name"]) && !empty($_POST["name"]) &&
+    isset($_POST["email"]) && !empty($_POST["email"]) &&
+    isset($_POST["password"]) && !empty($_POST["password"])) {
+
+    $username = $_POST["username"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    if(!validateName($name)) {
+        respondWithErrorMessage("Invalid name of user.");
+        return;
+    }
+
+    if(!validateUsername($username)) {
+        respondWithErrorMessage("Invalid username");
+        return;
+    }
+
+    if(!validateEmail($email)) {
+        respondWithErrorMessage("Invalid email");
+        return;
+    }
+
+    if(!validateLoginPassword($password)) {
+        respondWithErrorMessage("Invalid password");
+        return;
+    }
+
+    if(updateAccount($username, $name, $email, $password))
+        successResponse();
+    else failedResponse();
+
+    return;
+}
 
 http_response_code(403);
 
