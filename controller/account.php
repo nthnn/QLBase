@@ -54,7 +54,16 @@ function createAccount($name, $username, $email, $password) {
         CreateAccountResponse::DB_ERROR;
 }
 
-function updateAccount($id, $name, $email, $password) {
+function updateAccount($username, $name, $email, $password) {
+    if(!hasAccountForUsername($username))
+        return false;
+
+    global $db_conn;
+    $res = mysqli_query($db_conn, "UPDATE accounts SET name=\"".$name.
+        "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
+        $username."\"");
+
+    return !(!$res);
 }
 
 function loginAccount($username, $password) {
