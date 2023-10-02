@@ -1,7 +1,8 @@
 <?php
 
 function validateUsername($username) {
-    return preg_match("/^[a-zA-Z0-9_]+$/", $username);
+    return strlen($username) > 6 &&
+        preg_match("/^[a-zA-Z0-9_]+$/", $username);
 }
 
 function validateName($name) {
@@ -14,7 +15,8 @@ function validateName($name) {
 }
 
 function validateLoginPassword($password) {
-    return strlen($password) === 32 && preg_match("/^[a-f0-9]+$/", $password);
+    return strlen($password) === 32 &&
+        preg_match("/^[a-f0-9]+$/", $password);
 }
 
 function validateEmail($email) {
@@ -29,7 +31,8 @@ function validateEmail($email) {
 }
 
 function validateAppName($name) {
-    return strlen($name) < 6 || preg_match("/^[a-z0-9_]+$/", $name);
+    return strlen($name) > 6 &&
+        preg_match("/^[a-z0-9_]+$/", $name);
 }
 
 ?>
