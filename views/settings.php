@@ -97,14 +97,25 @@ $email = $user_info[1];
 
                 <div class="row mt-2">
                     <div class="col-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="old-password" class="form-label">Old Password</label>
                     </div>
-                    
+
                     <div class="col-9">
-                        <input type="password" id="password" name="password" class="form-control" />
+                        <input type="password" id="old-password" name="old-password" class="form-control" />
                     </div>
                 </div>
-                <p class="text-danger d-none" id="password-error"></p>
+                <p class="text-danger d-none" id="old-password-error"></p>
+
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <label for="new-password" class="form-label">New Password</label>
+                    </div>
+
+                    <div class="col-9">
+                        <input type="password" id="new-password" name="new-password" class="form-control" />
+                    </div>
+                </div>
+                <p class="text-danger d-none" id="new-password-error"></p>
 
                 <hr/>
                 <p class="text-danger d-none" id="save-error"></p>
