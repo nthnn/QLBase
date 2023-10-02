@@ -100,7 +100,8 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
     }
 }
 else if(isset($_GET["logout"]) && empty($_GET["logout"])) {
-    if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) && validateSession($_COOKIE["sess_id"])))
+    if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) &&
+        validateSession($_COOKIE["sess_id"])))
         http_response_code(403);
     else deleteSession();
 
@@ -110,12 +111,20 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
     isset($_POST["username"]) && !empty($_POST["username"]) &&
     isset($_POST["name"]) && !empty($_POST["name"]) &&
     isset($_POST["email"]) && !empty($_POST["email"]) &&
-    isset($_POST["password"]) && !empty($_POST["password"])) {
+    isset($_POST["password"]) && !empty($_POST["password"]) &&
+    isset($_POST["old"]) && !empty($_POST["old"])) {
+
+    if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) &&
+        validateSession($_COOKIE["sess_id"]))) {
+        http_response_code(403);
+        return;
+    }
 
     $username = $_POST["username"];
     $name = $_POST["name"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $old = $_POST["old"];
 
     if(!validateName($name)) {
         respondWithErrorMessage("Invalid name of user.");
@@ -137,7 +146,12 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
         return;
     }
 
-    if(updateAccount($username, $name, $email, $password))
+    if(!validateLoginPassword($old)) {
+        respondWithErrorMessage("Invalid old password");
+        return;
+    }
+
+    if(updateAccount($username, $name, $email, $password, $old))
         successResponse();
     else failedResponse();
 

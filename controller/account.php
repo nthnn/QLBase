@@ -54,14 +54,14 @@ function createAccount($name, $username, $email, $password) {
         CreateAccountResponse::DB_ERROR;
 }
 
-function updateAccount($username, $name, $email, $password) {
+function updateAccount($username, $name, $email, $password, $old) {
     if(!hasAccountForUsername($username))
         return false;
 
     global $db_conn;
     $res = mysqli_query($db_conn, "UPDATE accounts SET name=\"".$name.
         "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
-        $username."\"");
+        $username."\" AND password=\"".md5($old)."\" AND id=".getIdOfSession());
 
     return !(!$res);
 }

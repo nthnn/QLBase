@@ -129,6 +129,9 @@ $email = $user_info[1];
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
+<script src="scripts/vendors/cryptojs.core.min.js"></script>
+<script src="scripts/vendors/cryptojs.md5.min.js"></script>
+<script src="scripts/util.js"></script>
 <script src="scripts/settings.js"></script>
 
 <?php
