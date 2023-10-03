@@ -71,32 +71,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet"/>
 </head>
 <body>
-    <?php
-        switch($view) {
-            case "sign-up":
-                require("views/sign-up.php");
-                break;
-            
-            case "log-in":
-                require("views/log-in.php");
-                break;
-
-            case "dashboard":
-                require("views/dashboard.php");
-                break;
-            
-            case "settings":
-                require("views/settings.php");
-                break;
-
-            case "app":
-                require("views/app.php");
-                break;
-
-            default:
-                require("views/home.php");
-                break;
-        }
-    ?>
+    <?php require_once("views/".$view.".php"); ?>
 </body>
 </html>
