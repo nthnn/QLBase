@@ -7,6 +7,11 @@ include_once("util.php");
 global $db_conn;
 $sess_id = getIdOfSession();
 
+function validateAppId($id) {
+    return strlen($id) == 19 &&
+        preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id);
+}
+
 function addNewApp($name) {
     global $db_conn;
     global $sess_id;
@@ -67,6 +72,24 @@ function getAppInfo($name) {
         "app_key"=> $val["app_key"],
         "app_id"=> $val["app_id"],
         "creator_id"=> $val["creator_id"]
+    );
+}
+
+function getAppInfoById($user_id, $id) {
+    global $db_conn;
+
+    $res = mysqli_query(
+        $db_conn,
+        "SELECT id, app_key FROM app WHERE app_id=\"".$id."\" AND creator_id=".$user_id
+    );
+
+    if(mysqli_num_rows($res) != 1)
+        return null;
+
+    $val = mysqli_fetch_array($res);
+    return array(
+        "id"=> $val["id"],
+        "app_key"=> $val["app_key"],
     );
 }
 

@@ -1,6 +1,16 @@
 <?php
 
+include_once("controller/apps.php");
+include_once("controller/session_ctrl.php");
+
+if(!isset($_GET["id"]) || empty($_GET["id"]) || !validateAppId($_GET["id"])) {
+    header("Location: ?");
+    return;
+}
+
+$userId = getIdOfSession();
 $appId = $_GET["id"];
+$appInfo = getAppInfoById($userId, $appId);
 
 ?>
 <nav class="navbar navbar-expand-lg bg-primary fixed-top shadow" data-bs-theme="dark">
