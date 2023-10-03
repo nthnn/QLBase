@@ -8,8 +8,16 @@ global $db_conn;
 $sess_id = getIdOfSession();
 
 function validateAppId($id) {
-    return strlen($id) == 19 &&
-        preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id);
+    if(strlen($id) != 19 ||
+        !preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id))
+        return false;
+
+    global $db_conn;
+    $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"".$id."\"");
+    $count = mysqli_num_rows($res);
+
+    mysqli_free_result($res);
+    return $count == 1;
 }
 
 function addNewApp($name) {
@@ -80,7 +88,7 @@ function getAppInfoById($user_id, $id) {
 
     $res = mysqli_query(
         $db_conn,
-        "SELECT id, app_key FROM app WHERE app_id=\"".$id."\" AND creator_id=".$user_id
+        "SELECT app_id, app_key, name FROM app WHERE app_id=\"".$id."\" AND creator_id=".$user_id
     );
 
     if(mysqli_num_rows($res) != 1)
@@ -88,8 +96,9 @@ function getAppInfoById($user_id, $id) {
 
     $val = mysqli_fetch_array($res);
     return array(
-        "id"=> $val["id"],
+        "app_id"=> $val["app_id"],
         "app_key"=> $val["app_key"],
+        "app_name"=> $val["name"]
     );
 }
 
