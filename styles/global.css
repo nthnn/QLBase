@@ -50,6 +50,10 @@
     border-radius: 100%;
 }
 
+.board-icons {
+    margin-bottom: 4px;
+}
+
 @media only screen and (max-width: 771px) {
     .desktop-only { display: none; }
 
