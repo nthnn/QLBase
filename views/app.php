@@ -8,11 +8,9 @@ if(!isset($_GET["id"]) || empty($_GET["id"]) || !validateAppId($_GET["id"])) {
     return;
 }
 
-$userId = getIdOfSession();
 $appId = $_GET["id"];
-$appInfo = getAppInfoById($userId, $appId);
-
 $page = "overview";
+
 if(isset($_GET["section"]) && !empty($_GET["section"]))
     switch($_GET["section"]) {
         case "auth":
@@ -73,54 +71,44 @@ if(isset($_GET["section"]) && !empty($_GET["section"]))
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <div class="btn-group-vertical shadow w-100">
+                <a href="<?php echo "?page=app&id=".$appId; ?>" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                    </svg>
+                    Overview
+                </a>
 
-        <div class="col-lg-10">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="btn-group-vertical shadow w-100">
-                        <a href="<?php echo "?page=app&id=".$appId; ?>" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
-                            </svg>
-                            Overview
-                        </a>
+                <a href="<?php echo "?page=app&id=".$appId."&section=auth"; ?>" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                    Authentication
+                </a>
 
-                        <a href="<?php echo "?page=app&id=".$appId."&section=auth"; ?>" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                            </svg>
-                            Authentication
-                        </a>
+                <a href="<?php echo "?page=app&id=".$appId."&section=sms"; ?>" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    SMS Verification
+                </a>
 
-                        <a href="<?php echo "?page=app&id=".$appId."&section=sms"; ?>" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                            </svg>
-                            SMS Verification
-                        </a>
-
-                        <a href="<?php echo "?page=app&id=".$appId."&section=db"; ?>" class="btn btn-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                            </svg>
-                            Database
-                        </a>
-                    </div>
-                    <br/><br/>
-                </div>
-
-                <div class="col-lg-8">
-                    <div class="card card-body border-primary shadow">
-                        <?php
-                            require_once("views/appsec/".$page.".php");
-                        ?>
-                    </div>
-                </div>
+                <a href="<?php echo "?page=app&id=".$appId."&section=db"; ?>" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                    </svg>
+                    Database
+                </a>
             </div>
+            <br/><br/>
         </div>
 
-        <div class="col-lg-1"></div>
+        <div class="col-lg-9">
+            <div class="card card-body border-primary shadow">
+                <?php require_once("views/appsec/".$page.".php"); ?>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -128,8 +116,4 @@ if(isset($_GET["section"]) && !empty($_GET["section"]))
 <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
 <script src="scripts/app.js"></script>
 
-<?php
-
-include_once("components/footer.html");
-
-?>
+<?php include_once("components/footer.html"); ?>
