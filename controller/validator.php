@@ -32,7 +32,7 @@ function validateEmail($email) {
 
 function validateAppName($name) {
     return strlen($name) > 6 &&
-        preg_match("/^[a-z0-9_]+$/", $name);
+        preg_match("/^[a-zA-Z0-9_]+$/", $name);
 }
 
 ?>

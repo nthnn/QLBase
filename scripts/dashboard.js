@@ -51,7 +51,7 @@ $(document).ready(()=> {
 
     $("#add-btn").click(()=> {
         let name = $("#app-name").val();
-        if(name.length < 6 || !/^[a-z0-9_]+$/.test(name)) {
+        if(name.length < 6 || !/^[a-zA-Z0-9_]+$/.test(name)) {
             $("#app-name-error").removeClass("d-none");
             $("#app-name-error").addClass("d-block");
             $("#app-name-error").html("Invalid app name. It must only contain lower case alphabet, digits, and/or an underscore and must be greater than 6 characters.");
