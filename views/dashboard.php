@@ -128,8 +128,4 @@ $username = getAccountUsername(getIdOfSession());
 <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
 <script src="scripts/dashboard.js"></script>
 
-<?php
-
-include_once("components/footer.html");
-
-?>
+<?php include_once("components/footer.html"); ?>

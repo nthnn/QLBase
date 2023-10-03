@@ -134,8 +134,4 @@ $email = $user_info[1];
 <script src="scripts/util.js"></script>
 <script src="scripts/settings.js"></script>
 
-<?php
-
-include_once("components/footer.html");
-
-?>
+<?php include_once("components/footer.html"); ?>
