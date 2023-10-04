@@ -15,6 +15,9 @@
 
 <br/>
 <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#add-user-modal">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
     Add User
 </button>
 
@@ -43,6 +46,8 @@
                 <label for="confirm-password" class="form-label mt-2">Confirm Password</label>
                 <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password"></input>
                 <p class="text-danger d-none" id="confirm-password-error"></p>
+
+                <p class="text-danger d-none mt-2" id="add-error"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -63,10 +68,35 @@
     </div>
 </div>
 
+<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modalLabel" aria-hidden="true">
+    <div class="modal-dialog shadow" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="success-modalLabel">Success</h5>
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="success-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
+<script src="scripts/util.js"></script>
 <script src="scripts/appsec/auth.js"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>
