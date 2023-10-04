@@ -72,9 +72,9 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $username, $email, $password);
             break;
 
-        case "delete_user":
+        case "delete_by_username":
             $backend = "auth";
-            array_push($args, "delete", $apiKey);
+            array_push($args, "delete_by_username", $apiKey);
 
             if(!isset($_GET["username"]) || empty($_GET["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
@@ -88,6 +88,60 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             }
 
             array_push($args, $username);
+            break;
+
+        case "delete_by_email":
+            $backend = "auth";
+            array_push($args, "delete_by_email", $apiKey);
+
+            if(!isset($_GET["email"]) || empty($_GET["email"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $email = $_GET["email"];
+            if(!validateEmail($email)) {
+                failedResponseMessage("Invalid email string.");
+                return;
+            }
+    
+            array_push($args, $email);
+            break;
+
+        case "get_by_username":
+            $backend = "auth";
+            array_push($args, "get_by_username", $apiKey);
+    
+            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $username = $_GET["username"];
+            if(!validateUsername($username)) {
+                failedResponseMessage("Invalid username string.");
+                return;
+            }
+
+            array_push($args, $username);
+            break;
+
+        case "get_by_email":
+            $backend = "auth";
+            array_push($args, "get_by_email", $apiKey);
+
+            if(!isset($_GET["email"]) || empty($_GET["email"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $email = $_GET["email"];
+            if(!validateEmail($email)) {
+                failedResponseMessage("Invalid email string.");
+                return;
+            }
+    
+            array_push($args, $email);
             break;
 
         case "fetch_all":

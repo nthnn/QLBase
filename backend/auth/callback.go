@@ -11,7 +11,44 @@ func createUserCallback(apiKey string, args []string) func(*sql.DB) {
 	password := args[4]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("INSERT INTO " + apiKey +
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" +
+			username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 0 {
+			proc.ShowFailedResponse("Username already in-use.")
+			return
+		}
+
+		query, err = d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE email=\"" + email + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count = 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 0 {
+			proc.ShowFailedResponse("Email already in-use.")
+			return
+		}
+
+		query, err = d.Query("INSERT INTO " + apiKey +
 			"_accounts (username, email, password) VALUES (\"" +
 			username + "\", \"" + email + "\", \"" + password + "\")")
 
