@@ -54,6 +54,11 @@
     margin-bottom: 4px;
 }
 
+#auth-table_filter label, .show-size {
+    display: inline-flex;
+    align-items: center;
+}
+
 @media only screen and (max-width: 771px) {
     .desktop-only { display: none; }
 
