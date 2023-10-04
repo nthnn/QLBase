@@ -6,6 +6,13 @@ import (
 	"os"
 )
 
+func failOnUmatchedArgSize(size int, args []string) {
+	if len(args) != size {
+		proc.ShowFailedResponse("Invalid parameter arity.")
+		os.Exit(-1)
+	}
+}
+
 func main() {
 	if len(os.Args) < 3 {
 		return
@@ -17,20 +24,32 @@ func main() {
 
 	switch args[0] {
 	case "create":
-		if len(args) != 5 {
-			proc.ShowFailedResponse("Invalid parameter arity.")
-			return
-		}
-
+		failOnUmatchedArgSize(5, args)
 		callback = createUserCallback(apiKey, args)
 
-	case "delete":
-		if len(args) != 3 {
-			proc.ShowFailedResponse("Invalid parameter arity.")
-			return
-		}
+	case "delete_by_username":
+		failOnUmatchedArgSize(3, args)
+		callback = deleteByUsernameCallback(apiKey, args)
 
-		callback = deleteUserCallback(apiKey, args)
+	case "delete_by_email":
+		failOnUmatchedArgSize(3, args)
+		callback = deleteByEmailCallback(apiKey, args)
+
+	case "update_by_username":
+		failOnUmatchedArgSize(5, args)
+		callback = updateByUsernameCallback(apiKey, args)
+
+	case "update_by_email":
+		failOnUmatchedArgSize(5, args)
+		callback = updateByEmailCallback(apiKey, args)
+
+	case "get_by_username":
+		failOnUmatchedArgSize(3, args)
+		callback = getByUsernameCallback(apiKey, args)
+
+	case "get_by_email":
+		failOnUmatchedArgSize(3, args)
+		callback = getByEmailCallback(apiKey, args)
 
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
