@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"os"
 )
 
@@ -10,12 +11,16 @@ func main() {
 		return
 	}
 
-	var callback func(*sql.DB)
+	var callback func(*sql.DB) = func(d *sql.DB) {}
 	args := os.Args[1:]
 
 	switch args[0] {
-	case "validate_sess":
-		break
+	case "add":
+		if len(args) != 6 {
+			return
+		}
+
+		fmt.Println("Hey")
 	}
 
 	DispatchWithCallback(callback)

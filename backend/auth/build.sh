@@ -1,0 +1,1 @@
+go build -ldflags "-w -s" -o auth && sudo mv ./auth ../../bin/auth
