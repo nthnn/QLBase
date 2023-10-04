@@ -13,31 +13,24 @@ func main() {
 
 	var callback func(*sql.DB) = func(d *sql.DB) {}
 	args := os.Args[1:]
+	apiKey := args[1]
 
 	switch args[0] {
 	case "create":
 		if len(args) != 5 {
+			proc.ShowFailedResponse("Invalid parameter arity.")
 			return
 		}
 
-		callback = func(d *sql.DB) {
-			apiKey := args[1]
-			username := args[2]
-			email := args[3]
-			password := args[4]
+		callback = createUserCallback(apiKey, args)
 
-			query, err := d.Query("INSERT INTO " + apiKey +
-				"_accounts (username, email, password) VALUES (\"" +
-				username + "\", \"" + email + "\", \"" + password + "\")")
-
-			if err != nil {
-				proc.ShowFailedResponse("Internal error occured.")
-				return
-			}
-
-			defer query.Close()
-			proc.ShowSuccessResponse()
+	case "delete":
+		if len(args) != 3 {
+			proc.ShowFailedResponse("Invalid parameter arity.")
+			return
 		}
+
+		callback = deleteUserCallback(apiKey, args)
 	}
 
 	DispatchWithCallback(callback)
