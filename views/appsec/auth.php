@@ -8,11 +8,9 @@
         <th>Date Creation</th>
         <th>Options</th>
     </thead>
-    <tbody>
-        <tr id="no-contents-yet">
-            <td colspan="4" align="center">
-                No users yet.
-            </td>
+    <tbody id="user-table">
+        <tr>
+            <td colspan="4" align="center">No users yet.</td>
         </tr>
     </tbody>
 </table>
@@ -67,4 +65,7 @@
 </div>
 
 <script src="scripts/vendors/jquery.min.js"></script>
+<script src="scripts/vendors/jquery.dataTables.min.js"></script>
 <script src="scripts/appsec/auth.js"></script>
+
+<style>@import url("styles/jquery.dataTables.min.css");</style>
