@@ -92,6 +92,6 @@ func fetchAllUserCallback(apiKey string) func(*sql.DB) {
 		}
 
 		buff = buff[0 : len(buff)-2]
-		proc.ShowResult(buff)
+		proc.ShowResult("[" + buff + "]")
 	}
 }
