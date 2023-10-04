@@ -16,6 +16,14 @@ if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
     $page = $_GET["section"];
 ?>
+
+<script>
+const App = {
+    appId: "<?php echo $appId; ?>",
+    appKey: "<?php echo getAppInfoById(getIdOfSession(), $appId)["app_key"]; ?>"
+};
+</script>
+
 <nav class="navbar navbar-expand-lg bg-primary fixed-top shadow" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">QLBase</a>

@@ -1,7 +1,7 @@
 <h1>Authentication</h1>
 <hr/>
 
-<table class="table table-hover">
+<table id="auth-table" class="table table-hover">
     <thead>
         <th>Username</th>
         <th>Email</th>
@@ -9,12 +9,11 @@
         <th>Options</th>
     </thead>
     <tbody id="user-table">
-        <tr>
-            <td colspan="4" align="center">No users yet.</td>
-        </tr>
+        <tr><td colspan="4" align="center">No users yet.</td></tr>
     </tbody>
 </table>
 
+<br/>
 <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#add-user-modal">
     Add User
 </button>
@@ -66,6 +65,8 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/cryptojs.core.min.js"></script>
+<script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/appsec/auth.js"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>
