@@ -1,8 +1,8 @@
 package main
 
 import (
+	"auth/proc"
 	"database/sql"
-	"fmt"
 	"os"
 )
 
@@ -15,12 +15,29 @@ func main() {
 	args := os.Args[1:]
 
 	switch args[0] {
-	case "add":
-		if len(args) != 6 {
+	case "create":
+		if len(args) != 5 {
 			return
 		}
 
-		fmt.Println("Hey")
+		callback = func(d *sql.DB) {
+			apiKey := args[1]
+			username := args[2]
+			email := args[3]
+			password := args[4]
+
+			query, err := d.Query("INSERT INTO " + apiKey +
+				"_accounts (username, email, password) VALUES (\"" +
+				username + "\", \"" + email + "\", \"" + password + "\")")
+
+			if err != nil {
+				proc.ShowFailedResponse("Internal error occured.")
+				return
+			}
+
+			defer query.Close()
+			proc.ShowSuccessResponse()
+		}
 	}
 
 	DispatchWithCallback(callback)

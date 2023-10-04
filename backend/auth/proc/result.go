@@ -2,11 +2,15 @@ package proc
 
 import "fmt"
 
-func showFailedResponse(errorMessage string) {
+func ShowSuccessResponse() {
+	fmt.Println("{\"result\": \"1\"}")
+}
+
+func ShowFailedResponse(errorMessage string) {
 	fmt.Println("{\"result\": \"0\", \"message\": \"" + errorMessage + "\"}")
 }
 
-func showResult(value string, message string) {
+func ShowResult(value string, message string) {
 	fmt.Println("{\"result\": \"1\", \"message\": \"" +
 		message + "\", \"value\": \"" +
 		value + "\"}")
