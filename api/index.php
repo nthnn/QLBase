@@ -72,6 +72,70 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $username, $email, $password);
             break;
 
+        case "update_by_username":
+            $backend = "auth";
+            array_push($args, "update_by_username", $apiKey);
+    
+            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
+                !isset($_GET["email"]) || empty($_GET["email"]) ||
+                !isset($_GET["password"]) || empty($_GET["password"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $username = $_GET["username"];
+            if(!validateUsername($username)) {
+                failedResponseMessage("Invalid username string.");
+                return;
+            }
+    
+            $email = $_GET["email"];
+            if(!validateEmail($email)) {
+                failedResponseMessage("Invalid email string.");
+                return;
+            }
+    
+            $password = $_GET["password"];
+            if(!validateLoginPassword($password)) {
+                failedResponseMessage("Invalid password hash.");
+                return;
+            }
+    
+            array_push($args, $username, $email, $password);
+            break;
+
+        case "update_by_email":
+            $backend = "auth";
+            array_push($args, "update_by_email", $apiKey);
+        
+            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
+                !isset($_GET["email"]) || empty($_GET["email"]) ||
+                !isset($_GET["password"]) || empty($_GET["password"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $username = $_GET["username"];
+            if(!validateUsername($username)) {
+                failedResponseMessage("Invalid username string.");
+                return;
+            }
+        
+            $email = $_GET["email"];
+            if(!validateEmail($email)) {
+                failedResponseMessage("Invalid email string.");
+                return;
+            }
+        
+            $password = $_GET["password"];
+            if(!validateLoginPassword($password)) {
+                failedResponseMessage("Invalid password hash.");
+                return;
+            }
+        
+            array_push($args, $email, $username, $password);
+            break;
+    
         case "delete_by_username":
             $backend = "auth";
             array_push($args, "delete_by_username", $apiKey);
