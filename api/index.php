@@ -90,6 +90,11 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $username);
             break;
 
+        case "fetch_all":
+            $backend = "auth";
+            array_push($args, "fetch_all", $apiKey);
+            break;
+
         default:
             failedResponse();
             return;

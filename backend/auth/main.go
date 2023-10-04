@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 {
+	if len(os.Args) < 3 {
 		return
 	}
 
@@ -31,6 +31,9 @@ func main() {
 		}
 
 		callback = deleteUserCallback(apiKey, args)
+
+	case "fetch_all":
+		callback = fetchAllUserCallback(apiKey)
 	}
 
 	DispatchWithCallback(callback)

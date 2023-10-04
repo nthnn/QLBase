@@ -10,7 +10,11 @@ func ShowFailedResponse(errorMessage string) {
 	fmt.Println("{\"result\": \"0\", \"message\": \"" + errorMessage + "\"}")
 }
 
-func ShowResult(value string, message string) {
+func ShowResult(value string) {
+	fmt.Println("{\"result\": \"1\", \"value\": " + value + "}")
+}
+
+func ShowResultWithMessage(value string, message string) {
 	fmt.Println("{\"result\": \"1\", \"message\": \"" +
 		message + "\", \"value\": \"" +
 		value + "\"}")

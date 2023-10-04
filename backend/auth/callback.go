@@ -61,3 +61,37 @@ func deleteUserCallback(apiKey string, args []string) func(*sql.DB) {
 		query.Close()
 	}
 }
+
+func fetchAllUserCallback(apiKey string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT username, email, timedate FROM " +
+			apiKey + "_accounts")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		var data [][]string
+		for query.Next() {
+			var username, email, timestamp string
+			if err := query.Scan(&username, &email, &timestamp); err != nil {
+				proc.ShowFailedResponse("Internal error occured.")
+				return
+			}
+
+			data = append(data, []string{username, email, timestamp})
+		}
+		defer query.Close()
+
+		buff := ""
+		for i := 0; i < len(data); i++ {
+			buff += "[\"" + data[i][0] + "\", \"" +
+				data[i][1] + "\", \"" +
+				data[i][2] + "\"], "
+		}
+
+		buff = buff[0 : len(buff)-2]
+		proc.ShowResult(buff)
+	}
+}
