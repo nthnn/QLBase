@@ -10,7 +10,7 @@ $userName = getAccountUsername($userId);
 <h1 class="border-bottom">Overview</h1>
 <br/>
 
-<div class="row" align="center">
+<div class="row">
     <div class="col-sm-6">
         <h3 class="text-primary mb-0"><?php echo $appInfo["app_name"]; ?></h3>
         <small class="text-muted">App Name</small>
@@ -24,7 +24,7 @@ $userName = getAccountUsername($userId);
 </div>
 <br/>
 
-<div class="row" align="center">
+<div class="row">
     <div class="col-sm-6">
         <h3 class="text-primary mb-0"><?php echo $appInfo["app_key"]; ?></h3>
         <small class="text-muted">App Key</small>
