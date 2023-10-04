@@ -11,7 +11,7 @@
     <tbody>
         <tr id="no-contents-yet">
             <td colspan="4" align="center">
-                No SMS authentications yet.
+                No SMS verifications yet.
             </td>
         </tr>
     </tbody>
