@@ -7,8 +7,7 @@ include_once("util.php");
 global $db_conn;
 $sess_id = getIdOfSession();
 
-function validateAppId($id)
-{
+function validateAppId($id) {
     if (
         strlen($id) != 19 ||
         !preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id)
@@ -23,8 +22,7 @@ function validateAppId($id)
     return $count == 1;
 }
 
-function addNewApp($name)
-{
+function addNewApp($name) {
     global $db_conn;
     global $sess_id;
 
@@ -44,8 +42,7 @@ function addNewApp($name)
     return !(!$res);
 }
 
-function removeNewApp($name)
-{
+function removeNewApp($name) {
     global $db_conn;
     global $sess_id;
 
@@ -56,8 +53,7 @@ function removeNewApp($name)
     return !(!$res);
 }
 
-function getAppsOfCurrentUser()
-{
+function getAppsOfCurrentUser() {
     global $db_conn;
     global $sess_id;
 
@@ -74,8 +70,7 @@ function getAppsOfCurrentUser()
     return $ownedApps;
 }
 
-function getAppInfo($name)
-{
+function getAppInfo($name) {
     global $db_conn;
 
     $res = mysqli_query(
@@ -95,8 +90,7 @@ function getAppInfo($name)
     );
 }
 
-function getAppInfoById($user_id, $id)
-{
+function getAppInfoById($user_id, $id) {
     global $db_conn;
 
     $res = mysqli_query(
@@ -113,6 +107,13 @@ function getAppInfoById($user_id, $id)
         "app_key" => $val["app_key"],
         "app_name" => $val["name"]
     );
+}
+
+function matchApiKeyAppId($key, $id) {
+    global $db_conn;
+    $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_key=\"".$key."\" AND app_id=\"".$id."\"");
+
+    return mysqli_num_rows($res) == 1;
 }
 
 ?>
