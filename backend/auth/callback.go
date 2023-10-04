@@ -68,7 +68,25 @@ func updateByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	password := args[4]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("UPDATE " + apiKey + "_accounts SET email=\"" +
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("UPDATE " + apiKey + "_accounts SET email=\"" +
 			email + "\", password=\"" + password + "\" WHERE username=\"" +
 			username + "\"")
 
@@ -88,7 +106,25 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	password := args[4]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("UPDATE " + apiKey + "_accounts SET username=\"" +
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("UPDATE " + apiKey + "_accounts SET username=\"" +
 			username + "\", password=\"" + password + "\" WHERE email=\"" +
 			email + "\"")
 
