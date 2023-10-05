@@ -51,6 +51,18 @@ func main() {
 		failOnUmatchedArgSize(3, args)
 		callback = getByEmailCallback(apiKey, args)
 
+	case "enable_user":
+		failOnUmatchedArgSize(3, args)
+		callback = enableUser(apiKey, args)
+
+	case "disable_user":
+		failOnUmatchedArgSize(3, args)
+		callback = disableUser(apiKey, args)
+
+	case "is_user_enabled":
+		failOnUmatchedArgSize(3, args)
+		callback = isUserEnabled(apiKey, args)
+
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
 	}

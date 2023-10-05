@@ -357,3 +357,120 @@ func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 			timedate + "\"]")
 	}
 }
+
+func enableUser(apiKey string, args []string) func(*sql.DB) {
+	username := args[2]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("UPDATE " + apiKey +
+			"_accounts SET enabled=1 WHERE username=\"" +
+			username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		query.Close()
+	}
+}
+
+func disableUser(apiKey string, args []string) func(*sql.DB) {
+	username := args[2]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("UPDATE " + apiKey +
+			"_accounts SET enabled=0 WHERE username=\"" +
+			username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		query.Close()
+	}
+}
+
+func isUserEnabled(apiKey string, args []string) func(*sql.DB) {
+	username := args[2]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("SELECT enabled FROM " + apiKey +
+			"_accounts WHERE username=\"" +
+			username + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		enabled := false
+		query.Next()
+		query.Scan(&enabled)
+
+		if enabled {
+			proc.ShowResult("\"1\"")
+		} else {
+			proc.ShowResult("\"0\"")
+		}
+
+		query.Close()
+	}
+}
