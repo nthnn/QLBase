@@ -3,12 +3,22 @@ package main
 import (
 	"auth/proc"
 	"database/sql"
+	"strconv"
 )
 
 func createUserCallback(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
 	email := args[3]
 	password := args[4]
+	enabled := 0
+
+	if args[5] == "true" {
+		enabled = 1
+	} else if args[5] == "false" {
+		enabled = 0
+	} else {
+		enabled = 1
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -49,8 +59,9 @@ func createUserCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		query, err = d.Query("INSERT INTO " + apiKey +
-			"_accounts (username, email, password) VALUES (\"" +
-			username + "\", \"" + email + "\", \"" + password + "\")")
+			"_accounts (username, email, password, enabled) VALUES (\"" +
+			username + "\", \"" + email + "\", \"" + password + "\", " +
+			strconv.Itoa(enabled) + ")")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -66,6 +77,15 @@ func updateByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
 	email := args[3]
 	password := args[4]
+	enabled := 0
+
+	if args[5] == "true" {
+		enabled = 1
+	} else if args[5] == "false" {
+		enabled = 0
+	} else {
+		enabled = 1
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -87,8 +107,8 @@ func updateByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		query, err = d.Query("UPDATE " + apiKey + "_accounts SET email=\"" +
-			email + "\", password=\"" + password + "\" WHERE username=\"" +
-			username + "\"")
+			email + "\", password=\"" + password + "\", enabled=" +
+			strconv.Itoa(enabled) + " WHERE username=\"" + username + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -104,6 +124,15 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
 	username := args[3]
 	password := args[4]
+	enabled := 0
+
+	if args[5] == "true" {
+		enabled = 1
+	} else if args[5] == "false" {
+		enabled = 0
+	} else {
+		enabled = 1
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -125,8 +154,8 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		query, err = d.Query("UPDATE " + apiKey + "_accounts SET username=\"" +
-			username + "\", password=\"" + password + "\" WHERE email=\"" +
-			email + "\"")
+			username + "\", password=\"" + password + "\", enabled=" +
+			strconv.Itoa(enabled) + " WHERE email=\"" + email + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -214,7 +243,7 @@ func deleteByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 
 func fetchAllUserCallback(apiKey string) func(*sql.DB) {
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT username, email, timedate FROM " +
+		query, err := d.Query("SELECT username, email, enabled, timedate FROM " +
 			apiKey + "_accounts")
 
 		if err != nil {
@@ -224,13 +253,13 @@ func fetchAllUserCallback(apiKey string) func(*sql.DB) {
 
 		var data [][]string
 		for query.Next() {
-			var username, email, timestamp string
-			if err := query.Scan(&username, &email, &timestamp); err != nil {
+			var username, email, enabled, timestamp string
+			if err := query.Scan(&username, &email, &enabled, &timestamp); err != nil {
 				proc.ShowFailedResponse("Internal error occured.")
 				return
 			}
 
-			data = append(data, []string{username, email, timestamp})
+			data = append(data, []string{username, email, enabled, timestamp})
 		}
 		defer query.Close()
 
@@ -238,10 +267,13 @@ func fetchAllUserCallback(apiKey string) func(*sql.DB) {
 		for i := 0; i < len(data); i++ {
 			buff += "[\"" + data[i][0] + "\", \"" +
 				data[i][1] + "\", \"" +
-				data[i][2] + "\"], "
+				data[i][2] + "\", \"" +
+				data[i][3] + "\"], "
 		}
 
-		buff = buff[0 : len(buff)-2]
+		if buff != "" {
+			buff = buff[0 : len(buff)-2]
+		}
 		proc.ShowResult("[" + buff + "]")
 	}
 }
@@ -250,7 +282,7 @@ func getByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT email, timedate FROM " + apiKey +
+		query, err := d.Query("SELECT email, enabled, timedate FROM " + apiKey +
 			"_accounts WHERE username=\"" + username + "\"")
 
 		if err != nil {
@@ -260,11 +292,11 @@ func getByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 		defer query.Close()
 
 		count := 0
-		var email, timedate string
+		var email, enabled, timedate string
 
 		for query.Next() {
 			count += 1
-			if err := query.Scan(&email, &timedate); err != nil {
+			if err := query.Scan(&email, &enabled, &timedate); err != nil {
 				proc.ShowFailedResponse("Internal error occured.")
 				return
 			}
@@ -280,7 +312,9 @@ func getByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		proc.ShowResult("[\"" + email + "\", \"" + timedate + "\"]")
+		proc.ShowResult("[\"" + email + "\", \"" +
+			enabled + "\", \"" +
+			timedate + "\"]")
 	}
 }
 
@@ -288,7 +322,7 @@ func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT username, timedate FROM " + apiKey +
+		query, err := d.Query("SELECT username, enabled, timedate FROM " + apiKey +
 			"_accounts WHERE email=\"" + email + "\"")
 
 		if err != nil {
@@ -298,11 +332,11 @@ func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 		defer query.Close()
 
 		count := 0
-		var username, timedate string
+		var username, enabled, timedate string
 
 		for query.Next() {
 			count += 1
-			if err := query.Scan(&username, &timedate); err != nil {
+			if err := query.Scan(&username, &enabled, &timedate); err != nil {
 				proc.ShowFailedResponse("Internal error occured.")
 				return
 			}
@@ -318,6 +352,8 @@ func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		proc.ShowResult("[\"" + username + "\", \"" + timedate + "\"]")
+		proc.ShowResult("[\"" + username + "\", \"" +
+			enabled + "\", \"" +
+			timedate + "\"]")
 	}
 }

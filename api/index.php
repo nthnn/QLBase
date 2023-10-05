@@ -46,7 +46,8 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
 
             if(!isset($_GET["username"]) || empty($_GET["username"]) ||
                 !isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"])) {
+                !isset($_GET["password"]) || empty($_GET["password"]) ||
+                !isset($_GET["enabled"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
@@ -69,7 +70,8 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
                 return;
             }
 
-            array_push($args, $username, $email, $password);
+            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            array_push($args, $username, $email, $password, $enabled);
             break;
 
         case "update_by_username":
@@ -78,7 +80,8 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
     
             if(!isset($_GET["username"]) || empty($_GET["username"]) ||
                 !isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"])) {
+                !isset($_GET["password"]) || empty($_GET["password"]) ||
+                !isset($_GET["enabled"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
@@ -101,7 +104,8 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
                 return;
             }
     
-            array_push($args, $username, $email, $password);
+            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            array_push($args, $username, $email, $password, $enabled);
             break;
 
         case "update_by_email":
@@ -133,7 +137,8 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
                 return;
             }
         
-            array_push($args, $email, $username, $password);
+            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            array_push($args, $email, $username, $password, $enabled);
             break;
     
         case "delete_by_username":

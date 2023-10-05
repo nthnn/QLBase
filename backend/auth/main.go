@@ -24,7 +24,7 @@ func main() {
 
 	switch args[0] {
 	case "create":
-		failOnUmatchedArgSize(5, args)
+		failOnUmatchedArgSize(6, args)
 		callback = createUserCallback(apiKey, args)
 
 	case "delete_by_username":
@@ -36,11 +36,11 @@ func main() {
 		callback = deleteByEmailCallback(apiKey, args)
 
 	case "update_by_username":
-		failOnUmatchedArgSize(5, args)
+		failOnUmatchedArgSize(6, args)
 		callback = updateByUsernameCallback(apiKey, args)
 
 	case "update_by_email":
-		failOnUmatchedArgSize(5, args)
+		failOnUmatchedArgSize(6, args)
 		callback = updateByEmailCallback(apiKey, args)
 
 	case "get_by_username":

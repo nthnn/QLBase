@@ -1,18 +1,20 @@
 <h1>Authentication</h1>
 <hr/>
 
-<h2>User Accounts</h2>
-<br/>
-
 <table id="auth-table" class="table table-hover">
     <thead>
         <th>Username</th>
         <th>Email</th>
+        <th>Enabled</th>
         <th>Date Creation</th>
         <th>Options</th>
     </thead>
     <tbody id="user-table">
-        <tr><td colspan="4" align="center">No users yet.</td></tr>
+        <tr>
+            <td colspan="5" align="center">
+                No users yet.
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -49,6 +51,9 @@
                 <label for="confirm-password" class="form-label mt-2">Confirm Password</label>
                 <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm Password"></input>
                 <p class="text-danger d-none" id="confirm-password-error"></p>
+
+                <input type="checkbox" class="form-check-control mt-3" id="enabled" name="enabled" checked></input>
+                <label for="enabled" class="form-label">Enable Account</label>
 
                 <p class="text-danger d-none mt-2" id="add-error"></p>
             </div>
@@ -95,6 +100,9 @@
                 <label for="confirm-password-edit" class="form-label mt-2">Confirm Password</label>
                 <input type="password" class="form-control" id="confirm-password-edit" name="confirm-password-edit" placeholder="Confirm Password"></input>
                 <p class="text-danger d-none" id="confirm-password-edit-error"></p>
+
+                <input type="checkbox" class="form-check-control mt-3" id="enabled-edit" name="enabled-edit"></input>
+                <label for="enabled-edit" class="form-label">Enable Account</label>
 
                 <p class="text-danger d-none mt-2" id="edit-error"></p>
             </div>
