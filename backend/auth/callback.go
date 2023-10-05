@@ -474,3 +474,61 @@ func isUserEnabled(apiKey string, args []string) func(*sql.DB) {
 		query.Close()
 	}
 }
+
+func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
+	username := args[2]
+	password := args[3]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE username=\"" + username +
+			"\" AND password=\"" + password + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count == 1 {
+			proc.ShowResult("\"1\"")
+		} else {
+			proc.ShowResult("\"0\"")
+		}
+
+		query.Close()
+	}
+}
+
+func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
+	email := args[2]
+	password := args[3]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_accounts WHERE email=\"" + email +
+			"\" AND password=\"" + password + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count == 1 {
+			proc.ShowResult("\"1\"")
+		} else {
+			proc.ShowResult("\"0\"")
+		}
+
+		query.Close()
+	}
+}

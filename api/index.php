@@ -267,6 +267,31 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $username);
             break;
 
+        case "login_username":
+            $backend = "auth";
+            array_push($args, "login_username", $apiKey);
+
+            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
+                !isset($_GET["password"]) || empty($_GET["password"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $username = $_GET["username"];
+            if(!validateUsername($username)) {
+                failedResponseMessage("Invalid username string.");
+                return;
+            }
+        
+            $password = $_GET["password"];
+            if(!validateLoginPassword($password)) {
+                failedResponseMessage("Invalid password hash.");
+                return;
+            }
+
+            array_push($args, $username, $password);
+            break;
+
         case "fetch_all":
             $backend = "auth";
             array_push($args, "fetch_all", $apiKey);

@@ -63,6 +63,14 @@ func main() {
 		failOnUmatchedArgSize(3, args)
 		callback = isUserEnabled(apiKey, args)
 
+	case "login_username":
+		failOnUmatchedArgSize(4, args)
+		callback = loginUserWithUsername(apiKey, args)
+
+	case "login_email":
+		failOnUmatchedArgSize(4, args)
+		callback = loginUserWithEmail(apiKey, args)
+
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
 	}
