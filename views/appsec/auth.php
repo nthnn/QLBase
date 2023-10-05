@@ -1,6 +1,9 @@
 <h1>Authentication</h1>
 <hr/>
 
+<h2>User Accounts</h2>
+<br/>
+
 <table id="auth-table" class="table table-hover">
     <thead>
         <th>Username</th>
@@ -62,6 +65,52 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                     Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="edit-user-modalLabel" aria-hidden="true">
+    <div class="modal-dialog shadow" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-user-modalLabel">Edit User</h5>
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="username-edit" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username-edit" name="username-edit" placeholder="Username" disabled></input>
+
+                <label for="email-edit" class="form-label mt-2">Email</label>
+                <input type="email" class="form-control" id="email-edit" name="email-edit" placeholder="Email"></input>
+                <p class="text-danger d-none" id="email-edit-error"></p>
+
+                <label for="password-edit" class="form-label mt-2">Password</label>
+                <input type="password" class="form-control" id="password-edit" name="password-edit" placeholder="Password"></input>
+                <p class="text-danger d-none" id="password-edit-error"></p>
+
+                <label for="confirm-password-edit" class="form-label mt-2">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password-edit" name="confirm-password-edit" placeholder="Confirm Password"></input>
+                <p class="text-danger d-none" id="confirm-password-edit-error"></p>
+
+                <p class="text-danger d-none mt-2" id="edit-error"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Cancel
+                </button>
+
+                <button type="button" class="btn btn-primary" id="add-btn" onclick="requestSaveEdit()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" />
+                    </svg>
+                    Save
                 </button>
             </div>
         </div>
