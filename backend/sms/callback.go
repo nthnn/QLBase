@@ -32,12 +32,12 @@ func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 		serport.ConnectToSMSFirmware(portList[0]),
 	)
 
-	defer port.Close()
 	serport.WriteToFirmwareSerial(
 		port,
 		phoneNumber+","+
 			emailSupport+","+
 			code)
+	port.Close()
 
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
@@ -45,7 +45,7 @@ func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 			phoneNumber + "\", \"" + emailSupport + "\", \"" + code + "\", 0)")
 
 		if err != nil {
-			proc.ShowFailedResponse("Internal error occured.")
+			proc.ShowFailedResponse("Internal error occured...")
 			return
 		}
 

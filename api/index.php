@@ -301,6 +301,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "sms";
             array_push($args, "verify", $apiKey);
 
+            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
+                !isset($_GET["support"]) || empty($_GET["support"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
             $recipient = $_GET["recipient"];
             if(!validatePhoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
