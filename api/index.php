@@ -297,6 +297,25 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, "fetch_all", $apiKey);
             break;
 
+        case "sms_verification":
+            $backend = "sms";
+            array_push($args, "verify", $apiKey);
+
+            $recipient = $_GET["recipient"];
+            if(!validatePhoneNumber($recipient)) {
+                failedResponseMessage("Invalid recipient string.");
+                return;
+            }
+
+            $support = $_GET["support"];
+            if(!validateEmail($support)) {
+                failedResponseMessage("Invalid support email.");
+                return;
+            }
+
+            array_push($args, $recipient, $support);
+            break;
+
         default:
             failedResponse();
             return;
