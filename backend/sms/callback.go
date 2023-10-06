@@ -81,7 +81,7 @@ func validateVerificationCode(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		if count != 1 {
-			proc.ShowFailedResponse("Internal error occured.")
+			proc.ShowFailedResponse("Recipient and code did not match.")
 			return
 		}
 
@@ -121,7 +121,7 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		if count != 1 {
-			proc.ShowFailedResponse("Internal error occured.")
+			proc.ShowFailedResponse("Recipient and code did not match.")
 			return
 		}
 

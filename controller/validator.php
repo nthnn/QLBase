@@ -42,4 +42,8 @@ function validatePhoneNumber($input) {
     );
 }
 
+function validateVerificationCode($code) {
+    return preg_match("/^\d{6}$/", $code);
+}
+
 ?>

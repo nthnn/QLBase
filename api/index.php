@@ -322,6 +322,56 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $recipient, $support);
             break;
 
+        case "sms_validate":
+            $backend = "sms";
+            array_push($args, "validate", $apiKey);
+    
+            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
+                !isset($_GET["code"]) || empty($_GET["code"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $recipient = $_GET["recipient"];
+            if(!validatePhoneNumber($recipient)) {
+                failedResponseMessage("Invalid recipient string.");
+                return;
+            }
+    
+            $code = $_GET["code"];
+            if(!validateVerificationCode($code)) {
+                failedResponseMessage("Invalid verification code.");
+                return;
+            }
+    
+            array_push($args, $recipient, $code);
+            break;
+
+        case "sms_is_validated":
+            $backend = "sms";
+            array_push($args, "is_validated", $apiKey);
+        
+            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
+                !isset($_GET["code"]) || empty($_GET["code"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $recipient = $_GET["recipient"];
+            if(!validatePhoneNumber($recipient)) {
+                failedResponseMessage("Invalid recipient string.");
+                return;
+            }
+        
+            $code = $_GET["code"];
+            if(!validateVerificationCode($code)) {
+                failedResponseMessage("Invalid verification code.");
+                return;
+            }
+        
+            array_push($args, $recipient, $code);
+            break;
+
         default:
             failedResponse();
             return;
