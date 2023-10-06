@@ -1,0 +1,1 @@
+go build -ldflags "-w -s" -o sms && sudo mv ./sms ../../bin/sms
