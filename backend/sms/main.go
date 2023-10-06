@@ -31,11 +31,11 @@ func main() {
 		callback = sendSMSVerification(apiKey, args)
 
 	case "validate":
-		failOnUmatchedArgSize(3, args)
+		failOnUmatchedArgSize(4, args)
 		callback = validateVerificationCode(apiKey, args)
 
 	case "is_validated":
-		failOnUmatchedArgSize(3, args)
+		failOnUmatchedArgSize(4, args)
 		callback = isCodeValidated(apiKey, args)
 
 	default:
