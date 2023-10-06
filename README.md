@@ -31,7 +31,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
         &enabled=0|1
     ```
 
-    ```json
+    ```js
     {"result": "1"}
     // Successfully registered
     ```
@@ -46,7 +46,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
         &password=<MD5 hashed string>
     ```
 
-    ```json
+    ```js
     {"result": "0", "value": "0"}
     // Invalid login credentials
     ```
@@ -60,7 +60,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
         &username=<username>
     ```
 
-    ```json
+    ```js
     {"result": "1"}
     // User was disabled
     ```
@@ -79,7 +79,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
         &support=techsupport@example.com
     ```
 
-    ```json
+    ```js
     {"result": "1", "value": "723181"}
     // The SMS was sent, and the OTP is 723181
     ```
@@ -94,7 +94,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
         &code=723181
     ```
 
-    ```json
+    ```js
     {"result": "1", "value": "0"}
     // The OTP wasn't verified yet
     ```
@@ -109,7 +109,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
         &code=723181
     ```
 
-    ```json
+    ```js
     {"result": "1"}
     // The OTP was successfully verified
     ```
@@ -160,4 +160,4 @@ Your use of QLBase is subject to the terms and conditions of the following respe
 
 - The server-side code of QLBase is licensed under the [MIT License](LICENSE/MIT%20Public%20License.txt).
 - The back-end software components used in QLBase are licensed under the [GNU GPL v3.0 License](LICENSE/GNU%20GPL%20v3.0.txt). Refer to the individual licenses of those components for specific details. And;
-- The Arduino firmware in QLBase's SMS hardware is licensed under the [CERN OHL Permissive](LICENSE/CERN%20OHL%20Permissive%20v2.txt) v2**. Please review the firmware's licensing documentation for further information.
+- The Arduino firmware in QLBase's SMS hardware is licensed under the [CERN OHL Permissive v2](LICENSE/CERN%20OHL%20Permissive%20v2.txt). Please review the firmware's licensing documentation for further information.
