@@ -10,6 +10,8 @@ import (
 
 	"sms/proc"
 	"sms/serport"
+
+	"github.com/dongri/phonenumber"
 )
 
 func generateRandom6DigitString() string {
@@ -19,6 +21,11 @@ func generateRandom6DigitString() string {
 
 func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 	phoneNumber := args[2]
+	if phonenumber.GetISO3166ByNumber(phoneNumber, true).CountryName == "" {
+		proc.ShowFailedResponse("Invalid phone number.")
+		os.Exit(0)
+	}
+
 	emailSupport := args[3]
 	code := generateRandom6DigitString()
 

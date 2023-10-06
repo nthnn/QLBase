@@ -1,3 +1,5 @@
+github.com/dongri/phonenumber v0.1.0 h1:LqfuOlLE8I71E9Psq4FrXz12CRJX+O6PpGJEfUdoAOs=
+github.com/dongri/phonenumber v0.1.0/go.mod h1:G6eIK4UOT7iAcInROB6it2kRqlpR1U1GD2gqR9U5bGs=
 github.com/go-sql-driver/mysql v1.7.1 h1:lUIinVbN1DY0xBg0eMOzmmtGoHwWBbvnWubQUrtU8EI=
 github.com/go-sql-driver/mysql v1.7.1/go.mod h1:OXbVy3sEdcQ2Doequ6Z5BW6fXNQTmx+9S1MCJN5yJMI=
 github.com/hedhyw/Go-Serial-Detector v1.0.0-rc1 h1:711NlOyZRHTfPCkK+ohh86eUPDL12Hi3MmGxtRkdKio=

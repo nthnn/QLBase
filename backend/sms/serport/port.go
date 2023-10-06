@@ -11,7 +11,7 @@ import (
 func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {
 	port, err := serial.Open(options)
 	if err != nil {
-		proc.ShowFailedResponse("Internal error occured. " + err.Error())
+		proc.ShowFailedResponse("Internal error occured.")
 		os.Exit(0)
 	}
 
