@@ -1,7 +1,7 @@
 <h1>SMS Verification</h1>
 <hr/>
 
-<table class="table table-hover">
+<table class="table table-hover" id="sms-table">
     <thead>
         <th>Recipient</th>
         <th>Code</th>
@@ -10,10 +10,11 @@
         <th>Options</th>
     </thead>
     <tbody>
-        <tr id="no-contents-yet">
-            <td colspan="5" align="center">
-                No SMS verifications yet.
-            </td>
-        </tr>
     </tbody>
 </table>
+
+<script src="scripts/vendors/jquery.min.js"></script>
+<script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/appsec/sms.js"></script>
+
+<style>@import url("styles/jquery.dataTables.min.css");</style>

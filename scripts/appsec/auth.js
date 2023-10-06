@@ -162,18 +162,9 @@ const fetchUsers = ()=> {
             }
 
             $("#user-table").html(accRows);
-
-            if(dataTable == null)
-                dataTable = new DataTable("#auth-table");
+            new DataTable("#auth-table");
         }
-    ).fail(()=> {
-        if(dataTable != null) {
-            dataTable.destroy();
-            dataTable = null;
-        }
-
-        $("#user-table").html("<tr><td colspan=\"5\" align=\"center\">No users yet.</td></tr>");
-    });
+    )
 };
 
 $(document).ready(()=> {

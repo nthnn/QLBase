@@ -10,11 +10,6 @@
         <th>Options</th>
     </thead>
     <tbody id="user-table">
-        <tr>
-            <td colspan="5" align="center">
-                No users yet.
-            </td>
-        </tr>
     </tbody>
 </table>
 
