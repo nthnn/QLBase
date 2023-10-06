@@ -292,7 +292,7 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             array_push($args, $username, $password);
             break;
 
-        case "fetch_all":
+        case "fetch_all_users":
             $backend = "auth";
             array_push($args, "fetch_all", $apiKey);
             break;

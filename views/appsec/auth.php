@@ -6,7 +6,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Enabled</th>
-        <th>Date Creation</th>
+        <th>Last Modified</th>
         <th>Options</th>
     </thead>
     <tbody id="user-table">

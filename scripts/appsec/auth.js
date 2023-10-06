@@ -131,7 +131,7 @@ const fetchUsers = ()=> {
     $.post(
         "api/?api_key=" + App.appKey +
         "&app_id=" + App.appId +
-        "&action=fetch_all",
+        "&action=fetch_all_users",
         {},
         (data)=> {
             if(data.result == '0')
