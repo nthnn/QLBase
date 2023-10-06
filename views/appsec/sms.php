@@ -5,12 +5,13 @@
     <thead>
         <th>Recipient</th>
         <th>Code</th>
+        <th>Support Email</th>
         <th>Date Creation</th>
         <th>Options</th>
     </thead>
     <tbody>
         <tr id="no-contents-yet">
-            <td colspan="4" align="center">
+            <td colspan="5" align="center">
                 No SMS verifications yet.
             </td>
         </tr>
