@@ -35,4 +35,11 @@ function validateAppName($name) {
         preg_match("/^[a-zA-Z0-9_]+$/", $name);
 }
 
+function validatePhoneNumber($input) {
+    return preg_match(
+        "/^\+?\d+$/",
+        str_replace(" ", "", $input)
+    );
+}
+
 ?>
