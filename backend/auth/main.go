@@ -15,7 +15,8 @@ func failOnUmatchedArgSize(size int, args []string) {
 
 func main() {
 	if len(os.Args) < 3 {
-		return
+		proc.ShowFailedResponse("Invalid argument arity.")
+		os.Exit(0)
 	}
 
 	var callback func(*sql.DB) = func(d *sql.DB) {}
@@ -73,6 +74,9 @@ func main() {
 
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
+
+	default:
+		proc.ShowFailedResponse("Invalid argument arity.")
 	}
 
 	DispatchWithCallback(callback)

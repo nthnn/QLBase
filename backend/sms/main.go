@@ -2,12 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 
 	"sms/db"
 	"sms/proc"
-	"sms/serport"
 )
 
 func failOnUmatchedArgSize(size int, args []string) {
@@ -18,21 +16,9 @@ func failOnUmatchedArgSize(size int, args []string) {
 }
 
 func main() {
-	portList := serport.GetArduinoSerialDevices()
-	if len(portList) < 1 {
-		proc.ShowFailedResponse("No available SMS hardware found.")
-		os.Exit(0)
-	}
-
-	port := serport.OpenSMSFirmwareConnection(
-		serport.ConnectToSMSFirmware(portList[0]),
-	)
-	defer port.Close()
-
-	serport.WriteToFirmwareSerial(port, "2")
-
 	if len(os.Args) < 3 {
-		return
+		proc.ShowFailedResponse("Invalid argument arity.")
+		os.Exit(0)
 	}
 
 	var callback func(*sql.DB) = func(d *sql.DB) {}
@@ -41,10 +27,20 @@ func main() {
 
 	switch args[0] {
 	case "verify":
-		failOnUmatchedArgSize(4, args) // verify +63xxxxxxxxxxx email
-		callback = func(d *sql.DB) {}
+		failOnUmatchedArgSize(4, args)
+		callback = sendSMSVerification(apiKey, args)
+
+	case "validate":
+		failOnUmatchedArgSize(3, args)
+		callback = validateVerificationCode(apiKey, args)
+
+	case "is_validated":
+		failOnUmatchedArgSize(3, args)
+		callback = isCodeValidated(apiKey, args)
+
+	default:
+		proc.ShowFailedResponse("Invalid argument arity.")
 	}
 
-	fmt.Println(apiKey)
 	db.DispatchWithCallback(callback)
 }
