@@ -1,0 +1,13 @@
+name: PHP Syntax Check
+
+on: [push]
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: PHP Syntax Checker (Lint)
+      uses: StephaneBour/actions-php-lint@8.2
+      with:
+        dir: '.'
