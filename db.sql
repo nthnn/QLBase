@@ -14,6 +14,12 @@ CREATE TABLE `app` (
   `name` varchar(255) DEFAULT NULL
 );
 
+CREATE TABLE `recovery` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `track_id` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL
+);
+
 CREATE TABLE `sessions` (
   `user_id` int(11) DEFAULT NULL,
   `hash` varchar(255) DEFAULT NULL,
