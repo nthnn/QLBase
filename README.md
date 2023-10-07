@@ -36,6 +36,7 @@ QLBase is a powerful open-source backend solution designed to provide scalable a
 - [Contributing](#contributing)
     * [Issue Reporting](#issue-reporting)
     * [Pull Requests](#pull-requests)
+- [Contributors](#contributors)
 - [Donations](#donations)
 - [License](#license)
 

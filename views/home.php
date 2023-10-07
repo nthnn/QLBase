@@ -46,6 +46,7 @@
         </div>
 
         <div class="col-lg-4 desktop-only pt-2 mt-2">
+            <br/><br/>
             <center>
                 <img src="assets/qlbase-logo.png" width="100%" />
             </center>
