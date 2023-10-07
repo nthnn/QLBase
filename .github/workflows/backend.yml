@@ -20,7 +20,10 @@ jobs:
       - name: Go version
         run: go version
 
-      - name: Build auth back-end.
+      - name: Build Forgot Password back-end.
+        run: cd backend/forgetpass && go build -ldflags "-w -s"
+
+      - name: Build Authentication back-end.
         run: cd backend/auth && go build -ldflags "-w -s"
 
       - name: Build SMS back-end
