@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/qlbase-logo.png" width="250" />
+    <img src="assets/qlbase-logo.png" width="220" />
     <h1 align="center">QLBase</h1>
 </p>
 
@@ -18,7 +18,7 @@ QLBase is a powerful open-source backend solution designed to provide scalable a
 
 ## Table of Contents
 
-<img src="./assets/qlbase-cat.png" align="right" width="300" />
+<img src="./assets/qlbase-cat-1.png" align="right" width="350" />
 
 - [Features](#features)
     * [Authentication](#authentication)
@@ -186,6 +186,7 @@ Security is a top priority in QLBase:
 
 To simplify the deployment process of QLBase, a `deploy.sh` bash script is provided. This script is designed to package all the deployment-important files and assets and builds the back-end apps, ensuring a smooth deployment experience.
 
+<img src="./assets/qlbase-cat-2.png" align="left" width="395" />
 
 ### Usage
 
@@ -214,7 +215,18 @@ username=root
 password=
 name=qlbase_apps
 port=3306
+
+[smtp]
+host=<smtp host>
+port=<smtp port>
+from=<smtp email>
+password=<smtp password>
+
+[env]
+home=http://localhost:8080/QLBase
 ```
+
+Make sure to provide the correct values for the database and SMTP settings based on your deployment environment.
 
 ### Troubleshooting
 
@@ -297,6 +309,11 @@ If you want to contribute code to QLBase, follow these steps:
 6. Create a pull request (PR) from your branch to the main branch of the QLBase repository.
 7. Your PR will be reviewed, and any necessary changes will be discussed and implemented.
 8. Once your PR is approved, it will be merged into the main branch, and your contribution will be part of QLBase.
+
+## Contributors
+
+- [Nathanne Isip](https://github.com) - Original Author, Developer
+- [Lady Selene](https://instagram.com/lady.selenee) - Artist, Illustrator
 
 ## Donations
 
