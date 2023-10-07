@@ -3,6 +3,7 @@
     <h1 align="center">QLBase</h1>
 </p>
 
+![Backend](https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg)
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/issues)

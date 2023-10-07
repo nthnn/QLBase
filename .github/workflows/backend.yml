@@ -1,0 +1,27 @@
+name: Go
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.20.5' ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Go version
+        run: go version
+
+      - name: Build auth back-end.
+        run: cd backend/auth && go build -ldflags "-w -s"
+
+      - name: Build SMS back-end
+        run: cd backend/sms && go build -ldflags "-w -s"
