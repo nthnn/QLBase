@@ -1,7 +1,24 @@
 package main
 
-const DBServer = "localhost"
-const DBUsername = "root"
-const DBPassword = ""
-const DBName = "qlbase_apps"
-const DBPort = 3306
+import (
+	"auth/proc"
+	"os"
+
+	"gopkg.in/ini.v1"
+)
+
+func LoadDBConfig(configFile string) DBConfig {
+	ini, err := ini.Load(configFile)
+	if err != nil {
+		proc.ShowFailedResponse("Internal error occured. " + err.Error())
+		os.Exit(0)
+	}
+
+	database := ini.Section("database")
+	return ConfigDB(
+		database.Key("username").String(),
+		database.Key("password").String(),
+		database.Key("name").String(),
+		database.Key("server").String(),
+		uint16(database.Key("port").MustInt(3306)))
+}
