@@ -1,3 +1,6 @@
+echo [+] Building backend apps...
 cd backend/auth && ./build.sh && cd ../..
 cd backend/sms && ./build.sh && cd ../..
+echo [+] Zipping deployment entity...
 zip -r qlbase.zip api assets bin components controller scripts side styles views favicon.ico index.php
+echo [+] Deployment-ready successfully generated!
