@@ -3,10 +3,12 @@
     <h1 align="center">QLBase</h1>
 </p>
 
-![Backend](https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg)
-[![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
+![Backend Workflow](https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg)
 [![GitHub Stars](https://img.shields.io/github/stars/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/issues)
+[![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-CERN-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 <a href="https://www.buymeacoffee.com/nthnn"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" height="20px"></a>
 
 QLBase is a powerful open-source backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
