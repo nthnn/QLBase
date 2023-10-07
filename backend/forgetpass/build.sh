@@ -1,0 +1,1 @@
+go build -ldflags "-w -s" -o forgetpass && sudo mv ./forgetpass ../../bin/forgetpass
