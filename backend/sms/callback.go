@@ -133,5 +133,6 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		proc.ShowResult("\"" + strconv.Itoa(enabled) + "\"")
+		query.Close()
 	}
 }
