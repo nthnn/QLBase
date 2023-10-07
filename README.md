@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="assets/qlbase-logo.png" width="220" />
+    <img src="assets/qlbase-logo.png" width="250" />
     <h1 align="center">QLBase</h1>
 </p>
 
@@ -17,6 +17,8 @@ QLBase is a powerful open-source backend solution designed to provide scalable a
 > Note: QLBase is a work-in-progress.
 
 ## Table of Contents
+
+<img src="./assets/qlbase-cat.png" align="right" width="300" />
 
 - [Features](#features)
     * [Authentication](#authentication)
