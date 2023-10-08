@@ -68,6 +68,29 @@ func sendConfirmation(email string) {
 	}
 
 	db.DispatchWithCallback(func(d *sql.DB) {
+		for {
+			query, err := d.Query("SELECT * FROM recovery WHERE track_id=\"" +
+				tracker + "\"")
+
+			if err != nil {
+				proc.ShowFailedResponse("Internal error occured.")
+				os.Exit(0)
+			}
+
+			count := 0
+			for query.Next() {
+				count += 1
+			}
+
+			if count == 1 {
+				tracker = generateUUID()
+			} else {
+				break
+			}
+
+			query.Close()
+		}
+
 		query, err := d.Query("INSERT INTO recovery (track_id, email) VALUES (\"" +
 			tracker + "\", \"" + email + "\")")
 
