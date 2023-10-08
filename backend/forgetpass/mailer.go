@@ -26,7 +26,7 @@ func generateFromEmailTemplate(url string, tracker string) string {
 	return strings.Replace(
 		string(data),
 		"{{recovery-link}}",
-		url+"/recover.php?id="+tracker,
+		url+"/?page=recover&id="+tracker,
 		-1)
 }
 
