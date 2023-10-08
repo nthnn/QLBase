@@ -40,7 +40,7 @@
                         </div>
                         <hr/>
 
-                        <p align="center">Or <a href="?page=sign-up" class="text-decoration-none">sign-up</a> if you don't have an account yet.</p>
+                        <p align="center">You can <a href="?page=sign-up" class="text-decoration-none">sign-up</a> if you don't have an account yet. Or click here if you <a href="?page=forgot" class="text-decoration-none">forgot your password</a>.</p>
                     </div>
 
                     <div class="col-lg-6 d-flex justify-content-center align-items-center" align="center">

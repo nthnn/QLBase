@@ -48,7 +48,7 @@
                         </div>
                         <hr/>
 
-                        <p align="center">Or <a href="?page=log-in" class="text-decoration-none">log-in</a> if you already have an account.</p>
+                        <p align="center">You can <a href="?page=log-in" class="text-decoration-none">log-in</a> if you already have an account. Or click here if you <a href="?page=forgot" class="text-decoration-none">forgot your password</a>.</p>
                     </div>
 
                     <div class="col-lg-6 d-flex justify-content-center align-items-center" align="center">
