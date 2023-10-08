@@ -47,6 +47,10 @@
             getPage("sign-up", "Sign-up");
         else if($page == "log-in")
             getPage("log-in", "Log-in");
+        else if($page == "recover")
+            getPage("recover", "Recover");
+        else if($page == "forgot")
+            getPage("forgot", "Forgot Your Password");
         else defaultPage();
     }
     else {
