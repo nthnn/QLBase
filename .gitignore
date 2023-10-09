@@ -1,4 +1,5 @@
 bin/auth
 bin/forgetpass
 bin/sms
+docs
 qlbase.zip
