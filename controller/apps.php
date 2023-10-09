@@ -26,9 +26,17 @@ function addNewApp($name) {
     global $db_conn;
     global $sess_id;
 
-    $app_key = "qba_" . substr_replace(sha1(md5($name)), '', 10) . "_" . substr(md5($name), 24);
     $app_id = generateAppID();
+    while(true) {
+        $check = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"".$app_id."\"");
 
+        if(mysqli_num_rows($check) == 1)
+            $app_id = generateAppID();
+        else break;
+    }
+
+    $id_hash = sha1(md5($name));
+    $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(md5($id_hash), 24);
     $res = mysqli_query(
         $db_conn,
         "INSERT INTO app (creator_id, app_id, app_key, name) VALUES(" .
