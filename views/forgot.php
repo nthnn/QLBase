@@ -40,4 +40,5 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/util.js"></script>
+<script src="scripts/rotating-button.js"></script>
 <script src="scripts/forgot.js"></script>

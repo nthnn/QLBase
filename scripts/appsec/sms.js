@@ -1,8 +1,8 @@
 const fetchSMSLogs = ()=> {
-    new DataTable("#sms-table");
 };
 
 $(document).ready(()=> {
+    new DataTable("#sms-table");
     setInterval(fetchSMSLogs, 2000);
 });
 

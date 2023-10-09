@@ -1,3 +1,6 @@
+const editBtn = RotatingButton("#edit-btn"),
+    deleteBtn = RotatingButton("#delete-btn");
+
 let prevUsersHash = "";
 let dataTable = null;
 
@@ -25,12 +28,16 @@ function editUser(username, email, enabled) {
 }
 
 function requestUserDeletion() {
+    deleteBtn.show();
+
     $.post(
         "api?action=delete_by_username&api_key=" +
         App.appKey + "&app_id=" + App.appId + "&username=" +
         deletableUser,
         {},
         (data)=> {
+            deleteBtn.hide();
+
             if(data.result == '0') {
                 $("#failed-message").html("Somthing went wrong.");
                 $("#failed-modal").modal("show");
@@ -57,6 +64,7 @@ function requestSaveEdit() {
     const confirmation = $("#confirm-password-edit").val();
     let hasError = false;
 
+    editBtn.show();
     for(let id of ["email-edit", "password-edit", "confirm-password-edit", "add"]) {
         $("#" + id + "-error").removeClass("d-block")
         $("#" + id + "-error").addClass("d-none");
@@ -88,8 +96,10 @@ function requestSaveEdit() {
         hasError = true;
     }
 
-    if(hasError)
+    if(hasError) {
+        editBtn.hide();
         return;
+    }
 
     $.post(
         "api?api_key=" + App.appKey +
@@ -100,6 +110,8 @@ function requestSaveEdit() {
         "&enabled=" + ($("#enabled-edit").is(":checked") ? 1 : 0),
         {},
         (data)=> {
+            editBtn.hide();
+
             if(data.result == '0') {
                 showError("edit", data.message);
                 return;
@@ -134,13 +146,8 @@ const fetchUsers = ()=> {
         "&action=fetch_all_users",
         {},
         (data)=> {
-            if(data.result == '0')
+            if(data.result == '0' || data.value.length == 0)
                 return;
-
-            if(data.value.length == 0) {
-                $("#user-table").html("<tr><td colspan=\"5\" align=\"center\">No users yet.</td></tr>");
-                return;
-            }
 
             if(prevUsersHash == CryptoJS.MD5(JSON.stringify(data)).toString())
                 return;
@@ -162,12 +169,14 @@ const fetchUsers = ()=> {
             }
 
             $("#user-table").html(accRows);
-            new DataTable("#auth-table");
         }
     )
 };
 
 $(document).ready(()=> {
+    new DataTable("#auth-table");
+
+    const addBtn = RotatingButton("#add-btn");
     $("#add-btn").click(()=> {
         const username = $("#username").val();
         const email = $("#email").val();
@@ -175,6 +184,7 @@ $(document).ready(()=> {
         const confirmation = $("#confirm-password").val();
         let hasError = false;
 
+        addBtn.show();
         for(let id of ["username", "email", "password", "confirm-password", "add"]) {
             $("#" + id + "-error").removeClass("d-block")
             $("#" + id + "-error").addClass("d-none");
@@ -206,8 +216,10 @@ $(document).ready(()=> {
             hasError = true;
         }
 
-        if(hasError)
+        if(hasError) {
+            addBtn.hide();
             return;
+        }
 
         $.post(
             "api?api_key=" + App.appKey +
@@ -218,6 +230,8 @@ $(document).ready(()=> {
             "&enabled=" + ($("#enabled").is(":checked") ? 1 : 0),
             {},
             (data)=> {
+                addBtn.hide();
+
                 if(data.result == '0') {
                     showError("add", data.message);
                     return;

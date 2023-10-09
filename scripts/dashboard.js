@@ -49,13 +49,17 @@ $(document).ready(()=> {
         );
     });
 
+    const addBtn = RotatingButton("#add-btn");
     $("#add-btn").click(()=> {
         let name = $("#app-name").val();
+        addBtn.show();
+
         if(name.length < 6 || !/^[a-zA-Z0-9_]+$/.test(name)) {
             $("#app-name-error").removeClass("d-none");
             $("#app-name-error").addClass("d-block");
             $("#app-name-error").html("Invalid app name. It must only contain lower case alphabet, digits, and/or an underscore and must be greater than 6 characters.");
 
+            addBtn.hide();
             return;
         }
 
@@ -66,6 +70,8 @@ $(document).ready(()=> {
             "side/apps.php?create",
             {name: name},
             (data)=> {
+                addBtn.hide();
+
                 if(data.result == '0') {
                     $("#app-name-error").removeClass("d-none");
                     $("#app-name-error").addClass("d-block");
