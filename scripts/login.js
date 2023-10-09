@@ -5,10 +5,14 @@ const showError = (id, message)=> {
 };
 
 $(document).ready(()=> {
+    const loginButton = RotatingButton("#log-in");
+    console.log(loginButton);
     $("#log-in").click(()=> {
         const username = $("#username").val();
         const password = $("#password").val();
+
         let hasError = false;
+        loginButton.show();
 
         for(let id of ["username", "password", "login"]) {
             $("#" + id + "-error").removeClass("d-block")
@@ -29,8 +33,10 @@ $(document).ready(()=> {
             hasError = true;
         }
 
-        if(hasError)
+        if(hasError) {
+            loginButton.hide();
             return;
+        }
 
         $.post(
             "side/account.php?login",
@@ -39,6 +45,7 @@ $(document).ready(()=> {
                 password: CryptoJS.MD5(password).toString()
             },
             (r)=> {
+                loginButton.hide();
                 if(r.result == 1) {
                     window.location.href = "?";
                     return;

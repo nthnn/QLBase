@@ -59,6 +59,14 @@
     align-items: center;
 }
 
+.rotating {
+    animation: rotating-anim 3s infinite;
+}
+
+@keyframes rotating-anim {
+    100% { transform: rotate(360deg) }
+}
+
 @media only screen and (max-width: 771px) {
     .desktop-only { display: none; }
 

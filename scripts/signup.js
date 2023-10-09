@@ -5,6 +5,7 @@ const showError = (id, message)=> {
 };
 
 $(document).ready(()=> {
+    const signUpButton = RotatingButton("#sign-up");
     $("#sign-up").click(()=> {
         const username = $("#username").val();
         const name = $("#name").val();
@@ -13,6 +14,7 @@ $(document).ready(()=> {
 
         const defaultErrorMessage = "Something went wrong, please try again later.";
         let hasError = false;
+        signUpButton.show();
 
         for(let id of ["username", "name", "email", "password", "signup"]) {
             $("#" + id + "-error").removeClass("d-block")
@@ -47,8 +49,10 @@ $(document).ready(()=> {
             hasError = true;
         }
 
-        if(hasError)
+        if(hasError) {
+            signUpButton.hide();
             return;
+        }
 
         const hashedPassword = CryptoJS.MD5(password).toString();
         $.post(
@@ -60,6 +64,8 @@ $(document).ready(()=> {
                 password: hashedPassword
             },
             (e)=> {
+                signUpButton.hide();
+
                 if(e.result == 0)
                     showError("#signup-error", e.message);
                 else if(e.result == 1) {

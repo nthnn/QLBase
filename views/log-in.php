@@ -56,4 +56,5 @@
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>
+<script src="scripts/rotating-button.js"></script>
 <script src="scripts/login.js"></script>
