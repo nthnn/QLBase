@@ -41,6 +41,8 @@
                             Log-in
                         </a>
                     </div>
+
+                    <a href="?page=forgot" class="text-decoration-none text-primary mt-2">Forgot your password?</a>
                 </div>
             </div>
         </div>
