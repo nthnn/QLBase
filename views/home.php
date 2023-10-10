@@ -13,7 +13,7 @@
                     <center class="mobile-only">
                         <br />
                         <img src="assets/qlbase-logo.png" width="70%" />
-                        <br/><br/>
+                        <br /><br />
                     </center>
 
                     <h1 class="desktop-only">QLBase</h1>
@@ -136,6 +136,16 @@
                 </div>
             </div>
         </div>
+
+        <center>
+            <br/><br/>
+            <button class="btn btn-lg btn-outline-light">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                </svg>
+                Learn More
+            </button>
+        </center>
     </div>
 
     <img src="assets/wave-2.svg" class="w-100" />
@@ -150,6 +160,7 @@
     <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
     <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
     <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
+    <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
 </div>
 
 <?php include_once("components/footer.html"); ?>
