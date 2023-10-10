@@ -26,11 +26,11 @@
                 <br/>
 
                 <i>Contents:</i>
-                <textarea cols="70" rows="7" id="contents" class="form-control"></textarea>
+                <textarea cols="70" rows="7" id="contents" class="form-control" placeholder="Request Contents">{}</textarea>
                 <br/>
 
-                <i>HTTP Header:</i>
-                <textarea cols="70" rows="7" id="http-headers" class="form-control"></textarea>
+                <i>HTTP Headers:</i>
+                <textarea cols="70" rows="7" id="http-headers" class="form-control" placeholder="HTTP Headers">{&#10;&#9;"QLBase-API-Key": "",&#10;&#9;"QLBase-App-ID": ""&#10;}</textarea>
                 <br/>
 
                 <button class="btn btn-primary" id="send">Send Request</button>
@@ -49,7 +49,7 @@
         $(document).ready(()=> {
             $("#send").click(()=> {
                 $.ajax({
-                    url: $("#receiver").val(),
+                    url: "api/" + $("#receiver").val(),
                     type: "POST",
                     data: JSON.parse($("#contents").val()),
                     headers: JSON.parse($("#http-headers").val()),
