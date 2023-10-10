@@ -21,8 +21,12 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <i>Receiver:</i>
-                <input cols="70" rows="1" id="receiver" class="form-control" />
+                <i>API Action:</i>
+                <select id="action" class="form-control">
+                    <option disabled selected>API Action</option>
+                    <option value="new_user">New User</option>
+                    <option value="update_by_username">Update By Username</option>
+                </select>
                 <br/>
 
                 <i>Contents:</i>
@@ -49,7 +53,7 @@
         $(document).ready(()=> {
             $("#send").click(()=> {
                 $.ajax({
-                    url: "api/" + $("#receiver").val(),
+                    url: "api/" + $("#action").find(":selected").val(),
                     type: "POST",
                     data: JSON.parse($("#contents").val()),
                     headers: JSON.parse($("#http-headers").val()),
@@ -57,6 +61,6 @@
                         $("#response").val(JSON.stringify(data))
                 });
             });
-        }).fail((data)=> $("#response").val(data));
+        });
     </script>
 </body>
