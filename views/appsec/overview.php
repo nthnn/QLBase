@@ -7,7 +7,18 @@ $appInfo = getAppInfoById($userId, $appId);
 $userName = getAccountUsername($userId);
 
 ?>
-<h1 class="border-bottom">Overview</h1>
+
+<div class="border-bottom">
+    <div class="row">
+        <div class="col-6">
+            <h1>Overview</h1>
+        </div>
+
+        <div class="col-6" align="right">
+            <a href="./sandbox.html" target="_blank" class="btn btn-primary">Sandbox</a>
+        </div>
+    </div>
+</div>
 <br/>
 
 <div class="row">
