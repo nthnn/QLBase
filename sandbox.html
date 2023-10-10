@@ -23,7 +23,7 @@
             <div class="col-lg-6">
                 <i>API Action:</i>
                 <select id="action" class="form-control">
-                    <option disabled selected>API Action</option>
+                    <option disabled selected value="">API Action</option>
                     <option value="new_user">New User</option>
                     <option value="update_by_username">Update By Username</option>
                 </select>
@@ -53,7 +53,7 @@
         $(document).ready(()=> {
             $("#send").click(()=> {
                 $.ajax({
-                    url: "api/" + $("#action").find(":selected").val(),
+                    url: "api?" + $("#action").find(":selected").val(),
                     type: "POST",
                     data: JSON.parse($("#contents").val()),
                     headers: JSON.parse($("#http-headers").val()),
