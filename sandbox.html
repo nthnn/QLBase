@@ -57,6 +57,6 @@
                         $("#response").val(JSON.stringify(data))
                 });
             });
-        });
+        }).fail((data)=> $("#response").val(data));
     </script>
 </body>
