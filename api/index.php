@@ -3,8 +3,6 @@
 include_once("../controller/apps.php");
 include_once("../controller/validator.php");
 
-header('Content-Type: application/json; charset=utf-8');
-
 function validateApiKey($key) {
     return preg_match("/^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$/", $key);
 }
@@ -21,11 +19,14 @@ function execute($backend, $args) {
     echo shell_exec("../bin/".$backend." ".join(" ", $args));
 }
 
-if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
-    isset($_GET["app_id"]) && !empty($_GET["app_id"])) {
-    $headers = apache_request_headers();
-    $apiKey = $headers["QLBase-API-Key"];
-    $appId = $headers["QLBase-App-ID"];
+header("Content-Type: application/json; charset=utf-8");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+
+if(isset($_SERVER["HTTP_QLBASE_API_KEY"]) && !empty($_SERVER["HTTP_QLBASE_API_KEY"]) &&
+    isset($_SERVER["HTTP_QLBASE_APP_ID"]) && !empty($_SERVER["HTTP_QLBASE_APP_ID"])) {
+    $apiKey = $_SERVER["HTTP_QLBASE_API_KEY"];
+    $appId = $_SERVER["HTTP_QLBASE_APP_ID"];
 
     if(!isset($_GET["action"]) ||
         empty($_GET["action"]) ||
