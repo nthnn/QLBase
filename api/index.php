@@ -23,8 +23,9 @@ function execute($backend, $args) {
 
 if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
     isset($_GET["app_id"]) && !empty($_GET["app_id"])) {
-    $apiKey = $_GET["api_key"];
-    $appId = $_GET["app_id"];
+    $headers = apache_request_headers();
+    $apiKey = $headers["QLBase-API-Key"];
+    $appId = $headers["QLBase-App-ID"];
 
     if(!isset($_GET["action"]) ||
         empty($_GET["action"]) ||
@@ -44,33 +45,33 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "create", $apiKey);
 
-            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
-                !isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"]) ||
-                !isset($_GET["enabled"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
+                !isset($_POST["email"]) || empty($_POST["email"]) ||
+                !isset($_POST["password"]) || empty($_POST["password"]) ||
+                !isset($_POST["enabled"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
 
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
 
-            $password = $_GET["password"];
+            $password = $_POST["password"];
             if(!validateLoginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
 
-            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
             array_push($args, $username, $email, $password, $enabled);
             break;
 
@@ -78,33 +79,33 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "update_by_username", $apiKey);
     
-            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
-                !isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"]) ||
-                !isset($_GET["enabled"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
+                !isset($_POST["email"]) || empty($_POST["email"]) ||
+                !isset($_POST["password"]) || empty($_POST["password"]) ||
+                !isset($_POST["enabled"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
     
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
     
-            $password = $_GET["password"];
+            $password = $_POST["password"];
             if(!validateLoginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
     
-            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
             array_push($args, $username, $email, $password, $enabled);
             break;
 
@@ -112,32 +113,32 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "update_by_email", $apiKey);
         
-            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
-                !isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
+                !isset($_POST["email"]) || empty($_POST["email"]) ||
+                !isset($_POST["password"]) || empty($_POST["password"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
         
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
         
-            $password = $_GET["password"];
+            $password = $_POST["password"];
             if(!validateLoginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
         
-            $enabled = $_GET["enabled"] == "1" ? "true" : "false";
+            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
             array_push($args, $email, $username, $password, $enabled);
             break;
     
@@ -145,12 +146,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "delete_by_username", $apiKey);
 
-            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
@@ -163,12 +164,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "delete_by_email", $apiKey);
 
-            if(!isset($_GET["email"]) || empty($_GET["email"])) {
+            if(!isset($_POST["email"]) || empty($_POST["email"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
@@ -181,12 +182,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "get_by_username", $apiKey);
     
-            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
@@ -199,12 +200,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "get_by_email", $apiKey);
 
-            if(!isset($_GET["email"]) || empty($_GET["email"])) {
+            if(!isset($_POST["email"]) || empty($_POST["email"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
@@ -217,12 +218,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "enable_user", $apiKey);
 
-            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
@@ -235,12 +236,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "disable_user", $apiKey);
     
-            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
@@ -253,12 +254,12 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "is_user_enabled", $apiKey);
         
-            if(!isset($_GET["username"]) || empty($_GET["username"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
@@ -271,19 +272,19 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "login_username", $apiKey);
 
-            if(!isset($_GET["username"]) || empty($_GET["username"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"])) {
+            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
+                !isset($_POST["password"]) || empty($_POST["password"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_GET["username"];
+            $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
         
-            $password = $_GET["password"];
+            $password = $_POST["password"];
             if(!validateLoginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
@@ -296,19 +297,19 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "auth";
             array_push($args, "login_email", $apiKey);
 
-            if(!isset($_GET["email"]) || empty($_GET["email"]) ||
-                !isset($_GET["password"]) || empty($_GET["password"])) {
+            if(!isset($_POST["email"]) || empty($_POST["email"]) ||
+                !isset($_POST["password"]) || empty($_POST["password"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $email = $_GET["email"];
+            $email = $_POST["email"];
             if(!validateEmail($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
 
-            $password = $_GET["password"];
+            $password = $_POST["password"];
             if(!validateLoginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
@@ -326,19 +327,19 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "sms";
             array_push($args, "verify", $apiKey);
 
-            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
-                !isset($_GET["support"]) || empty($_GET["support"])) {
+            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
+                !isset($_POST["support"]) || empty($_POST["support"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $recipient = $_GET["recipient"];
+            $recipient = $_POST["recipient"];
             if(!validatePhoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
 
-            $support = $_GET["support"];
+            $support = $_POST["support"];
             if(!validateEmail($support)) {
                 failedResponseMessage("Invalid support email.");
                 return;
@@ -351,19 +352,19 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "sms";
             array_push($args, "validate", $apiKey);
     
-            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
-                !isset($_GET["code"]) || empty($_GET["code"])) {
+            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
+                !isset($_POST["code"]) || empty($_POST["code"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $recipient = $_GET["recipient"];
+            $recipient = $_POST["recipient"];
             if(!validatePhoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
     
-            $code = $_GET["code"];
+            $code = $_POST["code"];
             if(!validateVerificationCode($code)) {
                 failedResponseMessage("Invalid verification code.");
                 return;
@@ -376,19 +377,19 @@ if(isset($_GET["api_key"]) && !empty($_GET["api_key"]) &&
             $backend = "sms";
             array_push($args, "is_validated", $apiKey);
         
-            if(!isset($_GET["recipient"]) || empty($_GET["recipient"]) ||
-                !isset($_GET["code"]) || empty($_GET["code"])) {
+            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
+                !isset($_POST["code"]) || empty($_POST["code"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $recipient = $_GET["recipient"];
+            $recipient = $_POST["recipient"];
             if(!validatePhoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
         
-            $code = $_GET["code"];
+            $code = $_POST["code"];
             if(!validateVerificationCode($code)) {
                 failedResponseMessage("Invalid verification code.");
                 return;
