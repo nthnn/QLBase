@@ -66,12 +66,13 @@
         $(document).ready(()=> {
             $("#send").click(()=> {
                 $.ajax({
-                    url: "api?action=" + $("#action").find(":selected").val(),
+                    url: "api/index.php?action=" + $("#action").find(":selected").val(),
                     type: "POST",
                     data: JSON.parse($("#contents").val()),
                     headers: JSON.parse($("#http-headers").val()),
+                    dataType: "json",
                     success: (data)=>
-                        $("#response").val(JSON.stringify(data))
+                        $("#response").val(JSON.stringify(data, null, 4))
                 });
             });
         });
