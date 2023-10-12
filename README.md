@@ -50,46 +50,62 @@ QLBase provides a robust authentication system that allows you to manage user ac
 
 - **User Registration**: Easily register new users with customizable registration fields.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=new_user
-        &username=<username>
-        &email=<email>
-        &password=<MD5 hashed string>
-        &enabled=0|1
+    api/index.php?action=new_user
     ```
 
-    ```js
+    Pseudo-Payload:
+    ```json
+    {
+        "username": "<username>",
+        "email": "<email>",
+        "password": "<MD5 hashed string>",
+        "enabled: "0|1"
+    }
+    ```
+
+    Example Response:
+    ```json
     {"result": "1"}
     // Successfully registered
     ```
 
 - **Login**: Enable users to log in securely, supporting various authentication methods, including username/password and social logins.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=login_username
-        &username=<username>
-        &password=<MD5 hashed string>
+    api/index.php?action=login_username
     ```
 
-    ```js
+    Pseudo-Payload:
+    ```json
+    {
+        "username": "<username>",
+        "password": "<MD5 hashed string>"
+    }
+    ```
+
+    Example Response:
+    ```json
     {"result": "0", "value": "0"}
     // Invalid login credentials
     ```
 
 - **Account Disabling/Enabling**: You can disable and enable user accounts as needed. When an account is disabled, the user cannot log in until it's enabled again. This feature is particularly useful for handling suspicious or inactive accounts.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=disable_user
-        &username=<username>
+    api/index.php?action=disable_user
     ```
 
-    ```js
+    Pseudo-Payload:
+    ```json
+    {"username": "<username>"}
+    ```
+
+    Example Response:
+    ```json
     {"result": "1"}
     // User was disabled
     ```
@@ -100,14 +116,20 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
 
 - **OTP Generation**: Generate one-time passwords for user verification.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=sms_verification
-        &recipient=+639xxxxxxxxxxx
-        &support=techsupport@example.com
+    api/index.php?action=sms_verification
     ```
 
+    Pseudo-Payload:
+    ```json
+    {
+        "recipient": "+<country code><recipient number>",
+        "support": "<tech support email address>"
+    }
+    ```
+
+    Example Response:
     ```js
     {"result": "1", "value": "723181"}
     // The SMS was sent, and the OTP is 723181
@@ -115,14 +137,20 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
 
 - **SMS Delivery**: Send SMS messages containing OTPs to users' mobile numbers.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=sms_is_validated
-        &recipient=+639xxxxxxxxxxx
-        &code=723181
+    api/index.php?action=sms_is_validated
     ```
 
+    Pseudo-Payload:
+    ```json
+    {
+        "recipient": "+<country code><recipient number>"
+        "code": "<generated verification code>"
+    }
+    ```
+
+    Example Response:
     ```js
     {"result": "1", "value": "0"}
     // The OTP wasn't verified yet
@@ -130,14 +158,20 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
 
 - **Verification Endpoint**: Create an endpoint for users to enter OTPs and verify their phone numbers.
 
+    Target URL:
     ```
-    api?api_key=<API key>
-        &app_id=<app ID>
-        &action=sms_validate
-        &recipient=+639xxxxxxxxxxx
-        &code=723181
+    api/index.php?action=sms_validate
     ```
 
+    Pseudo-Payload:
+    ```json
+    {
+        "recipient": "+<country code><recipient number>",
+        "code": "<generate verification code>"
+    }
+    ```
+
+    Example Response:
     ```js
     {"result": "1"}
     // The OTP was successfully verified
@@ -204,6 +238,8 @@ To simplify the deployment process of QLBase, a `deploy.sh` bash script is provi
     ```
 
 The script will package all the required files and assets into file `qlbase.zip` on the current directory, making it easy to transfer and deploy QLBase to your target server.
+
+<br/>
 
 ### Configuration
 
