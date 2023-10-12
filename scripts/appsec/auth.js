@@ -30,12 +30,18 @@ function editUser(username, email, enabled) {
 function requestUserDeletion() {
     deleteBtn.show();
 
-    $.post(
-        "api?action=delete_by_username&api_key=" +
-        App.appKey + "&app_id=" + App.appId + "&username=" +
-        deletableUser,
-        {},
-        (data)=> {
+    $.ajax({
+        url: "api/index.php?action=delete_by_username",
+        type: "POST",
+        dataType: "json",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            username: deletableUser
+        },
+        success: (data)=> {
             deleteBtn.hide();
 
             if(data.result == '0') {
@@ -54,7 +60,7 @@ function requestUserDeletion() {
 
             deletableUser = null;
         }
-    );
+    });
 }
 
 function requestSaveEdit() {
@@ -101,15 +107,21 @@ function requestSaveEdit() {
         return;
     }
 
-    $.post(
-        "api?api_key=" + App.appKey +
-        "&app_id=" + App.appId +
-        "&action=update_by_username&username=" + username +
-        "&email=" + email + "&password=" +
-        CryptoJS.MD5(password).toString() +
-        "&enabled=" + ($("#enabled-edit").is(":checked") ? 1 : 0),
-        {},
-        (data)=> {
+    $.post({
+        url: "api/index.php?action=update_by_username",
+        type: "POST",
+        dataType: "json",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            username: username,
+            email: email,
+            password: CryptoJS.MD5(password).toString(),
+            enabled: ($("#enabled-edit").is(":checked") ? 1 : 0)
+        },
+        success: (data)=> {
             editBtn.hide();
 
             if(data.result == '0') {
@@ -130,7 +142,7 @@ function requestSaveEdit() {
             );
             $("#success-modal").modal("show");
         }
-    );
+    });
 }
 
 const showError = (id, message)=> {
@@ -140,12 +152,13 @@ const showError = (id, message)=> {
 };
 
 const fetchUsers = ()=> {
-    $.post(
-        "api/?api_key=" + App.appKey +
-        "&app_id=" + App.appId +
-        "&action=fetch_all_users",
-        {},
-        (data)=> {
+    $.post({
+        url: "api/index.php?action=fetch_all_users",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        success: (data)=> {
             if(data.result == '0' || data.value.length == 0)
                 return;
 
@@ -170,7 +183,7 @@ const fetchUsers = ()=> {
 
             $("#user-table").html(accRows);
         }
-    )
+    });
 };
 
 $(document).ready(()=> {
@@ -221,15 +234,21 @@ $(document).ready(()=> {
             return;
         }
 
-        $.post(
-            "api?api_key=" + App.appKey +
-            "&app_id=" + App.appId +
-            "&action=new_user&username=" + username +
-            "&email=" + email + "&password=" +
-            CryptoJS.MD5(password).toString() +
-            "&enabled=" + ($("#enabled").is(":checked") ? 1 : 0),
-            {},
-            (data)=> {
+        $.post({
+            url: "api/index.php?action=new_user",
+            type: "POST",
+            dataType: "json",
+            headers: {
+                "QLBase-App-ID": App.appId,
+                "QLBase-API-Key": App.appKey
+            },
+            data: {
+                username: username,
+                email: email,
+                password: CryptoJS.MD5(password).toString(),
+                enabled: ($("#enabled-edit").is(":checked") ? 1 : 0)
+            },
+            success: (data)=> {
                 addBtn.hide();
 
                 if(data.result == '0') {
@@ -249,7 +268,7 @@ $(document).ready(()=> {
                 );
                 $("#success-modal").modal("show");
             }
-        );
+        });
     });
     setInterval(fetchUsers, 2000);
 });
