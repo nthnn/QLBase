@@ -66,7 +66,7 @@
         $(document).ready(()=> {
             $("#send").click(()=> {
                 $.ajax({
-                    url: "api?" + $("#action").find(":selected").val(),
+                    url: "api?action=" + $("#action").find(":selected").val(),
                     type: "POST",
                     data: JSON.parse($("#contents").val()),
                     headers: JSON.parse($("#http-headers").val()),
