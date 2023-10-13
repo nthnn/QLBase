@@ -3,20 +3,15 @@ package serport
 import (
 	"os"
 	"sms/proc"
-	"strings"
 
-	"github.com/hedhyw/Go-Serial-Detector/pkg/v1/serialdet"
+	"go.bug.st/serial.v1"
 )
 
 func GetArduinoSerialDevices() []string {
 	var ports []string
-	if list, err := serialdet.List(); err == nil {
-		for _, p := range list {
-			desc := p.Description()
-
-			if strings.Contains(strings.ToLower(desc), "arduino") {
-				ports = append(ports, p.Path())
-			}
+	if list, err := serial.GetPortsList(); err == nil {
+		for _, port := range list {
+			ports = append(ports, port)
 		}
 	} else {
 		proc.ShowFailedResponse("Internal error occured.")
