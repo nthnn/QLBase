@@ -42,6 +42,10 @@ if(isset($_SERVER["HTTP_QLBASE_API_KEY"]) && !empty($_SERVER["HTTP_QLBASE_API_KE
     $args = array();
 
     switch($action) {
+        case "handshake":
+            echo "{\"result\": \"1\"}";
+            return;
+            
         case "new_user":
             $backend = "auth";
             array_push($args, "create", $apiKey);
