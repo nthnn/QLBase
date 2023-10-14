@@ -311,6 +311,10 @@ Make sure to provide the correct values for the database and SMTP settings based
 |------------------------------------------------------|
 | ![Screenshot 4](screenshots/qlbase_screenshot_4.png) |
 
+| <p align="center">QLBase API Sandbox</p>             |
+|------------------------------------------------------|
+| ![Screenshot 5](screenshots/qlbase_screenshot_5.png) |
+
 ## Contributing
 
 All contributions are welcome to make QLBase even better. Whether you want to report a bug, suggest new features, or contribute code, your contributions are highly appreciated.
