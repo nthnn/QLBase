@@ -29,6 +29,7 @@ QLBase is a powerful open-source backend solution designed to provide scalable a
     * [Machine Learning](#machine-learning)
     * [Security](#security)
 - [Deployment](#deployment)
+    * [Software Requirements](#software-requirements)
     * [Usage](#usage)
     * [Configuration](#configuration)
     * [Troubleshooting](#troubleshooting)
@@ -220,6 +221,11 @@ Security is a top priority in QLBase:
 ## Deployment
 
 To simplify the deployment process of QLBase, a `deploy.sh` bash script is provided. This script is designed to package all the deployment-important files and assets and builds the back-end apps, ensuring a smooth deployment experience.
+
+### Software Requirements
+
+1. [XAMPP](https://www.apachefriends.org/) (or anything with Apache and MySQL) - This will deploy the QLBase on your local host machine.
+2. [Go compiler](https://go.dev/) - For compiling back-end programs.
 
 <img src="./assets/qlbase-cat-2.png" align="left" width="395" />
 
