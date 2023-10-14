@@ -3,18 +3,26 @@ package serport
 import (
 	"os"
 	"runtime"
-	"slices"
 	"sms/proc"
 	"strings"
 
 	"go.bug.st/serial.v1"
 )
 
+func stringInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
+}
+
 func GetArduinoSerialDevices() []string {
 	var ports []string
 	if list, err := serial.GetPortsList(); err == nil {
 		for _, port := range list {
-			if !slices.Contains(ports, port) &&
+			if !stringInSlice(port, ports) &&
 				(runtime.GOOS != "windows" &&
 					strings.Contains(port, "/dev/tty")) {
 				ports = append(ports, port)

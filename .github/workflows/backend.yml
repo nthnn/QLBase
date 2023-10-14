@@ -27,4 +27,4 @@ jobs:
         run: cd backend/auth && go build -ldflags "-w -s"
 
       - name: Build SMS back-end
-        run: cd backend/sms && export GOROOT=/usr/local/go && go build -ldflags "-w -s"
+        run: cd backend/sms && go build -ldflags "-w -s"
