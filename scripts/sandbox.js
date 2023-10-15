@@ -33,11 +33,11 @@ $(document).ready(()=> {
 
     addGroupToActions("Authentication");
     for(let act in authenticationActions)
-        addAction(action, authenticationActions[act][0]);
+        addAction(act, authenticationActions[act][0]);
 
     addGroupToActions("SMS");
     for(let act in smsActions)
-        addAction(action, smsActions[act][0]);
+        addAction(act, smsActions[act][0]);
 
     $("#send").click(()=> {
         $.ajax({
