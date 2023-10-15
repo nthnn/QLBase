@@ -3,3 +3,6 @@ bin/forgetpass
 bin/sms
 docs
 qlbase.zip
+
+.DS_Store
+screenshots/.DS_Store
