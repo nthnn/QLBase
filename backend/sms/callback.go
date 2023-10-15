@@ -5,14 +5,18 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"regexp"
 	"strconv"
 	"time"
 
 	"sms/proc"
 	"sms/serport"
-
-	"github.com/dongri/phonenumber"
 )
+
+func isValidPhoneNumber(phone_number string) bool {
+	regex := regexp.MustCompile(`^\+\d{2,3}.+$`)
+	return regex.MatchString(phone_number)
+}
 
 func generateRandom6DigitString() string {
 	rand.Seed(time.Now().UnixNano())
@@ -21,7 +25,7 @@ func generateRandom6DigitString() string {
 
 func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 	phoneNumber := args[2]
-	if phonenumber.GetISO3166ByNumber(phoneNumber, true).CountryName == "" {
+	if !isValidPhoneNumber(phoneNumber) {
 		proc.ShowFailedResponse("Invalid phone number.")
 		os.Exit(0)
 	}
@@ -52,7 +56,7 @@ func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 			phoneNumber + "\", \"" + emailSupport + "\", \"" + code + "\", 0)")
 
 		if err != nil {
-			proc.ShowFailedResponse("Internal error occured...")
+			proc.ShowFailedResponse("Internal error occured.")
 			return
 		}
 

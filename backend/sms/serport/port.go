@@ -4,6 +4,7 @@ import (
 	"io"
 	"os"
 	"sms/proc"
+	"time"
 
 	"github.com/jacobsa/go-serial/serial"
 )
@@ -15,6 +16,7 @@ func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {
 		os.Exit(0)
 	}
 
+	time.Sleep(2 * time.Second)
 	return port
 }
 
