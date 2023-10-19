@@ -14,7 +14,7 @@
 
 QLBase is a powerful open-source backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
 
-> Note: QLBase is a work-in-progress.
+> **Note**: QLBase is a work-in-progress.
 
 ## Table of Contents
 
@@ -32,6 +32,7 @@ QLBase is a powerful open-source backend solution designed to provide scalable a
     * [Software Requirements](#software-requirements)
     * [Usage](#usage)
     * [Configuration](#configuration)
+    * [Firmware](#firmware)
     * [Troubleshooting](#troubleshooting)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
@@ -270,6 +271,33 @@ home=http://localhost:8080/QLBase
 ```
 
 Make sure to provide the correct values for the database and SMTP settings based on your deployment environment.
+
+### Firmware
+
+The SMS OTP functionality is a critical component of QLBase, offering secure user authentication through one-time passwords sent via SMS. Below, you will find an overview of the firmware, including its setup instructions.
+
+| Arduino UNO board                                    | SIM900 Shield                                            |
+|------------------------------------------------------|----------------------------------------------------------|
+| ![Arduino UNO](assets/board-arduino-uno.png)         | ![SIM900 Shield](assets/board-sim900-shield.png)         |
+
+Before you can use the firmware, you need to set up your development environment and configure the Arduino UNO with the SIM900 shield. Here are the steps to get started:
+
+1. **Hardware Setup**: Ensure that you have an Arduino UNO and a SIM900 shield. Connect the SIM900 shield to the Arduino UNO, and make sure the following pin connections below are in accordance:
+
+    | Arduino UNO | SIM900 Shield |
+    |-------------|---------------|
+    | D7          | RX            |
+    | D8          | TX            |
+    | 5V          | 5V            |
+    | GND         | GND           |
+
+2. *Software Setup*:
+
+    - Install [Visual Studio Code](https://code.visualstudio.com/).
+    - Install the [PlatformIO extension](https://platformio.org/) for Visual Studio Code.
+    - Open the [SMS OTP firmware](sms-otp-firmware) folder inside the QLBase in Visual Studio Code using the PlatformIO extension.
+    - Configure your SIM900 power source and wait for it to blink every 3 seconds.
+    - Use PlatformIO to build and upload the firmware to your Arduino UNO with the SIM900 shield by clicking the upload button at the lower left bottom bar of the Visual Studio Code.
 
 ### Troubleshooting
 
