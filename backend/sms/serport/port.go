@@ -16,7 +16,7 @@ func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {
 		os.Exit(0)
 	}
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	return port
 }
 
