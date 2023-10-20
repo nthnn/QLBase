@@ -42,6 +42,10 @@ func main() {
 		failOnUmatchedArgSize(2, args)
 		callback = fetchAllOTP(apiKey, args)
 
+	case "delete_verification":
+		failOnUmatchedArgSize(4, args)
+		callback = deleteVerification(apiKey, args)
+
 	default:
 		proc.ShowFailedResponse("Invalid argument arity.")
 	}

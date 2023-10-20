@@ -180,3 +180,42 @@ func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 		proc.ShowResult(output)
 	}
 }
+
+func deleteVerification(apiKey string, args []string) func(d *sql.DB) {
+	recipient := args[2]
+	code := args[3]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_sms_auth WHERE recipient=\"" + recipient +
+			"\" AND code=\"" + code + "\"")
+
+		if err != nil {
+			query.Close()
+			proc.ShowFailedResponse("Internal error occured.")
+
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		query, err = d.Query("DELETE FROM " + apiKey +
+			"_sms_auth WHERE recipient=\"" + recipient +
+			"\" AND code=\"" + code + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+	}
+}
