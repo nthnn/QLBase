@@ -11,6 +11,10 @@ function deleteVerification(recipient, code) {
     $("#confirm-delete-modal").modal("show");
 }
 
+function requestVerificationDeletion() {
+
+}
+
 const fetchSMSLogs = ()=> {
     $.post({
         url: "api/index.php?action=fetch_all_otp",
