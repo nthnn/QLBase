@@ -7,6 +7,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 
 	"sms/proc"
@@ -138,5 +139,44 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 
 		proc.ShowResult("\"" + strconv.Itoa(enabled) + "\"")
 		query.Close()
+	}
+}
+
+func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		query, err := d.Query(
+			"SELECT recipient, code, support_email, timedate FROM " +
+				apiKey + "_sms_auth")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+		defer query.Close()
+
+		var result [][]string
+		for query.Next() {
+			var recipient, code, support_email, timedate string
+			query.Scan(&recipient, &code, &support_email, &timedate)
+
+			result = append(result, []string{recipient, code, support_email, timedate})
+		}
+
+		if len(result) == 1 {
+			proc.ShowResult("[]")
+			return
+		}
+
+		var output string = "["
+		for i := 0; i < len(result); i++ {
+			res := result[i]
+
+			output += "[\"" + res[0] + "\", \"" +
+				res[1] + "\", \"" + res[2] + "\", \"" +
+				res[3] + "\"], "
+		}
+
+		output = strings.TrimRight(output, ", ") + "]"
+		proc.ShowResult(output)
 	}
 }

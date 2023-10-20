@@ -18,6 +18,7 @@ const smsActions = {
     "sms_verification": ["SMS Verification", ""],
     "sms_validate": ["SMS Validate", ""],
     "sms_is_validate": ["SMS Is Validate", ""],
+    "fetch_all_otp": ["Fetch All OTP", ""]
 };
 
 const addGroupToActions = (name)=> {

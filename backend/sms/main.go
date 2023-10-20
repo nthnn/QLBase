@@ -38,6 +38,10 @@ func main() {
 		failOnUmatchedArgSize(4, args)
 		callback = isCodeValidated(apiKey, args)
 
+	case "fetch_all_otp":
+		failOnUmatchedArgSize(2, args)
+		callback = fetchAllOTP(apiKey, args)
+
 	default:
 		proc.ShowFailedResponse("Invalid argument arity.")
 	}

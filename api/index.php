@@ -403,6 +403,11 @@ if(isset($_SERVER["HTTP_QLBASE_API_KEY"]) && !empty($_SERVER["HTTP_QLBASE_API_KE
             array_push($args, $recipient, $code);
             break;
 
+        case "fetch_all_otp":
+            $backend = "sms";
+            array_push($args, "fetch_all_otp", $apiKey);
+            break;
+
         default:
             failedResponse();
             return;
