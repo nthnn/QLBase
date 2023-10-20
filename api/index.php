@@ -408,6 +408,31 @@ if(isset($_SERVER["HTTP_QLBASE_API_KEY"]) && !empty($_SERVER["HTTP_QLBASE_API_KE
             array_push($args, "fetch_all_otp", $apiKey);
             break;
 
+        case "delete_verification":
+            $backend = "sms";
+            array_push($args, "delete_verification", $apiKey);
+
+            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
+                !isset($_POST["code"]) || empty($_POST["code"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $recipient = $_POST["recipient"];
+            if(!validatePhoneNumber($recipient)) {
+                failedResponseMessage("Invalid recipient string.");
+                return;
+            }
+        
+            $code = $_POST["code"];
+            if(!validateVerificationCode($code)) {
+                failedResponseMessage("Invalid verification code.");
+                return;
+            }
+        
+            array_push($args, $recipient, $code);
+            break;
+
         default:
             failedResponse();
             return;
