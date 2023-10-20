@@ -12,7 +12,29 @@ function deleteVerification(recipient, code) {
 }
 
 function requestVerificationDeletion() {
+    $.post({
+        url: "api/index.php?action=delete_verification",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            recipient: deletableVerification,
+            code: deletableOTP
+        },
+        success: (data)=> {
+            if(data.result == '0')
+                return;
 
+            $("#success-message").html("Removed OTP verification.");
+            $("#confirm-delete-modal").modal("hide");
+            $("#success-modal").modal("show");
+        }
+    }).fail(()=> {
+        $("#confirm-delete-modal").modal("hide");
+        $("#error-message").html("Error trying to remove the OTP verification.");
+        $("#error-modal").modal("show");
+    });
 }
 
 const fetchSMSLogs = ()=> {
