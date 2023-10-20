@@ -145,7 +145,7 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		query, err := d.Query(
-			"SELECT recipient, code, support_email, timedate FROM " +
+			"SELECT recipient, code, support_email, timedate, validated FROM " +
 				apiKey + "_sms_auth")
 
 		if err != nil {
@@ -156,10 +156,10 @@ func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 
 		var result [][]string
 		for query.Next() {
-			var recipient, code, support_email, timedate string
-			query.Scan(&recipient, &code, &support_email, &timedate)
+			var recipient, code, support_email, timedate, validated string
+			query.Scan(&recipient, &code, &support_email, &timedate, &validated)
 
-			result = append(result, []string{recipient, code, support_email, timedate})
+			result = append(result, []string{recipient, code, support_email, timedate, validated})
 		}
 
 		if len(result) == 1 {
@@ -173,7 +173,7 @@ func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 
 			output += "[\"" + res[0] + "\", \"" +
 				res[1] + "\", \"" + res[2] + "\", \"" +
-				res[3] + "\"], "
+				res[3] + "\", \"" + res[4] + "\"], "
 		}
 
 		output = strings.TrimRight(output, ", ") + "]"
