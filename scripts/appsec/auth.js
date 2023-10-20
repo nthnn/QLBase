@@ -159,7 +159,7 @@ const fetchUsers = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0' || data.value.length == 0)
+            if(data.result == '0')
                 return;
 
             if(prevUsersHash == CryptoJS.MD5(JSON.stringify(data)).toString())
