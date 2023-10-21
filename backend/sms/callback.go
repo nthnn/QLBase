@@ -162,7 +162,7 @@ func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 			result = append(result, []string{recipient, code, support_email, timedate, validated})
 		}
 
-		if len(result) == 1 {
+		if len(result) == 0 {
 			proc.ShowResult("[]")
 			return
 		}
