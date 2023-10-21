@@ -58,7 +58,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {
         "username": "<username>",
         "email": "<email>",
@@ -68,7 +68,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
     ```
 
     Example Response:
-    ```json
+    ```js
     {"result": "1"}
     // Successfully registered
     ```
@@ -81,7 +81,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {
         "username": "<username>",
         "password": "<MD5 hashed string>"
@@ -89,7 +89,7 @@ QLBase provides a robust authentication system that allows you to manage user ac
     ```
 
     Example Response:
-    ```json
+    ```js
     {"result": "0", "value": "0"}
     // Invalid login credentials
     ```
@@ -102,12 +102,12 @@ QLBase provides a robust authentication system that allows you to manage user ac
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {"username": "<username>"}
     ```
 
     Example Response:
-    ```json
+    ```js
     {"result": "1"}
     // User was disabled
     ```
@@ -124,7 +124,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {
         "recipient": "+<country code><recipient number>",
         "support": "<tech support email address>"
@@ -145,7 +145,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {
         "recipient": "+<country code><recipient number>"
         "code": "<generated verification code>"
@@ -166,7 +166,7 @@ Easily integrate SMS verification into your application using QLBase's OTP servi
     ```
 
     Pseudo-Payload:
-    ```json
+    ```js
     {
         "recipient": "+<country code><recipient number>",
         "code": "<generate verification code>"
