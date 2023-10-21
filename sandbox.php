@@ -1,3 +1,20 @@
+<?php
+    include_once("controller/apps.php");
+    include_once("./controller/validator.php");
+
+    $appId = "";
+    $apiKey = "";
+
+    if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
+        $id = $_POST["app_id"];
+        $key = $_POST["api_key"];
+
+        if(validateAppId($id) || validateApiKey($key)) {
+            $appId = $id;
+            $apiKey = $key;
+        }
+    }
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
@@ -31,7 +48,7 @@
                 <br/>
 
                 <i>HTTP Headers:</i>
-                <textarea cols="70" rows="7" id="http-headers" class="form-control" placeholder="HTTP Headers" spellcheck="false">{&#10;&#9;"QLBase-API-Key": "",&#10;&#9;"QLBase-App-ID": ""&#10;}</textarea>
+                <textarea cols="70" rows="7" id="http-headers" class="form-control" placeholder="HTTP Headers" spellcheck="false">{&#10;&#9;"QLBase-API-Key": "<?php echo $apiKey; ?>",&#10;&#9;"QLBase-App-ID": "<?php echo $appId; ?>"&#10;}</textarea>
                 <br/>
 
                 <button class="btn btn-primary" id="send">Send Request</button>

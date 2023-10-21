@@ -15,12 +15,14 @@ $pages = ["auth", "sms", "db", "analytics", "ml", "storage", "settings"];
 if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
     $page = $_GET["section"];
+
+$apiKey = getAppInfoById(getIdOfSession(), $appId)["app_key"];
 ?>
 
 <script>
 const App = {
     appId: "<?php echo $appId; ?>",
-    appKey: "<?php echo getAppInfoById(getIdOfSession(), $appId)["app_key"]; ?>"
+    appKey: "<?php echo $apiKey; ?>"
 };
 </script>
 

@@ -15,7 +15,11 @@ $userName = getAccountUsername($userId);
         </div>
 
         <div class="col-6" align="right">
-            <a href="./sandbox.html" target="_blank" class="btn btn-primary">Sandbox</a>
+            <form action="./sandbox.php" method="post" target="_blank">
+                <input type="hidden" name="api_key" value="<?php echo $apiKey; ?>" />
+                <input type="hidden" name="app_id" value="<?php echo $appId; ?>" />
+                <button type="submit" href="./sandbox.html" class="btn btn-primary">Sandbox</button>
+            </form>
         </div>
     </div>
 </div>
