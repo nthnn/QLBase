@@ -1,4 +1,5 @@
 bin/auth
+bin/data_analytics
 bin/forgetpass
 bin/sms
 docs
