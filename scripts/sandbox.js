@@ -22,6 +22,17 @@ const smsActions = {
     "delete_verification": ["Delete Verification", '{\n\t"recipient": "",\n\t"code": ""\n}']
 };
 
+const dataAnalyticsActions = {
+    "id_create": ["Identify: Create New", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"timestamp\": \"\",\n\t\"payload\": \"\"\n}"],
+    "id_create_live_timestamp": ["Identify: Create with Live Timestamp", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"payload\": \"\"\n}"],
+    "id_delete_by_anon_id": ["Identify: Delete by Anonymous ID", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\"\n}"],
+    "id_delete_by_user_id": ["Identify: Delete by User ID", "{\n\t\"tracker\": \"\",\n\t\"user_id\": \"\"\n}"],
+    "id_get_by_anon_id": ["Identify: Fetch by Anon ID", "{\n\t\"anon_id\": \"\"\n}"],
+    "id_get_by_user_id": ["Identify: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
+    "id_get_by_timestamp": ["Identify: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
+    "id_fetch_all": ["Identify: Fetch All", "{}"],
+};
+
 const addGroupToActions = (name)=> {
     $("#action").append("<option disabled value=\"\">─</option>");
     $("#action").append("<option disabled value=\"\">" + name + "</option>");
@@ -45,6 +56,10 @@ $(document).ready(()=> {
     addGroupToActions("SMS");
     for(let act in smsActions)
         addAction(act, smsActions[act][0], smsActions[act][1]);
+
+    addGroupToActions("Data Analytics");
+    for(let act in dataAnalyticsActions)
+        addAction(act, dataAnalyticsActions[act][0], dataAnalyticsActions[act][1]);
 
     $("#send").click(()=> {
         $.ajax({
