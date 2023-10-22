@@ -46,4 +46,27 @@ function validateVerificationCode($code) {
     return preg_match("/^\d{6}$/", $code);
 }
 
+function validateTracker($tracker) {
+    return strlen($tracker) == 12 &&
+        preg_match("/^[A-Za-z]+$/", $tracker);
+}
+
+function validateDateTime($datetime) {
+    $timestamp = strtotime($datetime);
+
+    if($timestamp !== false) {
+        $input_formatted = date('Y-m-d H:i:s', $timestamp);
+
+        if ($input_formatted === $datetime)
+            return true;
+    }
+
+    return false;
+}
+
+function validateJson($json) {
+    json_decode($json);
+    return json_last_error() === 0;
+}
+
 ?>
