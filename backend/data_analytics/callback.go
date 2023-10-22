@@ -28,7 +28,7 @@ func createIdCallback(apiKey string, args []string) func(*sql.DB) {
 	}
 }
 
-func createIdWithoutTimestampCallback(apiKey string, args []string) func(*sql.DB) {
+func createIdLiveTimestampCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	anonymous_id := args[3]
 	user_id := args[4]
@@ -121,10 +121,10 @@ func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", \"" + results[i][3] +
-				"\"], "
+				"\", " + decodeBase64(results[i][3]) +
+				"], "
 		}
-		result = result[0 : len(result)-2]
+		result = result[0:len(result)-2] + "]"
 
 		proc.ShowResult(result)
 	}
@@ -142,7 +142,6 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
 		}
-		defer query.Close()
 
 		var results [][]string
 		for query.Next() {
@@ -154,6 +153,7 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 
 		if len(results) == 0 {
 			proc.ShowResult("[]")
+			query.Close()
 			return
 		}
 
@@ -162,12 +162,13 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", \"" + results[i][3] +
-				"\"], "
+				"\", " + decodeBase64(results[i][3]) +
+				"], "
 		}
-		result = result[0 : len(result)-2]
+		result = result[0:len(result)-2] + "]"
 
 		proc.ShowResult(result)
+		query.Close()
 	}
 }
 
@@ -176,14 +177,13 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, user_id, payload FROM " +
-			apiKey + "_data_analytics_id WHERE timedate=\"%" +
-			timestamp + "%\"")
+			apiKey + "_data_analytics_id WHERE timedate=\"" +
+			timestamp + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
 		}
-		defer query.Close()
 
 		var results [][]string
 		for query.Next() {
@@ -195,6 +195,7 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 		if len(results) == 0 {
 			proc.ShowResult("[]")
+			query.Close()
 			return
 		}
 
@@ -203,18 +204,19 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", \"" + results[i][3] +
-				"\"], "
+				"\", " + decodeBase64(results[i][3]) +
+				"], "
 		}
-		result = result[0 : len(result)-2]
+		result = result[0:len(result)-2] + "]"
 
 		proc.ShowResult(result)
+		query.Close()
 	}
 }
 
 func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, anonymous_id, user_id, timestamp, payload FROM " +
+		query, err := d.Query("SELECT tracker, anonymous_id, user_id, timedate, payload FROM " +
 			apiKey + "_data_analytics_id")
 
 		if err != nil {
@@ -242,10 +244,10 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", \"" + results[i][4] +
+				"\", \"" + decodeBase64(results[i][4]) +
 				"\"], "
 		}
-		result = result[0 : len(result)-2]
+		result = result[0:len(result)-2] + "]"
 
 		proc.ShowResult(result)
 	}

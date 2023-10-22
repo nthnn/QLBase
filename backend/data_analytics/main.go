@@ -28,9 +28,9 @@ func main() {
 		failOnUmatchedArgSize(7, args)
 		callback = createIdCallback(apiKey, args)
 
-	case "id_create_without_timestamp":
+	case "id_create_live_timestamp":
 		failOnUmatchedArgSize(6, args)
-		callback = createIdWithoutTimestampCallback(apiKey, args)
+		callback = createIdLiveTimestampCallback(apiKey, args)
 
 	case "id_delete_by_anon_id":
 		failOnUmatchedArgSize(4, args)
