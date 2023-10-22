@@ -26,6 +26,7 @@
 
     <link href="./favicon.ico" rel="shortcut icon" />
     <link href="./styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="./styles/global.css" rel="stylesheet" />
 
     <style>
         #receiver, #contents, #http-headers { resize: none; }
@@ -63,5 +64,6 @@
 
     <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
     <script src="scripts/vendors/jquery.min.js"></script>
+    <script src="scripts/rotating-button.js"></script>
     <script src="scripts/sandbox.js"></script>
 </body>

@@ -45,6 +45,19 @@ const addAction = (action, name, args)=>
         "\">" + name + "</option>"
     );
 
+function validateJson(str) {
+    if(typeof str !== "string")
+        return false;
+
+    try {
+        JSON.parse(str);
+        return true;
+    }
+    catch(e) {
+        return false;
+    }
+}
+
 $(document).ready(()=> {
     $("#action").append("<option disabled selected value=\"\">Actions</option>");
     addAction("handshake", "Handshake", "{}");
@@ -61,15 +74,37 @@ $(document).ready(()=> {
     for(let act in dataAnalyticsActions)
         addAction(act, dataAnalyticsActions[act][0], dataAnalyticsActions[act][1]);
 
+    const sendBtn = RotatingButton("#send");
     $("#send").click(()=> {
+        const dataContents = $("#contents").val(),
+            httpHeaders = $("#http-headers").val();
+
+        $("#contents").removeClass("border-danger");
+        $("#http-headers").removeClass("border-danger");
+
+        sendBtn.show();
+        $("#response").val("");
+
+        if(!validateJson(dataContents)) {
+            $("#contents").addClass("border-danger");
+            return;
+        }
+
+        if(!validateJson(httpHeaders)) {
+            $("#http-headers").addClass("border-danger");
+            return;
+        }
+
         $.ajax({
             url: "api/index.php?action=" + $("#action").find(":selected").val(),
             type: "POST",
-            data: JSON.parse($("#contents").val()),
-            headers: JSON.parse($("#http-headers").val()),
+            data: JSON.parse(dataContents),
+            headers: JSON.parse(httpHeaders),
             dataType: "json",
-            success: (data)=>
+            success: (data)=> {
                 $("#response").val(JSON.stringify(data, null, 4))
+                setTimeout(()=> sendBtn.hide(), 800);
+            }
         });
     });
 
