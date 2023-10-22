@@ -32,6 +32,30 @@ func main() {
 		failOnUmatchedArgSize(6, args)
 		callback = createIdWithoutTimestampCallback(apiKey, args)
 
+	case "id_delete_by_anon_id":
+		failOnUmatchedArgSize(4, args)
+		callback = deleteIdByAnonId(apiKey, args)
+
+	case "id_delete_by_user_id":
+		failOnUmatchedArgSize(4, args)
+		callback = deleteIdByUserId(apiKey, args)
+
+	case "id_get_by_anon_id":
+		failOnUmatchedArgSize(3, args)
+		callback = getIdByAnonId(apiKey, args)
+
+	case "id_get_by_user_id":
+		failOnUmatchedArgSize(3, args)
+		callback = getIdByUserId(apiKey, args)
+
+	case "id_get_by_timestamp":
+		failOnUmatchedArgSize(3, args)
+		callback = getIdByTimestamp(apiKey, args)
+
+	case "id_fetch_all":
+		failOnUmatchedArgSize(2, args)
+		callback = fetchAllId(apiKey, args)
+
 	default:
 		proc.ShowFailedResponse("Invalid argument arity.")
 	}
