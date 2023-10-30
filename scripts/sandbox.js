@@ -27,6 +27,7 @@ const dataAnalyticsActions = {
     "id_create_live_timestamp": ["Identify: Create with Live Timestamp", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"payload\": \"\"\n}"],
     "id_delete_by_anon_id": ["Identify: Delete by Anonymous ID", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\"\n}"],
     "id_delete_by_user_id": ["Identify: Delete by User ID", "{\n\t\"tracker\": \"\",\n\t\"user_id\": \"\"\n}"],
+    "id_delete_by_timestamp": ["Identify: Delete by Timestamp", "{\n\t\"tracker\": \"\",\n\t\"timestamp\": \"\"\n}"],
     "id_get_by_anon_id": ["Identify: Fetch by Anon ID", "{\n\t\"anon_id\": \"\"\n}"],
     "id_get_by_user_id": ["Identify: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
     "id_get_by_timestamp": ["Identify: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
