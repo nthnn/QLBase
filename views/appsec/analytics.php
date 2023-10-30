@@ -1,3 +1,27 @@
+<div class="modal fade" id="payload-modal" tabindex="-1" role="dialog" aria-labelledby="payload-modalLabel" aria-hidden="true">
+    <div class="modal-dialog shadow" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paload-modalLabel">Payload</h5>
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <pre class="bg-secondary p-2 border border-gray rounded" id="payload-content"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <h1>Data Analytics</h1>
 <hr/>
 

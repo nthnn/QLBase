@@ -1,9 +1,17 @@
-let prevIdHash = "";
+let prevIdHash = "",
+    idPayloads = [];
+
+function showPayload(payload) {
+    $("#payload-content").html(
+        JSON.stringify(idPayloads[payload], undefined, 4)
+    );
+    $("#payload-modal").modal("show");
+}
 
 const renderToIdTable = (tracker, anonId, userId, timedate, payload)=> {
     return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
         userId + "</td><td>" + timedate + "</td><td><button class=\"btn btn-primary\"" +
-        " onclick=\"showPayload('" + payload + "')\">Show</button></td>" +
+        " onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
         "<td><button class=\"btn btn-outline-danger\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
         "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
         " width=\"16\" height=\"16\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" " +
@@ -32,13 +40,13 @@ const fetchAllId = ()=> {
             if(!data.value || data.value == "")
                 return;
 
-            let tbody = "";
-            for(let row of data.value)
-                tbody += renderToIdTable(
-                    row[0], row[1],
-                    row[2], row[3],
-                    row[4]
-                );
+            let tbody = "", i = 0;
+            for(let row of data.value) {
+                tbody += renderToIdTable(row[0], row[1], row[2], row[3], i);
+                idPayloads.push(row[4]);
+
+                i++;
+            }
 
             $("#analytics-id-tbody").html(tbody);
         }
