@@ -586,6 +586,31 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
     
             array_push($args, $anon_id);
             break;
+
+        case "id_delete_by_timestamp":
+            $backend = "data_analytics";
+            array_push($args, "id_delete_by_timestamp", $apiKey);
+    
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+   
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+    
+            $timestamp = $_POST["timestamp"];
+            if(!validateTimestamp($timestamp)) {
+                failedResponseMessage("Invalid timestamp format.");
+                return;
+            }
+        
+            array_push($args, $tracker, "\"".$timestamp."\"");
+            break;
     
         case "id_get_by_user_id":
             $backend = "data_analytics";
