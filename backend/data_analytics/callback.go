@@ -89,6 +89,26 @@ func deleteIdByUserId(apiKey string, args []string) func(*sql.DB) {
 	}
 }
 
+func deleteIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
+	tracker := args[2]
+	timestamp := args[3]
+
+	return func(d *sql.DB) {
+		query, err := d.Query("DELETE FROM " + apiKey +
+			"_data_analytics_id WHERE tracker=\"" +
+			tracker + "\" AND timedate=STR_TO_DATE(\"" +
+			timestamp + "\", \"%Y-%m-%d %H:%i:%s\")")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		query.Close()
+	}
+}
+
 func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
 

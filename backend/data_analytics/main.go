@@ -40,6 +40,10 @@ func main() {
 		failOnUmatchedArgSize(4, args)
 		callback = deleteIdByUserId(apiKey, args)
 
+	case "id_delete_by_timestamp":
+		failOnUmatchedArgSize(4, args)
+		callback = deleteIdByTimestamp(apiKey, args)
+
 	case "id_get_by_anon_id":
 		failOnUmatchedArgSize(3, args)
 		callback = getIdByAnonId(apiKey, args)
