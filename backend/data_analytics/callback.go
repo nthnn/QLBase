@@ -93,7 +93,7 @@ func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, user_id, timedate, payload FROM " +
+		query, err := d.Query("SELECT tracker, user_id, timedate, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_id WHERE anonymous_id=\"" +
 			anonId + "\"")
 
@@ -134,7 +134,7 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, anonymous_id, timedate, payload FROM " +
+		query, err := d.Query("SELECT tracker, anonymous_id, timedate, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_id WHERE user_id=\"" +
 			userId + "\"")
 
@@ -176,7 +176,7 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	timestamp := args[2]
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, anonymous_id, user_id, payload FROM " +
+		query, err := d.Query("SELECT tracker, anonymous_id, user_id, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_id WHERE timedate=\"" +
 			timestamp + "\"")
 
@@ -216,7 +216,7 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, anonymous_id, user_id, timedate, payload FROM " +
+		query, err := d.Query("SELECT tracker, anonymous_id, user_id, timedate, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_id")
 
 		if err != nil {
@@ -240,12 +240,17 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 
 		result := "["
 		for i := 0; i < len(results); i++ {
+			payload := decodeBase64(results[i][4])
+			if payload == "" {
+				payload = "{}"
+			}
+
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", \"" + decodeBase64(results[i][4]) +
-				"\"], "
+				"\", " + payload +
+				"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
