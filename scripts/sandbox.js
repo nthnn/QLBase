@@ -87,11 +87,13 @@ $(document).ready(()=> {
 
         if(!validateJson(dataContents)) {
             $("#contents").addClass("border-danger");
+            sendBtn.hide();
             return;
         }
 
         if(!validateJson(httpHeaders)) {
             $("#http-headers").addClass("border-danger");
+            sendBtn.hide();
             return;
         }
 
