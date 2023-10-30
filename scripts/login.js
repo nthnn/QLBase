@@ -6,7 +6,6 @@ const showError = (id, message)=> {
 
 $(document).ready(()=> {
     const loginButton = RotatingButton("#log-in");
-    console.log(loginButton);
     $("#log-in").click(()=> {
         const username = $("#username").val();
         const password = $("#password").val();

@@ -86,6 +86,8 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/cryptojs.core.min.js"></script>
+<script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>
 <script src="scripts/rotating-button.js"></script>
 <script src="scripts/appsec/analytics.js"></script>
