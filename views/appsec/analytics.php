@@ -197,8 +197,6 @@
     </div>
 </div>
 
-<a href="#" class="d-none" id="hidden-download-link"></div>
-
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
