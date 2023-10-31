@@ -1,5 +1,7 @@
 let prevIdHash = "",
     idPayloads = [];
+let deletableIdTracker = null,
+    deletableTimestamp = null;
 
 function showPayload(payload) {
     $("#payload-content").html(
@@ -8,11 +10,63 @@ function showPayload(payload) {
     $("#payload-modal").modal("show");
 }
 
+function downloadPayload() {
+    let file = new File(
+        ["\ufeff" + $("#payload-content").text()],
+        "payload.json",
+        {type: "text/plain:charset=UTF-8"}
+    );
+    let url = window.URL.createObjectURL(file);
+
+    let a = document.createElement("a");
+    a.style = "display: none";
+    a.href = url;
+    a.download = file.name;
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+}
+
+function showConfirmDelete(tracker, timestamp) {
+    deletableIdTracker = tracker;
+    deletableTimestamp = timestamp;
+
+    $("#confirm-delete-id-modal").modal("show");
+}
+
+const requestDeleteId = ()=> {
+    $.post({
+        url: "api/index.php?action=id_delete_by_timestamp",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            tracker: deletableIdTracker,
+            timestamp: deletableTimestamp
+        },
+        success: (data)=> {
+            $("#confirm-delete-id-modal").modal("hide");
+
+            if(data.result == '0') {
+                $("#failed-delete-modal-msg").html("Failed to delete identification track.");
+                $("#failed-delete-modal").modal("show");
+    
+                return;
+            }
+
+            $("#success-delete-modal-msg").html("Successfully deleted identification track.");
+            $("#success-delete-modal").modal("show");
+        }
+    });
+};
+
 const renderToIdTable = (tracker, anonId, userId, timedate, payload)=> {
     return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
         userId + "</td><td>" + timedate + "</td><td><button class=\"btn btn-primary\"" +
         " onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
-        "<td><button class=\"btn btn-outline-danger\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
+        "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmDelete('" + tracker +
+        "', '" + timedate + "')\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
         "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
         " width=\"16\" height=\"16\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" " +
         "d=\"M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16" +
@@ -36,9 +90,6 @@ const fetchAllId = ()=> {
             if(prevIdHash == CryptoJS.MD5(JSON.stringify(data)).toString())
                 return;
             prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
-
-            if(!data.value || data.value == "")
-                return;
 
             let tbody = "", i = 0;
             for(let row of data.value) {
