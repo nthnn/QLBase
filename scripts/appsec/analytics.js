@@ -1,5 +1,7 @@
 let prevIdHash = "",
+    prevIdContent = "",
     idPayloads = [];
+
 let deletableIdTracker = null,
     deletableTimestamp = null;
 
@@ -10,21 +12,32 @@ function showPayload(payload) {
     $("#payload-modal").modal("show");
 }
 
-function downloadPayload() {
+function downloadContent(fileName, content) {
     let file = new File(
-        ["\ufeff" + $("#payload-content").text()],
-        "payload.json",
+        ["\ufeff" + content],
+        fileName,
         {type: "text/plain:charset=UTF-8"}
     );
-    let url = window.URL.createObjectURL(file);
 
+    let url = window.URL.createObjectURL(file);
     let a = document.createElement("a");
+
     a.style = "display: none";
     a.href = url;
     a.download = file.name;
     a.click();
 
     window.URL.revokeObjectURL(url);
+}
+
+function downloadIdContent() {
+    let content = "";
+    for(let row of prevIdContent)
+        content += row[0] + "," + row[1] + "," +
+            row[2] + ",\"" + row[3] + "\"," +
+            btoa(JSON.stringify(row[4])) + "\n";
+    
+    downloadContent("data_analytics_id.csv", content);
 }
 
 function showConfirmDelete(tracker, timestamp) {
@@ -89,6 +102,8 @@ const fetchAllId = ()=> {
 
             if(prevIdHash == CryptoJS.MD5(JSON.stringify(data)).toString())
                 return;
+
+            prevIdContent = data.value;
             prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
             let tbody = "", i = 0;
