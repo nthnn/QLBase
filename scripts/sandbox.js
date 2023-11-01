@@ -32,6 +32,18 @@ const dataAnalyticsActions = {
     "id_get_by_user_id": ["Identify: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
     "id_get_by_timestamp": ["Identify: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
     "id_fetch_all": ["Identify: Fetch All", "{}"],
+
+    "track_create": ["Track: Create New", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"event\": \"\",\n\t\"timestamp\": \"\",\n\t\"payload\": \"\"\n}"],
+    "track_create_live_timestamp": ["Track: Create with Live Timestamp", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"event\": \"\",\n\t\"payload\": \"\"\n}"],
+    "track_delete_by_anon_id": ["Track: Delete by Anonymous ID", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\"\n}"],
+    "track_delete_by_user_id": ["Track: Delete by User ID", "{\n\t\"tracker\": \"\",\n\t\"user_id\": \"\"\n}"],
+    "track_delete_by_event": ["Track: Delete by Event", "{\n\t\"tracker\": \"\",\n\t\"event\": \"\"\n}"],
+    "track_delete_by_timestamp": ["Track: Delete by Timestamp", "{\n\t\"tracker\": \"\",\n\t\"timestamp\": \"\"\n}"],
+    "track_get_by_anon_id": ["Track: Fetch by Anon ID", "{\n\t\"anon_id\": \"\"\n}"],
+    "track_get_by_user_id": ["Track: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
+    "track_get_by_event": ["Track: Fetch by Event", "{\n\t\"user_id\": \"\",\n\t\"event\": \"\"\n}"],
+    "track_get_by_timestamp": ["Track: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
+    "track_fetch_all": ["Track: Fetch All", "{}"],
 };
 
 const addGroupToActions = (name)=> {
