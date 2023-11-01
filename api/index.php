@@ -804,7 +804,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
     
         case "track_delete_by_event":
             $backend = "data_analytics";
-            array_push($args, "track_delete_by_user_id", $apiKey);
+            array_push($args, "track_delete_by_event", $apiKey);
     
             if(!isset($_POST["tracker"]) || empty($_POST["event"]) ||
                 !isset($_POST["event"]) || empty($_POST["event"])) {
