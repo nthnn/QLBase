@@ -21,11 +21,23 @@ import { RouterLink } from 'vue-router';
     </p>
     <br/>
 
-    <h3>What is QLBase?</h3>
+    <h3 class="border-bottom">🪁 What is QLBase?</h3>
     <p>QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.</p>
+    <br/>
 
-    <hr/>
-    <h3>Donating</h3>
+    <h3 class="border-bottom">🎯 Features</h3>
+    <p>QLBase offers a wide array of features that make it a versatile, scalable, reliable, and powerful backend solution suitable for a variety of applications. Below are the summarized APIs and service features of QLBase:</p>
+    <ul>
+        <li><b>Authentication</b>: QLBase provides a robust authentication system that allows you to manage user accounts securely.</li>
+        <li><b>SMS Verification</b>: Easily integrate SMS verification into your application using QLBase's OTP service. Protect your user accounts with one-time passwords sent via SMS. QLBase provides SMS verification functionality using an Arduino UNO with a SIM900 Shield as the underlying SMS hardware.</li>
+        <li><b>Data Analytics</b>: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.</li>
+        <li><b>Database</b>: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include</li>
+        <li><b>File Storage</b>: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.</li>
+        <li><b>Machine Learning</b>: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features inclues model integration, custom model training, and scalable infrastructure.</li>
+    </ul>
+    <br/>
+
+    <h3 class="border-bottom">💙 Donating</h3>
     <p>QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.</p>
 
     <table align="center">
@@ -48,7 +60,7 @@ import { RouterLink } from 'vue-router';
 
         <div class="col-6">
             <div align="right">
-                <RouterLink to="/p1-features" class="btn btn-primary">
+                <RouterLink to="/deployment" class="btn btn-primary">
                     Deployment
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right mb-1" viewBox="0 0 16 16">
