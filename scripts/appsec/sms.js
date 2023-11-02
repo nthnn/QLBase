@@ -1,6 +1,7 @@
-let prevUsersHash = "";
+let prevSMSHash = "";
 let deletableVerification = null,
-    deletableOTP = null;
+    deletableOTP = null,
+    dataTable = null;
 
 function deleteVerification(recipient, code) {
     deletableVerification = recipient;
@@ -48,12 +49,17 @@ const fetchSMSLogs = ()=> {
             if(data.result == '0')
                 return;
 
-            if(prevUsersHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            if(prevSMSHash == CryptoJS.MD5(JSON.stringify(data)).toString())
                 return;
-            prevUsersHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevSMSHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
-            if(!data.value || data.value == "")
+            if(data.value.length == 0 && (prevSMSHash != "" ||
+                prevSMSHash != "")) {
+                dataTable.clear().destroy();
+                dataTable = initDataTable("#sms-table", "No SMS OTP verficiations found.");
+
                 return;
+            }
 
             let otpRows = "";
             const enabilityIcon = {
@@ -78,8 +84,8 @@ const fetchSMSLogs = ()=> {
 };
 
 $(document).ready(()=> {
-    new DataTable("#sms-table");
+    dataTable = initDataTable("#sms-table", "No SMS OTP verficiations found.");
+
+    fetchSMSLogs();
     setInterval(fetchSMSLogs, 2000);
 });
-
-fetchSMSLogs();

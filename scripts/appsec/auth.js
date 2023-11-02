@@ -166,8 +166,13 @@ const fetchUsers = ()=> {
                 return;
             prevUsersHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
-            if(!data.value || data.value == "")
+            if(data.value.length == 0 && (prevUsersHash != "" ||
+                prevUsersHash != "")) {
+                dataTable.clear().destroy();
+                dataTable = initDataTable("#auth-table", "No authentication accounts found.");
+
                 return;
+            }
 
             let accRows = "";
             const enabilityIcon = {
@@ -190,7 +195,7 @@ const fetchUsers = ()=> {
 };
 
 $(document).ready(()=> {
-    new DataTable("#auth-table");
+    dataTable = initDataTable("#auth-table", "No authentication accounts found.");
 
     const addBtn = RotatingButton("#add-btn");
     $("#add-btn").click(()=> {
@@ -273,7 +278,7 @@ $(document).ready(()=> {
             }
         });
     });
+
+    fetchUsers();
     setInterval(fetchUsers, 2000);
 });
-
-fetchUsers();

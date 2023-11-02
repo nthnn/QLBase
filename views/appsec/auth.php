@@ -205,6 +205,7 @@
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>
 <script src="scripts/rotating-button.js"></script>
+<script src="scripts/datatable-init.js"></script>
 <script src="scripts/appsec/auth.js"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>

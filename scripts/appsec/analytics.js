@@ -168,16 +168,6 @@ const renderToTrackTable = (tracker, anonId, userId, timedate, event, payload)=>
         " 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0\" /></svg></button></td></tr>";
 };
 
-const initDataTable = (tableId, emptyMessage)=> {
-    return new DataTable(tableId, {
-        "language": {
-            "emptyTable": emptyMessage,
-            "zeroRecords": emptyMessage,
-            "infoEmpty": emptyMessage
-        }
-    });
-};
-
 const fetchAllId = ()=> {
     $.post({
         url: "api/index.php?action=id_fetch_all",
