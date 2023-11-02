@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import Footer from './components/Footer.vue';
 import NavigationColumn from './components/NavigationColumn.vue';
 </script>
 
@@ -26,6 +27,8 @@ import NavigationColumn from './components/NavigationColumn.vue';
                 <br/><br class="desktop-only" />
             </div>
         </div>
+
+        <Footer />
     </div>
     <br/>
 </template>

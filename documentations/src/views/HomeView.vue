@@ -1,6 +1,5 @@
 <script setup lang="ts">
-//import { RouterLink } from 'vue-router';
-import NextButton from '../components/NextButton.vue';
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -23,7 +22,21 @@ import NextButton from '../components/NextButton.vue';
     <br/>
 
     <h3>What is QLBase?</h3>
-    <p>QLBase is a powerful open-source backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.</p>
+    <p>QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.</p>
+
+    <hr/>
+    <h3>Donating</h3>
+    <p>QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.</p>
+
+    <table align="center">
+        <tr>
+            <td class="p-4"><a href="https://paypal.me/nathannestein" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal"></a></td>
+            <td class="p-4"><a href="https://www.buymeacoffee.com/nthnn" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a></td>
+        </tr>
+    </table>
+
+    <br/>
+    <p>QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.</p>
 
     <hr/>
     <div class="row">
