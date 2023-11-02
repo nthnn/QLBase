@@ -12,9 +12,20 @@ let prevTrackHash = "",
 let deletableTrackTracker = null,
     deletableTrackTimestamp = null;
 
-function showPayload(payload) {
+let idDataTable = null,
+    trackDataTable = null,
+    pageDataTable = null,
+    aliasDataTable = null;
+
+function showPayload(type, payload) {
+    let payloadData = "";
+    if(type == 0)
+        payloadData = idPayloads[payload];
+    else if(type == 1)
+        payloadData = trackPayloads[payload];
+
     $("#payload-content").html(
-        JSON.stringify(idPayloads[payload], undefined, 4)
+        JSON.stringify(payloadData, undefined, 4)
     );
     $("#payload-modal").modal("show");
 }
@@ -127,27 +138,10 @@ const requestDeleteTrack = ()=> {
     });
 };
 
-const DataTableUtil = {
-    destroy: (tableId)=> {
-        new DataTable(tableId).destroy();
-    },
-
-    init: (tableId, emptyTable)=> {
-        new DataTable(tableId, {
-            "language": {"emptyTable": emptyTable}
-        });
-    },
-
-    reInit: (tableId, emptyTable)=> {
-        DataTableUtil.destroy(tableId);
-        DataTableUtil.init(tableId, emptyTable);
-    }
-};
-
 const renderToIdTable = (tracker, anonId, userId, timedate, payload)=> {
     return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
         userId + "</td><td>" + timedate + "</td><td><button class=\"btn btn-primary\"" +
-        " onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
+        " onclick=\"showPayload(0, " + payload + ")\">Show</button></td>" +
         "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmIdDelete('" + tracker +
         "', '" + timedate + "')\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
         "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
@@ -161,8 +155,8 @@ const renderToIdTable = (tracker, anonId, userId, timedate, payload)=> {
 
 const renderToTrackTable = (tracker, anonId, userId, timedate, event, payload)=> {
     return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
-        userId + "</td><td>" + timedate + "</td><td>" + event + 
-        "</td><td><button class=\"btn btn-primary\" onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
+        userId + "</td><td>" + event + "</td><td>" + timedate + 
+        "</td><td><button class=\"btn btn-primary\" onclick=\"showPayload(1, " + payload + ")\">Show</button></td>" +
         "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmTrackDelete('" + tracker +
         "', '" + timedate + "')\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
         "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
@@ -172,6 +166,16 @@ const renderToTrackTable = (tracker, anonId, userId, timedate, event, payload)=>
         " 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0" +
         " 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09" +
         " 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0\" /></svg></button></td></tr>";
+};
+
+const initDataTable = (tableId, emptyMessage)=> {
+    return new DataTable(tableId, {
+        "language": {
+            "emptyTable": emptyMessage,
+            "zeroRecords": emptyMessage,
+            "infoEmpty": emptyMessage
+        }
+    });
 };
 
 const fetchAllId = ()=> {
@@ -189,15 +193,19 @@ const fetchAllId = ()=> {
                 return;
 
             prevIdContent = data.value;
-            if(prevIdContent.length == 0 && prevIdHash != "") {
-                DataTableUtil.reInit(
+            prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+
+            if(prevIdContent.length == 0 && (prevIdHash != "" ||
+                prevIdHash == "5e28988ff412b216da4a633fa9ff52f5")) {
+                idDataTable.clear().destroy();
+                idDataTable = initDataTable(
                     "#analytics-id-table",
                     "No analytic identification tracks found."
                 );
+
+                console.log("Here");
                 return;
             }
-
-            prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
             let tbody = "", i = 0;
             for(let row of data.value) {
@@ -227,15 +235,17 @@ const fetchAllTrack = ()=> {
                 return;
 
             prevTrackContent = data.value;
-            if(prevTrackContent.length == 0 && prevTrackHash != "") {
-                DataTableUtil.reInit(
+            prevTrackHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+
+            if(prevTrackContent.length == 0 && (prevTrackHash != "" ||
+                prevTrackHash == "5e28988ff412b216da4a633fa9ff52f5")) {
+                trackDataTable.clear().destroy();
+                trackDataTable = initDataTable(
                     "#analytics-track-table",
                     "No analytic trackers found."
                 );
                 return;
             }
-
-            prevTrackHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
             let tbody = "", i = 0;
             for(let row of data.value) {
@@ -251,22 +261,14 @@ const fetchAllTrack = ()=> {
 };
 
 $(document).ready(()=> {
-    new DataTable("#analytics-id-table", {
-        "language": {"emptyTable": "No analytic identification tracks found."}
-    });
-    new DataTable("#analytics-track-table", {
-        "language": {"emptyTable": "No analytic trackers found."}
-    });
-    new DataTable("#analytics-paging-table", {
-        "language": {"emptyTable": "No analytic page trackers found."}
-    });
-    new DataTable("#analytics-alias-table", {
-        "language": {"emptyTable": "No analytic aliases found."}
-    });
+    idDataTable = initDataTable("#analytics-id-table", "No analytic identification tracks found.");
+    trackDataTable = initDataTable("#analytics-track-table", "No analytic trackers found.");
+    pageDataTable = initDataTable("#analytics-paging-table", "No analytic page trackers found.");
+    aliasDataTable = initDataTable("#analytics-alias-table", "No analytic aliases found.");
+
+    fetchAllId();
+    fetchAllTrack();
 
     setInterval(fetchAllId, 2000);
     setInterval(fetchAllTrack, 2000);
 });
-
-fetchAllId();
-fetchAllTrack();
