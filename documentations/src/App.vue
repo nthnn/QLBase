@@ -1,7 +1,17 @@
 <script setup lang="ts">
+import { watch } from "vue";
+import { useRoute } from "vue-router";
 import { RouterView } from 'vue-router';
+
 import Footer from './components/Footer.vue';
 import NavigationColumn from './components/NavigationColumn.vue';
+
+const route = useRoute();
+
+watch(
+    () => route.fullPath,
+    async (n, nn) => window.scrollTo(0, 0)
+);
 </script>
 
 <template>
