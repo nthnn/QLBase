@@ -3,7 +3,14 @@ let prevIdHash = "",
     idPayloads = [];
 
 let deletableIdTracker = null,
-    deletableTimestamp = null;
+    deletableIdTimestamp = null;
+
+let prevTrackHash = "",
+    prevTrackContent = "",
+    trackPayloads = [];
+
+let deletableTrackTracker = null,
+    deletableTrackTimestamp = null;
 
 function showPayload(payload) {
     $("#payload-content").html(
@@ -40,11 +47,30 @@ function downloadIdContent() {
     downloadContent("data_analytics_id.csv", content);
 }
 
-function showConfirmDelete(tracker, timestamp) {
-    deletableIdTracker = tracker;
-    deletableTimestamp = timestamp;
+function downloadTrackContent() {
+    let content = "";
+    for(let row of prevTrackContent)
+        content += row[0] + "," + row[1] + "," +
+            row[2] + ",\"" + row[3] + "\",\"" +
+            row[4] + "\"," + btoa(JSON.stringify(row[5])) + "\n";
 
-    $("#confirm-delete-id-modal").modal("show");
+    downloadContent("data_analytics_track.csv", content);
+}
+
+function showConfirmIdDelete(tracker, timestamp) {
+    deletableIdTracker = tracker;
+    deletableIdTimestamp = timestamp;
+
+    $("#modal-delete-btn").click(()=> requestDeleteId());
+    $("#confirm-delete-modal").modal("show");
+}
+
+function showConfirmTrackDelete(tracker, timestamp) {
+    deletableTrackTracker = tracker;
+    deletableTrackTimestamp = timestamp;
+
+    $("#modal-delete-btn").click(()=> requestDeleteTrack());
+    $("#confirm-delete-modal").modal("show");
 }
 
 const requestDeleteId = ()=> {
@@ -56,10 +82,10 @@ const requestDeleteId = ()=> {
         },
         data: {
             tracker: deletableIdTracker,
-            timestamp: deletableTimestamp
+            timestamp: deletableIdTimestamp
         },
         success: (data)=> {
-            $("#confirm-delete-id-modal").modal("hide");
+            $("#confirm-delete-modal").modal("hide");
 
             if(data.result == '0') {
                 $("#failed-delete-modal-msg").html("Failed to delete identification track.");
@@ -74,11 +100,70 @@ const requestDeleteId = ()=> {
     });
 };
 
+const requestDeleteTrack = ()=> {
+    $.post({
+        url: "api/index.php?action=track_delete_by_timestamp",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            tracker: deletableTrackTracker,
+            timestamp: deletableTrackTimestamp
+        },
+        success: (data)=> {
+            $("#confirm-delete-modal").modal("hide");
+
+            if(data.result == '0') {
+                $("#failed-delete-modal-msg").html("Failed to delete tracker.");
+                $("#failed-delete-modal").modal("show");
+    
+                return;
+            }
+
+            $("#success-delete-modal-msg").html("Successfully deleted tracker.");
+            $("#success-delete-modal").modal("show");
+        }
+    });
+};
+
+const DataTableUtil = {
+    destroy: (tableId)=> {
+        new DataTable(tableId).destroy();
+    },
+
+    init: (tableId, emptyTable)=> {
+        new DataTable(tableId, {
+            "language": {"emptyTable": emptyTable}
+        });
+    },
+
+    reInit: (tableId, emptyTable)=> {
+        DataTableUtil.destroy(tableId);
+        DataTableUtil.init(tableId, emptyTable);
+    }
+};
+
 const renderToIdTable = (tracker, anonId, userId, timedate, payload)=> {
     return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
         userId + "</td><td>" + timedate + "</td><td><button class=\"btn btn-primary\"" +
         " onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
-        "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmDelete('" + tracker +
+        "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmIdDelete('" + tracker +
+        "', '" + timedate + "')\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
+        "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
+        " width=\"16\" height=\"16\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" " +
+        "d=\"M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16" +
+        " 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456" +
+        " 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0" +
+        " 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09" +
+        " 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0\" /></svg></button></td></tr>";
+};
+
+const renderToTrackTable = (tracker, anonId, userId, timedate, event, payload)=> {
+    return "<tr><td>" + tracker + "</td><td>" + anonId + "</td><td>" +
+        userId + "</td><td>" + timedate + "</td><td>" + event + 
+        "</td><td><button class=\"btn btn-primary\" onclick=\"showPayload(" + payload + ")\">Show</button></td>" +
+        "<td><button class=\"btn btn-outline-danger\" onclick=\"showConfirmTrackDelete('" + tracker +
         "', '" + timedate + "')\"><svg xmlns=\"http://www.w3.org/2000/svg\"" +
         "fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\"" +
         " width=\"16\" height=\"16\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" " +
@@ -104,6 +189,14 @@ const fetchAllId = ()=> {
                 return;
 
             prevIdContent = data.value;
+            if(prevIdContent.length == 0 && prevIdHash != "") {
+                DataTableUtil.reInit(
+                    "#analytics-id-table",
+                    "No analytic identification tracks found."
+                );
+                return;
+            }
+
             prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
             let tbody = "", i = 0;
@@ -119,13 +212,61 @@ const fetchAllId = ()=> {
     });
 };
 
+const fetchAllTrack = ()=> {
+    $.post({
+        url: "api/index.php?action=track_fetch_all",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        success: (data)=> {
+            if(data.result == '0')
+                return;
+
+            if(prevTrackHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+                return;
+
+            prevTrackContent = data.value;
+            if(prevTrackContent.length == 0 && prevTrackHash != "") {
+                DataTableUtil.reInit(
+                    "#analytics-track-table",
+                    "No analytic trackers found."
+                );
+                return;
+            }
+
+            prevTrackHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+
+            let tbody = "", i = 0;
+            for(let row of data.value) {
+                tbody += renderToTrackTable(row[0], row[1], row[2], row[4], row[3], i);
+                trackPayloads.push(row[5]);
+
+                i++;
+            }
+
+            $("#analytics-track-tbody").html(tbody);
+        }
+    });
+};
+
 $(document).ready(()=> {
-    new DataTable("#analytics-id-table");
-    new DataTable("#analytics-tracking-table");
-    new DataTable("#analytics-paging-table");
-    new DataTable("#analytics-alias-table");
+    new DataTable("#analytics-id-table", {
+        "language": {"emptyTable": "No analytic identification tracks found."}
+    });
+    new DataTable("#analytics-track-table", {
+        "language": {"emptyTable": "No analytic trackers found."}
+    });
+    new DataTable("#analytics-paging-table", {
+        "language": {"emptyTable": "No analytic page trackers found."}
+    });
+    new DataTable("#analytics-alias-table", {
+        "language": {"emptyTable": "No analytic aliases found."}
+    });
 
     setInterval(fetchAllId, 2000);
+    setInterval(fetchAllTrack, 2000);
 });
 
 fetchAllId();
+fetchAllTrack();
