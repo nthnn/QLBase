@@ -10,7 +10,7 @@ import { RouterLink } from 'vue-router';
             <RouterLink to="/" class="btn btn-outline-primary">What is QLBase?</RouterLink>
             <RouterLink to="/deployment" class="btn btn-outline-primary">Deployment</RouterLink>
             <RouterLink to="/firmware" class="btn btn-outline-primary">The Firmware</RouterLink>
-            <RouterLink to="/contributing" class="btn btn-outline-primary">Contributing and Contributors</RouterLink>
+            <RouterLink to="/contrib" class="btn btn-outline-primary">Contributing and Contributors</RouterLink>
         </div>
     </div>
     <br/>
