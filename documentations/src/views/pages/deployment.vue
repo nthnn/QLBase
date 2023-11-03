@@ -74,6 +74,10 @@
 <span class="text-danger">home</span>=<span class="text-success">http://localhost:8080/QLBase</span></pre>
             <p>The database setion defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
         </li>
+        <li>
+            <p>On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder. Changing permissions can be done by opening the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder in the terminal and typing the following:</p>
+            <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">sudo</span> chmod -R 777 .</pre>
+        </li>
         <li><p>Go back to the cloned folder of QLBase and look for the file named <span class="bg-secondary border-gray border rounded p-1 d-inline">db.sql</span>. Copy its contents and then paste and execute it to your MySQL server's terminal.</p></li>
         <li><p>Cheers! 🥂 You can now open and enjoy your installed QLBase decentralized server!</p></li>
     </ol>
