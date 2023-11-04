@@ -14,7 +14,7 @@
     <br/>
 
     <h3 class="border-bottom">💼 Software Requirements</h3>
-    <p>QLBase requires several softwares from downloading its repository to building and running.</p>
+    <p>QLBase requires several software from downloading its repository to building and running.</p>
     <ul>
         <li><a href="https://git-scm.com" target="_blank" class="text-decoration-none">Git</a> &mdash; Free and open source distributed version control system designed to handle everything.</li>
         <li><a href="https://go.dev" target="_blank" class="text-decoration-none">Go Compiler</a> &mdash; Open-source programming language supported by Google.</li>
@@ -51,7 +51,7 @@
             <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">sudo</span> chmod -R 777 ./deploy.sh</pre>
         </li>
         <li>
-            <p>Now, run the deployment script and wait for it to finish. This script will build all the back-end softwares, documentations, and will compile all necessary files into a zip file output.</p>
+            <p>Now, run the deployment script and wait for it to finish. This script will build all the back-end software, documentations, and will compile all necessary files into a zip file output.</p>
             <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">./deploy.sh</span></pre>
             <p>If it runs successfully, it will generate a zip file named <span class="bg-secondary border-gray border rounded p-1 d-inline">qlbase.zip</span>. Extract this zip file to the root of your Apache server and proceed to the next step.</p>
         </li>
@@ -72,7 +72,7 @@
 
 [env]
 <span class="text-danger">home</span>=<span class="text-success">http://localhost:8080/QLBase</span></pre>
-            <p>The database setion defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
+            <p>The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
         </li>
         <li>
             <p>On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder. Changing permissions can be done by opening the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder in the terminal and typing the following:</p>

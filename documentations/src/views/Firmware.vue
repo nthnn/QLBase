@@ -56,7 +56,7 @@
         </tbody>
     </table>
 
-    <p>For more informations about using the SIM900 GSM/GPRS shield, please refer to this <a href="https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/" target="_blank" class="text-decoration-none">article</a>.</p>
+    <p>For more information about using the SIM900 GSM/GPRS shield, please refer to this <a href="https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/" target="_blank" class="text-decoration-none">article</a>.</p>
     <br/>
 
     <h3 class="border-bottom">📡Uploading the Firmware</h3>

@@ -35,7 +35,7 @@ import { RouterLink } from "vue-router";
         <li><b>Data Analytics</b>: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.</li>
         <li><b>Database</b>: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include</li>
         <li><b>File Storage</b>: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.</li>
-        <li><b>Machine Learning</b>: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features inclues model integration, custom model training, and scalable infrastructure.</li>
+        <li><b>Machine Learning</b>: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features includes model integration, custom model training, and scalable infrastructure.</li>
     </ul>
     <br/>
 

@@ -45,7 +45,7 @@ QLBase offers a wide array of features that make it a versatile, scalable, relia
 - **Data Analytics**: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.
 - **Database**: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include
 - **File Storage: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.
-- **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features inclues model integration, custom model training, and scalable infrastructure.
+- **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features includes model integration, custom model training, and scalable infrastructure.
 
 ## 🚀 Deployment
 
@@ -59,7 +59,7 @@ The user-friendly nature of QLBase's deployment procedure, combined with the cle
 
 ### 💼 Software Requirements
 
-QLBase requires several softwares from downloading its repository to building and running.
+QLBase requires several software from downloading its repository to building and running.
 
 - [Git](https://git-scm.com/) — Free and open source distributed version control system designed to handle everything.
 - [Go Compiler](https://go.dev/) — Open-source programming language supported by Google.
@@ -101,7 +101,7 @@ To simplify the deployment process of QLBase, a `deploy.sh` bash script is provi
     sudo chmod -R 777 ./deploy.sh
     ```
 
-3. Now, run the deployment script and wait for it to finish. This script will build all the back-end softwares, documentations, and will compile all necessary files into a zip file output.
+3. Now, run the deployment script and wait for it to finish. This script will build all the back-end software, documentations, and will compile all necessary files into a zip file output.
 
     ```
     ./deploy.sh
@@ -129,7 +129,7 @@ To simplify the deployment process of QLBase, a `deploy.sh` bash script is provi
     home=http://localhost:8080/QLBase
     ```
 
-    The database setion defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.
+    The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.
 
 5. On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the `bin` folder. Changing permissions can be done by opening the bin folder in the terminal and typing the following:
 
@@ -168,7 +168,7 @@ Before you can upload the firmware, you need to set up your development environm
 | D7          | RX            |
 | D8          | TX            |
 
-For more informations about using the SIM900 GSM/GPRS shield, please refer to this [article](https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/).
+For more information about using the SIM900 GSM/GPRS shield, please refer to this [article](https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/).
 
 ### 📡 Uploading the Firmware
 
@@ -205,7 +205,7 @@ QLBase developers are profoundly grateful for your support! Your generosity allo
 |------------------------------------------------------|
 | ![Screenshot 3](screenshots/qlbase_screenshot_3.png) |
 
-| <p align="center">User Authetication Tab</p>         |
+| <p align="center">User Authentication Tab</p>         |
 |------------------------------------------------------|
 | ![Screenshot 4](screenshots/qlbase_screenshot_4.png) |
 
