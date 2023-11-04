@@ -1,13 +1,13 @@
 <template>
     <h1 class="border-bottom">🚀 Deployment</h1>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <p>Deploying QLBase is a straightforward and hassle-free process that can be executed on virtually any system, provided it possesses the capability to run both the Apache and MySQL server, two fundamental components for QLBase to operate seamlessly.</p>
             <p>To initiate the deployment, all you need to do is follow the comprehensive instructional guide outlined below, ensuring that each step is executed with precision and attention to detail.</p>
             <p>The user-friendly nature of QLBase's deployment procedure, combined with the clear and concise instructions, makes it accessible even for those with limited technical expertise, ensuring a smooth and successful setup on your system.</p>
         </div>
 
-        <div class="col-6">
+        <div class="col-md-6">
             <img src="@/assets/qlbase-cat-1.png" width="100%" />
         </div>
     </div>
