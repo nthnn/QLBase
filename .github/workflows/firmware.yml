@@ -5,6 +5,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sms-otp-firmware
 
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +19,4 @@ jobs:
         run: pip install --upgrade platformio
 
       - name: Build Firmware
-        run: cd sms-otp-firmware && pio run
+        run: pio run
