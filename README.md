@@ -12,316 +12,164 @@
 [![License](https://img.shields.io/badge/license-CERN-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 <a href="https://www.buymeacoffee.com/nthnn"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" height="20px"></a>
 
+## 🪁 What is QLBase?
+
 QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
 
-> **Note**: QLBase is a work-in-progress.
+## 🎯 Features
 
-## Table of Contents
+QLBase offers a wide array of features that make it a versatile, scalable, reliable, and powerful backend solution suitable for a variety of applications. Below are the summarized APIs and service features of QLBase:
 
-<img src="./assets/qlbase-cat-1.png" align="right" width="350" />
+- **Authentication**: QLBase provides a robust authentication system that allows you to manage user accounts securely.
+- **SMS Verification**: Easily integrate SMS verification into your application using QLBase's OTP service. Protect your user accounts with one-time passwords sent via SMS. QLBase provides SMS verification functionality using an Arduino UNO with a SIM900 Shield as the underlying SMS hardware.
+- **Data Analytics**: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.
+- **Database**: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include
+- **File Storage: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.
+- **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features inclues model integration, custom model training, and scalable infrastructure.
 
-- [Features](#features)
-    * [Authentication](#authentication)
-    * [SMS Verification](#sms-verification)
-    * [Data Analytics](#data-analytics)
-    * [Database Storage](#database-storage)
-    * [File Storage](#file-storage)
-    * [Machine Learning](#machine-learning)
-    * [Security](#security)
-- [Deployment](#deployment)
-    * [Software Requirements](#software-requirements)
-    * [Usage](#usage)
-    * [Configuration](#configuration)
-    * [Firmware](#firmware)
-    * [Troubleshooting](#troubleshooting)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-    * [Issue Reporting](#issue-reporting)
-    * [Pull Requests](#pull-requests)
-- [Contributors](#contributors)
-- [Donations](#donations)
-- [License](#license)
+## 🚀 Deployment
 
-## Features
+Deploying QLBase is a straightforward and hassle-free process that can be executed on virtually any system, provided it possesses the capability to run both the Apache and MySQL server, two fundamental components for QLBase to operate seamlessly.
 
-QLBase offers a wide array of features that make it a versatile and powerful backend solution suitable for a variety of applications:
+To initiate the deployment, all you need to do is follow the comprehensive instructional guide outlined below, ensuring that each step is executed with precision and attention to detail.
 
-### Authentication
+The user-friendly nature of QLBase's deployment procedure, combined with the clear and concise instructions, makes it accessible even for those with limited technical expertise, ensuring a smooth and successful setup on your system.
 
-QLBase provides a robust authentication system that allows you to manage user accounts securely. It includes:
+### 💼 Software Requirements
 
-- **User Registration**: Easily register new users with customizable registration fields.
+QLBase requires several softwares from downloading its repository to building and running.
 
-    Target URL:
-    ```
-    api/index.php?action=new_user
+- [Git](https://git-scm.com/) — Free and open source distributed version control system designed to handle everything.
+- [Go Compiler](https://go.dev/) — Open-source programming language supported by Google.
+- [NodeJS](https://nodejs.org/en) — An open-source, cross-platform JavaScript runtime environment.
+- [XAMPP](https://www.apachefriends.org/) — Completely free, easy to install Apache distribution containing MariaDB, PHP, and Perl.
+
+### 📥 Downloading the Repository
+
+Open any terminal on your system and then follow the steps below:
+
+1. Clone the QLBase repository from GitHub.
+
+    ```bash
+    git clone https://github.com/nthnn/QLBase
     ```
 
-    Pseudo-Payload:
-    ```js
-    {
-        "username": "<username>",
-        "email": "<email>",
-        "password": "<MD5 hashed string>",
-        "enabled: "0|1"
-    }
+2. Change the working directory to the cloned folder.
+
+    ```bash
+    cd QLBase
     ```
 
-    Example Response:
-    ```js
-    {"result": "1"}
-    // Successfully registered
-    ```
+If nothing went wrong, you have now downloaded the QLBase repository and should proceed to the section below.
 
-- **Login**: Enable users to log in securely, supporting various authentication methods, including username/password and social logins.
-
-    Target URL:
-    ```
-    api/index.php?action=login_username
-    ```
-
-    Pseudo-Payload:
-    ```js
-    {
-        "username": "<username>",
-        "password": "<MD5 hashed string>"
-    }
-    ```
-
-    Example Response:
-    ```js
-    {"result": "0", "value": "0"}
-    // Invalid login credentials
-    ```
-
-- **Account Disabling/Enabling**: You can disable and enable user accounts as needed. When an account is disabled, the user cannot log in until it's enabled again. This feature is particularly useful for handling suspicious or inactive accounts.
-
-    Target URL:
-    ```
-    api/index.php?action=disable_user
-    ```
-
-    Pseudo-Payload:
-    ```js
-    {"username": "<username>"}
-    ```
-
-    Example Response:
-    ```js
-    {"result": "1"}
-    // User was disabled
-    ```
-
-### SMS Verification
-
-Easily integrate SMS verification into your application using QLBase's OTP service. Protect your user accounts with one-time passwords sent via SMS. QLBase provides SMS verification functionality using an Arduino UNO with a SIM900 Shield as the underlying SMS hardware. This setup allows you to seamlessly integrate SMS verification into your application for added security. QLBase's SMS verification features include:
-
-- **OTP Generation**: Generate one-time passwords for user verification.
-
-    Target URL:
-    ```
-    api/index.php?action=sms_verification
-    ```
-
-    Pseudo-Payload:
-    ```js
-    {
-        "recipient": "+<country code><recipient number>",
-        "support": "<tech support email address>"
-    }
-    ```
-
-    Example Response:
-    ```js
-    {"result": "1", "value": "723181"}
-    // The SMS was sent, and the OTP is 723181
-    ```
-
-- **SMS Delivery**: Send SMS messages containing OTPs to users' mobile numbers.
-
-    Target URL:
-    ```
-    api/index.php?action=sms_is_validated
-    ```
-
-    Pseudo-Payload:
-    ```js
-    {
-        "recipient": "+<country code><recipient number>"
-        "code": "<generated verification code>"
-    }
-    ```
-
-    Example Response:
-    ```js
-    {"result": "1", "value": "0"}
-    // The OTP wasn't verified yet
-    ```
-
-- **Verification Endpoint**: Create an endpoint for users to enter OTPs and verify their phone numbers.
-
-    Target URL:
-    ```
-    api/index.php?action=sms_validate
-    ```
-
-    Pseudo-Payload:
-    ```js
-    {
-        "recipient": "+<country code><recipient number>",
-        "code": "<generate verification code>"
-    }
-    ```
-
-    Example Response:
-    ```js
-    {"result": "1"}
-    // The OTP was successfully verified
-    ```
-
-### Data Analytics
-
-QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. It offers:
-
-- **Data Identification**: QLBase allows you to tie user actions to specific individuals or anonymous IDs, making it easier to track and analyze user behavior.
-- **Data Tracking**: Track user interactions and behaviors within your application for insightful analytics.
-- **Data Paging**: Implement efficient data paging to handle large datasets without performance bottlenecks.
-
-### Database Storage
-
-Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include:
-
-- **CRUD Operations**: Perform Create, Read, Update, and Delete operations on your data.
-- **Data Validation**: Ensure data integrity with built-in validation mechanisms.
-
-### File Storage
-
-QLBase simplifies file management within your application. Its file storage service offers:
-
-- **File Uploads**: Easily upload files, including images, documents, and media, with support for various file types.
-- **File Retrieval**: Retrieve files securely using unique file identifiers.
-- **Access Control**: Implement access control and permissions to restrict file access as needed.
-
-### Machine Learning
-
-Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features include:
-
-- **Model Integration**: Seamlessly integrate pre-trained machine learning models for tasks like image recognition, natural language processing, and more.
-- **Custom Model Training**: Train and deploy custom machine learning models tailored to your specific application needs.
-- **Scalable Infrastructure**: QLBase handles the scalability and deployment of machine learning models, ensuring high availability and performance.
-
-### Security
-
-Security is a top priority in QLBase:
-
-- **Authentication Security**: Implement best practices for secure user authentication, including password hashing and protection against common attacks like CSRF and XSS.
-- **Data Encryption**: Encrypt sensitive data to ensure confidentiality and integrity.
-
-> Note: There are more API actions than the examples given above.
-
-## Deployment
+### 🏗️ Building from Source
 
 To simplify the deployment process of QLBase, a `deploy.sh` bash script is provided. This script is designed to package all the deployment-important files and assets and builds the back-end apps, ensuring a smooth deployment experience.
 
-### Software Requirements
-
-1. [XAMPP](https://www.apachefriends.org/) (or anything with Apache and MySQL) - This will deploy the QLBase on your local host machine.
-2. [Go compiler](https://go.dev/) - For compiling back-end programs.
-
-<img src="./assets/qlbase-cat-2.png" align="left" width="395" />
-
-### Usage
-
-1. Ensure that you have the necessary permissions to execute the script.
-
-   ```bash
-   sudo chmod +x deploy.sh
-   ```
-
-2. Run the deployment script:
+1. Ensure your Go compiler and NodeJS installation first before proceeding.
 
     ```bash
+    go version
+    node -v
+    ```
+
+2. Before running the deployment Bash script, it is important to set the appropriate file permissions first. It can be done by typing the following:
+
+    ```bash
+    sudo chmod -R 777 ./deploy.sh
+    ```
+
+3. Now, run the deployment script and wait for it to finish. This script will build all the back-end softwares, documentations, and will compile all necessary files into a zip file output.
+
+    ```
     ./deploy.sh
     ```
 
-The script will package all the required files and assets into file `qlbase.zip` on the current directory, making it easy to transfer and deploy QLBase to your target server.
+    If it runs successfully, it will generate a zip file named qlbase.zip. Extract this zip file to the root of your Apache server and proceed to the next step.
 
-<br/>
+4. Open the file named `config.ini` inside the folder bin. The file contains the following configurations:
 
-### Configuration
+    ```ini
+    [database]
+    server=localhost
+    username=root
+    password=
+    name=qlbase_apps
+    port=3306
 
-Before deploying QLBase, ensure you customize the `config.ini` file inside the `bin` folder with appropriate database connection details, server settings, and other configurations specific to your deployment environment.
+    [smtp]
+    host=<smtp host>
+    port=<smtp port>
+    from=<smtp email>
+    password=<smtp password>
 
-```ini
-[database]
-server=localhost
-username=root
-password=
-name=qlbase_apps
-port=3306
+    [env]
+    home=http://localhost:8080/QLBase
+    ```
 
-[smtp]
-host=<smtp host>
-port=<smtp port>
-from=<smtp email>
-password=<smtp password>
+    The database setion defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.
 
-[env]
-home=http://localhost:8080/QLBase
-```
-
-Make sure to provide the correct values for the database and SMTP settings based on your deployment environment.
-
-### Firmware
-
-The SMS OTP functionality is a critical component of QLBase, offering secure user authentication through one-time passwords sent via SMS. Below, you will find an overview of the firmware, including its setup instructions.
-
-| Arduino UNO board                                    | SIM900 Shield                                            |
-|------------------------------------------------------|----------------------------------------------------------|
-| ![Arduino UNO](assets/board-arduino-uno.png)         | ![SIM900 Shield](assets/board-sim900-shield.png)         |
-
-Before you can use the firmware, you need to set up your development environment and configure the Arduino UNO with the SIM900 shield. Here are the steps to get started:
-
-1. **Hardware Setup**: Ensure that you have an Arduino UNO and a SIM900 shield. Connect the SIM900 shield to the Arduino UNO, and make sure the following pin connections below are in accordance:
-
-    | Arduino UNO | SIM900 Shield |
-    |-------------|---------------|
-    | D7          | RX            |
-    | D8          | TX            |
-    | 5V          | 5V            |
-    | GND         | GND           |
-
-2. *Software Setup*:
-
-    - Install [Visual Studio Code](https://code.visualstudio.com/).
-    - Install the [PlatformIO extension](https://platformio.org/) for Visual Studio Code.
-    - Open the [SMS OTP firmware](sms-otp-firmware) folder inside the QLBase in Visual Studio Code using the PlatformIO extension.
-    - Configure your SIM900 power source and wait for it to blink every 3 seconds.
-    - Use PlatformIO to build and upload the firmware to your Arduino UNO with the SIM900 shield by clicking the upload button at the lower left bottom bar of the Visual Studio Code.
-
-### Troubleshooting
-
-- Permissions
-
-    Prior to deployment of QLBase, it's important to set the appropriate permissions for executable files in the bin folder. You can do this by running the following command within the bin folder:
+5. On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the `bin` folder. Changing permissions can be done by opening the bin folder in the terminal and typing the following:
 
     ```bash
     sudo chmod -R 777 .
     ```
 
-    This command ensures that all executable files have the necessary permissions to run effectively in your deployment environment.
+6. Go back to the cloned folder of QLBase and look for the file named db.sql. Copy its contents and then paste and execute it to your MySQL server's terminal.
 
-- Serial Port
+7. Cheers! 🥂 You can now open and enjoy your installed QLBase decentralized server!
 
-    For SMS verification to work correctly, grant permissions to the serial port `/dev/tty<port name>`. You can use the following command to set the permissions:
+## 💿 Firmware
 
-    ```bash
-    chmod -R 777 /dev/tty<port name>
-    ```
+The SMS OTP feature in QLBase is of utmost importance, providing a secure user authentication method through one-time passwords sent via SMS. In the following sections, you'll discover an in-depth look at the firmware, complete with setup instructions to make integration a smooth process.
 
-    This grants the required permissions for the SMS verification backend to communicate with the Arduino UNO firmware via the serial port.
+### ⚡ Components
 
-## Screenshots
+The SMS OTP (Short Message Service One-Time Password) firmware, an integral part of the QLBase system, relies on a concise and efficient hardware setup. This essential framework necessitates the utilization of just two key components, namely the Arduino UNO development board and the SIM900 GSM/GPRS UNO Shield.
+
+| Arduino UNO board                                    | SIM900 Shield                                            |
+|------------------------------------------------------|----------------------------------------------------------|
+| ![Arduino UNO](assets/board-arduino-uno.png)         | ![SIM900 Shield](assets/board-sim900-shield.png)         |
+
+The Arduino Uno board is a popular and versatile microcontroller platform that serves as a foundation for countless DIY electronics projects. Developed by Arduino, an open-source hardware and software community, the Uno is designed for both beginners and experienced electronics enthusiasts, making it an ideal choice for those looking to learn, experiment, and prototype with microcontrollers.
+
+While, the SIM900 GSM/GPRS Uno Shield is a specialized add-on module designed to work in conjunction with Arduino Uno and compatible microcontroller boards. This shield enables wireless communication over the Global System for Mobile Communications (GSM) and General Packet Radio Service (GPRS) networks, making it a valuable tool for projects that require remote data transmission, SMS messaging, and internet connectivity.
+
+### 🔧 Hardware Setup
+
+Before you can upload the firmware, you need to set up your development environment and configure the Arduino UNO with the SIM900 shield. Ensure that you have an Arduino UNO and a SIM900 shield. Connect the SIM900 shield to the Arduino UNO, and make sure the following pin connections below are in accordance:
+
+| Arduino UNO | SIM900 Shield |
+|-------------|---------------|
+| 5V          | 5V            |
+| GND         | GND           |
+| D7          | RX            |
+| D8          | TX            |
+
+For more informations about using the SIM900 GSM/GPRS shield, please refer to this [article](https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/).
+
+### 📡Uploading the Firmware
+
+In this crucial steps, we will guide you through the process of uploading the SMS OTP firmware to your Arduino UNO with the SIM900 shield. This action is pivotal for enabling secure user authentication through SMS OTP for QLBase.
+
+1. Begin by installing [Visual Studio Code](https://code.visualstudio.com/), a versatile and powerful integrated development environment (IDE).
+2. Install the [PlatformIO](https://platformio.org/) extension for Visual Studio Code.
+3. Open the [sms-otp-firmware](/sms-otp-firmware) folder inside the QLBase in Visual Studio Code using the PlatformIO extension.
+4. Configure your SIM900 power source and wait for it to blink every 3 seconds.
+5. Use PlatformIO to build and upload the firmware to your Arduino UNO with the SIM900 shield by clicking the upload button at the lower left bottom bar of the Visual Studio Code.
+
+After following these steps, you can now connect the Arduino UNO to your computer where the QLBase is running to use the SMS-OTP API service.
+
+## 💙 Donating
+
+QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.
+
+| [![Donate with PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/nathannestein) | [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nthnn) |
+|-------------------|----------------------------|
+
+QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.
+
+## 📷 Screenshots
 
 | <p align="center">QLBase Homepage</p>                |
 |------------------------------------------------------|
@@ -343,65 +191,7 @@ Before you can use the firmware, you need to set up your development environment
 |------------------------------------------------------|
 | ![Screenshot 5](screenshots/qlbase_screenshot_5.png) |
 
-## Contributing
-
-All contributions are welcome to make QLBase even better. Whether you want to report a bug, suggest new features, or contribute code, your contributions are highly appreciated.
-
-### Issue Reporting
-
-If you encounter a bug, have a feature request, or want to suggest improvements, please open an issue on the [GitHub Issue Tracker](https://github.com/nthnn/QLBase/issues). Be sure to provide as much detail as possible, including steps to reproduce the issue if applicable.
-
-### Pull Requests
-
-If you want to contribute code to QLBase, follow these steps:
-
-1. Fork the QLBase repository to your GitHub account. And then clone it to your local machine.
-
-    ```bash
-    git clone https://github.com/<your username>/QLBase.git
-    ```
-
-2. Create a new branch for your changes:
-
-    ```bash
-    git checkout -b feature/<your feature name>
-    ```
-
-3. You can now make changes to the repository.
-4. Commit your changes:
-
-    ```bash
-    git add -A
-    git commit -m "Add your meaningful commit message here"
-    ```
-
-5. Push your changes to your forked repository:
-
-    ```bash
-    git push origin feature/<your feature name>
-    ```
-
-6. Create a pull request (PR) from your branch to the main branch of the QLBase repository.
-7. Your PR will be reviewed, and any necessary changes will be discussed and implemented.
-8. Once your PR is approved, it will be merged into the main branch, and your contribution will be part of QLBase.
-
-## Contributors
-
-- [Nathanne Isip](https://github.com) - Original Author, Developer
-- [Lady Selene](https://instagram.com/lady.selenee) - Artist, Illustrator
-
-## Donations
-
-QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.
-
-| [![Donate with PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/paypalme/my/profile) | [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nthnn) |
-|-------------------|----------------------------|
-
-QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.
-
-Thank you for being a part of our journey and helping us build a brighter future for QLBase!
-
-## License
+## 📜 License
 
 Your use of QLBase is subject to the terms and conditions of the following respective licenses. Make sure to comply with the licensing requirements when using or distributing QLBase components.
 
