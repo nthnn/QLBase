@@ -63,7 +63,7 @@
     <p>In this crucial steps, we will guide you through the process of uploading the SMS OTP firmware to your Arduino UNO with the SIM900 shield. This action is pivotal for enabling secure user authentication through SMS OTP for QLBase.</p>
     <ol>
         <li>Begin by installing <a href="https://code.visualstudio.com/" target="_blank" class="text-decoration-none">Visual Studio Code</a>, a versatile and powerful integrated development environment (IDE).</li>
-        <li>Install the <a href="PlatformIO extension" target="_blank" class="text-decoration-none">PlatformIO</a> extension for Visual Studio Code.</li>
+        <li>Install the <a href="https://platformio.org/" target="_blank" class="text-decoration-none">PlatformIO</a> extension for Visual Studio Code.</li>
         <li>Open the <a href="https://github.com/nthnn/QLBase/tree/main/sms-otp-firmware" target="_blank" class="text-decoration-none">sms-otp-firmware</a> folder inside the QLBase in Visual Studio Code using the PlatformIO extension.</li>
         <li>Configure your SIM900 power source and wait for it to blink every 3 seconds.</li>
         <li>Use PlatformIO to build and upload the firmware to your Arduino UNO with the SIM900 shield by clicking the upload button at the lower left bottom bar of the Visual Studio Code.</li>

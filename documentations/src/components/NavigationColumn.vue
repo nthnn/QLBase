@@ -19,6 +19,7 @@ import { RouterLink } from 'vue-router';
         <h3 class="m-0 mb-2">APIs and Services</h3>
         <p>Different decentralizable, scalable, and realiable services by QLBase for individuals, businesses, and enterprise companies.</p>
         <div class="btn-group-vertical w-100 rounded">
+            <RouterLink to="/intro-api" class="btn btn-outline-primary">Introductions to APIs</RouterLink>
             <RouterLink to="/authentication" class="btn btn-outline-primary">Authentication</RouterLink>
             <RouterLink to="/sms-verification" class="btn btn-outline-primary">SMS Verification</RouterLink>
             <RouterLink to="/data-analytics" class="btn btn-outline-primary">Data Analytics</RouterLink>

@@ -18,6 +18,11 @@ const router = createRouter({
             path: "/firmware",
             name: "firmware",
             component: ()=> import("../views/pages/Firmware.vue")
+        },
+        {
+            path: "/contrib",
+            name: "contrib",
+            component: ()=> import("../views/pages/Contribs.vue")
         }
     ]
 });

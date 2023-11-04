@@ -28,11 +28,11 @@
     <ol>
         <li>
             <p>Clone the QLBase repository from GitHub.</p>
-            <pre class="bg-secondary border-gray border rounded p-2">git clone https://github.com/nthnn/QLBase</pre>
+            <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">git</span> clone https://github.com/nthnn/QLBase</pre>
         </li>
         <li>
             <p>Change the working directory to the cloned folder.</p>
-            <pre class="bg-secondary border-gray border rounded p-2">cd QLBase</pre>
+            <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">cd</span> QLBase</pre>
         </li>
     </ol>
     <p>If nothing went wrong, you have now downloaded the QLBase repository and should proceed to the section below.</p>
