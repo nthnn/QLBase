@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Contribs from "../views/pages/Contribs.vue";
-import Deployment from "../views/pages/Deployment.vue";
-import Firmware from "../views/pages/Firmware.vue";
+import Contribs from "../views/Contribs.vue";
+import Deployment from "../views/Deployment.vue";
+import Firmware from "../views/Firmware.vue";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
