@@ -11,11 +11,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v3
+        working-directory: ./documentations
         with:
           node-version: '20.8.0'
 
       - name: Installing documentation modules and dependencies
-        run: cd documentations && npm install
+        run: npm install
         
       - name: Building documentation pages
-        run: cd documentations && npm run build-only
+        run: npm run build-only
