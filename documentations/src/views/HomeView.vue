@@ -13,7 +13,6 @@ import { RouterLink } from "vue-router";
     <p class="badges">
         <img src="https://github.com/nthnn/QLBase/actions/workflows/php-syntax-check.yml/badge.svg" class="pr-1" alt="PHP Syntax Check" />
         <img src="https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg" class="px-1" alt="Backend Workflow" />
-        <img src="https://github.com/nthnn/QLBase/actions/workflows/firmware.yml/badge.svg" class="px-1" alt="Firmware CI" />
         <img src="https://github.com/nthnn/QLBase/actions/workflows/vue-docs.yml/badge.svg" class="px-1" alt="Vue Docs CI" />
         <img src="https://github.com/nthnn/QLBase/actions/workflows/spellcheck.yml/badge.svg" class="px-1" alt="Spellcheck" />
         <img src="https://img.shields.io/github/issues/nthnn/QLBase.svg" class="px-1" alt="GitHub Issues" />
