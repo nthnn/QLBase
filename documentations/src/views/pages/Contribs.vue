@@ -5,8 +5,10 @@
 
     <h3 class="border-bottom">🐞 Issue Reporting</h3>
     <p>If you come across a bug, have a feature request, or wish to propose enhancements, we kindly encourage you to initiate the process by opening an issue on our <a href="https://github.com/nthnn/QLBase/issues" target="_blank" class="text-decoration-none">GitHub Issue Tracker</a>. Your feedback is invaluable in helping us refine and enhance the QLBase. To ensure we can address your concern effectively, we kindly request that you include as much pertinent information as possible. This may encompass a detailed description of the issue or feature request, and if applicable, specific steps to replicate the problem.</p>
+    <div align="center">
+        <img src="@/assets/qlbase-cat-2.png" class="col-5" />
+    </div>
     <p>Your thorough input enables us to better understand and resolve the matter swiftly, contributing to the overall improvement of QLBase. Thank you for your contributions and for helping us create a more robust and user-friendly environment.</p>
-    <br/>
 
     <h3 class="border-bottom">🛠️ Pull Requests</h3>
     <p>If you're eager to get involved and contribute your coding expertise to QLBase, we're thrilled to have you on board! To ensure a smooth and collaborative process, here's an outlined the following steps that you can follow:</p>

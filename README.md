@@ -16,6 +16,24 @@
 
 QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
 
+## 𝌞 Table of Contents
+
+<img src="./assets/qlbase-cat-1.png" align="right" width="350" />
+
+- [🪁 What is QLBase?](#🪁-what-is-qlbase)
+- [🎯 Features](#🎯-features)
+- [🚀 Deployment](#🚀-deployment)
+    * [💼 Software Requirements](#💼-software-requirements)
+    * [📥 Downloading the Repository](#📥-downloading-the-repository)
+    * [🏗️ Building from Source](#🏗️-building-from-source)
+- 💿 [Firmware](#💿-firmware)
+    * [⚡ Components](#⚡-components)
+    * [🔧 Hardware Setup](#🔧-hardware-setup)
+    * [📡Uploading the Firmware](#📡uploading-the-firmware)
+- [💙 Donating](#💙-donating)
+- [📷 Screenshots](#📷-screenshots)
+- [📜 License](#📜-license)
+
 ## 🎯 Features
 
 QLBase offers a wide array of features that make it a versatile, scalable, reliable, and powerful backend solution suitable for a variety of applications. Below are the summarized APIs and service features of QLBase:
@@ -28,6 +46,8 @@ QLBase offers a wide array of features that make it a versatile, scalable, relia
 - **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features inclues model integration, custom model training, and scalable infrastructure.
 
 ## 🚀 Deployment
+
+<img src="./assets/qlbase-cat-2.png" align="right" width="350" />
 
 Deploying QLBase is a straightforward and hassle-free process that can be executed on virtually any system, provided it possesses the capability to run both the Apache and MySQL server, two fundamental components for QLBase to operate seamlessly.
 
