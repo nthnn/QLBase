@@ -21,19 +21,19 @@ QLBase is a powerful open-source decentralizable backend solution designed to pr
 
 <img src="./assets/qlbase-cat-1.png" align="right" width="350" />
 
-- [🪁 What is QLBase?](#🪁-what-is-qlbase)
-- [🎯 Features](#🎯-features)
-- [🚀 Deployment](#🚀-deployment)
-    * [💼 Software Requirements](#💼-software-requirements)
-    * [📥 Downloading the Repository](#📥-downloading-the-repository)
-    * [🏗️ Building from Source](#🏗️-building-from-source)
-- 💿 [Firmware](#💿-firmware)
-    * [⚡ Components](#⚡-components)
-    * [🔧 Hardware Setup](#🔧-hardware-setup)
-    * [📡Uploading the Firmware](#📡uploading-the-firmware)
-- [💙 Donating](#💙-donating)
-- [📷 Screenshots](#📷-screenshots)
-- [📜 License](#📜-license)
+- [🪁 What is QLBase?](#-what-is-qlbase)
+- [🎯 Features](#-features)
+- [🚀 Deployment](#-deployment)
+    * [💼 Software Requirements](#-software-requirements)
+    * [📥 Downloading the Repository](#-downloading-the-repository)
+    * [🏗️ Building from Source](#%EF%B8%8F-building-from-source)
+- 💿 [Firmware](#-firmware)
+    * [⚡ Components](#-components)
+    * [🔧 Hardware Setup](#-hardware-setup)
+    * [📡 Uploading the Firmware](#-uploading-the-firmware)
+- [💙 Donating](#-donating)
+- [📷 Screenshots](#-screenshots)
+- [📜 License](#-license)
 
 ## 🎯 Features
 
@@ -169,7 +169,7 @@ Before you can upload the firmware, you need to set up your development environm
 
 For more informations about using the SIM900 GSM/GPRS shield, please refer to this [article](https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/).
 
-### 📡Uploading the Firmware
+### 📡 Uploading the Firmware
 
 In this crucial steps, we will guide you through the process of uploading the SMS OTP firmware to your Arduino UNO with the SIM900 shield. This action is pivotal for enabling secure user authentication through SMS OTP for QLBase.
 
