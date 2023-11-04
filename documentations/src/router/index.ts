@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+import Contribs from "../views/pages/Contribs.vue";
+import Deployment from "../views/pages/Deployment.vue";
+import Firmware from "../views/pages/Firmware.vue";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -12,17 +16,17 @@ const router = createRouter({
         {
             path: "/deployment",
             name: "deployment",
-            component: () => import("../views/pages/Deployment.vue")
+            component: Deployment
         },
         {
             path: "/firmware",
             name: "firmware",
-            component: ()=> import("../views/pages/Firmware.vue")
+            component: Firmware
         },
         {
             path: "/contrib",
             name: "contrib",
-            component: ()=> import("../views/pages/Contribs.vue")
+            component: Contribs
         }
     ]
 });
