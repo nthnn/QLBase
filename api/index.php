@@ -806,7 +806,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_delete_by_event", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["event"]) ||
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
                 !isset($_POST["event"]) || empty($_POST["event"])) {
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
@@ -927,6 +927,348 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         case "track_fetch_all":
             $backend = "data_analytics";
             array_push($args, "track_fetch_all", $apiKey);
+            break;
+
+        case "page_create":
+            $backend = "data_analytics";
+            array_push($args, "page_create", $apiKey);
+    
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
+                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
+                !isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["category"]) || empty($_POST["category"]) ||
+                !isset($_POST["timestamp"]) || empty($_POST["timestamp"]) ||
+                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+        
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+        
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+        
+            $name = $_POST["name"];
+            if(!validateUsername($name)) {
+                failedResponseMessage("Invalid page name.");
+                return;
+            }
+    
+            $category = $_POST["category"];
+            if(!validateUsername($category)) {
+                failedResponseMessage("Invalid page category.");
+                return;
+            }
+    
+            $timedate = $_POST["timestamp"];
+            if(!validateDateTime($timedate)) {
+                failedResponseMessage("Invalid timestamp format.");
+                return;
+            }
+        
+            $payload = $_POST["payload"];
+            if(!validateJson($payload)) {
+                failedResponseMessage("Invalid payload JSON string.");
+                return;
+            }
+        
+            array_push(
+                $args,
+                $tracker,
+                $anon_id,
+                $user_id,
+                $name,
+                $category,
+                "\"".$timedate."\"",
+                base64_encode($payload)
+            );
+            break;
+        
+        case "page_create_live_timestamp":
+            $backend = "data_analytics";
+            array_push($args, "page_create_live_timestamp", $apiKey);
+
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
+                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
+                !isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["category"]) || empty($_POST["category"]) ||
+                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+            
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+            
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+        
+            $name = $_POST["name"];
+            if(!validateUsername($name)) {
+                failedResponseMessage("Invalid page name.");
+                return;
+            }
+        
+            $category = $_POST["category"];
+            if(!validateUsername($category)) {
+                failedResponseMessage("Invalid page category.");
+                return;
+            }
+    
+            $payload = $_POST["payload"];
+            if(!validateJson($payload)) {
+                failedResponseMessage("Invalid payload JSON string.");
+                return;
+            }
+            
+            array_push($args, $tracker, $anon_id, $user_id, $name, $category, base64_encode($payload));
+            break;
+        
+        case "page_delete_by_anon_id":
+            $backend = "data_analytics";
+            array_push($args, "page_delete_by_anon_id", $apiKey);
+        
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+        
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+        
+            array_push($args, $tracker, $anon_id);
+            break;
+        
+        case "page_delete_by_user_id":
+            $backend = "data_analytics";
+            array_push($args, "page_delete_by_user_id", $apiKey);
+
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+        
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+            
+            array_push($args, $tracker, $user_id);
+            break;
+        
+        case "page_delete_by_name":
+            $backend = "data_analytics";
+            array_push($args, "page_delete_by_name", $apiKey);
+        
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["name"]) || empty($_POST["name"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+        
+            $name = $_POST["name"];
+            if(!validateUsername($name)) {
+                failedResponseMessage("Invalid page name.");
+                return;
+            }
+            
+            array_push($args, $tracker, $name);
+            break;
+    
+        case "page_delete_by_category":
+            $backend = "data_analytics";
+            array_push($args, "page_delete_by_category", $apiKey);
+        
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["category"]) || empty($_POST["category"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+        
+            $category = $_POST["category"];
+            if(!validateUsername($category)) {
+                failedResponseMessage("Invalid page category.");
+                return;
+            }
+            
+            array_push($args, $tracker, $category);
+            break;
+    
+        case "page_delete_by_timestamp":
+            $backend = "data_analytics";
+            array_push($args, "page_delete_by_timestamp", $apiKey);
+            
+            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
+                !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+           
+            $tracker = $_POST["tracker"];
+            if(!validateTracker($tracker)) {
+                failedResponseMessage("Invalid tracking ID.");
+                return;
+            }
+            
+            $timestamp = $_POST["timestamp"];
+            if(!validateTimestamp($timestamp)) {
+                failedResponseMessage("Invalid timestamp format.");
+                return;
+            }
+                
+            array_push($args, $tracker, "\"".$timestamp."\"");
+            break;
+            
+        case "page_get_by_anon_id":
+            $backend = "data_analytics";
+            array_push($args, "page_get_by_anon_id", $apiKey);
+
+            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+            
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+            
+            array_push($args, $anon_id);
+            break;
+        
+        case "page_get_by_user_id":
+            $backend = "data_analytics";
+            array_push($args, "page_get_by_user_id", $apiKey);
+        
+            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+            
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+        
+            array_push($args, $user_id);
+            break;
+        
+        case "page_get_by_name":
+            $backend = "data_analytics";
+            array_push($args, "page_get_by_name", $apiKey);
+        
+            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+            
+            $name = $_POST["name"];
+            if(!validateUsername($name)) {
+                failedResponseMessage("Invalid page name.");
+                return;
+            }
+        
+            array_push($args, $name);
+            break;
+        
+        case "page_get_by_category":
+            $backend = "data_analytics";
+            array_push($args, "page_get_by_category", $apiKey);
+        
+            if(!isset($_POST["category"]) || empty($_POST["category"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+            
+            $category = $_POST["category"];
+            if(!validateUsername($category)) {
+                failedResponseMessage("Invalid page category.");
+                return;
+            }
+        
+            array_push($args, $category);
+            break;
+    
+        case "page_get_by_timestamp":
+            $backend = "data_analytics";
+            array_push($args, "page_get_by_timestamp", $apiKey);
+        
+            if(!isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+        
+            $timestamp = $_POST["timestamp"];
+            if(!validateDateTime($timestamp)) {
+                failedResponseMessage("Invalid timestamp format.");
+                return;
+            }
+                    
+            array_push($args, "\"".$timestamp."\"");
+            break;
+        
+        case "page_fetch_all":
+            $backend = "data_analytics";
+            array_push($args, "page_fetch_all", $apiKey);
             break;
 
         default:
