@@ -104,6 +104,58 @@ func main() {
 		failOnUmatchedArgSize(2, args)
 		callback = fetchAllTrack(apiKey, args)
 
+	case "page_create":
+		failOnUmatchedArgSize(8, args)
+		callback = createPageCallback(apiKey, args)
+
+	case "page_create_live_timestamp":
+		failOnUmatchedArgSize(7, args)
+		callback = createPageLiveTimestampCallback(apiKey, args)
+
+	case "page_delete_by_anon_id":
+		failOnUmatchedArgSize(4, args)
+		callback = deletePageByAnonId(apiKey, args)
+
+	case "page_delete_by_user_id":
+		failOnUmatchedArgSize(4, args)
+		callback = deletePageByUserId(apiKey, args)
+
+	case "page_delete_by_name":
+		failOnUmatchedArgSize(4, args)
+		callback = deletePageByName(apiKey, args)
+
+	case "page_delete_by_category":
+		failOnUmatchedArgSize(4, args)
+		callback = deletePageByCategory(apiKey, args)
+
+	case "page_delete_by_timestamp":
+		failOnUmatchedArgSize(4, args)
+		callback = deletePageByTimestamp(apiKey, args)
+
+	case "page_get_by_anon_id":
+		failOnUmatchedArgSize(3, args)
+		callback = getPageByAnonId(apiKey, args)
+
+	case "page_get_by_user_id":
+		failOnUmatchedArgSize(3, args)
+		callback = getPageByUserId(apiKey, args)
+
+	case "page_get_by_name":
+		failOnUmatchedArgSize(3, args)
+		callback = getPageByName(apiKey, args)
+
+	case "page_get_by_category":
+		failOnUmatchedArgSize(3, args)
+		callback = getPageByCategory(apiKey, args)
+
+	case "page_get_by_timestamp":
+		failOnUmatchedArgSize(3, args)
+		callback = getPageByTimestamp(apiKey, args)
+
+	case "page_fetch_all":
+		failOnUmatchedArgSize(2, args)
+		callback = fetchAllPage(apiKey, args)
+
 	default:
 		proc.ShowFailedResponse("Invalid argument arity.")
 	}
