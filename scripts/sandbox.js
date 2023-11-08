@@ -44,6 +44,20 @@ const dataAnalyticsActions = {
     "track_get_by_event": ["Track: Fetch by Event", "{\n\t\"user_id\": \"\",\n\t\"event\": \"\"\n}"],
     "track_get_by_timestamp": ["Track: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
     "track_fetch_all": ["Track: Fetch All", "{}"],
+
+    "page_create": ["Page: Create New", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"name\": \"\",\n\t\"category\": \"\",\n\t\"timestamp\": \"\",\n\t\"payload\": \"\"\n}"],
+    "page_create_live_timestamp": ["Page: Create with Live Timestamp", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\",\n\t\"name\": \"\",\n\t\"category\": \"\",\n\t\"payload\": \"\"\n}"],
+    "page_delete_by_anon_id": ["Page: Delete by Anonymous ID", "{\n\t\"tracker\": \"\",\n\t\"anon_id\": \"\"\n}"],
+    "page_delete_by_user_id": ["Page: Delete by User ID", "{\n\t\"tracker\": \"\",\n\t\"user_id\": \"\"\n}"],
+    "page_delete_by_name": ["Page: Delete by Event", "{\n\t\"tracker\": \"\",\n\t\"name\": \"\"\n}"],
+    "page_delete_by_category": ["Page: Delete by Event", "{\n\t\"tracker\": \"\",\n\t\"category\": \"\"\n}"],
+    "page_delete_by_timestamp": ["Page: Delete by Timestamp", "{\n\t\"tracker\": \"\",\n\t\"timestamp\": \"\"\n}"],
+    "page_get_by_anon_id": ["Page: Fetch by Anon ID", "{\n\t\"anon_id\": \"\"\n}"],
+    "page_get_by_user_id": ["Page: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
+    "page_get_by_name": ["Page: Fetch by Event", "{\n\t\"user_id\": \"\",\n\t\"name\": \"\"\n}"],
+    "page_get_by_category": ["Page: Fetch by Event", "{\n\t\"user_id\": \"\",\n\t\"category\": \"\"\n}"],
+    "page_get_by_timestamp": ["Page: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
+    "page_fetch_all": ["Page: Fetch All", "{}"],
 };
 
 const addGroupToActions = (name)=> {
