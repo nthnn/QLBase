@@ -28,12 +28,16 @@ QLBase is a powerful open-source decentralizable backend solution designed to pr
     * [💼 Software Requirements](#-software-requirements)
     * [📥 Downloading the Repository](#-downloading-the-repository)
     * [🏗️ Building from Source](#%EF%B8%8F-building-from-source)
-- 💿 [Firmware](#-firmware)
+- [💿 Firmware](#-firmware)
     * [⚡ Components](#-components)
     * [🔧 Hardware Setup](#-hardware-setup)
     * [📡 Uploading the Firmware](#-uploading-the-firmware)
-- [💙 Donating](#-donating)
+- [🤝 Contributing and Contributors](#-contributing-and-contributors)
+    * [🐞 Issue Reporting](#-issue-reporting)
+    * [🛠️ Pull Requests](#-pull-requests)
+    * [👥 Contributors](#-contributors)
 - [📷 Screenshots](#-screenshots)
+- [💙 Donating](#-donating)
 - [📜 License](#-license)
 
 ## 🎯 Features
@@ -49,7 +53,7 @@ QLBase offers a wide array of features that make it a versatile, scalable, relia
 
 ## 🚀 Deployment
 
-<img src="./assets/qlbase-cat-2.png" align="right" width="350" />
+<img src="./assets/qlbase-cat-2.png" align="right" width="380" />
 
 Deploying QLBase is a straightforward and hassle-free process that can be executed on virtually any system, provided it possesses the capability to run both the Apache and MySQL server, two fundamental components for QLBase to operate seamlessly.
 
@@ -182,14 +186,56 @@ In this crucial steps, we will guide you through the process of uploading the SM
 
 After following these steps, you can now connect the Arduino UNO to your computer where the QLBase is running to use the SMS-OTP API service.
 
-## 💙 Donating
+## 🤝 Contributing and Contributors
 
-QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.
+All contributions are welcome to make QLBase even better. Whether you want to report a bug, suggest new features, or contribute code, your contributions are highly appreciated.
 
-| [![Donate with PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/nathannestein) | [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nthnn) |
-|-------------------|----------------------------|
+### 🐞 Issue Reporting
 
-QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.
+If you come across a bug, have a feature request, or wish to propose enhancements, we kindly encourage you to initiate the process by opening an issue on our [GitHub Issue Tracker](https://github.com/nthnn/QLBase/issues). Your feedback is invaluable in helping us refine and enhance the QLBase. To ensure we can address your concern effectively, we kindly request that you include as much pertinent information as possible. This may encompass a detailed description of the issue or feature request, and if applicable, specific steps to replicate the problem.
+
+Your thorough input enables us to better understand and resolve the matter swiftly, contributing to the overall improvement of QLBase. Thank you for your contributions and for helping us create a more robust and user-friendly environment.
+
+### 🛠️ Pull Requests
+
+If you're eager to get involved and contribute your coding expertise to QLBase, we're thrilled to have you on board! To ensure a smooth and collaborative process, here's an outlined the following steps that you can follow:
+
+1. Fork the QLBase repository to your GitHub account. And then clone it to your local machine.
+
+    ```bash
+    git clone https://github.com/<your username>/QLBase.git
+    ```
+
+2. Create a new branch for your changes:
+
+    ```bash
+    git checkout -b feature/<your feature name>
+    ```
+
+3. You can now make changes to the repository.
+4. Commit your changes:
+
+    ```bash
+    git add -A
+    git commit -m "Add your meaningful commit message here"
+    ```
+
+5. Push your changes to your forked repository:
+
+    ```bash
+    git push origin feature/<your feature name>
+    ```
+
+6. Create a pull request (PR) from your branch to the main branch of the QLBase repository.
+7. Your PR will be reviewed, and any necessary changes will be discussed and implemented.
+8. Once your PR is approved, it will be merged into the main branch, and your contribution will be part of QLBase.
+
+### 👥 Contributors
+
+Finally, this section acknowledges and celebrates the individuals who have made significant contributions to the development and success of the project. Meet the dedicated and talented team members, developers, and collaborators who have played key roles in bringing QLBase to life and advancing its objectives.
+
+- [Nathanne Isip](https://github.com/nthnn) — Original Author, Developer
+- [Lady Selene](https://instagram.com/lady.selenee) — Artist, Illustrator
 
 ## 📷 Screenshots
 
@@ -212,6 +258,15 @@ QLBase developers are profoundly grateful for your support! Your generosity allo
 | <p align="center">QLBase API Sandbox</p>             |
 |------------------------------------------------------|
 | ![Screenshot 5](screenshots/qlbase_screenshot_5.png) |
+
+## 💙 Donating
+
+QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.
+
+| [![Donate with PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/nathannestein) | [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nthnn) |
+|-------------------|----------------------------|
+
+QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.
 
 ## 📜 License
 
