@@ -109,7 +109,7 @@ func main() {
 		callback = createPageCallback(apiKey, args)
 
 	case "page_create_live_timestamp":
-		failOnUmatchedArgSize(7, args)
+		failOnUmatchedArgSize(8, args)
 		callback = createPageLiveTimestampCallback(apiKey, args)
 
 	case "page_delete_by_anon_id":
