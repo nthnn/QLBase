@@ -1078,7 +1078,47 @@ func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
 }
 
 func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
+	userId := args[2]
+
 	return func(d *sql.DB) {
+		id := ""
+		err := d.QueryRow("SELECT anonymous_id FROM " + apiKey +
+			"_data_analytics_id WHERE anonymous_id <> \"null\" AND user_id=\"" +
+			userId + "\"").Scan(&id)
+
+		if err == sql.ErrNoRows {
+			proc.ShowResult("\"null\"")
+			return
+		} else if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
+			"_data_analytics_page WHERE anonymous_id <> \"null\" AND user_id=\"" +
+			userId + "\"").Scan(&id)
+
+		if err == sql.ErrNoRows {
+			proc.ShowResult("\"null\"")
+			return
+		} else if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
+			"_data_analytics_track WHERE anonymous_id <> \"null\" AND user_id=\"" +
+			userId + "\"").Scan(&id)
+
+		if err == sql.ErrNoRows {
+			proc.ShowResult("\"null\"")
+			return
+		} else if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowResult("\"null\"")
 	}
 }
 
