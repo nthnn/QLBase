@@ -156,6 +156,26 @@ func main() {
 		failOnUmatchedArgSize(2, args)
 		callback = fetchAllPage(apiKey, args)
 
+	case "alias_anon_has":
+		failOnUnmatchedArgSize(3, args)
+		callback = aliasAnonHas(apiKey, args)
+
+	case "alias_user_has":
+		failOnUnmatchedArgSize(3, args)
+		callback = aliasUserHas(apiKey, args)
+
+	case "alias_for_anon":
+		failOnUmatchedArgSize(4, args)
+		callback = aliasForAnon(apiKey, args)
+
+	case "alias_for_user":
+		failOnUmatchedArgSize(4, args)
+		callback = aliasForUser(apiKey, args)
+
+	case "alias_fetch_all":
+		failOnUmatchedArgSize(2, args)
+		callback = aliasFetchAll(apiKey, args)
+
 	default:
 		proc.ShowFailedResponse("Invalid argument arity.")
 	}

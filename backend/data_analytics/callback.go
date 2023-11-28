@@ -1031,3 +1031,28 @@ func fetchAllPage(apiKey string, args []string) func(*sql.DB) {
 		proc.ShowResult(result)
 	}
 }
+
+func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+	}
+}
+
+func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+	}
+}
+
+func aliasForAnon(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+	}
+}
+
+func aliasForUser(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+	}
+}
+
+func aliasFetchAll(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+	}
+}
