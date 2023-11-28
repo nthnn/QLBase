@@ -4,6 +4,7 @@ import Contribs from "../views/Contribs.vue";
 import Deployment from "../views/Deployment.vue";
 import Firmware from "../views/Firmware.vue";
 import HomeView from "../views/HomeView.vue";
+import IntroToAPI from "../views/IntroToAPI.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
             path: "/contrib",
             name: "contrib",
             component: Contribs
+        },
+        {
+            path: "/intro-api",
+            name: "intro-api",
+            component: IntroToAPI
         }
     ]
 });
