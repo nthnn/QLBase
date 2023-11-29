@@ -1123,12 +1123,76 @@ func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 }
 
 func aliasForAnon(apiKey string, args []string) func(*sql.DB) {
+	anonId := args[2]
+	userId := args[3]
+
 	return func(d *sql.DB) {
+		_, err := d.Query("UPDATE " + apiKey +
+			"_data_analytics_id SET user_id=\"" + userId +
+			"\" WHERE anonymous_id=\"" + anonId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		_, err = d.Query("UPDATE " + apiKey +
+			"_data_analytics_page SET user_id=\"" + userId +
+			"\" WHERE anonymous_id=\"" + anonId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		_, err = d.Query("UPDATE " + apiKey +
+			"_data_analytics_track SET user_id=\"" + userId +
+			"\" WHERE anonymous_id=\"" + anonId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		return
 	}
 }
 
 func aliasForUser(apiKey string, args []string) func(*sql.DB) {
+	userId := args[2]
+	anonId := args[3]
+
 	return func(d *sql.DB) {
+		_, err := d.Query("UPDATE " + apiKey +
+			"_data_analytics_id SET anonymous_id=\"" + anonId +
+			"\" WHERE user_id=\"" + userId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		_, err = d.Query("UPDATE " + apiKey +
+			"_data_analytics_page SET anonymous_id=\"" + anonId +
+			"\" WHERE user_id=\"" + userId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		_, err = d.Query("UPDATE " + apiKey +
+			"_data_analytics_track SET anonymous_id=\"" + anonId +
+			"\" WHERE user_id=\"" + userId + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		return
 	}
 }
 
