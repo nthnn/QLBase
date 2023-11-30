@@ -37,7 +37,7 @@
     </ol>
     <br/>
 
-    <h3 class="border-bottom">👥Contributors</h3>
+    <h3 class="border-bottom">👥 Contributors</h3>
     <p>Finally, this section acknowledges and celebrates the individuals who have made significant contributions to the development and success of the project. Meet the dedicated and talented team members, developers, and collaborators who have played key roles in bringing QLBase to life and advancing its objectives.</p>
     <ul>
         <li><a href="https://github.com/nthnn" target="_blank" class="text-decoration-none">Nathanne Isip</a> &mdash; Original Author, Developer</li>

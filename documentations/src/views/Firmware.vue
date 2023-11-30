@@ -6,12 +6,13 @@
     <h3 class="border-bottom">⚡ Components</h3>
     <p>The SMS OTP (Short Message Service One-Time Password) firmware, an integral part of the QLBase system, relies on a concise and efficient hardware setup. This essential framework necessitates the utilization of just two key components, namely the Arduino UNO development board and the SIM900 GSM/GPRS UNO Shield.</p>
 
-    <div class="row mb-4">
+    <div class="row">
         <div class="col-md-6">
             <div class="card card-body">
                 <img src="@/assets/board-arduino-uno.png" width="100%" />
                 <b class="card-title" align="center">Arduino UNO</b>
             </div>
+            <br/>
         </div>
 
         <div class="col-md-6">
@@ -19,6 +20,7 @@
                 <img src="@/assets/board-sim900-shield.png" width="100%" />
                 <b class="card-title" align="center">SIM900 GSM/GPRS Shield</b>
             </div>
+            <br/>
         </div>
     </div>
 
@@ -59,7 +61,7 @@
     <p>For more information about using the SIM900 GSM/GPRS shield, please refer to this <a href="https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/" target="_blank" class="text-decoration-none">article</a>.</p>
     <br/>
 
-    <h3 class="border-bottom">📡Uploading the Firmware</h3>
+    <h3 class="border-bottom">📡 Uploading the Firmware</h3>
     <p>In this crucial steps, we will guide you through the process of uploading the SMS OTP firmware to your Arduino UNO with the SIM900 shield. This action is pivotal for enabling secure user authentication through SMS OTP for QLBase.</p>
     <ol>
         <li>Begin by installing <a href="https://code.visualstudio.com/" target="_blank" class="text-decoration-none">Visual Studio Code</a>, a versatile and powerful integrated development environment (IDE).</li>
