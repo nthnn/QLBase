@@ -1198,5 +1198,63 @@ func aliasForUser(apiKey string, args []string) func(*sql.DB) {
 
 func aliasFetchAll(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
+		var aliases [][]string
+
+		query, err := d.Query("SELECT user_id, anonymous_id FROM " + apiKey +
+			"_data_analytics_id WHERE anonymous_id <> \"null\" AND user_id <> \"null\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		for query.Next() {
+			var userId, anonId string
+			query.Scan(&userId, &anonId)
+
+			aliases = append(aliases, []string{userId, anonId})
+		}
+
+		query, err = d.Query("SELECT user_id, anonymous_id FROM " + apiKey +
+			"_data_analytics_page WHERE anonymous_id <> \"null\" AND user_id <> \"null\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		for query.Next() {
+			var userId, anonId string
+			query.Scan(&userId, &anonId)
+
+			aliases = append(aliases, []string{userId, anonId})
+		}
+
+		query, err = d.Query("SELECT user_id, anonymous_id FROM " + apiKey +
+			"_data_analytics_track WHERE anonymous_id <> \"null\" AND user_id <> \"null\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		for query.Next() {
+			var userId, anonId string
+			query.Scan(&userId, &anonId)
+
+			aliases = append(aliases, []string{userId, anonId})
+		}
+
+		response := ""
+		for i := 0; i < len(aliases); i++ {
+			response += "[\"" + aliases[i][0] + "\", \"" + aliases[i][1] + "\"],"
+		}
+
+		if len(aliases) > 0 {
+			response = response[:len(response)-1]
+		}
+
+		response = "{" + response + "}"
+		proc.ShowResult(response)
 	}
 }
