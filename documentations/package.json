@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "vercel-build": "vite build",
+    "vercel-build": "vite build --outDir ./dist --base .",
     "preview": "vite preview",
     "build-only": "vite build --outDir ../docs",
     "clean": "rimraf -rf ../docs",
