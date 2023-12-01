@@ -42,12 +42,17 @@ import { RouterLink } from "vue-router";
     <h3 class="border-bottom">💙 Donating</h3>
     <p>QLBase is an open-source project and is voluntarily developed. If you find QLBase useful and would like to support its continued development and improvement, you can make a donation.</p>
 
-    <table align="center">
-        <tr>
-            <td class="p-4"><a href="https://paypal.me/nathannestein" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal"></a></td>
-            <td class="p-4"><a href="https://www.buymeacoffee.com/nthnn" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a></td>
-        </tr>
-    </table>
+    <div class="row" align="center">
+        <div class="col-6">
+            <a href="https://paypal.me/nathannestein" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal"></a>
+            <br class="mobile-only"/>
+        </div>
+
+        <div class="col-6">
+            <a href="https://www.buymeacoffee.com/nthnn" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a>
+            <br class="mobile-only"/>
+        </div>
+    </div>
 
     <br/>
     <p>QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.</p>
