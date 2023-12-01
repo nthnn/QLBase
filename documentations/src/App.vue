@@ -15,7 +15,9 @@ watch(
 </script>
 
 <template>
-    <br/><br/>
+    <br/>
+    <br class="desktop-only"/>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -34,7 +36,9 @@ watch(
                     <NavigationColumn />
                 </div>
 
-                <br/><br class="desktop-only" />
+                <div class="desktop-only">
+                    <br/><br/>
+                </div>
             </div>
         </div>
 
