@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import Authentication from "../views/Authentication.vue";
 import Contribs from "../views/Contribs.vue";
 import Deployment from "../views/Deployment.vue";
 import Firmware from "../views/Firmware.vue";
@@ -33,6 +34,11 @@ const router = createRouter({
             path: "/intro-api",
             name: "intro-api",
             component: IntroToAPI
+        },
+        {
+            path: "/authentication",
+            name: "authentication",
+            component: Authentication
         }
     ]
 });
