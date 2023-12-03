@@ -58,6 +58,12 @@ const dataAnalyticsActions = {
     "page_get_by_category": ["Page: Fetch by Event", "{\n\t\"user_id\": \"\",\n\t\"category\": \"\"\n}"],
     "page_get_by_timestamp": ["Page: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
     "page_fetch_all": ["Page: Fetch All", "{}"],
+
+    "alias_anon_has": ["Alias: Has Anonymous Alias", "{\n\t\"anon_id\": \"\"\n}"],
+    "alias_user_has": ["Alias: Has User Alias", "{\n\t\"user_id\": \"\"\n}"],
+    "alias_for_anon": ["Alias: Set For Anonymous ID", "{\n\t\"anon_id\": \"\",\n\t\"user_id\": \"\"\n}"],
+    "alias_for_user": ["Alias: Set For User ID", "{\n\t\"user_id\": \"\",\n\t\"anon_id\": \"\"\n}"],
+    "alias_fetch_all": ["Alias: Fetch All", "{}"],
 };
 
 const addGroupToActions = (name)=> {
