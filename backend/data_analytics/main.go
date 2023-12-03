@@ -157,11 +157,11 @@ func main() {
 		callback = fetchAllPage(apiKey, args)
 
 	case "alias_anon_has":
-		failOnUnmatchedArgSize(3, args)
+		failOnUmatchedArgSize(3, args)
 		callback = aliasAnonHas(apiKey, args)
 
 	case "alias_user_has":
-		failOnUnmatchedArgSize(3, args)
+		failOnUmatchedArgSize(3, args)
 		callback = aliasUserHas(apiKey, args)
 
 	case "alias_for_anon":
