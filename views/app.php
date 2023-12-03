@@ -196,6 +196,7 @@ const App = {
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
+<script src="scripts/vendors/Chart.min.js"></script>
 <script src="scripts/app.js"></script>
 
 <?php include_once("components/footer.html"); ?>

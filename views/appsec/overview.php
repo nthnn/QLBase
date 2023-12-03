@@ -26,29 +26,33 @@ $userName = getAccountUsername($userId);
 <br/>
 
 <div class="row">
-    <div class="col-sm-6">
-        <h3 class="text-primary mb-0"><?php echo $appInfo["app_name"]; ?></h3>
-        <small class="text-muted">App Name</small>
-        <br/><br/>
+    <div class="col-sm-5">
+        <h3>Summary</h3>
+        <table class="table table-hover">
+            <tr>
+                <th>App Name</th>
+                <td><?php echo $appInfo["app_name"]; ?></td>
+            </tr>
+            <tr>
+                <th>App Key</th>
+                <td><?php echo $appInfo["app_key"]; ?></td>
+            </tr>
+            <tr>
+                <th>App ID</th>
+                <td><?php echo $appInfo["app_id"]; ?></td>
+            </tr>
+            <tr>
+                <th>Owner</th>
+                <td><?php echo $userName; ?></td>
+            </tr>
+        </table>
     </div>
 
-    <div class="col-sm-6">
-        <h2 class="text-primary mb-0"><?php echo $userName; ?></h2>
-        <small class="text-muted">Creator</small>
+    <div class="col-sm-7">
+        <h3>Network Traffic</h3>
+        <canvas id="traffic" style="width:100%;max-width:700px"></canvas>
     </div>
 </div>
 <br/>
 
-<div class="row">
-    <div class="col-sm-6">
-        <h3 class="text-primary mb-0"><?php echo $appInfo["app_key"]; ?></h3>
-        <small class="text-muted">App Key</small>
-        <br/><br/>
-    </div>
-
-    <div class="col-sm-6">
-        <h3 class="text-primary mb-0"><?php echo $appInfo["app_id"]; ?></h3>
-        <small class="text-muted">App ID</small>
-    </div>
-</div>
-<br/>
+<script src="scripts/appsec/overview.js"></script>
