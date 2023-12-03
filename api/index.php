@@ -1091,7 +1091,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
-        
+
             $user_id = $_POST["user_id"];
             if(!validateUsername($user_id)) {
                 failedResponseMessage("Invalid user ID.");
@@ -1154,7 +1154,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         case "page_delete_by_timestamp":
             $backend = "data_analytics";
             array_push($args, "page_delete_by_timestamp", $apiKey);
-            
+
             if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
                 !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
                 failedResponseMessage("Insufficient parameter arity.");
@@ -1271,6 +1271,97 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, "page_fetch_all", $apiKey);
             break;
 
+        case "alias_anon_has":
+            $backend = "data_analytics";
+            array_push($args, "alias_anon_has", $apiKey);
+
+            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+
+            array_push($args, $anon_id);
+            break;
+
+        case "alias_user_has":
+            $backend = "data_analytics";
+            array_push($args, "alias_user_has", $apiKey);
+
+            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+
+            array_push($args, $user_id);
+            break;
+
+        case "alias_for_anon":
+            $backend = "data_analytics";
+            array_push($args, "alias_for_anon", $apiKey);
+
+            if(!isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
+                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+
+            array_push($args, $anon_id, $user_id);
+            break;
+    
+        case "alias_for_user":
+            $backend = "data_analytics";
+            array_push($args, "alias_for_user", $apiKey);
+
+            if(!isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
+                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $user_id = $_POST["user_id"];
+            if(!validateUsername($user_id)) {
+                failedResponseMessage("Invalid user ID.");
+                return;
+            }
+
+            $anon_id = $_POST["anon_id"];
+            if(!validateTracker($anon_id)) {
+                failedResponseMessage("Invalid anonymous ID.");
+                return;
+            }
+
+            array_push($args, $user_id, $anon_id);
+            break;
+
+        case "alias_fetch_all":
+            $backend = "data_analytics";
+            array_push($args, "alias_fetch_all", $apiKey);
+            break;
+    
         default:
             failedResponse();
             return;
