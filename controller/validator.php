@@ -47,7 +47,7 @@ function validateVerificationCode($code) {
 }
 
 function validateTracker($tracker) {
-    return strlen($tracker) == 12 &&
+    return strlen($tracker) >= 6 &&
         preg_match("/^[A-Za-z]+$/", $tracker);
 }
 
