@@ -1254,7 +1254,7 @@ func aliasFetchAll(apiKey string, args []string) func(*sql.DB) {
 			response = response[:len(response)-1]
 		}
 
-		response = "{" + response + "}"
+		response = "[" + response + "]"
 		proc.ShowResult(response)
 	}
 }
