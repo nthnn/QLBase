@@ -1184,7 +1184,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
-            
+
             $anon_id = $_POST["anon_id"];
             if(!validateTracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");

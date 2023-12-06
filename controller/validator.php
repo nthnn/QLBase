@@ -47,8 +47,8 @@ function validateVerificationCode($code) {
 }
 
 function validateTracker($tracker) {
-    return strlen($tracker) >= 6 &&
-        preg_match("/^[A-Za-z]+$/", $tracker);
+    return $tracker == "null" || (strlen($tracker) >= 6 &&
+        preg_match("/^[A-Za-z]+$/", $tracker));
 }
 
 function validateDateTime($datetime) {
