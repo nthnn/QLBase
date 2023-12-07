@@ -1,6 +1,7 @@
 <?php
 
 include_once("../controller/apps.php");
+include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 
 function validateApiKey($key) {
@@ -15,7 +16,20 @@ function failedResponseMessage($message) {
     echo "{\"result\": \"0\", \"message\": \"".$message."\"}";
 }
 
+function logNetworkTraffic() {
+    global $db_conn;
+    $dt = date("dmy");
+
+    $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt."\"");
+    if($result) {
+        if(mysqli_num_rows($result) > 0)
+            mysqli_query($db_conn, "UPDATE traffic SET count = count+1 WHERE date_time=\"".$dt."\"");
+        else mysqli_query($db_conn, "INSERT INTO traffic (date_time) VALUES(\"".$dt."\")");
+    }
+}
+
 function execute($backend, $args) {
+    logNetworkTraffic();
     echo shell_exec("../bin/".$backend." ".join(" ", $args));
 }
 
@@ -44,6 +58,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
     switch($action) {
         case "handshake":
+            logNetworkTraffic();
             echo "{\"result\": \"1\"}";
             return;
             

@@ -29,5 +29,5 @@ CREATE TABLE `sessions` (
 
 CREATE TABLE `traffic` (
   `date_time` varchar(255) DEFAULT NULL,
-  `count` int(11) DEFAULT 0
+  `count` int(11) DEFAULT 1
 );
