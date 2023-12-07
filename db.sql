@@ -26,3 +26,8 @@ CREATE TABLE `sessions` (
   `user_agent` varchar(255) DEFAULT NULL,
   `remote_addr` varchar(255) DEFAULT NULL
 );
+
+CREATE TABLE `traffic` (
+  `date_time` varchar(255) DEFAULT NULL,
+  `count` int(11) DEFAULT 0
+);
