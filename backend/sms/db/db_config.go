@@ -2,8 +2,8 @@ package db
 
 import (
 	"os"
-	"sms/proc"
 
+	"github.com/nthnn/QLBase/sms/proc"
 	"gopkg.in/ini.v1"
 )
 

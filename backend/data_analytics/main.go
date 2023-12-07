@@ -1,9 +1,10 @@
 package main
 
 import (
-	"data_analytics/proc"
 	"database/sql"
 	"os"
+
+	"github.com/nthnn/QLBase/data_analytics/proc"
 )
 
 func failOnUmatchedArgSize(size int, args []string) {

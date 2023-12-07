@@ -1,8 +1,9 @@
 package main
 
 import (
-	"data_analytics/proc"
 	"database/sql"
+
+	"github.com/nthnn/QLBase/data_analytics/proc"
 )
 
 func createIdCallback(apiKey string, args []string) func(*sql.DB) {

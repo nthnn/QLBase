@@ -1,9 +1,10 @@
 package main
 
 import (
-	"auth/proc"
 	"database/sql"
 	"os"
+
+	"github.com/nthnn/QLBase/auth/proc"
 )
 
 func failOnUmatchedArgSize(size int, args []string) {

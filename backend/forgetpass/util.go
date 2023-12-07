@@ -1,10 +1,10 @@
 package main
 
 import (
-	"forgetpass/proc"
 	"os"
 	"os/exec"
 
+	"github.com/nthnn/QLBase/forgetpass/proc"
 	"gopkg.in/ini.v1"
 )
 

@@ -3,9 +3,9 @@ package serport
 import (
 	"os"
 	"runtime"
-	"sms/proc"
 	"strings"
 
+	"github.com/nthnn/QLBase/sms/proc"
 	"go.bug.st/serial.v1"
 )
 

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"data_analytics/proc"
 	"os"
 
+	"github.com/nthnn/QLBase/data_analytics/proc"
 	"gopkg.in/ini.v1"
 )
 

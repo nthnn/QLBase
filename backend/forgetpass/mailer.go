@@ -2,12 +2,12 @@ package main
 
 import (
 	"database/sql"
-	"forgetpass/db"
-	"forgetpass/proc"
 	"net/smtp"
 	"os"
 	"strings"
 
+	"github.com/nthnn/QLBase/forgetpass/db"
+	"github.com/nthnn/QLBase/forgetpass/proc"
 	"gopkg.in/ini.v1"
 )
 

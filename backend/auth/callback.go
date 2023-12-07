@@ -1,9 +1,10 @@
 package main
 
 import (
-	"auth/proc"
 	"database/sql"
 	"strconv"
+
+	"github.com/nthnn/QLBase/auth/proc"
 )
 
 func createUserCallback(apiKey string, args []string) func(*sql.DB) {

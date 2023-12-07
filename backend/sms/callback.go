@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"sms/proc"
-	"sms/serport"
+	"github.com/nthnn/QLBase/sms/proc"
+	"github.com/nthnn/QLBase/sms/serport"
 )
 
 func isValidPhoneNumber(phone_number string) bool {

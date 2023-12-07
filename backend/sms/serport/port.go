@@ -3,10 +3,10 @@ package serport
 import (
 	"io"
 	"os"
-	"sms/proc"
 	"time"
 
 	"github.com/jacobsa/go-serial/serial"
+	"github.com/nthnn/QLBase/sms/proc"
 )
 
 func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {

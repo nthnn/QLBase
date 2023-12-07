@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"os"
 
-	"forgetpass/db"
-	"forgetpass/proc"
+	"github.com/nthnn/QLBase/forgetpass/db"
+	"github.com/nthnn/QLBase/forgetpass/proc"
 )
 
 func failOnUmatchedArgSize(size int, args []string) {

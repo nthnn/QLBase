@@ -1,9 +1,9 @@
 package main
 
 import (
-	"auth/proc"
 	"os"
 
+	"github.com/nthnn/QLBase/auth/proc"
 	"gopkg.in/ini.v1"
 )
 

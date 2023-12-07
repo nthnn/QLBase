@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"os"
 
-	"sms/db"
-	"sms/proc"
+	"github.com/nthnn/QLBase/sms/db"
+	"github.com/nthnn/QLBase/sms/proc"
 )
 
 func failOnUmatchedArgSize(size int, args []string) {
