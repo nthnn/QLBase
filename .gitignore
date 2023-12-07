@@ -1,8 +1,5 @@
-bin/auth
-bin/data_analytics
-bin/forgetpass
-bin/sms
-docs
+bin/
+docs/
 qlbase.zip
 
 .DS_Store
