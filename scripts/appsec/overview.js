@@ -6,6 +6,28 @@ let xLabels = [], yLabels = []; // Dummy y-axis data
     }
 })();
 
+let shouldBeShown = true;
+function copyToClipboard(name, value) {
+    if(!shouldBeShown)
+        return;
+
+    $("#toast-title").html(name);
+    $("#toast-copied").show();
+    shouldBeShown = false;
+
+    setTimeout(()=> {
+        $("#toast-copied").hide();
+        shouldBeShown = true;
+    }, 3000);
+
+    (async ()=> {
+        try {
+            await navigator.clipboard.writeText(value);
+        }
+        catch(err) { }
+    })();
+}
+
 window.onload = ()=> {
     new Chart("traffic", {
         type: "line",
@@ -13,7 +35,7 @@ window.onload = ()=> {
             labels: xLabels,
             datasets: [{
                 pointRadius: 1,
-                borderColor: "rgb(0,0,255)",
+                borderColor: "#158cba",
                 data: yLabels,
             }]
         },
@@ -21,4 +43,7 @@ window.onload = ()=> {
             legend: {display: false},
         }
     });
+
+    $("#btn-copy-key").click(()=> copyToClipboard("API Key", App.appKey));
+    $("#btn-copy-id").click(()=> copyToClipboard("API ID", App.appId));
 };
