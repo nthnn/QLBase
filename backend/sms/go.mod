@@ -1,4 +1,4 @@
-module sms
+module github.com/nthnn/QLBase/sms
 
 go 1.20
 

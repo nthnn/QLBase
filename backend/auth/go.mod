@@ -1,4 +1,4 @@
-module auth
+module github.com/nthnn/QLBase/auth
 
 go 1.20
 

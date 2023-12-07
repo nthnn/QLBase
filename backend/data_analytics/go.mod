@@ -1,4 +1,4 @@
-module data_analytics
+module github.com/nthnn/QLBase/data_analytics
 
 go 1.20
 

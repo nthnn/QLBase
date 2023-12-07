@@ -1,4 +1,4 @@
-module forgetpass
+module github.com/nthnn/QLBase/forgetpass
 
 go 1.20
 
