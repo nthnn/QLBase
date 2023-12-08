@@ -17,6 +17,7 @@ func LoadDBConfig(configFile string) DBConfig {
 		database.Key("username").String(),
 		database.Key("password").String(),
 		database.Key("name").String(),
+		database.Key("system").String(),
 		database.Key("server").String(),
 		uint16(database.Key("port").MustInt(3306)))
 }

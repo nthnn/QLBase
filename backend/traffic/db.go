@@ -13,6 +13,7 @@ type DBConfig struct {
 	DBUsername string
 	DBPassword string
 	DBName     string
+	DBSystem   string
 	DBServer   string
 	DBPort     uint16
 }
@@ -22,11 +23,11 @@ func (config DBConfig) ToString() string {
 		config.DBPassword + "@tcp(" +
 		config.DBServer + ":" +
 		strconv.Itoa(int(config.DBPort)) +
-		")/" + config.DBName
+		")/" + config.DBSystem
 }
 
-func ConfigDB(username string, password string, name string, server string, port uint16) DBConfig {
-	return DBConfig{username, password, name, server, port}
+func ConfigDB(username string, password string, name string, system string, server string, port uint16) DBConfig {
+	return DBConfig{username, password, name, system, server, port}
 }
 
 func ConnectDB(config DBConfig) (*sql.DB, error) {
