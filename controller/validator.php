@@ -73,4 +73,8 @@ function validateTimestamp($timestamp) {
     return preg_match("/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/", $timestamp);
 }
 
+function validateApiKey($key) {
+    return preg_match("/^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$/", $key);
+}
+
 ?>
