@@ -4,10 +4,6 @@ include_once("../controller/apps.php");
 include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 
-function validateApiKey($key) {
-    return preg_match("/^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$/", $key);
-}
-
 function failedResponse() {
     echo "{\"result\": \"0\"}";
 }

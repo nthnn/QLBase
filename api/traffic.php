@@ -1,27 +1,24 @@
 <?php
 
+include_once("../controller/apps.php");
 include_once("../controller/validator.php");
 
 header('Content-Type: application/json; charset=utf-8');
-
-function execute($backend, $args) {
-    echo shell_exec("../bin/".$backend." ".join(" ", $args));
-}
 
 function failedResponse() {
     echo "{\"result\": \"0\"}";
 }
 
-if(isset($_POST["key"]) && !empty($_POST["key"]) &&
-    isset($_POST["id"]) && !empty($_POST["id"])) {
+if(isset($_GET["key"]) && !empty($_GET["key"]) &&
+    isset($_GET["id"]) && !empty($_GET["id"])) {
 
-    $key = $_POST["key"];
+    $key = $_GET["key"];
     if(!validateApiKey($key)) {
         failedResponse();
         return;
     }
 
-    $id = $_POST["id"];
+    $id = $_GET["id"];
     if(!validateAppId($id)) {
         failedResponse();
         return;
