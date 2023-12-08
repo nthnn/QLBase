@@ -12,20 +12,29 @@ function failedResponseMessage($message) {
     echo "{\"result\": \"0\", \"message\": \"".$message."\"}";
 }
 
-function logNetworkTraffic() {
+function logNetworkTraffic($apiKey, $appId) {
     global $db_conn;
     $dt = date("dmy");
 
-    $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt."\"");
+    $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt.
+        "\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
+
     if($result) {
         if(mysqli_num_rows($result) > 0)
-            mysqli_query($db_conn, "UPDATE traffic SET count = count+1 WHERE date_time=\"".$dt."\"");
-        else mysqli_query($db_conn, "INSERT INTO traffic (date_time) VALUES(\"".$dt."\")");
+            mysqli_query($db_conn, "UPDATE traffic SET count = count+1 WHERE date_time=\"".
+                $dt."\" WHERE api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
+        else mysqli_query($db_conn, "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".$dt.
+            "\", \"".$apiKey."\", \"".$appId."\")");
+
+        return;
     }
+
+    failedResponse();
+    exit(0);
 }
 
-function execute($backend, $args) {
-    logNetworkTraffic();
+function execute($apiKey, $appId, $backend, $args) {
+    logNetworkTraffic($apiKey, $appId);
     echo shell_exec("../bin/".$backend." ".join(" ", $args));
 }
 
@@ -54,7 +63,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
     switch($action) {
         case "handshake":
-            logNetworkTraffic();
+            logNetworkTraffic($apiKey, $appId);
             echo "{\"result\": \"1\"}";
             return;
             
@@ -1378,7 +1387,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             return;
     }
 
-    execute($backend, $args);
+    execute($apiKey, $appId, $backend, $args);
     return;
 }
 

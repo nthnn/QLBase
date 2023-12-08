@@ -9,16 +9,17 @@ function failedResponse() {
     echo "{\"result\": \"0\"}";
 }
 
-if(isset($_GET["key"]) && !empty($_GET["key"]) &&
-    isset($_GET["id"]) && !empty($_GET["id"])) {
+if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
+    isset($_POST["key"]) && !empty($_POST["key"]) &&
+    isset($_POST["id"]) && !empty($_POST["id"])) {
 
-    $key = $_GET["key"];
+    $key = $_POST["key"];
     if(!validateApiKey($key)) {
         failedResponse();
         return;
     }
 
-    $id = $_GET["id"];
+    $id = $_POST["id"];
     if(!validateAppId($id)) {
         failedResponse();
         return;
