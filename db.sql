@@ -28,6 +28,8 @@ CREATE TABLE `sessions` (
 );
 
 CREATE TABLE `traffic` (
-  `date_time` varchar(255) DEFAULT NULL,
+  `app_id` varchar(255) DEFAULT NULL,
+  `api_key` varchar(255) DEFAULT NULL,
+  `date_time` varchar(255) DEFAULT DATE_FORMAT(CURRENT_DATE, '%d%m%Y'),
   `count` int(11) DEFAULT 1
 );
