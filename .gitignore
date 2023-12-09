@@ -1,4 +1,8 @@
-bin/
+bin/auth
+bin/data_analytics
+bin/forgetpass
+bin/sms
+bin/traffic
 docs/
 qlbase.zip
 
