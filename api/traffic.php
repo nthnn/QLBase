@@ -10,16 +10,15 @@ function failedResponse() {
 }
 
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
-    isset($_POST["key"]) && !empty($_POST["key"]) &&
-    isset($_POST["id"]) && !empty($_POST["id"])) {
-
-    $key = $_POST["key"];
+    isset($_SERVER["HTTP_QLBASE_API_KEY"]) && !empty($_SERVER["HTTP_QLBASE_API_KEY"]) &&
+    isset($_SERVER["HTTP_QLBASE_APP_ID"]) && !empty($_SERVER["HTTP_QLBASE_APP_ID"])) {
+    $key = $_SERVER["HTTP_QLBASE_API_KEY"];
     if(!validateApiKey($key)) {
         failedResponse();
         return;
     }
 
-    $id = $_POST["id"];
+    $id = $_SERVER["HTTP_QLBASE_APP_ID"];
     if(!validateAppId($id)) {
         failedResponse();
         return;
