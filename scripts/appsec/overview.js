@@ -1,9 +1,23 @@
-let xLabels = [], yLabels = []; // Dummy y-axis data
+let xLabels = [], yLabels = [];
 (()=> {
-    for(let i = 0; i < 31; i++) {
-        xLabels.push("");
-        yLabels.push(Math.floor(Math.random() * 100));
-    }
+    $.post({
+        url: "api/traffic.php",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        success: (data)=> {
+            if(data.result == '0') {
+                return;
+            }
+
+            let traffic = data.traffic;
+            for(let i = 0; i < 30; i++) {
+                xLabels.push(i + 1);
+                yLabels.push(traffic[i]);
+            }
+        }
+    });
 })();
 
 let shouldBeShown = true;

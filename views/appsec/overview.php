@@ -65,4 +65,5 @@ $userName = getAccountUsername($userId);
     </div>
 </div>
 
+<script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/appsec/overview.js"></script>
