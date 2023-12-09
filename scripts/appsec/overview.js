@@ -7,9 +7,8 @@ let xLabels = [], yLabels = [];
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0') {
+            if(data.result == '0')
                 return;
-            }
 
             let traffic = data.traffic;
             for(let i = 0; i < 30; i++) {
