@@ -18,11 +18,11 @@ function logNetworkTraffic($apiKey, $appId) {
 
     $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt.
         "\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
-
+    
     if($result) {
         if(mysqli_num_rows($result) > 0)
-            mysqli_query($db_conn, "UPDATE traffic SET count = count+1 WHERE date_time=\"".
-                $dt."\" WHERE api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
+            mysqli_query($db_conn, "UPDATE traffic SET count = count + 1 WHERE date_time=\"".
+                $dt."\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
         else mysqli_query($db_conn, "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".$dt.
             "\", \"".$apiKey."\", \"".$appId."\")");
 
