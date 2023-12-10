@@ -49,9 +49,13 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
         return;
     }
 
-    $result = mysqli_query($db_conn, "SELECT email FROM recovery WHERE track_id=\"".$track_id."\" AND email=\"".$email."\"");
-    if(mysqli_num_rows($result) >= 1) {
+    $result = mysqli_query(
+        $db_conn,
+        "SELECT track_id FROM recovery WHERE email=\"".$email."\" AND track_id=\"".$track_id."\" LIMIT 1"
+    );
+    if(mysqli_num_rows($result) == 1 && mysqli_fetch_row($result)[0] == $track_id) {
         mysqli_query($db_conn, "UPDATE accounts SET password=\"".$password."\" WHERE email=\"".$email."\"");
+        mysqli_query($db_conn, "DELETE FROM recovery WHERE email=\"".$email."\"");
         echo "{\"result\": \"1\"}";
 
         return;
