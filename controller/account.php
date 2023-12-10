@@ -74,7 +74,7 @@ function loginAccount($username, $password) {
     $result = mysqli_query(
         $db_conn,
         "SELECT id FROM accounts WHERE ".
-        "username=\"".$username."\" AND password=\"".$password."\""
+        "username=\"".$username."\" AND password=\"".md5($password)."\""
     );
 
     if(!$result || mysqli_num_rows($result) == 0)
