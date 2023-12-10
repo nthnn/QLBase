@@ -9,17 +9,21 @@
                 </center>
                 <hr/>
 
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Email" />
+
                 <label for="new-password" class="form-label">New Password</label>
-                <input type="text" id="new-password" class="form-control" placeholder="New Password" />
+                <input type="password" id="new-password" class="form-control" placeholder="New Password" />
 
                 <label for="confirm-password" class="form-label mt-2">Confirm Password</label>
-                <input type="text" id="confirm-password" class="form-control" placeholder="Confirm Password" />
+                <input type="password" id="confirm-password" class="form-control" placeholder="Confirm Password" />
 
                 <p class="text-danger d-none" id="ue-error"></p>
                 <p class="text-primary d-none" id="ue-success"></p>
 
-                <p class="text-danger d-none" id="fp-error"></p>
-                <button class="btn btn-primary mt-4" id="forgot-btn">
+                <p class="text-danger d-none" id="error-msg"></p>
+                <p class="text-info d-none" id="success-msg"></p>
+                <button class="btn btn-primary mt-2" id="recover-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                     </svg>
@@ -34,6 +38,8 @@
 </div>
 
 <script src="scripts/vendors/jquery.min.js"></script>
+<script src="scripts/vendors/cryptojs.core.min.js"></script>
+<script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>
 <script src="scripts/rotating-button.js"></script>
-<script src="scripts/forgot.js"></script>
+<script src="scripts/recover.js"></script>

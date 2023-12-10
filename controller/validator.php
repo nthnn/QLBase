@@ -77,4 +77,11 @@ function validateApiKey($key) {
     return preg_match("/^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$/", $key);
 }
 
+function validateUuid($uuid) {
+    return preg_match(
+        '/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/',
+        $uuid
+    ) === 1;
+}
+
 ?>
