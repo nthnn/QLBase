@@ -15,7 +15,7 @@ func generateUUID() string {
 		os.Exit(0)
 	}
 
-	return string(newUUID)
+	return string(newUUID[:len(newUUID)-1])
 }
 
 func getCurrentHomeURL() string {
