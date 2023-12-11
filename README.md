@@ -9,6 +9,7 @@
 ![Spellcheck](https://github.com/nthnn/QLBase/actions/workflows/spellcheck.yml/badge.svg)
 [![GitHub Issues](https://img.shields.io/github/issues/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/stargazers)
+![GitHub repo size](https://img.shields.io/github/repo-size/nthnn/QLBase?logo=git&label=Repository%20Size)
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 [![License](https://img.shields.io/badge/license-CERN-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
@@ -48,7 +49,7 @@ QLBase offers a wide array of features that make it a versatile, scalable, relia
 - **SMS Verification**: Easily integrate SMS verification into your application using QLBase's OTP service. Protect your user accounts with one-time passwords sent via SMS. QLBase provides SMS verification functionality using an Arduino UNO with a SIM900 Shield as the underlying SMS hardware.
 - **Data Analytics**: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.
 - **Database**: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include
-- **File Storage: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.
+- **File Storage**: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.
 - **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features includes model integration, custom model training, and scalable infrastructure.
 
 ## 🚀 Deployment
@@ -239,6 +240,10 @@ Finally, this section acknowledges and celebrates the individuals who have made 
 
 ## 📷 Screenshots
 
+| <p align="center">QLBase Documentations</p>          |
+|------------------------------------------------------|
+| ![Screenshot 0](screenshots/qlbase_screenshot_0.png) |
+
 | <p align="center">QLBase Homepage</p>                |
 |------------------------------------------------------|
 | ![Screenshot 1](screenshots/qlbase_screenshot_1.png) |
@@ -251,7 +256,7 @@ Finally, this section acknowledges and celebrates the individuals who have made 
 |------------------------------------------------------|
 | ![Screenshot 3](screenshots/qlbase_screenshot_3.png) |
 
-| <p align="center">User Authentication Tab</p>         |
+| <p align="center">Data Analytics Tab</p>         |
 |------------------------------------------------------|
 | ![Screenshot 4](screenshots/qlbase_screenshot_4.png) |
 
