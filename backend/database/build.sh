@@ -1,0 +1,1 @@
+go build -ldflags "-w -s" -o database && sudo mv ./database ../../bin/database
