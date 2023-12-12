@@ -28,3 +28,12 @@ jobs:
 
       - name: Build SMS back-end
         run: cd backend/sms && go build -ldflags "-w -s"
+
+      - name: Build Data Analytics back-end
+        run: cd backend/data_analytics && go build -ldflags "-w -s"
+
+      - name: Build Database back-end
+        run: cd backend/database && go build -ldflags "-w -s"
+
+      - name: Build Traffic back-end
+        run: cd backend/traffic && go build -ldflags "-w -s"
