@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/nthnn/QLBase/data_analytics/proc"
+	"github.com/nthnn/QLBase/database/proc"
 	"gopkg.in/ini.v1"
 )
 
