@@ -1,6 +1,7 @@
 echo "\033[92m[+]\033[0m Building backend apps..."
 cd backend/auth && ./build.sh && cd ../..
 cd backend/data_analytics && ./build.sh && cd ../..
+cd backend/database && ./build.sh && cd ../..
 cd backend/forgetpass && ./build.sh && cd ../..
 cd backend/sms && ./build.sh && cd ../..
 cd backend/traffic && ./build.sh && cd ../..
