@@ -1,0 +1,36 @@
+{
+	"name": "QLBase",
+	"author": "nathannestein",
+	"git": "https://github.com/nthnn/QLBase.git",
+	"scripts": {
+		"build-backend": [
+			"echo \"\\033[92m[+]\\033[0m Building backend apps...\"",
+			"cd backend/auth && ./build.sh && cd ../..",
+			"cd backend/data_analytics && ./build.sh && cd ../..",
+			"cd backend/database && ./build.sh && cd ../..",
+			"cd backend/forgetpass && ./build.sh && cd ../..",
+			"cd backend/sms && ./build.sh && cd ../..",
+			"cd backend/traffic && ./build.sh && cd ../.."
+		],
+		"build-docs": [
+			"cd documentations",
+            "npm install",
+            "npm run build-only",
+            "cd .."
+		],
+		"clean-up": [
+			"rm -rf docs/"
+		],
+		"deploy": [
+			"qrepo run build-backend",
+			"qrepo run build-docs",
+			"qrepo run zip-up",
+			"qrepo run clean-up",
+			"echo \"\\033[92m[+]\\033[0m Deployment-ready successfully generated!\""
+		],
+		"zip-up": [
+			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
+			"zip -r qlbase.zip api assets bin components controller docs scripts side styles views favicon.ico index.php sandbox.html"
+		]
+	}
+}
