@@ -1,5 +1,6 @@
 bin/auth
 bin/data_analytics
+bin/database
 bin/forgetpass
 bin/sms
 bin/traffic
