@@ -10,9 +10,9 @@ let xLabels = [], yLabels = [];
             if(data.result == '0')
                 return;
 
-            let traffic = data.traffic;
+            let traffic = data.traffic, j = 30;
             for(let i = 0; i < 30; i++) {
-                xLabels.push(i + 1);
+                xLabels.push(j--);
                 yLabels.push(traffic[i]);
             }
         }

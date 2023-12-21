@@ -4,8 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"os"
-	"sort"
-	"strconv"
+	"strings"
 
 	"github.com/nthnn/QLBase/traffic/proc"
 )
@@ -36,22 +35,16 @@ func main() {
 		}
 
 		last30DayTraffic := make([]int, 30)
-		i := 0
 		for query.Next() {
 			count := 0
 			query.Scan(&count)
 
-			last30DayTraffic[i] = count
-			i++
+			last30DayTraffic = append(last30DayTraffic, count)
 		}
 
-		stringified := ""
-		sort.Sort(sort.Reverse(sort.IntSlice(last30DayTraffic)))
-
-		for i := len(last30DayTraffic) - 1; i >= 0; i-- {
-			stringified += strconv.Itoa(last30DayTraffic[i]) + ", "
-		}
-
-		fmt.Println("{\"result\": \"1\", \"traffic\": [" + stringified[:len(stringified)-2] + "]}")
+		fmt.Println(
+			"{\"result\": \"1\", \"traffic\": [" +
+				strings.Trim(strings.Join(strings.Fields(fmt.Sprint(last30DayTraffic[len(last30DayTraffic)-30:])), ", "), "[]") +
+				"]}")
 	})
 }
