@@ -6,6 +6,5 @@ bin/sms
 bin/traffic
 docs/
 qlbase.zip
-
 .DS_Store
 screenshots/.DS_Store
