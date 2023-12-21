@@ -30,7 +30,7 @@
 		],
 		"zip-up": [
 			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
-			"zip -r qlbase.zip api assets bin components controller docs scripts side styles views favicon.ico index.php sandbox.html"
+			"zip -q -r qlbase.zip api assets bin components controller docs scripts side styles views favicon.ico index.php sandbox.php"
 		]
 	}
 }
