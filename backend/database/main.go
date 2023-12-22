@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"os"
 
 	"github.com/nthnn/QLBase/database/proc"
@@ -18,4 +19,16 @@ func main() {
 		proc.ShowFailedResponse("Invalid argument arity.")
 		os.Exit(0)
 	}
+
+	var callback func(*sql.DB) = func(d *sql.DB) {}
+	args := os.Args[1:]
+	apiKey := args[1]
+
+	switch args[0] {
+	case "create":
+		failOnUmatchedArgSize(5, args)
+		createDbCallback(apiKey, args)
+	}
+
+	DispatchWithCallback(callback)
 }
