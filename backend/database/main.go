@@ -28,6 +28,18 @@ func main() {
 	case "create":
 		failOnUmatchedArgSize(5, args)
 		createDbCallback(apiKey, args)
+
+	case "get_by_name":
+		break
+
+	case "set_db_mode":
+		break
+
+	case "get_db_mode":
+		break
+
+	case "fetch_all":
+		break
 	}
 
 	DispatchWithCallback(callback)
