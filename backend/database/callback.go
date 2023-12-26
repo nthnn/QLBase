@@ -64,8 +64,8 @@ func getByNameCallback(apiKey string, args []string) func(*sql.DB) {
 			count++
 		}
 
-		if count != 0 {
-			proc.ShowFailedResponse("Database name already in use.")
+		if count != 1 {
+			proc.ShowFailedResponse("Cannot resolve database name.")
 			query.Close()
 
 			return

@@ -30,6 +30,8 @@ func main() {
 		createDbCallback(apiKey, args)
 
 	case "get_by_name":
+		failOnUmatchedArgSize(3, args)
+		getByNameCallback(apiKey, args)
 		break
 
 	case "set_db_mode":
