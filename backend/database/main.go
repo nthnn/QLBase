@@ -35,6 +35,8 @@ func main() {
 		break
 
 	case "set_db_mode":
+		failOnUmatchedArgSize(4, args)
+		setDbModeCallback(apiKey, args)
 		break
 
 	case "get_db_mode":
