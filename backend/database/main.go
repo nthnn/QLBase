@@ -40,6 +40,8 @@ func main() {
 		break
 
 	case "get_db_mode":
+		failOnUmatchedArgSize(3, args)
+		getDbModeCallback(apiKey, args)
 		break
 
 	case "fetch_all":
