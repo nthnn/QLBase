@@ -13,6 +13,7 @@
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
 [![License](https://img.shields.io/badge/license-CERN-blue.svg)](https://github.com/nthnn/QLBase/blob/main/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnthnn%2FQLBase.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnthnn%2FQLBase?ref=badge_shield)
 <a href="https://www.buymeacoffee.com/nthnn"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" height="20px"></a>
 
 ## 🪁 What is QLBase?
@@ -280,3 +281,5 @@ Your use of QLBase is subject to the terms and conditions of the following respe
 - The server-side code of QLBase is licensed under the [MIT License](LICENSE/MIT%20Public%20License.txt).
 - The back-end software components used in QLBase are licensed under the [GNU GPL v3.0 License](LICENSE/GNU%20GPL%20v3.0.txt). Refer to the individual licenses of those components for specific details. And;
 - The Arduino firmware in QLBase's SMS hardware is licensed under the [CERN OHL Permissive v2](LICENSE/CERN%20OHL%20Permissive%20v2.txt). Please review the firmware's licensing documentation for further information.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnthnn%2FQLBase.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnthnn%2FQLBase?ref=badge_large)
