@@ -33,7 +33,7 @@ func createDbCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		_, err = d.Query("INSERT INTO " + apiKey +
-			"_database (name, mode, contents) VALUES(\"" + name +
+			"_database (name, mode, content) VALUES(\"" + name +
 			"\", \"" + mode + "\", \"" + contents + "\")")
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
