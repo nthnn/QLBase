@@ -84,4 +84,8 @@ function validateUuid($uuid) {
     ) === 1;
 }
 
+function validateDatabaseMode($mode) {
+    return preg_match('/^[wr]+$/i', $mode);
+}
+
 ?>
