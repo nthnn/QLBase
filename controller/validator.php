@@ -88,4 +88,13 @@ function validateDatabaseMode($mode) {
     return preg_match('/^[wr]+$/i', $mode);
 }
 
+function validateDatabaseContent($content) {
+    $decoded = base64_decode($content);
+    if($decoded === false)
+        return false;
+
+    return !(json_decode($decoded) === null &&
+        json_last_error() !== JSON_ERROR_NONE);
+}
+
 ?>
