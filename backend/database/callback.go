@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"strings"
 
 	"github.com/nthnn/QLBase/database/proc"
 )
@@ -175,5 +176,29 @@ func getDbModeCallback(apiKey string, args []string) func(*sql.DB) {
 
 		proc.ShowResult("\"" + mode + "\"")
 		query.Close()
+	}
+}
+
+func fetchAllCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT name, mode FROM " + apiKey + "_database")
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			query.Close()
+
+			return
+		}
+
+		result := "["
+		for query.Next() {
+			name := ""
+			mode := ""
+
+			query.Scan(&name, &mode)
+			result += "[\"" + name + "\", \"" + mode + "\"], "
+		}
+
+		query.Close()
+		proc.ShowResult(strings.TrimSuffix(result, ", ") + "]")
 	}
 }
