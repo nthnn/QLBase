@@ -7,6 +7,7 @@
 ![Backend Workflow](https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg)
 ![Vue Docs CI](https://github.com/nthnn/QLBase/actions/workflows/vue-docs.yml/badge.svg)
 ![Spellcheck](https://github.com/nthnn/QLBase/actions/workflows/spellcheck.yml/badge.svg)
+[![Last Commit](https://img.shields.io/github/last-commit/nthnn/QLBase.svg?style=flat)](https://github.com/nthnn/QLBase)
 [![GitHub Issues](https://img.shields.io/github/issues/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/nthnn/QLBase.svg)](https://github.com/nthnn/QLBase/stargazers)
 ![GitHub repo size](https://img.shields.io/github/repo-size/nthnn/QLBase?logo=git&label=Repository%20Size)
