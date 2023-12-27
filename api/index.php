@@ -1399,13 +1399,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 return;
             }
 
-            $mode = $_POST["name"];
+            $mode = $_POST["mode"];
             if(!validateDatabaseMode($mode)) {
                 failedResponseMessage("Invalid database mode.");
                 return;
             }
 
-            $content = $_POST["name"];
+            $content = $_POST["content"];
             if(!validateDatabaseContent($content)) {
                 failedResponseMessage("Invalid database content.");
                 return;
