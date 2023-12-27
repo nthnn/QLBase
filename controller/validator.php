@@ -79,13 +79,13 @@ function validateApiKey($key) {
 
 function validateUuid($uuid) {
     return preg_match(
-        '/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/',
+        "/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/",
         $uuid
     ) === 1;
 }
 
 function validateDatabaseMode($mode) {
-    return preg_match('/^[wr]+$/i', $mode);
+    return preg_match("/^[wr]+$/", $mode);
 }
 
 function validateDatabaseContent($content) {
