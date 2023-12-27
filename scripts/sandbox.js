@@ -66,6 +66,10 @@ const dataAnalyticsActions = {
     "alias_fetch_all": ["Alias: Fetch All", "{}"],
 };
 
+const databaseActions = {
+    "create_db": ["Database: Create", "{\n\t\"name\": \"\",\n\t\"mode\": \"\",\n\t\"content\": \"\"\n}"]
+};
+
 const addGroupToActions = (name)=> {
     $("#action").append("<option disabled value=\"\">─</option>");
     $("#action").append("<option disabled value=\"\">" + name + "</option>");
@@ -107,6 +111,10 @@ $(document).ready(()=> {
     for(let act in dataAnalyticsActions)
         addAction(act, dataAnalyticsActions[act][0], dataAnalyticsActions[act][1]);
 
+    addGroupToActions("Database");
+    for(let act in databaseActions)
+        addAction(act, databaseActions[act][0], databaseActions[act][1]);
+    
     const sendBtn = RotatingButton("#send");
     $("#send").click(()=> {
         const dataContents = $("#contents").val(),
