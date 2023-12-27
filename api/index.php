@@ -284,7 +284,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
-    
+
             $username = $_POST["username"];
             if(!validateUsername($username)) {
                 failedResponseMessage("Invalid username string.");
@@ -1380,6 +1380,38 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         case "alias_fetch_all":
             $backend = "data_analytics";
             array_push($args, "alias_fetch_all", $apiKey);
+            break;
+
+        case "create_db":
+            $backend = "database";
+            array_push($args, "create", $apiKey);
+
+            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["mode"]) || empty($_POST["mode"]) ||
+                !isset($_POST["content"]) || empty($_POST["content"])) {
+                    failedResponseMessage("Insufficient parameter arity.");
+                    return;
+            }
+
+            $name = $_POST["name"];
+            if(!validateName($name)) {
+                failedResponseMessage("Invalid database name.");
+                return;
+            }
+
+            $mode = $_POST["name"];
+            if(!validateDatabaseMode($mode)) {
+                failedResponseMessage("Invalid database mode.");
+                return;
+            }
+
+            $content = $_POST["name"];
+            if(!validateDatabaseContent($content)) {
+                failedResponseMessage("Invalid database content.");
+                return;
+            }
+
+            array_push($args, $name, $mode, $content);
             break;
     
         default:
