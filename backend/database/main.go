@@ -27,25 +27,23 @@ func main() {
 	switch args[0] {
 	case "create":
 		failOnUmatchedArgSize(5, args)
-		createDbCallback(apiKey, args)
+		callback = createDbCallback(apiKey, args)
 
 	case "get_by_name":
 		failOnUmatchedArgSize(3, args)
-		getByNameCallback(apiKey, args)
-		break
+		callback = getByNameCallback(apiKey, args)
 
 	case "set_db_mode":
 		failOnUmatchedArgSize(4, args)
-		setDbModeCallback(apiKey, args)
-		break
+		callback = setDbModeCallback(apiKey, args)
 
 	case "get_db_mode":
 		failOnUmatchedArgSize(3, args)
-		getDbModeCallback(apiKey, args)
-		break
+		callback = getDbModeCallback(apiKey, args)
 
-	case "fetch_all":
-		break
+	case "alias_fetch_all":
+		failOnUmatchedArgSize(2, args)
+		callback = fetchAllCallback(apiKey, args)
 	}
 
 	DispatchWithCallback(callback)
