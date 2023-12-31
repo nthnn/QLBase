@@ -1477,7 +1477,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
         case "db_read":
             $backend = "database";
-            array_push($args, "get_db_mode", $apiKey);
+            array_push($args, "read_db", $apiKey);
         
             if(!isset($_POST["name"]) || empty($_POST["name"])) {
                 failedResponseMessage("Insufficient parameter arity.");
