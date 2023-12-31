@@ -135,12 +135,12 @@
         <table class="table table-hover w-100" id="analytics-id-table">
             <thead>
                 <tr>
-                    <td>Tracker</td>
-                    <td>Anonymous ID</td>
-                    <td>User ID</td>
-                    <td>Timedate</td>
-                    <td>Payload</td>
-                    <td>Options</td>
+                    <th>Tracker</th>
+                    <th>Anonymous ID</th>
+                    <th>User ID</th>
+                    <th>Timedate</th>
+                    <th>Payload</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody id="analytics-id-tbody">
@@ -156,13 +156,13 @@
         <table class="table table-hover w-100" id="analytics-track-table">
             <thead>
                 <tr>
-                    <td>Tracker</td>
-                    <td>Anonymous ID</td>
-                    <td>User ID</td>
-                    <td>Event</td>
-                    <td>Timedate</td>
-                    <td>Payload</td>
-                    <td>Options</td>
+                    <th>Tracker</th>
+                    <th>Anonymous ID</th>
+                    <th>User ID</th>
+                    <th>Event</th>
+                    <th>Timedate</th>
+                    <th>Payload</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody id="analytics-track-tbody">
@@ -178,14 +178,14 @@
         <table class="table table-hover w-100" id="analytics-paging-table">
             <thead>
                 <tr>
-                    <td>Tracker</td>
-                    <td>Anonymous ID</td>
-                    <td>User ID</td>
-                    <td>Name</td>
-                    <td>Category</td>
-                    <td>Timedate</td>
-                    <td>Payload</td>
-                    <td>Options</td>
+                    <th>Tracker</th>
+                    <th>Anonymous ID</th>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Timedate</th>
+                    <th>Payload</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody id="analytics-paging-tbody">
@@ -201,9 +201,9 @@
         <table class="table table-hover w-100" id="analytics-alias-table">
             <thead>
                 <tr>
-                    <td>Anonymous ID</td>
-                    <td>User ID</td>
-                    <td>Options</td>
+                    <th>Anonymous ID</th>
+                    <th>User ID</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody id="analytics-alias-tbody">
