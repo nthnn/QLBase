@@ -45,6 +45,10 @@ func main() {
 		failOnUmatchedArgSize(4, args)
 		callback = writeDbCallback(apiKey, args)
 
+	case "read_db":
+		failOnUmatchedArgSize(3, args)
+		callback = readDbCallback(apiKey, args)
+
 	case "delete_db":
 		failOnUmatchedArgSize(3, args)
 		callback = deleteDbCallback(apiKey, args)
