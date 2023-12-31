@@ -41,7 +41,7 @@ func main() {
 		failOnUmatchedArgSize(3, args)
 		callback = getDbModeCallback(apiKey, args)
 
-	case "alias_fetch_all":
+	case "fetch_all":
 		failOnUmatchedArgSize(2, args)
 		callback = fetchAllCallback(apiKey, args)
 	}
