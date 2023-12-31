@@ -1432,6 +1432,31 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $name);
             break;
 
+        case "db_set_mode":
+            $backend = "database";
+            array_push($args, "set_db_mode", $apiKey);
+
+            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["mode"]) || empty($_POST["mode"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $name = $_POST["name"];
+            if(!validateName($name)) {
+                failedResponseMessage("Invalid database name.");
+                return;
+            }
+
+            $mode = $_POST["mode"];
+            if(!validateDatabaseMode($mode)) {
+                failedResponseMessage("Invalid database mode.");
+                return;
+            }
+
+            array_push($args, $name, $mode);
+            break;
+
         default:
             failedResponse();
             return;
