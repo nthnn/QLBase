@@ -1413,7 +1413,25 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
             array_push($args, $name, $mode, $content);
             break;
-    
+
+        case "db_get_by_name":
+            $backend = "database";
+            array_push($args, "get_by_name", $apiKey);
+
+            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $name = $_POST["name"];
+            if(!validateName($name)) {
+                failedResponseMessage("Invalid database name.");
+                return;
+            }
+
+            array_push($args, $name);
+            break;
+
         default:
             failedResponse();
             return;
