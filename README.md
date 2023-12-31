@@ -40,6 +40,7 @@ QLBase is a powerful open-source decentralizable backend solution designed to pr
     * [👥 Contributors](#-contributors)
 - [📷 Screenshots](#-screenshots)
 - [💙 Donating](#-donating)
+- [⭐️ Star History](#-star-history)
 - [📜 License](#-license)
 
 ## 🎯 Features
@@ -274,6 +275,16 @@ QLBase is an open-source project and is voluntarily developed. If you find QLBas
 |-------------------|----------------------------|
 
 QLBase developers are profoundly grateful for your support! Your generosity allows us to continue developing and maintaining QLBase, making it better with each update. Your contribution is not just a donation; it's a vote of confidence in the project and a testament to the strength of the open-source community. Your contribution will help cover fund new features and support the community and developers (?) behind QLBase.
+
+## ⭐️ Star History
+
+<a href="https://star-history.com/#nthnn/QLBase&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=nthnn/QLBase&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=nthnn/QLBase&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=nthnn/QLBase&type=Date" />
+  </picture>
+</a>
 
 ## 📜 License
 
