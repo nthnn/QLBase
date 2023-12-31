@@ -18,6 +18,12 @@
             "npm run build-only",
             "cd .."
 		],
+		"build-debug-docs": [
+			"cd documentations",
+            "npm install",
+            "npm run build-local",
+            "cd .."
+		],
 		"clean-up": [
 			"rm -rf docs/"
 		],
