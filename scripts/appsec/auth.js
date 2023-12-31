@@ -189,7 +189,9 @@ const fetchUsers = ()=> {
                     "</button></td></tr>";
             }
 
+            dataTable.clear().destroy();
             $("#user-table").html(accRows);
+            dataTable = initDataTable("#auth-table", "No authentication accounts found.");
         }
     });
 };

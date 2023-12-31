@@ -54,7 +54,7 @@ const fetchSMSLogs = ()=> {
             prevSMSHash = CryptoJS.MD5(JSON.stringify(data)).toString();
 
             if(data.value.length == 0 && (prevSMSHash != "" ||
-                prevSMSHash != "")) {
+                prevSMSHash == "5e28988ff412b216da4a633fa9ff52f5")) {
                 dataTable.clear().destroy();
                 dataTable = initDataTable("#sms-table", "No SMS OTP verficiations found.");
 

@@ -324,8 +324,13 @@ const fetchAllId = ()=> {
                 i++;
             }
 
+            idDataTable.clear().destroy();
             $("#analytics-id-tbody").html(tbody);
-        }
+            idDataTable = initDataTable(
+                "#analytics-id-table",
+                "No analytic identification tracks found."
+            );
+    }
     });
 };
 
@@ -364,7 +369,12 @@ const fetchAllTrack = ()=> {
                 i++;
             }
 
+            trackDataTable.clear().destroy();
             $("#analytics-track-tbody").html(tbody);
+            trackDataTable = initDataTable(
+                "#analytics-track-table",
+                "No analytic trackers found."
+            );
         }
     });
 };
@@ -404,7 +414,12 @@ const fetchAllPage = ()=> {
                 i++;
             }
 
+            pageDataTable.clear().destroy();
             $("#analytics-paging-tbody").html(tbody);
+            pageDataTable = initDataTable(
+                "#analytics-paging-table",
+                "No analytic page trackers found."
+            );
         }
     });
 };
@@ -440,7 +455,12 @@ const fetchAllAlias = ()=> {
             for(let row of data.value)
                 tbody += renderToAliasTable(row[0], row[1]);
 
+            aliasDataTable.clear().destroy();
             $("#analytics-alias-tbody").html(tbody);
+            aliasDataTable = initDataTable(
+                "#analytics-alias-table",
+                "No analytic aliased records found."
+            );
         }
     });
 };
