@@ -301,7 +301,7 @@ func deleteDbCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		query, err = d.Query("DELETE FROM " + apiKey + " WHERE name=\"" + name + "\"")
+		query, err = d.Query("DELETE FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
 			query.Close()
