@@ -28,6 +28,14 @@
 			"qrepo run clean-up",
 			"echo \"\\033[92m[+]\\033[0m Deployment-ready successfully generated!\""
 		],
+		"start": [
+			"cd /Applications/XAMPP/xamppfiles",
+			"sudo ./xampp start"
+		],
+		"stop": [
+			"cd /Applications/XAMPP/xamppfiles",
+			"sudo ./xampp stop"
+		],
 		"zip-up": [
 			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
 			"zip -q -r qlbase.zip api assets bin components controller docs scripts side styles views favicon.ico index.php sandbox.php"
