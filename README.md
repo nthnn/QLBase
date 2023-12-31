@@ -18,7 +18,7 @@
 
 ## 🪁 What is QLBase?
 
-QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, file storage, and even machine learning as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
+QLBase is a powerful open-source decentralizable backend solution designed to provide scalable and reliable services for a wide range of applications. It offers a comprehensive set of features including user account authentication, SMS verification via OTP (One-Time Password), data analytics, database storage, and even file storage as a software service. QLBase aims to be a flexible alternative to traditional cloud-based services, empowering developers to build robust applications with ease.
 
 ## 𝌞 Table of Contents
 
@@ -52,7 +52,6 @@ QLBase offers a wide array of features that make it a versatile, scalable, relia
 - **Data Analytics**: QLBase includes powerful data analytics capabilities, enabling you to identify, track, and page data efficiently. QLBase offers data analytics identification, tracking, paging, and even making aliases for both registered users and anonymous guess.
 - **Database**: Store and manage your data in QLBase's scalable and reliable database storage. Key features of QLBase's database storage include
 - **File Storage**: QLBase simplifies file management within your application. QLBase file storage API service offers: file uploads, file retrievals, and access controls.
-- **Machine Learning**: Leverage machine learning as a software service through QLBase. Integrate AI capabilities into your applications without the hassle of managing complex infrastructure. QLBase's machine learning features includes model integration, custom model training, and scalable infrastructure.
 
 ## 🚀 Deployment
 

@@ -25,7 +25,6 @@ import { RouterLink } from 'vue-router';
             <RouterLink to="/data-analytics" class="btn btn-outline-primary">Data Analytics</RouterLink>
             <RouterLink to="/database" class="btn btn-outline-primary">Database</RouterLink>
             <RouterLink to="/file-storage" class="btn btn-outline-primary">File Storage</RouterLink>
-            <RouterLink to="/machine-learning" class="btn btn-outline-primary">Machine Learning</RouterLink>
         </div>
     </div>
     <br/>
