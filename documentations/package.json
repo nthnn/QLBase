@@ -8,6 +8,7 @@
     "vercel-build": "vite build --outDir ./dist --base .",
     "preview": "vite preview",
     "build-only": "vite build --outDir ../docs",
+    "build-local": "vite build --outDir ../docs --base /QLBase/docs",
     "clean": "rimraf -rf ../docs",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
