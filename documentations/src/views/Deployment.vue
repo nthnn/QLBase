@@ -18,7 +18,7 @@
     <ul>
         <li><a href="https://git-scm.com" target="_blank" class="text-decoration-none">Git</a> &mdash; Free and open source distributed version control system designed to handle everything.</li>
         <li><a href="https://go.dev" target="_blank" class="text-decoration-none">Go Compiler</a> &mdash; Open-source programming language supported by Google.</li>
-        <li><a href="https://github.com/nthnn/QLBase" target="_blank" class="text-decoration-none">Qrepo</a> &mdash; Simple and easy-to-use all-for-one build tool for Windows, Linux, and macOS.</li>
+        <li><a href="https://github.com/nthnn/Qrepo" target="_blank" class="text-decoration-none">Qrepo</a> &mdash; Simple and easy-to-use all-for-one build tool for Windows, Linux, and macOS.</li>
         <li><a href="https://nodejs.org/en" target="_blank" class="text-decoration-none">NodeJS</a> &mdash; An open-source, cross-platform JavaScript runtime environment.</li>
         <li><a href="https://www.apachefriends.org" target="_blank" class="text-decoration-none">XAMPP</a> &mdash; Completely free, easy to install Apache distribution containing MariaDB, PHP, and Perl.</li>
     </ul>
