@@ -179,6 +179,56 @@ func getDbModeCallback(apiKey string, args []string) func(*sql.DB) {
 	}
 }
 
+func writeDbCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		name := args[2]
+		content := args[3]
+		query, err := d.Query("SELECT mode FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			query.Close()
+
+			return
+		}
+
+		count := 0
+		mode := ""
+
+		for query.Next() {
+			query.Scan(&mode)
+			count++
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("Cannot resolve database name.")
+			query.Close()
+
+			return
+		}
+
+		if !strings.Contains(mode, "w") {
+			proc.ShowFailedResponse("Write operation denied.")
+			query.Close()
+
+			return
+		}
+
+		query, err = d.Query("UPDATE " + apiKey +
+			"_database SET content=\"" + content +
+			"\" WHERE name=\"" + name + "\"")
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			query.Close()
+
+			return
+		}
+
+		proc.ShowSuccessResponse()
+		query.Close()
+	}
+}
+
 func deleteDbCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		name := args[2]
