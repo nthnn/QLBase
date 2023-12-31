@@ -94,6 +94,7 @@
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
+<script src="scripts/vendors/FileSaver.min.js"></script>
 <script src="scripts/datatable-init.js"></script>
 <script src="scripts/appsec/database.js"></script>
 
