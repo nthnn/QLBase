@@ -71,6 +71,9 @@ const databaseActions = {
     "db_get_by_name": ["Database: Get By Name", "{\n\t\"name\": \"\"\n}"],
     "db_set_mode": ["Database: Set Mode", "{\n\t\"name\": \"\",\n\t\"mode\": \"\"\n}"],
     "db_get_mode": ["Database: Get Mode", "{\n\t\"name\": \"\"\n}"],
+    "db_read": ["Database: Read Content", "{\n\t\"name\": \"\"\n}"],
+    "db_write": ["Database: Write Content", "{\n\t\"name\": \"\",\n\t\"content\": \"\"\n}"],
+    "db_delete": ["Database: Delete", "{\n\t\"name\": \"\"\n}"],
     "db_fetch_all": ["Database: Fetch All", "{}"]
 };
 
