@@ -1475,6 +1475,49 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $name);
             break;
 
+        case "db_write":
+            $backend = "database";
+            array_push($args, "set_db_mode", $apiKey);
+    
+            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["content"]) || empty($_POST["content"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $name = $_POST["name"];
+            if(!validateName($name)) {
+                failedResponseMessage("Invalid database name.");
+                return;
+            }
+    
+            $content = $_POST["content"];
+            if(!validateDatabaseContent($content)) {
+                failedResponseMessage("Invalid database mode.");
+                return;
+            }
+
+            array_push($args, $name, $content);
+            break;
+
+        case "db_delete":
+            $backend = "database";
+            array_push($args, "delete_db", $apiKey);
+        
+            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+    
+            $name = $_POST["name"];
+            if(!validateName($name)) {
+                failedResponseMessage("Invalid database name.");
+                return;
+            }
+    
+            array_push($args, $name);
+            break;
+
         case "db_fetch_all":
             $backend = "database";
             array_push($args, "fetch_all", $apiKey);
