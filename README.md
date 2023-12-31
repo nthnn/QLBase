@@ -69,6 +69,7 @@ QLBase requires several software from downloading its repository to building and
 
 - [Git](https://git-scm.com/) — Free and open source distributed version control system designed to handle everything.
 - [Go Compiler](https://go.dev/) — Open-source programming language supported by Google.
+- [Qrepo](https://github.com/nthnn/Qrepo) - Simple and easy-to-use all-for-one build tool for Windows, Linux, and macOS.
 - [NodeJS](https://nodejs.org/en) — An open-source, cross-platform JavaScript runtime environment.
 - [XAMPP](https://www.apachefriends.org/) — Completely free, easy to install Apache distribution containing MariaDB, PHP, and Perl.
 
