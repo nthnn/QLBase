@@ -15,12 +15,6 @@
 		"build-docs": [
 			"cd documentations",
             "npm install",
-            "npm run build-only",
-            "cd .."
-		],
-		"build-debug-docs": [
-			"cd documentations",
-            "npm install",
             "npm run build-local",
             "cd .."
 		],
