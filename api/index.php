@@ -1382,7 +1382,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, "alias_fetch_all", $apiKey);
             break;
 
-        case "create_db":
+        case "db_create":
             $backend = "database";
             array_push($args, "create", $apiKey);
 

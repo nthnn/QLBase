@@ -67,7 +67,7 @@ const dataAnalyticsActions = {
 };
 
 const databaseActions = {
-    "create_db": ["Database: Create", "{\n\t\"name\": \"\",\n\t\"mode\": \"\",\n\t\"content\": \"\"\n}"],
+    "db_create": ["Database: Create", "{\n\t\"name\": \"\",\n\t\"mode\": \"\",\n\t\"content\": \"\"\n}"],
     "db_get_by_name": ["Database: Get By Name", "{\n\t\"name\": \"\"\n}"],
     "db_set_mode": ["Database: Set Mode", "{\n\t\"name\": \"\",\n\t\"mode\": \"\"\n}"],
     "db_get_mode": ["Database: Get Mode", "{\n\t\"name\": \"\"\n}"],
