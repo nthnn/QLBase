@@ -47,6 +47,7 @@ window.onload = ()=> {
         data: {
             labels: xLabels,
             datasets: [{
+                label: "Traffic Count",
                 pointRadius: 1,
                 borderColor: "#158cba",
                 data: yLabels,
@@ -54,6 +55,31 @@ window.onload = ()=> {
         },
         options: {
             legend: {display: false},
+            responsive: true,
+            interaction: {
+                mode: 'index',
+                intersect: false
+            },
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Days Ago"
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Request Traffic Count"
+                    }
+                }]
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Request Network Traffic Data"
+                }
+            }
         }
     });
 
