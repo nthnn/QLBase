@@ -154,13 +154,20 @@
 <div class="container">
     <br/>
     <h1>Tech Stack</h1>
-    <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you.</p>
+    <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you and your community.</p>
 
     <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
     <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
     <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
     <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
     <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
+    <a href="https://vitejs.dev/" target="_blank"><img src="assets/ic-vite.png" width="64" class="m-2" /></a>
+    <a href="https://vuejs.org/" target="_blank"><img src="assets/ic-vue.png" width="64" class="m-2" /></a>
+    <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/ic-typescript.png" width="64" class="m-2" /></a>
+    <a href="https://git-scm.com/" target="_blank"><img src="assets/ic-git.png" width="64" class="m-2" /></a>
+    <a href="https://heroicons.com/" target="_blank"><img src="assets/ic-heroicons.png" width="64" class="m-2" /></a>
+    <a href="https://www.arduino.cc/" target="_blank"><img src="assets/ic-arduino.png" width="64" class="m-2" /></a>
+    <a href="https://platformio.org/" target="_blank"><img src="assets/ic-platformio.png" width="64" class="m-2" /></a>
 </div>
 
 <?php include_once("components/footer.html"); ?>
