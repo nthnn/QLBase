@@ -22,7 +22,7 @@
                     <p>QLBase is an open-source scalable and reliable backend solution crafted for individuals and
                         businesses looking to streamline their web and mobile app development process without compromising
                         on performance and security. With a focus on simplicity, efficiency, and control, QLBase offers an
-                        alternative to traditional cloud-based backend services. <a href="documentation.html"
+                        alternative to traditional cloud-based backend services. <a href="docs"
                             class="text-decoration-none">Learn More &#x2192;</a></p>
                     <br />
 
