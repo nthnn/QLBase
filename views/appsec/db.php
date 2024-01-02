@@ -1,7 +1,7 @@
 <h1>Database Storage</h1>
 <hr/>
 
-<table class="table table-hover" id="db-table">
+<table class="table table-hover w-100" id="db-table" cellspacing="0">
     <thead>
         <th>Name</th>
         <th>Mode</th>
@@ -157,6 +157,7 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/dataTables.responsive.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/vendors/FileSaver.min.js"></script>

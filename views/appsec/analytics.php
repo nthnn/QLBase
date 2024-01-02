@@ -116,23 +116,24 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item" role="presentation">
-        <a class="nav-link active" data-bs-toggle="tab" href="#identify" aria-selected="true" role="tab"><i class="bi bi-search"></i> Identify</a>
+        <a class="nav-link active" data-bs-toggle="tab" href="#identify" aria-selected="true" role="tab"><i class="bi bi-search"></i> <span class="desktop-only">Identify</span></a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="#tracking" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-signpost"></i> Tracking</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#tracking" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-signpost"></i> <span class="desktop-only">Tracking</span></a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="#paging" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-file-earmark"></i> Paging</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#paging" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-file-earmark"></i> <span class="desktop-only">Paging</span></a>
     </li>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" data-bs-toggle="tab" href="#alias" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-people"></i> Alias</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#alias" aria-selected="false" tabindex="-1" role="tab"><i class="bi bi-people"></i> <span class="desktop-only">Alias</span></a>
     </li>
 </ul>
 <br/>
 
 <div class="tab-content">
     <div class="tab-pane fade show active" id="identify" role="tabpanel">
-        <table class="table table-hover w-100" id="analytics-id-table">
+        <h3 class="mobile-only">Identification Analytics<hr/></h3>
+        <table class="table table-hover w-100" id="analytics-id-table" cellspacing="0">
             <thead>
                 <tr>
                     <th>Tracker</th>
@@ -153,7 +154,8 @@
     </div>
 
     <div class="tab-pane fade" id="tracking" role="tabpanel">
-        <table class="table table-hover w-100" id="analytics-track-table">
+        <h3 class="mobile-only">Tracking Analytics<hr/></h3>
+        <table class="table table-hover w-100" id="analytics-track-table" cellspacing="0">
             <thead>
                 <tr>
                     <th>Tracker</th>
@@ -175,7 +177,8 @@
     </div>
 
     <div class="tab-pane fade" id="paging" role="tabpanel">
-        <table class="table table-hover w-100" id="analytics-paging-table">
+        <h3 class="mobile-only">Page Analytics<hr/></h3>
+        <table class="table table-hover w-100" id="analytics-paging-table" cellspacing="0">
             <thead>
                 <tr>
                     <th>Tracker</th>
@@ -198,7 +201,8 @@
     </div>
 
     <div class="tab-pane fade" id="alias" role="tabpanel">
-        <table class="table table-hover w-100" id="analytics-alias-table">
+        <h3 class="mobile-only">Tracker Aliases<hr/></h3>
+        <table class="table table-hover w-100" id="analytics-alias-table" cellspacing="0">
             <thead>
                 <tr>
                     <th>Anonymous ID</th>
@@ -214,6 +218,7 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/dataTables.responsive.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>

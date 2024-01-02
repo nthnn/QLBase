@@ -3,6 +3,7 @@ const initDataTable = (tableId, emptyMessage)=> {
         "language": {
             "emptyTable": emptyMessage,
             "zeroRecords": emptyMessage
-        }
+        },
+        "responsive": true
     });
 };

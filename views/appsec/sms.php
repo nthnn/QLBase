@@ -1,7 +1,7 @@
 <h1>SMS Verification</h1>
 <hr/>
 
-<table class="table table-hover" id="sms-table">
+<table class="table table-hover w-100" id="sms-table" cellspacing="0">
     <thead>
         <th>Recipient</th>
         <th>Code</th>
@@ -95,6 +95,7 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/dataTables.responsive.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/datatable-init.js"></script>

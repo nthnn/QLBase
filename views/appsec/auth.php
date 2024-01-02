@@ -1,7 +1,7 @@
 <h1>Authentication</h1>
 <hr/>
 
-<table id="auth-table" class="table table-hover">
+<table id="auth-table" class="table table-hover w-100" cellspacing="0">
     <thead>
         <th>Username</th>
         <th>Email</th>
@@ -201,6 +201,7 @@
 
 <script src="scripts/vendors/jquery.min.js"></script>
 <script src="scripts/vendors/jquery.dataTables.min.js"></script>
+<script src="scripts/vendors/dataTables.responsive.min.js"></script>
 <script src="scripts/vendors/cryptojs.core.min.js"></script>
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/util.js"></script>
