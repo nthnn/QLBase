@@ -103,6 +103,70 @@ const fetchDb = ()=> {
     });
 };
 
+const showError = (id, message)=> {
+    $("#" + id + "-error").removeClass("d-none");
+    $("#" + id + "-error").addClass("d-block");
+    $("#" + id + "-error").html(message);
+};
+
+const createBtn = RotatingButton("#create-btn");
+$("#create-btn").click(()=> {
+    let dbName = $("#db-name").val(),
+        dbMode = $("input[name=\"db-mode\"]:checked").val(),
+        dbContent = $("#db-content").val();
+
+    createBtn.show();
+    $("#db-name-error")
+        .removeClass("d-block")
+        .addClass("d-none");
+    $("#db-content-error")
+        .removeClass("d-block")
+        .addClass("d-none");
+    $("#db-create-error")
+        .removeClass("d-block")
+        .addClass("d-none");
+
+    if(!/^[A-Za-z\s\"-]+$/.test(dbName)) {
+        createBtn.hide();
+        showError("db-name", "Invalid database name.");
+        return;
+    }
+
+    try { JSON.parse(dbContent); }
+    catch(error) {
+        createBtn.hide();
+        showError("db-content", "Invalid JSON string content.");
+        return;
+    }
+
+    $.post({
+        url: "api/index.php?action=db_create",
+        type: "POST",
+        dataType: "json",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            name: dbName,
+            mode: dbMode,
+            content: btoa(dbContent)
+        },
+        success: (data)=> {
+            createBtn.hide();
+            if(data.result == '0') {
+                $("#db-create-error")
+                    .removeClass("d-none")
+                    .addClass("d-block");
+                return;
+            }
+
+            $("#create-db-modal").modal("hide");
+            $("#success-modal").modal("show");
+        }
+    });
+});
+
 $(document).ready(()=> {
     dataTable = initDataTable("#db-table", "No database found.");
 

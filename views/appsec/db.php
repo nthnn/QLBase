@@ -12,7 +12,7 @@
 </table>
 
 <br/>
-<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#add-db-modal">
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#create-db-modal">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
     </svg>
@@ -29,7 +29,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p id="success-message"></p>
+                <p id="success-message">Database successfully created!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -98,11 +98,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="add-db-modal" tabindex="-1" role="dialog" aria-labelledby="add-db-modalLabel" aria-hidden="true">
+<div class="modal fade" id="create-db-modal" tabindex="-1" role="dialog" aria-labelledby="create-db-modalLabel" aria-hidden="true">
     <div class="modal-dialog shadow" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="add-db-modalLabel">New Database</h5>
+                <h5 class="modal-title" id="create-db-modalLabel">New Database</h5>
                 <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -115,26 +115,26 @@
                 <label class="form-label mt-2">I/O Permission Mode</label>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="db-mode" id="read-mode" checked>
+                        <input class="form-check-input" type="radio" name="db-mode" id="read-mode" value="r"></input>
                         <label class="form-check-label" for="read-mode">Read Mode</label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="db-mode" id="write-mode">
+                        <input class="form-check-input" type="radio" name="db-mode" id="write-mode" value="w"></input
                         <label class="form-check-label" for="write-mode">Write Mode</label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="db-mode" id="read-write-mode">
+                        <input class="form-check-input" type="radio" name="db-mode" id="read-write-mode" value="wr" checked></input>
                         <label class="form-check-label" for="read-write-mode">Read/Write Mode</label>
                     </div>
                 </div>
 
                 <label for="db-content" class="form-label mt-2">Database Content</label>
-                <textarea class="form-control" id="db-content" name="db-content" placeholder="Database Content" rows="10">{}</textarea>
+                <textarea class="form-control" id="db-content" name="db-content" placeholder="Database Content" rows="5">{}</textarea>
                 <p class="text-danger d-none" id="db-content-error"></p>
 
-                <p class="text-danger d-none mt-2" id="add-error"></p>
+                <p class="text-danger d-none mt-2" id="db-create-error"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -161,6 +161,7 @@
 <script src="scripts/vendors/cryptojs.md5.min.js"></script>
 <script src="scripts/vendors/FileSaver.min.js"></script>
 <script src="scripts/datatable-init.js"></script>
+<script src="scripts/rotating-button.js"></script>
 <script src="scripts/appsec/database.js"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>
