@@ -10,7 +10,7 @@ if(!isset($_GET["id"]) || empty($_GET["id"]) || !validateAppId($_GET["id"])) {
 
 $appId = $_GET["id"];
 $page = "overview";
-$pages = ["auth", "sms", "db", "analytics", "ml", "storage", "settings"];
+$pages = ["auth", "sms", "db", "analytics", "ml", "storage", "logs", "settings"];
 
 if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
@@ -122,6 +122,16 @@ const App = {
                         </svg>
                         File Storage
                     </a>
+                </div>
+                <hr/>
+
+                <div class="btn-group-vertical shadow w-100">
+                    <a href="<?php echo "?page=app&id=".$appId."&section=logs"; ?>" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="14" height="14" class="board-icons">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
+                        </svg>
+                        Logs
+                    </a>
 
                     <a href="<?php echo "?page=app&id=".$appId."&section=settings"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="14" height="14" class="board-icons">
@@ -167,6 +177,12 @@ const App = {
                     <a href="<?php echo "?page=app&id=".$appId."&section=storage"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                        </svg>
+                    </a>
+
+                    <a href="<?php echo "?page=app&id=".$appId."&section=logs"; ?>" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="14" height="14" class="board-icons">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
                         </svg>
                     </a>
 
