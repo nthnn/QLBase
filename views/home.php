@@ -1,71 +1,71 @@
-<div class="desktop-only"><br /><br /></div>
-
-<div class="container">
-    <div class="row animate__animated animate__slideInDown">
-        <div class="col-lg-1"></div>
-
-        <div class="col-lg-6">
-            <div class="container">
-                <br />
-                <br class="desktop-only" />
-                
-                <div class="card card-body border-primary shadow">
-                    <center class="mobile-only">
-                        <br />
-                        <img src="assets/qlbase-logo.png" width="70%" />
-                        <br /><br />
-                    </center>
-
-                    <h1 class="desktop-only">QLBase</h1>
-                    <h1 class="mobile-only" align="center">QLBase</h1>
-
-                    <p>QLBase is an open-source scalable and reliable backend solution crafted for individuals and
-                        businesses looking to streamline their web and mobile app development process without compromising
-                        on performance and security. With a focus on simplicity, efficiency, and control, QLBase offers an
-                        alternative to traditional cloud-based backend services. <a href="docs"
-                            class="text-decoration-none">Learn More &#x2192;</a></p>
-                    <br />
-
-                    <div class="btn-group w-100" role="group">
-                        <a class="btn btn-primary" href="?page=sign-up">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="18" height="18" class="mb-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                            Sign-up
-                        </a>
-
-                        <a class="btn btn-outline-primary" href="?page=log-in">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="18" height="18" class="mb-1">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                            </svg>
-                            Log-in
-                        </a>
-                    </div>
-
-                    <a href="?page=forgot" class="text-decoration-none text-primary mt-2">Forgot your password?</a>
-                </div>
+<nav class="navbar navbar-expand-lg mt-2">
+    <div class="container-fluid">
+        <a class="navbar-brand px-4" href="#"><img src="assets/qlbase-logo.png" width="48" /> QLBase</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor04">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#why-qlbase"><i class="bi bi-airplane"></i> Why QLBase?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="docs/">Getting Started</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/nthnn/QLBase" target="_blank">GitHub</a>
+                </li>
+            </ul>
+            <div class="d-fle px-4">
+                <p class="mt-2 pt-1"><a href="?page=log-in" class="text-decoration-none">Log-in</a> or
+                <a href="?page=sign-up" class="btn btn-outline-primary">Sign-up</a></p>
             </div>
         </div>
+    </div>
+</nav>
 
-        <div class="col-lg-4 desktop-only pt-2 mt-2">
-            <br/><br/>
-            <center>
-                <img src="assets/qlbase-logo.png" width="100%" />
-            </center>
+<br /><br />
+
+<div class="container">
+    <div align="center" class="w-100">
+        <h3 class="col-lg-6"><i>Decentralizable</i>, <i>scalable</i>, and <i>reliable</i> backend solution alternative to traditional <b>NoSQL</b>, <b>SaaS</b>, and <b>cloud-based services</b>.</h3>
+        <br/>
+
+        <div class="desktop-only">
+            <ol class="breadcrumb col-lg-8 text-info fw-bold rounded-0 d-flex justify-content-center shadow pe-none">
+                <li class="breadcrumb-item">Authentication</li>
+                <li class="breadcrumb-item">SMS Verification</li>
+                <li class="breadcrumb-item">Data Analytics</li>
+                <li class="breadcrumb-item">Database</li>
+                <li class="breadcrumb-item">File Storage</li>
+            </ol>
         </div>
-
-        <div class="col-lg-1"></div>
     </div>
 </div>
 
-<div class="animate__animated animate__slow animate__slideInUp">
-    <img src="assets/wave-1.svg" class="w-100" />
+<div class="row">
+    <div class="col-6">
+        <img src="./assets/screenshot_right.png" width="100%" />
+    </div>
 
+    <div class="col-6">
+        <img src="./assets/screenshot_left.png" width="100%" />
+    </div>
+</div>
+<br class="mobile-break" />
+
+<div class="my-2">
     <div class="bg-primary text-white">
+        <br id="why-qlbase"/><br/><br/>
+
         <div class="container">
             <center>
                 <h1 class="m-0 bg-primary p-2">Why QLBase?</h1>
                 <hr/>
+                <p>QLBase is an open-source scalable and reliable backend solution crafted for individuals and businesses looking to streamline their web and mobile app development process without compromising on performance and security. With a focus on simplicity, efficiency, and control, QLBase offers an alternative to traditional cloud-based backend services.</p>
             </center>
 
             <div class="row equal-cols">
@@ -139,35 +139,40 @@
 
         <center>
             <br/><br/>
-            <button class="btn btn-lg btn-outline-light">
+            <a class="btn btn-lg btn-outline-light" href="docs/">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="24" height="24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
                 </svg>
                 Learn More
-            </button>
+            </a>
         </center>
-    </div>
 
-    <img src="assets/wave-2.svg" class="w-100" />
+        <br/><br/><br/>
+    </div>
 </div>
 
 <div class="container">
-    <br/>
-    <h1>Tech Stack</h1>
-    <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you and your community.</p>
+    <br/><br/>
 
-    <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
-    <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
-    <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
-    <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
-    <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
-    <a href="https://vitejs.dev/" target="_blank"><img src="assets/ic-vite.png" width="64" class="m-2" /></a>
-    <a href="https://vuejs.org/" target="_blank"><img src="assets/ic-vue.png" width="64" class="m-2" /></a>
-    <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/ic-typescript.png" width="64" class="m-2" /></a>
-    <a href="https://git-scm.com/" target="_blank"><img src="assets/ic-git.png" width="64" class="m-2" /></a>
-    <a href="https://heroicons.com/" target="_blank"><img src="assets/ic-heroicons.png" width="64" class="m-2" /></a>
-    <a href="https://www.arduino.cc/" target="_blank"><img src="assets/ic-arduino.png" width="64" class="m-2" /></a>
-    <a href="https://platformio.org/" target="_blank"><img src="assets/ic-platformio.png" width="64" class="m-2" /></a>
+    <div class="border-primary border p-4">
+        <h1>Tech Stack</h1>
+        <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you and your community.</p>
+
+        <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
+        <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
+        <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
+        <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
+        <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
+        <a href="https://vitejs.dev/" target="_blank"><img src="assets/ic-vite.png" width="64" class="m-2" /></a>
+        <a href="https://vuejs.org/" target="_blank"><img src="assets/ic-vue.png" width="64" class="m-2" /></a>
+        <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/ic-typescript.png" width="64" class="m-2" /></a>
+        <a href="https://git-scm.com/" target="_blank"><img src="assets/ic-git.png" width="64" class="m-2" /></a>
+        <a href="https://heroicons.com/" target="_blank"><img src="assets/ic-heroicons.png" width="64" class="m-2" /></a>
+        <a href="https://www.arduino.cc/" target="_blank"><img src="assets/ic-arduino.png" width="64" class="m-2" /></a>
+        <a href="https://platformio.org/" target="_blank"><img src="assets/ic-platformio.png" width="64" class="m-2" /></a>
+    </div>
+
+    <br/>
 </div>
 
 <?php include_once("components/footer.html"); ?>

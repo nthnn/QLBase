@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
-    <div class="container animate__animated animate__slideInDown" align="center">
+    <div class="container" align="center">
         <div class="col-lg-8" align="left">
             <div class="card card-body border-primary shadow">
                 <div class="row">
