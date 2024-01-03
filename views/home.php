@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg mt-2">
+<nav class="navbar navbar-expand-lg mt-lg-2">
     <div class="container-fluid">
-        <a class="navbar-brand px-4" href="#"><img src="assets/qlbase-logo.png" width="48" /> QLBase</a>
+        <a class="navbar-brand px-lg-4" href="#"><img src="assets/qlbase-logo.png" width="48" /> QLBase</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,9 +40,17 @@
                 </li>
             </ul>
             <div class="d-fle px-4">
-                <p class="mt-2 pt-1"><a href="?page=log-in" class="text-decoration-none">Log-in</a> or
-                <a href="?page=sign-up" class="btn btn-outline-primary">Sign-up</a></p>
+                <div class="desktop-only">
+                    <p class="mt-2 pt-1"><a href="?page=log-in" class="text-decoration-none">Log-in</a> or
+                    <a href="?page=sign-up" class="btn btn-outline-primary">Sign-up</a></p>
+                </div>
+
+                <div class="mobile-only" align="center">
+                    <p class="mt-2 pt-1"><a href="?page=log-in" class="text-decoration-none">Log-in</a> or
+                    <a href="?page=sign-up" class="btn btn-outline-primary">Sign-up</a></p>
+                </div>
             </div>
+            <hr class="mobile-only"/>
         </div>
     </div>
 </nav>
@@ -76,7 +84,10 @@
         <img src="./assets/screenshot_left.png" width="100%" />
     </div>
 </div>
-<br class="mobile-break" />
+
+<div class="mobile-break">
+    <br/><br/>
+</div>
 
 <div class="my-2">
     <div class="bg-primary text-white">
@@ -161,21 +172,27 @@
         <h1>Tech Stack</h1>
         <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you and your community.</p>
 
-        <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
-        <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
-        <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
-        <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
-        <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
-        <a href="https://vitejs.dev/" target="_blank"><img src="assets/ic-vite.png" width="64" class="m-2" /></a>
-        <a href="https://vuejs.org/" target="_blank"><img src="assets/ic-vue.png" width="64" class="m-2" /></a>
-        <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/ic-typescript.png" width="64" class="m-2" /></a>
-        <a href="https://git-scm.com/" target="_blank"><img src="assets/ic-git.png" width="64" class="m-2" /></a>
-        <a href="https://heroicons.com/" target="_blank"><img src="assets/ic-heroicons.png" width="64" class="m-2" /></a>
-        <a href="https://www.arduino.cc/" target="_blank"><img src="assets/ic-arduino.png" width="64" class="m-2" /></a>
-        <a href="https://platformio.org/" target="_blank"><img src="assets/ic-platformio.png" width="64" class="m-2" /></a>
+        <div align="center">
+            <div class="col-lg-5">
+                <a href="https://www.php.net/" target="_blank"><img src="assets/ic-php.png" width="64" class="m-2"/></a>
+                <a href="https://www.mysql.com/" target="_blank"><img src="assets/ic-mysql.png" width="64" class="m-2" /></a>
+                <a href="https://www.apachefriends.org/" target="_blank"><img src="assets/ic-xampp.png" width="64" class="m-2" /></a>
+                <a href="https://jquery.com/" target="_blank"><img src="assets/ic-jquery.png" width="64" class="m-2" /></a>
+                <a href="https://go.dev/" target="_blank"><img src="assets/ic-golang.png" width="64" class="m-2" /></a>
+                <a href="https://vitejs.dev/" target="_blank"><img src="assets/ic-vite.png" width="64" class="m-2" /></a>
+                <a href="https://vuejs.org/" target="_blank"><img src="assets/ic-vue.png" width="64" class="m-2" /></a>
+                <a href="https://www.typescriptlang.org/" target="_blank"><img src="assets/ic-typescript.png" width="64" class="m-2" /></a>
+                <a href="https://git-scm.com/" target="_blank"><img src="assets/ic-git.png" width="64" class="m-2" /></a>
+                <a href="https://heroicons.com/" target="_blank"><img src="assets/ic-heroicons.png" width="64" class="m-2" /></a>
+                <a href="https://www.arduino.cc/" target="_blank"><img src="assets/ic-arduino.png" width="64" class="m-2" /></a>
+                <a href="https://platformio.org/" target="_blank"><img src="assets/ic-platformio.png" width="64" class="m-2" /></a>
+            </div>
+        </div>
     </div>
 
     <br/>
 </div>
+
+<script src="scripts/vendors/bootstrap.bundle.min.js"></script>
 
 <?php include_once("components/footer.html"); ?>
