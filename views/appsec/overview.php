@@ -39,11 +39,11 @@ $userName = getAccountUsername($userId);
             </tr>
             <tr>
                 <th>App Key</th>
-                <td><button class="btn btn-light mx-2" id="btn-copy-key"><i class="bi bi-clipboard"></i></button> <?php echo $appInfo["app_key"]; ?></td>
+                <td><button class="btn btn-light btn-sm mx-2" id="btn-copy-key"><i class="bi bi-clipboard"></i></button> <?php echo $appInfo["app_key"]; ?></td>
             </tr>
             <tr>
                 <th>App ID</th>
-                <td><button class="btn btn-light mx-2" id="btn-copy-id"><i class="bi bi-clipboard"></i></button> <?php echo $appInfo["app_id"]; ?></td>
+                <td><button class="btn btn-light btn-sm mx-2" id="btn-copy-id"><i class="bi bi-clipboard"></i></button> <?php echo $appInfo["app_id"]; ?></td>
             </tr>
         </table>
     </div>

@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarColor04">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#why-qlbase"><i class="bi bi-airplane"></i> Why QLBase?</a>
+                    <a class="nav-link" href="#why-qlbase">Why QLBase?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#services">Services</a>
@@ -69,23 +69,7 @@
             </center>
 
             <div class="row equal-cols">
-                <div class="col-lg-6">
-                    <div class="card card-body bg-primary text-white border-white">
-                        <center>
-                            <br/>
-                            <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="48">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
-                                </svg>
-                                <br/><br/>
-                                Scalability Solutions
-                            </h2>
-                        </center>
-                        <p>QLBase takes the complexity out of hosting your applications and databases. It offers a straightforward approach to hosting, ensuring that your projects are accessible and responsive to users worldwide. Say goodbye to the hassle of server maintenance and setup – QLBase does the heavy lifting for you.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <center>
                             <br/>
@@ -100,10 +84,8 @@
                         <p>Efficient data storage and retrieval are at the heart of any successful application. QLBase provides a secure and scalable database solution that seamlessly integrates with your projects. You have the flexibility to design and structure your database to meet your specific needs, allowing you to store and manage data efficiently.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="row equal-cols">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <br/>
                         <center>
@@ -119,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <br/>
                         <center>
