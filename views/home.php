@@ -7,16 +7,36 @@
         <div class="collapse navbar-collapse" id="navbarColor04">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#why-qlbase"><i class="bi bi-airplane"></i> Why QLBase?</a>
+                    <a class="nav-link" href="#why-qlbase">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                        </svg>
+                        Why QLBase?
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#services">Services</a>
+                    <a class="nav-link" href="#services">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+                        </svg>
+                        Services
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="docs/">Getting Started</a>
+                    <a class="nav-link" href="docs/">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                        </svg>
+                        Getting Started
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/nthnn/QLBase" target="_blank">GitHub</a>
+                    <a class="nav-link" href="https://github.com/nthnn/QLBase" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                        </svg>
+                        GitHub
+                    </a>
                 </li>
             </ul>
             <div class="d-fle px-4">
@@ -27,7 +47,7 @@
     </div>
 </nav>
 
-<br /><br />
+<br/><br/><br/>
 
 <div class="container">
     <div align="center" class="w-100">
@@ -45,6 +65,7 @@
         </div>
     </div>
 </div>
+<br/>
 
 <div class="row">
     <div class="col-6">
@@ -69,23 +90,7 @@
             </center>
 
             <div class="row equal-cols">
-                <div class="col-lg-6">
-                    <div class="card card-body bg-primary text-white border-white">
-                        <center>
-                            <br/>
-                            <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="48">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
-                                </svg>
-                                <br/><br/>
-                                Scalability Solutions
-                            </h2>
-                        </center>
-                        <p>QLBase takes the complexity out of hosting your applications and databases. It offers a straightforward approach to hosting, ensuring that your projects are accessible and responsive to users worldwide. Say goodbye to the hassle of server maintenance and setup – QLBase does the heavy lifting for you.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <center>
                             <br/>
@@ -100,10 +105,8 @@
                         <p>Efficient data storage and retrieval are at the heart of any successful application. QLBase provides a secure and scalable database solution that seamlessly integrates with your projects. You have the flexibility to design and structure your database to meet your specific needs, allowing you to store and manage data efficiently.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="row equal-cols">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <br/>
                         <center>
@@ -119,7 +122,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card card-body bg-primary text-white border-white">
                         <br/>
                         <center>

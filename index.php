@@ -72,7 +72,6 @@
     <link href="./styles/animate.min.css" rel="stylesheet" />
 
     <link href="./favicon.ico" rel="shortcut icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet"/>
 </head>
 <body>
     <?php require_once("views/".$view.".php"); ?>
