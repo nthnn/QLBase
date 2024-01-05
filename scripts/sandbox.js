@@ -1,3 +1,32 @@
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/+esm";
+
+let editor = monaco.editor.create(document.querySelector('#content'), {
+    automaticLayout: true,
+    value: "{}",
+    tabSize: 4,
+    language: "javascript",
+    semanticHighlighting: { enabled: true },
+    dimension: { height: 200 },
+    minimap: { enabled: false }
+}), headers = monaco.editor.create(document.querySelector('#http-headers'), {
+    automaticLayout: true,
+    value: JSON.stringify($("#http-headers").data("keys"), null, "\t"),
+    tabSize: 4,
+    language: "javascript",
+    semanticHighlighting: { enabled: true },
+    dimension: { height: 200 },
+    minimap: { enabled: false }
+}), response = monaco.editor.create(document.querySelector('#response'), {
+    automaticLayout: true,
+    value: "{}",
+    tabSize: 4,
+    language: "javascript",
+    readOnly: true,
+    semanticHighlighting: { enabled: true },
+    dimension: { height: 536 },
+    minimap: { enabled: false }
+});
+
 const authenticationActions = {
     "new_user": ["New User", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
     "update_by_username": ["Update by Username", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
@@ -124,8 +153,8 @@ $(document).ready(()=> {
     
     const sendBtn = RotatingButton("#send");
     $("#send").click(()=> {
-        const dataContents = $("#contents").val(),
-            httpHeaders = $("#http-headers").val();
+        const dataContents = editor.getValue(),
+            httpHeaders = headers.getValue();
 
         $("#contents").removeClass("border-danger");
         $("#http-headers").removeClass("border-danger");
@@ -152,13 +181,13 @@ $(document).ready(()=> {
             headers: JSON.parse(httpHeaders),
             dataType: "json",
             success: (data)=> {
-                $("#response").val(JSON.stringify(data, null, 4))
+                response.setValue(JSON.stringify(data, null, 4))
                 setTimeout(()=> sendBtn.hide(), 800);
             }
         });
     });
 
     $("#action").on("change", ()=>
-        $("#contents").val(atob($("#action").find(":selected").data("args")))
+        editor.setValue(atob($("#action").find(":selected").data("args")))
     );
 });
