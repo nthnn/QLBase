@@ -33,10 +33,13 @@
     </style>
 </head>
 <body>
-    <div class="mt-4 container">
-        <h1>QLBase API Sandbox</h1>
-        <hr/>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white">QLBase API Sandbox</span>
+        </div>
+    </nav>
 
+    <div class="mt-4 container">
         <div class="row">
             <div class="col-lg-6">
                 <i>API Action:</i>
@@ -53,11 +56,18 @@
                 <br/>
 
                 <button class="btn btn-primary" id="send">Send Request</button>
+                <div class="mobile-only">
+                    <br/><hr/>
+                </div>
             </div>
 
             <div class="col-lg-6">
                 <i>Response:</i>
                 <textarea cols="70" rows="20" id="response" class="form-control" disabled></textarea>
+
+                <div class="mobile-only">
+                    <br/><br/>
+                </div>
             </div>
         </div>
     </div>
