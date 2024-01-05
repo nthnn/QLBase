@@ -42,17 +42,17 @@
     <div class="mt-4 container">
         <div class="row">
             <div class="col-lg-6">
-                <i>API Action:</i>
+                <b>API Action:</b>
                 <select id="action" class="form-control">
                 </select>
                 <br/>
 
-                <i>Contents:</i>
-                <textarea cols="70" rows="7" id="contents" class="form-control" placeholder="Request Contents" spellcheck="false">{}</textarea>
+                <b>Contents:</b>
+                <div id="content" class="form-control p-0 m-0"></div>
                 <br/>
 
-                <i>HTTP Headers:</i>
-                <textarea cols="70" rows="7" id="http-headers" class="form-control" placeholder="HTTP Headers" spellcheck="false">{&#10;&#9;"QLBase-API-Key": "<?php echo $apiKey; ?>",&#10;&#9;"QLBase-App-ID": "<?php echo $appId; ?>"&#10;}</textarea>
+                <b>HTTP Headers:</b>
+                <div id="http-headers" class="form-control p-0 m-0" data-keys="{&quot;QLBase-API-Key&quot;: &quot;<?php echo $apiKey; ?>&quot;,&quot;QLBase-App-ID&quot;: &quot;<?php echo $appId; ?>&quot;}"></div>
                 <br/>
 
                 <button class="btn btn-primary" id="send">Send Request</button>
@@ -62,8 +62,8 @@
             </div>
 
             <div class="col-lg-6">
-                <i>Response:</i>
-                <textarea cols="70" rows="20" id="response" class="form-control" disabled></textarea>
+                <b>Response:</b>
+                <div id="response" class="form-control p-0 m-0" style="min-height: 100px"></div>
 
                 <div class="mobile-only">
                     <br/><br/>
@@ -75,5 +75,5 @@
     <script src="scripts/vendors/bootstrap.bundle.min.js"></script>
     <script src="scripts/vendors/jquery.min.js"></script>
     <script src="scripts/rotating-button.js"></script>
-    <script src="scripts/sandbox.js"></script>
+    <script src="scripts/sandbox.js" type="module"></script>
 </body>
