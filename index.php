@@ -69,7 +69,6 @@
 
     <link href="./styles/global.css" rel="stylesheet" />
     <link href="./styles/bootstrap.min.css" rel="stylesheet" />
-    <link href="./styles/animate.min.css" rel="stylesheet" />
 
     <link href="./favicon.ico" rel="shortcut icon" />
 </head>
