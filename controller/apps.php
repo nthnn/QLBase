@@ -22,7 +22,7 @@ function validateAppId($id) {
     return $count == 1;
 }
 
-function addNewApp($name) {
+function addNewApp($name, $description) {
     global $db_conn;
     global $sess_id;
 
@@ -39,8 +39,8 @@ function addNewApp($name) {
     $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(md5($id_hash), 24);
     $res = mysqli_query(
         $db_conn,
-        "INSERT INTO app (creator_id, app_id, app_key, name) VALUES(" .
-        $sess_id . ", \"" . $app_id . "\", \"" . $app_key . "\", \"" . $name . "\")"
+        "INSERT INTO app (creator_id, app_id, app_key, name, description) VALUES(".
+        $sess_id.", \"".$app_id."\", \"".$app_key."\", \"".$name."\", \"".$description."\")"
     );
 
     global $db_apps_conn;
@@ -71,13 +71,13 @@ function getAppsOfCurrentUser() {
 
     $res = mysqli_query(
         $db_conn,
-        "SELECT name, app_id FROM app WHERE creator_id=" . $sess_id
+        "SELECT name, app_id, description FROM app WHERE creator_id=" . $sess_id
     );
 
     $ownedApps = array();
     if (mysqli_num_rows($res) > 0)
         while ($row = mysqli_fetch_assoc($res))
-            array_push($ownedApps, array($row["name"], $row["app_id"]));
+            array_push($ownedApps, array($row["name"], $row["app_id"], $row["description"]));
 
     return $ownedApps;
 }
