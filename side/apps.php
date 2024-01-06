@@ -32,7 +32,7 @@ if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
 
     $str = "";
     foreach(getAppsOfCurrentUser() as $app) {
-        $str .= "\"".$app[0]."\": \"".$app[1]."\",";
+        $str .= "\"".$app[0]."\": [\"".$app[1]."\", \"".$app[2]."\"],";
     }
 
     $str = substr($str, 0, strlen($str) - 1);
@@ -40,7 +40,8 @@ if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
     return;
 }
 else if(isset($_GET["create"]) && empty($_GET["create"]) &&
-    isset($_POST["name"]) && !empty($_POST["name"])) {
+    isset($_POST["name"]) && !empty($_POST["name"]) &&
+    isset($_POST["description"]) && !empty($_POST["description"])) {
 
     $name = $_POST["name"];
     if(!validateAppName($name)) {
@@ -48,7 +49,13 @@ else if(isset($_GET["create"]) && empty($_GET["create"]) &&
         return;
     }
 
-    if(addNewApp($name))
+    $description = $_POST["description"];
+    if(!validateBase64($description)) {
+        failedResponse();
+        return;
+    }
+
+    if(addNewApp($name, $description))
         successResponse();
     else failedResponse();
     return;
