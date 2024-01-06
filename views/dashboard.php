@@ -88,6 +88,10 @@ $username = getAccountUsername(getIdOfSession());
                 <label for="app-name" class="form-label">App Name</label>
                 <input type="text" class="form-control" id="app-name" name="app-name" placeholder="Your App Name"></input>
                 <p class="text-danger d-none" id="app-name-error"></p>
+
+                <label for="app-description" class="form-label mt-4">App Description</label>
+                <input type="text" class="form-control" id="app-description" name="app-description" placeholder="A brief description of your app"></input>
+                <p class="text-danger d-none" id="app-description-error"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
