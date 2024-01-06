@@ -11,7 +11,8 @@ CREATE TABLE `app` (
   `creator_id` int(11),
   `app_id` varchar(255) DEFAULT NULL,
   `app_key` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(1024) DEFAULT NULL
 );
 
 CREATE TABLE `recovery` (
