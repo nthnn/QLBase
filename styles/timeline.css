@@ -45,11 +45,12 @@
 }
 
 .timeline .event:before {
-    left: -220px;
+    top: -5px;
+    left: -240px;
     content: attr(data-date);
     text-align: right;
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 1.2em;
     min-width: 120px;
 }
 
@@ -98,6 +99,7 @@
 
     .timeline .event:before {
         left: 0px;
+        top: 0px;
         text-align: left;
     }
 
