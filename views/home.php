@@ -142,7 +142,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                                 </svg>
                                 <br/><br/>
-                                Data Analytics
+                                Customer Analytics
                             </h2>
                         </center>
                         <p>Understanding how your application is performing is crucial for making informed decisions. QLBase offers data analytics and insights tools to help you track user behavior, monitor performance, and optimize your application for better results. Make data-driven decisions and continuously improve your projects.</p>
@@ -166,9 +166,41 @@
 </div>
 
 <div class="container">
-    <br/><br/>
+    <br id="services"/><br/>
+    <div align="center">
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="42" height="42" class="mb-3" style="transform: rotate(-45deg)">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            </svg>
+            Cloud-based Services
+        </h1>
+    </div>
 
-    <div class="border-primary border p-4">
+    <ul class="timeline">
+        <li class="event" data-date="Authentication">
+            <p>QLBase provides a robust authentication system that allows you to manage user accounts securely.</p>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul>
+                        <li><b>User Registration</b> &mdash; Easily register new users with customizable registration fields.</li>
+                        <li><b>Login</b> &mdash; Enable users to log in securely, supporting various authentication methods, including username/password and social logins.</li>
+                        <li><b>Account Enabling/Disabling</b> &mdash; You can disable and enable user accounts as needed. When an account is disabled, the user cannot log in until it's enabled again. This feature is particularly useful for handling suspicious or inactive accounts.</li>
+                        <li><b>Updating and Deleting Accounts</b> &mdash; Update or delete any user account with ease by either user's username and email.</li>
+                        <li><b>Account Fetching</b> &mdash; Flexibility in fetching user accounts; by specified username or email. You can also fetch all user informations in one-go.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <img src="./assets/qlbase-cat-1.png" width="100%" style="margin-top: -60px" />
+                </div>
+            </div>
+
+            <hr/>
+        </li>
+    </ul>
+
+    <br/><br/>
+    <div class="border-primary border p-4 shadow">
         <h1>Tech Stack</h1>
         <p>Special thanks to all the technologies, softwares, and language below. QLBase would be impossible without you and your community.</p>
 
