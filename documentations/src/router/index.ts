@@ -11,6 +11,10 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
+            path: "/:pathMatch(.*)*",
+            redirect: "/QLBase/404.html"
+        },
+        {
             path: "",
             name: "home",
             component: HomeView
