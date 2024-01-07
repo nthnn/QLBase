@@ -6,13 +6,19 @@ import Deployment from "../views/Deployment.vue";
 import Firmware from "../views/Firmware.vue";
 import HomeView from "../views/HomeView.vue";
 import IntroToAPI from "../views/IntroToAPI.vue";
+import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: "/:pathMatch(.*)*",
-            redirect: "/QLBase/404.html"
+            path: "/:catchAll(.*)",
+            redirect: "/404"
+        },
+        {
+            path: "/404",
+            name: "not-found",
+            component: NotFound
         },
         {
             path: "",
