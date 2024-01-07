@@ -68,6 +68,7 @@
     <title><?php echo $title; ?></title>
 
     <link href="./styles/global.css" rel="stylesheet" />
+    <link href="./styles/timeline.css" rel="stylesheet" />
     <link href="./styles/bootstrap.min.css" rel="stylesheet" />
 
     <link href="./favicon.ico" rel="shortcut icon" />
