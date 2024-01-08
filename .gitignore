@@ -3,6 +3,7 @@ bin/data_analytics
 bin/database
 bin/forgetpass
 bin/sms
+bin/storage
 bin/traffic
 docs/
 qlbase.zip
