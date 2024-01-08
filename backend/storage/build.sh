@@ -1,0 +1,1 @@
+go build -ldflags "-w -s" -o storage && sudo mv ./storage ../../bin/storage
