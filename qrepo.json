@@ -9,6 +9,7 @@
             "cd backend/data_analytics && ./build.sh && cd ../..",
             "cd backend/database && ./build.sh && cd ../..",
             "cd backend/forgetpass && ./build.sh && cd ../..",
+			"cd backend/storage && ./build.sh && cd ../..",
             "cd backend/sms && ./build.sh && cd ../..",
             "cd backend/traffic && ./build.sh && cd ../.."
 		],
