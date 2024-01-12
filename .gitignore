@@ -5,7 +5,15 @@ bin/forgetpass
 bin/sms
 bin/storage
 bin/traffic
+
 docs/
+drive/*
+!drive/.htaccess
+!drive/temp
+drive/temp/*
+!drive/temp/.htaccess
+
 qlbase.zip
+
 .DS_Store
 screenshots/.DS_Store
