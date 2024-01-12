@@ -30,7 +30,7 @@ func main() {
 			"\" AND app_id=\"" + appId + "\" ORDER BY STR_TO_DATE(\"date_time\", \"%d%m%Y\") ASC LIMIT 30")
 
 		if err != nil {
-			proc.ShowFailedResponse("Something went wrong. " + err.Error())
+			proc.ShowFailedResponse("Something went wrong.")
 			return
 		}
 

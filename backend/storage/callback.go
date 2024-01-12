@@ -36,7 +36,7 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		if err := util.MoveTempFile(temp, dest); err != nil {
-			proc.ShowFailedResponse("Unable to store uploaded file. " + err.Error())
+			proc.ShowFailedResponse("Unable to store uploaded file.")
 			os.Remove(temp)
 
 			return
