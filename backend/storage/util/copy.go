@@ -1,6 +1,7 @@
 package util
 
 import (
+	"archive/zip"
 	"io"
 	"os"
 )
@@ -12,13 +13,22 @@ func MoveTempFile(source string, destination string) error {
 	}
 	defer src.Close()
 
-	dest, err := os.Create(destination)
+	dest, err := os.Create(destination + ".zip")
 	if err != nil {
 		return err
 	}
 	defer dest.Close()
 
-	_, err = io.Copy(dest, src)
-	os.Remove(source)
+	zipOut := zip.NewWriter(dest)
+	zipFile, err := zipOut.Create(source[14:])
+	if err != nil {
+		return err
+	}
+
+	if _, err := io.Copy(zipFile, src); err != nil {
+		return err
+	}
+
+	zipOut.Close()
 	return err
 }
