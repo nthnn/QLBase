@@ -105,4 +105,28 @@ function validateDatabaseContent($content) {
         json_last_error() !== JSON_ERROR_NONE);
 }
 
+function validateFilenameString($fileName) {
+    if(strlen($fileName) > 255 || strlen($fileName) === 0)
+        return false;
+
+    $invalidChars = array(
+        '/', '\\', '?', '%',
+        '*', ':', '|', '"',
+        '<', '>', '.'
+    );
+    foreach($invalidChars as $char)
+        if(strpos($fileName, $char) !== false)
+            return false;
+
+    $reservedNames = array(
+        'con', 'prn', 'aux', 'nul',
+        'com1', 'com2', 'com3', 'com4',
+        'com5', 'com6', 'com7', 'com8',
+        'com9', 'lpt1', 'lpt2', 'lpt3',
+        'lpt4', 'lpt5', 'lpt6', 'lpt7',
+        'lpt8', 'lpt9'
+    );
+    return !in_array(strtolower($fileName), $reservedNames);
+}
+
 ?>
