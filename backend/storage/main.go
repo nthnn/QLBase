@@ -27,7 +27,7 @@ func main() {
 	switch args[0] {
 	case "upload":
 		failOnUmatchedArgSize(4, args)
-		fileUploadCallback(apiKey, args)
+		callback = fileUploadCallback(apiKey, args)
 	}
 
 	DispatchWithCallback(callback)
