@@ -1541,6 +1541,24 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, "fetch_all", $apiKey);
             break;
 
+        case "file_upload":
+            $backend = "storage";
+            array_push($args, "upload", $apiKey);
+
+            if(!isset($_FILES["subject"]) || $_FILES["subject"]["error"] !== UPLOAD_ERR_OK) {
+                failedResponseMessage("File upload error.");
+                return;
+            }
+
+            $out = "../drive/temp/".basename($_FILES["subject"]["name"]);
+            if(!move_uploaded_file($_FILES["subject"]["tmp_name"], $out)) {
+                failedResponseMessage("Unable to move uploaded file.");
+                return;
+            }
+
+            array_push($args, "\"".$out."\"", "\"".basename($_FILES["subject"]["name"])."\"");
+            break;
+
         default:
             failedResponse();
             return;
