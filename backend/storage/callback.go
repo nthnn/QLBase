@@ -12,12 +12,14 @@ import (
 
 func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
-		temp := args[0]
-		dest := base64.StdEncoding.EncodeToString([]byte(args[1]))
+		temp := args[2]
+		dest := "../drive/" + base64.StdEncoding.EncodeToString([]byte(args[3]))
 
-		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE temp_name=\"" + temp + "\"")
+		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE temp_name=\"" + temp[14:] + "\"")
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
+			os.Remove(temp)
+
 			return
 		}
 
@@ -28,31 +30,36 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 
 		if count != 0 {
 			proc.ShowFailedResponse("File already exists.")
-			return
-		}
-
-		if err := util.MoveTempFile(temp, dest); err != nil {
-			proc.ShowFailedResponse("Unable to store uploaded file.")
 			os.Remove(temp)
 
 			return
 		}
 
-		mime, err := mimetype.DetectFile(dest)
+		if err := util.MoveTempFile(temp, dest); err != nil {
+			proc.ShowFailedResponse("Unable to store uploaded file. " + err.Error())
+			os.Remove(temp)
+
+			return
+		}
+
+		mime, err := mimetype.DetectFile(temp)
+		os.Remove(temp)
+
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			return
 		}
 
-		checksum, err := util.CalculateChecksum(dest)
+		checksum, err := util.CalculateChecksum(dest + ".zip")
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			return
 		}
 
+		dbFileName := dest[9:]
 		query, err = d.Query("INSERT INTO " + apiKey +
-			"_storage (name, temp_name, mime_type, checksum) VALUES(\"" + dest +
-			"\", \"" + temp + "\", \"" + mime.String() +
+			"_storage (name, temp_name, mime_type, checksum) VALUES(\"" + dbFileName +
+			"\", \"" + temp[14:] + "\", \"" + mime.String() +
 			"\", \"" + checksum + "\")")
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
@@ -60,6 +67,6 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		query.Close()
-		proc.ShowResult(dest)
+		proc.ShowResult("\"" + dbFileName + "\"")
 	}
 }
