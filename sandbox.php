@@ -55,7 +55,19 @@
                 <div id="http-headers" class="form-control p-0 m-0" data-keys="{&quot;QLBase-API-Key&quot;: &quot;<?php echo $apiKey; ?>&quot;,&quot;QLBase-App-ID&quot;: &quot;<?php echo $appId; ?>&quot;}"></div>
                 <br/>
 
-                <button class="btn btn-primary" id="send">Send Request</button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-primary w-100" id="send">Send Request</button>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="pt-lg-0 pt-2"></div>
+
+                        <label for="subject" class="btn btn-primary disabled w-100" id="subject-label">Choose File</label>
+                        <input type="file" id="subject" name="subject" class="d-none" disabled="true" />
+                    </div>
+                </div>
+
                 <div class="mobile-only">
                     <br/><hr/>
                 </div>

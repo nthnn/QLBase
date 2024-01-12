@@ -106,6 +106,10 @@ const databaseActions = {
     "db_fetch_all": ["Database: Fetch All", "{}"]
 };
 
+const storageActions = {
+    "file_upload": ["Storage: File Upload", "{}"]
+};
+
 const addGroupToActions = (name)=> {
     $("#action").append("<option disabled value=\"\">─</option>");
     $("#action").append("<option disabled value=\"\">" + name + "</option>");
@@ -131,6 +135,9 @@ function validateJson(str) {
     }
 }
 
+const isUploadAction = ()=>
+    $("#action").val() == "file_upload";
+
 $(document).ready(()=> {
     $("#action").append("<option disabled selected value=\"\">Actions</option>");
     addAction("handshake", "Handshake", "{}");
@@ -151,7 +158,11 @@ $(document).ready(()=> {
     for(let act in databaseActions)
         addAction(act, databaseActions[act][0], databaseActions[act][1]);
     
-    const sendBtn = RotatingButton("#send");
+    addGroupToActions("Storage");
+    for(let act in storageActions)
+        addAction(act, storageActions[act][0], storageActions[act][1]);
+
+        const sendBtn = RotatingButton("#send");
     $("#send").click(()=> {
         const dataContents = editor.getValue(),
             httpHeaders = headers.getValue();
@@ -174,11 +185,21 @@ $(document).ready(()=> {
             return;
         }
 
+        let formData = new FormData();
+        if(isUploadAction())
+            formData.append(
+                "subject",
+                document.querySelector("#subject").files[0]
+            );
+
+        let reqData = isUploadAction() ? formData : JSON.parse(dataContents);;
         $.ajax({
             url: "api/index.php?action=" + $("#action").find(":selected").val(),
             type: "POST",
-            data: JSON.parse(dataContents),
+            data: reqData,
             headers: JSON.parse(httpHeaders),
+            contentType: false,
+            processData: false,
             dataType: "json",
             success: (data)=> {
                 response.setValue(JSON.stringify(data, null, 4))
@@ -187,7 +208,23 @@ $(document).ready(()=> {
         });
     });
 
-    $("#action").on("change", ()=>
+    $("#action").on("change", ()=> {
         editor.setValue(atob($("#action").find(":selected").data("args")))
-    );
+
+        if(isUploadAction()) {
+            $("#subject").removeAttr("disabled");
+            $("#subject-label").removeClass("disabled");
+        }
+        else {
+            $("#subject").attr("disabled", "true");
+            $("#subject-label").addClass("disabled");
+            $("#subject-label").html("Choose File");
+
+            document.getElementById("subject").reset();
+        }
+    });
+
+    $("#subject").change(()=> {
+        $("#subject-label").html("Choose File (" + $("#subject").val().split("\\").pop() + ")");
+    });
 });
