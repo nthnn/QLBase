@@ -7,7 +7,7 @@ import (
 	"github.com/nthnn/QLBase/storage/proc"
 )
 
-func failOnUmatchedArgSize(size int, args []string) {
+func failOnUnmatchedArgSize(size int, args []string) {
 	if len(args) != size {
 		proc.ShowFailedResponse("Invalid parameter arity.")
 		os.Exit(-1)
@@ -26,8 +26,12 @@ func main() {
 
 	switch args[0] {
 	case "upload":
-		failOnUmatchedArgSize(4, args)
+		failOnUnmatchedArgSize(4, args)
 		callback = fileUploadCallback(apiKey, args)
+
+	case "delete":
+		failOnUnmatchedArgSize(3, args)
+		callback = deleteFileCallback(apiKey, args)
 	}
 
 	DispatchWithCallback(callback)
