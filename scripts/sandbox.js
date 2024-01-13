@@ -107,7 +107,8 @@ const databaseActions = {
 };
 
 const storageActions = {
-    "file_upload": ["Storage: File Upload", "{}"]
+    "file_upload": ["Storage: File Upload", "{}"],
+    "file_delete": ["Storage: File Delete", "{\n\t\"name\": \"\"\n}"]
 };
 
 const addGroupToActions = (name)=> {
@@ -162,7 +163,7 @@ $(document).ready(()=> {
     for(let act in storageActions)
         addAction(act, storageActions[act][0], storageActions[act][1]);
 
-        const sendBtn = RotatingButton("#send");
+    const sendBtn = RotatingButton("#send");
     $("#send").click(()=> {
         const dataContents = editor.getValue(),
             httpHeaders = headers.getValue();
@@ -192,12 +193,16 @@ $(document).ready(()=> {
                 document.querySelector("#subject").files[0]
             );
 
-        let reqData = isUploadAction() ? formData : JSON.parse(dataContents);;
+        let reqData = JSON.parse(dataContents);
+        for(let key in reqData)
+            if(reqData.hasOwnProperty(key))
+                formData.append(key, reqData[key]);
+
         $.ajax({
             url: "api/index.php?action=" + $("#action").find(":selected").val(),
             type: "POST",
-            data: reqData,
             headers: JSON.parse(httpHeaders),
+            data: formData,
             contentType: false,
             processData: false,
             dataType: "json",
@@ -220,7 +225,7 @@ $(document).ready(()=> {
             $("#subject-label").addClass("disabled");
             $("#subject-label").html("Choose File");
 
-            document.getElementById("subject").reset();
+            $("#subject").val(null);
         }
     });
 
