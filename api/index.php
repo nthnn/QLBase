@@ -1559,6 +1559,24 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, "\"".$out."\"", "\"".basename($_FILES["subject"]["name"])."\"");
             break;
 
+        case "file_delete":
+            $backend = "storage";
+            array_push($args, "delete", $apiKey);
+
+            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $name = $_POST["name"];
+            if(!validateBase64($name)) {
+                failedResponseMessage("Invalid file name.");
+                return;
+            }
+
+            array_push($args, $name);
+            break;
+
         default:
             failedResponse();
             return;
