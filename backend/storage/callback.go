@@ -25,7 +25,10 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 
 		count := 0
 		for query.Next() {
-			query.Scan(&count)
+			id := 0
+			query.Scan(&id)
+
+			count++
 		}
 
 		if count != 0 {
@@ -68,5 +71,44 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 
 		query.Close()
 		proc.ShowResult("\"" + dbFileName + "\"")
+	}
+}
+
+func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		fileName := args[2]
+
+		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\"")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+		defer query.Close()
+
+		count := 0
+		for query.Next() {
+			id := 0
+			query.Scan(&id)
+
+			count++
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("File does not exists.")
+			return
+		}
+
+		if err := os.Remove("../drive/" + fileName + ".zip"); err != nil {
+			proc.ShowFailedResponse("Unable to delete file from server storage.")
+			return
+		}
+
+		query, err = d.Query("DELETE FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\"")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		proc.ShowSuccessResponse()
 	}
 }
