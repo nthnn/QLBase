@@ -3,7 +3,9 @@ package main
 import (
 	"database/sql"
 	"encoding/base64"
+	"encoding/json"
 	"os"
+	"strings"
 
 	"github.com/gabriel-vasile/mimetype"
 	"github.com/nthnn/QLBase/storage/proc"
@@ -15,7 +17,7 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 		temp := args[2]
 		dest := "../drive/" + base64.StdEncoding.EncodeToString([]byte(args[3]))
 
-		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE temp_name=\"" + temp[14:] + "\"")
+		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE orig_name=\"" + temp[14:] + "\"")
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			os.Remove(temp)
@@ -61,7 +63,7 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 
 		dbFileName := dest[9:]
 		query, err = d.Query("INSERT INTO " + apiKey +
-			"_storage (name, temp_name, mime_type, checksum) VALUES(\"" + dbFileName +
+			"_storage (name, orig_name, mime_type, checksum) VALUES(\"" + dbFileName +
 			"\", \"" + temp[14:] + "\", \"" + mime.String() +
 			"\", \"" + checksum + "\")")
 		if err != nil {
@@ -111,5 +113,35 @@ func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
 
 		query.Close()
 		proc.ShowSuccessResponse()
+	}
+}
+
+func fetchAllCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT name, orig_name, mime_type, checksum FROM " + apiKey + "_storage")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+		defer query.Close()
+
+		rows := [][]string{}
+		for query.Next() {
+			name := ""
+			origName := ""
+			mimeType := ""
+			checksum := ""
+
+			query.Scan(&name, &origName, &mimeType, &checksum)
+			rows = append(rows, []string{name, origName, mimeType, checksum})
+		}
+
+		buf := new(strings.Builder)
+		if err := json.NewEncoder(buf).Encode(rows); err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+
+		proc.ShowResult(buf.String())
 	}
 }
