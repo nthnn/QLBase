@@ -78,7 +78,6 @@ $(document).ready(()=> {
         $("#app-description-error").removeClass("d-block");
         $("#app-description-error").addClass("d-none");
 
-        console.log(btoa(description));
         $.post(
             "side/apps.php?create",
             {
