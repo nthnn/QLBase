@@ -1577,6 +1577,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $name);
             break;
 
+        case "file_fetch_all":
+            $backend = "storage";
+            array_push($args, "fetch_all", $apiKey);
+            break;
+    
         default:
             failedResponse();
             return;
