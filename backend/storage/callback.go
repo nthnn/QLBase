@@ -109,6 +109,7 @@ func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
+		query.Close()
 		proc.ShowSuccessResponse()
 	}
 }
