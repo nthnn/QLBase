@@ -29,7 +29,7 @@ $(document).ready(()=> {
         }
 
         $.post(
-            "api/forgetpass.php",
+            "side/forgetpass.php",
             { ue: ue },
             (data)=> {
                 forgotBtn.hide();

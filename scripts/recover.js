@@ -42,7 +42,7 @@ $("#recover-btn").click(()=> {
     }
 
     $.post(
-        "api/forgetpass.php",
+        "side/forgetpass.php",
         {
             email: email,
             newpass: CryptoJS.MD5(password).toString(),
