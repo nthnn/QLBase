@@ -1,3 +1,29 @@
+<?php
+    require_once("controller/validator.php");
+
+    if(!isset($_GET["id"]) || empty($_GET["id"])) {
+        header("Location: ?");
+        return;
+    }
+
+    $id = $_GET["id"];
+    if(!validateUuid($id)) {
+        header("Location: ?");
+        return;
+    }
+
+    require_once("controller/db_config.php");
+
+    global $db_conn;
+    $res = mysqli_query($db_conn, "SELECT * FROM recovery WHERE track_id=\"".$id."\"");
+    $count = mysqli_num_rows($res);
+
+    mysqli_free_result($res);
+    if($count != 1) {
+        header("Location: ?");
+        return;
+    }
+?>
 <div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
     <div class="container" align="center">
         <div class="col-lg-4" align="left">
