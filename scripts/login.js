@@ -44,7 +44,6 @@ $(document).ready(()=> {
                 password: CryptoJS.MD5(password).toString()
             },
             (r)=> {
-                console.log(r);
                 loginButton.hide();
                 if(r.result == 1) {
                     window.location.href = "?";

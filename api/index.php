@@ -1276,7 +1276,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 failedResponseMessage("Insufficient parameter arity.");
                 return;
             }
-        
+
             $timestamp = $_POST["timestamp"];
             if(!validateDateTime($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
