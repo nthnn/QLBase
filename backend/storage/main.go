@@ -33,6 +33,10 @@ func main() {
 		failOnUnmatchedArgSize(3, args)
 		callback = deleteFileCallback(apiKey, args)
 
+	case "get":
+		failOnUnmatchedArgSize(3, args)
+		callback = getFileCallback(apiKey, args)
+
 	case "fetch_all":
 		failOnUnmatchedArgSize(2, args)
 		callback = fetchAllCallback(apiKey, args)

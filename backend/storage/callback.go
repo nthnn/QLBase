@@ -116,6 +116,42 @@ func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
 	}
 }
 
+func getFileCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		fileName := args[2]
+
+		query, err := d.Query("SELECT orig_name, mime_type, checksum FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\" LIMIT 1")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+		defer query.Close()
+
+		count := 0
+		info := []string{}
+		for query.Next() {
+			orig_name := ""
+			mime_type := ""
+			checksum := ""
+
+			query.Scan(&orig_name, &mime_type, &checksum)
+			info = []string{orig_name, mime_type, checksum}
+
+			count++
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("File does not exists.")
+			return
+		}
+
+		buf := new(strings.Builder)
+		json.NewEncoder(buf).Encode(info)
+
+		proc.ShowResult(buf.String())
+	}
+}
+
 func fetchAllCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT name, orig_name, mime_type, checksum FROM " + apiKey + "_storage")
