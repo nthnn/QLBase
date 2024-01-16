@@ -110,6 +110,7 @@ const storageActions = {
     "file_upload": ["Storage: File Upload", "{}"],
     "file_delete": ["Storage: File Delete", "{\n\t\"name\": \"\"\n}"],
     "file_get": ["Storage: File Fetch", "{\n\t\"name\": \"\"\n}"],
+    "file_download": ["Storage: File Download", "{\n\t\"name\": \"\",\n\t\"should_expire\": \"\"\n}"],
     "file_fetch_all": ["Storage: File Fetch All", "{}"]
 };
 
