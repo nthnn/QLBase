@@ -1,8 +1,9 @@
 <?php
     include_once("../controller/cdp.php");
+    include_once("../controller/validator.php");
 
     if((!isset($_GET["ticket"]) && empty($_GET["ticket"])) ||
-        validateUuid($_GET["ticket"]))
+        !validateUuid($_GET["ticket"]))
         invalidateCDPRequest();
 
     $ticket = $_GET["ticket"];
