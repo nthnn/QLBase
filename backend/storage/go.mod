@@ -1,6 +1,6 @@
 module github.com/nthnn/QLBase/storage
 
-go 1.21.5
+go 1.20
 
 require (
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
