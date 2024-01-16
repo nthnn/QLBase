@@ -1591,6 +1591,31 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $name);
             break;
     
+        case "file_download":
+            $backend = "storage";
+            array_push($args, "download", $apiKey);
+        
+            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
+                !isset($_POST["should_expire"]) || empty($_POST["should_expire"])) {
+                failedResponseMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $name = $_POST["name"];
+            if(!validateBase64($name)) {
+                failedResponseMessage("Invalid file name.");
+                return;
+            }
+
+            $shouldExpire = $_POST["should_expire"];
+            if($shouldExpire != "0" && $shouldExpire != "1") {
+                failedResponseMessage("Invalid should_expire parameter value.");
+                return;
+            }
+
+            array_push($args, $name, $shouldExpire);
+            break;
+
         case "file_fetch_all":
             $backend = "storage";
             array_push($args, "fetch_all", $apiKey);
