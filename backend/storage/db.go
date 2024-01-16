@@ -29,6 +29,19 @@ func ConfigDB(username string, password string, name string, server string, port
 	return DBConfig{username, password, name, server, port}
 }
 
+func ServerDB() (*sql.DB, error) {
+	wd, _ := os.Getwd()
+	db_config := LoadDBConfig(wd + "/../bin/config.ini")
+	db_config.DBName = "qlbase"
+
+	db_conn, err := ConnectDB(db_config)
+	if err != nil {
+		return nil, err
+	}
+
+	return db_conn, nil
+}
+
 func ConnectDB(config DBConfig) (*sql.DB, error) {
 	db, err := sql.Open("mysql", config.ToString())
 
