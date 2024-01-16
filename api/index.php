@@ -3,6 +3,7 @@
 include_once("../controller/apps.php");
 include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
+include_once("../controller/shell.php");
 
 function failedResponse() {
     echo "{\"result\": \"0\"}";
@@ -31,11 +32,6 @@ function logNetworkTraffic($apiKey, $appId) {
 
     failedResponse();
     exit(0);
-}
-
-function execute($apiKey, $appId, $backend, $args) {
-    logNetworkTraffic($apiKey, $appId);
-    echo shell_exec("../bin/".$backend." ".join(" ", $args));
 }
 
 header("Content-Type: application/json; charset=utf-8");
