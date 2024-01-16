@@ -17,6 +17,7 @@ CREATE TABLE `app` (
 
 CREATE TABLE `cdp` (
   `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `api_key` varchar(255) NOT NULL,
   `ticket` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
