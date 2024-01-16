@@ -20,20 +20,23 @@ jobs:
       - name: Go version
         run: go version
 
-      - name: Build Forgot Password back-end.
-        run: cd backend/forgetpass && go build -ldflags "-w -s"
-
       - name: Build Authentication back-end.
         run: cd backend/auth && go build -ldflags "-w -s"
-
-      - name: Build SMS back-end
-        run: cd backend/sms && go build -ldflags "-w -s"
 
       - name: Build Data Analytics back-end
         run: cd backend/data_analytics && go build -ldflags "-w -s"
 
       - name: Build Database back-end
         run: cd backend/database && go build -ldflags "-w -s"
+
+      - name: Build Forgot Password back-end.
+        run: cd backend/forgetpass && go build -ldflags "-w -s"
+
+      - name: Build SMS back-end
+        run: cd backend/sms && go build -ldflags "-w -s"
+
+      - name: Build Storage back-end
+        run: cd backend/storage && go build -ldflags "-w -s"
 
       - name: Build Traffic back-end
         run: cd backend/traffic && go build -ldflags "-w -s"
