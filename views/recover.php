@@ -1,5 +1,5 @@
 <?php
-    require_once("controller/validator.php");
+    include_once("controller/validator.php");
 
     if(!isset($_GET["id"]) || empty($_GET["id"])) {
         header("Location: ?");
@@ -12,7 +12,7 @@
         return;
     }
 
-    require_once("controller/db_config.php");
+    include_once("controller/db_config.php");
 
     global $db_conn;
     $res = mysqli_query($db_conn, "SELECT * FROM recovery WHERE track_id=\"".$id."\"");

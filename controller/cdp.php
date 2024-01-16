@@ -1,6 +1,6 @@
 <?php
-    require_once("../controller/db_config.php");
-    require_once("../controller/validator.php");
+    include_once("../controller/db_config.php");
+    include_once("../controller/validator.php");
 
     global $db_conn;
 
