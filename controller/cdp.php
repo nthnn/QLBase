@@ -5,6 +5,9 @@
     global $db_conn;
 
     function hasExpired($time) {
+        if($time == 0)
+            return false;
+
         // 8 * 60 * 60 = 28800 (8 hours)
         return $time < (time() - 28800);
     }
