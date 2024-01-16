@@ -37,6 +37,14 @@ func main() {
 		failOnUnmatchedArgSize(3, args)
 		callback = getFileCallback(apiKey, args)
 
+	case "download":
+		failOnUnmatchedArgSize(4, args)
+		callback = downloadCallback(apiKey, args)
+
+	case "extract":
+		failOnUnmatchedArgSize(2, args)
+		callback = extractCallback(apiKey, args)
+
 	case "fetch_all":
 		failOnUnmatchedArgSize(2, args)
 		callback = fetchAllCallback(apiKey, args)

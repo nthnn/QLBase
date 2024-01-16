@@ -5,7 +5,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gabriel-vasile/mimetype"
 	"github.com/google/uuid"
@@ -150,6 +152,63 @@ func getFileCallback(apiKey string, args []string) func(*sql.DB) {
 		json.NewEncoder(buf).Encode(info)
 
 		proc.ShowResult(buf.String())
+	}
+}
+
+func downloadCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		fileName := args[2]
+		shouldExpire := args[3]
+
+		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\"")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+		defer query.Close()
+
+		count := 0
+		for query.Next() {
+			id := 0
+			query.Scan(&id)
+
+			count++
+		}
+
+		if count != 1 {
+			proc.ShowFailedResponse("File does not exists.")
+			return
+		}
+
+		var timestamp int64 = 0
+		if shouldExpire == "1" {
+			timestamp = time.Now().Unix()
+		}
+
+		ticket := uuid.New().String()
+		serverDb, err := ServerDB()
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong.")
+			return
+		}
+		defer serverDb.Close()
+
+		query, err = serverDb.Query("INSERT INTO cdp (api_key, ticket, name, expiration) VALUES(\"" + apiKey +
+			"\", \"" + ticket + "\", \"" + fileName + "\", " + strconv.Itoa(int(timestamp)) + ")")
+		if err != nil {
+			proc.ShowFailedResponse("Something went wrong. " + err.Error())
+			return
+		}
+
+		query.Close()
+		proc.ShowResult("\"" + ticket + "\"")
+	}
+}
+
+func extractCallback(apiKey string, args []string) func(*sql.DB) {
+	return func(d *sql.DB) {
+		fileName := args[1]
+		util.ExtractZip(fileName, "../drive/temp")
 	}
 }
 
