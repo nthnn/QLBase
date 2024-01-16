@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/gabriel-vasile/mimetype"
+	"github.com/google/uuid"
 	"github.com/nthnn/QLBase/storage/proc"
 	"github.com/nthnn/QLBase/storage/util"
 )
@@ -15,7 +16,7 @@ import (
 func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		temp := args[2]
-		dest := "../drive/" + base64.StdEncoding.EncodeToString([]byte(args[3]))
+		dest := "../drive/" + base64.StdEncoding.EncodeToString([]byte(uuid.New().String()+"-"+args[3]))
 
 		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE orig_name=\"" + temp[14:] + "\"")
 		if err != nil {
