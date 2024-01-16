@@ -17,7 +17,7 @@
 
         $res = mysqli_query($db_conn, "SELECT expiration FROM cdp WHERE ticket=\"".$ticket."\"");
         if($res && mysqli_num_rows($res) == 1) {
-            $row = mysqli_fetch_row($result);
+            $row = mysqli_fetch_row($res);
             mysqli_free_result($res);
 
             return !hasExpired($row[0]);
@@ -34,21 +34,24 @@
 
     function getCDPFileInfo($ticket) {
         global $db_conn;
-        $infos = array();
+        global $db_apps_conn;
 
+        $infos = array();
         $res = mysqli_query($db_conn, "SELECT api_key, name FROM cdp WHERE ticket=\"".$ticket."\"");
+
         if($res && mysqli_num_rows($res) == 1) {
             $row = mysqli_fetch_array($res);
 
             $apiKey = $row[0];
-            $name = $row[0];
+            $name = $row[1];
 
             mysqli_free_result($res);
-            $res = mysqli_query($db_conn, "SELECT orig_name, mime_type FROM ".$apiKey."_storage WHERE name=\"".$name."\"");
+            $res = mysqli_query($db_apps_conn, "SELECT orig_name, mime_type FROM ".$apiKey."_storage WHERE name=\"".$name."\"");
+
             if($res && mysqli_num_rows($res) == 1) {
                 $row = mysqli_fetch_array($res);
-
-                array_push($infos, $apiKey, $row[0], $row[1]);
+    
+                array_push($infos, $apiKey, $name, $row[0], $row[1]);
                 return $infos;
             }
         }
@@ -58,19 +61,21 @@
 
     function downloadFile($infos) {
         $apiKey = $infos[0];
-        $origName = $infos[1];
-        $mimeType = $infos[2];
+        $name = $infos[1];
+        $origName = $infos[2];
+        $mimeType = $infos[3];
 
         header("Content-Type: ".$mimeType);
         header("Content-Transfer-Encoding: Binary");
-        header("Content-disposition: attachment; filename=\"".basename($origName)."\"");
 
-        shell_exec("../bin/storage extract ".$origName);
+        shell_exec("../bin/storage extract ../drive/".$name.".zip");
 
         $origFile = "../drive/temp/".$origName;
         if(file_exists($origFile)) {
             header("Content-Length: ".filesize($origFile));
             readfile($origFile);
+
+            unlink($origFile);
         }
         else invalidateCDPRequest();
     }
