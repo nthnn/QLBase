@@ -3,7 +3,7 @@
 
     $view = "home";
     $title = "QLBase | Home";
-    $sess_id = $_COOKIE["sess_id"];
+    $sess_id = isset($_COOKIE["sess_id"]) ? $_COOKIE["sess_id"] : "";
 
     function getPage($viewName, $pageTitle) {
         global $view;
