@@ -6,7 +6,7 @@ let editor = monaco.editor.create(document.querySelector('#content'), {
     tabSize: 4,
     language: "javascript",
     semanticHighlighting: { enabled: true },
-    dimension: { height: 200 },
+    dimension: { height: 120 },
     minimap: { enabled: false }
 }), headers = monaco.editor.create(document.querySelector('#http-headers'), {
     automaticLayout: true,
@@ -14,7 +14,7 @@ let editor = monaco.editor.create(document.querySelector('#content'), {
     tabSize: 4,
     language: "javascript",
     semanticHighlighting: { enabled: true },
-    dimension: { height: 200 },
+    dimension: { height: 120 },
     minimap: { enabled: false }
 }), response = monaco.editor.create(document.querySelector('#response'), {
     automaticLayout: true,
@@ -23,7 +23,7 @@ let editor = monaco.editor.create(document.querySelector('#content'), {
     language: "javascript",
     readOnly: true,
     semanticHighlighting: { enabled: true },
-    dimension: { height: 536 },
+    dimension: { height: 376 },
     minimap: { enabled: false }
 });
 
