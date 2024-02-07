@@ -1,11 +1,12 @@
 <?php
-    include_once("controller/apps.php");
-    include_once("./controller/validator.php");
-
     $appId = "";
     $apiKey = "";
 
-    if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) &&
+        isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
+        include_once("controller/apps.php");
+        include_once("./controller/validator.php");
+
         $id = $_POST["app_id"];
         $key = $_POST["api_key"];
 
@@ -56,17 +57,18 @@
                 <br/>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-12">
                         <button class="btn btn-primary w-100" id="send">Send Request</button>
                     </div>
 
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-12">
                         <div class="pt-lg-0 pt-2"></div>
 
                         <label for="subject" class="btn btn-primary disabled w-100" id="subject-label">Choose File</label>
                         <input type="file" id="subject" name="subject" class="d-none" disabled="true" />
                     </div>
                 </div>
+                <br/>
 
                 <div class="mobile-only">
                     <br/><hr/>
