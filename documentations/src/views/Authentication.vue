@@ -22,14 +22,7 @@
     </ol>
     <br/>
 
-    <h3 class="border-bottom">🚥 HTTP Headers</h3>
-    <p>Do not forget to include the QLBase app's API key and ID to HTTP headers in your requests to authenticate and authorize the API calls:</p>
-    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
-    <span class="text-warning">"QLBase-API-Key"</span>: <span class="text-danger">"&lt;API key&gt;"</span>,
-    <span class="text-warning">"QLBase-App-ID"</span>: <span class="text-danger">"&lt;API ID&gt;"</span>
-<span class="text-primary">}</span></pre>
-
-    <h3 class="border-bottom">🧾 Creating User Accounts</h3>
+    <h4 class="border-bottom">🧾 Creating User Accounts</h4>
     <p>To register a new user account in the QLBase app, you can utilize the dedicated API endpoint. The following comprehensive guide walks you through the process, providing details on the target URL, payload structure, example response, and required HTTP headers.</p>
 
     <b>Action URL</b>
