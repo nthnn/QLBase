@@ -210,4 +210,5 @@ const App = {
 <script src="scripts/vendors/Chart.min.js"></script>
 <script src="scripts/app.js"></script>
 
+<br/>
 <?php include_once("components/footer.html"); ?>
