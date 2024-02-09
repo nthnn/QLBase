@@ -15,19 +15,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#why-qlbase">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                        </svg>
-                        Why QLBase?
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#services">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" />
                         </svg>
-                        Services
+                        Cloud-based Services
                     </a>
                 </li>
                 <li class="nav-item">
@@ -94,91 +86,15 @@
 </div>
 
 <div class="mobile-break d-block">
-    <br/><br/>
-</div>
-
-<div class="my-2">
-    <div class="bg-primary text-white">
-        <br id="why-qlbase"/><br/><br/>
-
-        <div class="container">
-            <center>
-                <h1 class="m-0 bg-primary p-2">Why QLBase?</h1>
-                <hr/>
-                <p>QLBase is an open-source scalable and reliable backend solution crafted for individuals and businesses looking to streamline their web and mobile app development process without compromising on performance and security. With a focus on simplicity, efficiency, and control, QLBase offers an alternative to traditional cloud-based backend services.</p>
-            </center>
-
-            <div class="row equal-cols">
-                <div class="col-lg-4">
-                    <div class="card card-body bg-primary text-white border-white">
-                        <center>
-                            <br/>
-                            <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                                </svg>
-                                <br/><br/>
-                                Robust Database
-                            </h2>
-                        </center>
-                        <p>Efficient data storage and retrieval are at the heart of any successful application. QLBase provides a secure and scalable database solution that seamlessly integrates with your projects. You have the flexibility to design and structure your database to meet your specific needs, allowing you to store and manage data efficiently.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card card-body bg-primary text-white border-white">
-                        <br/>
-                        <center>
-                            <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                </svg>
-                                <br/><br/>
-                                User Authentication
-                            </h2>
-                        </center>
-                        <p>Security is paramount in any digital project, and QLBase takes it seriously. We offer a robust and customizable alternative user authentication system that lets you ensure the privacy and security of your users' data. With features like password hashing and role-based access control, you can craft the authentication process to your unique requirements.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card card-body bg-primary text-white border-white">
-                        <br/>
-                        <center>
-                            <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="48">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                </svg>
-                                <br/><br/>
-                                Customer Analytics
-                            </h2>
-                        </center>
-                        <p>Understanding how your application is performing is crucial for making informed decisions. QLBase offers data analytics and insights tools to help you track user behavior, monitor performance, and optimize your application for better results. Make data-driven decisions and continuously improve your projects.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <center>
-            <br/><br/>
-            <a class="btn btn-lg btn-outline-light" href="docs/">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="24" height="24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                </svg>
-                Learn More
-            </a>
-        </center>
-
-        <br/><br/><br/>
-    </div>
+    <br/>
 </div>
 
 <div class="container">
-    <br id="services"/><br/>
+    <br id="services"/>
     <div align="center">
         <h1>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="42" height="42" class="mb-3" style="transform: rotate(-45deg)">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="42" height="42" class="mb-3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z" />
             </svg>
             Cloud-based Services
         </h1>
