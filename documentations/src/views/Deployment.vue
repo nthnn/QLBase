@@ -79,7 +79,7 @@
             <p>On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder. Changing permissions can be done by opening the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder in the terminal and typing the following:</p>
             <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">sudo</span> chmod -R 777 .</pre>
         </li>
-        <li><p>Go back to the cloned folder of QLBase and look for the file named <span class="bg-secondary border-gray border rounded p-1 d-inline">db.sql</span>. Copy its contents and then paste and execute it to your MySQL server's terminal.</p></li>
+        <li><p>Go back to the cloned folder of QLBase and look for the file named <span class="bg-secondary border-gray border rounded p-1 d-inline">db.sql</span>, then copy its contents. Now, create a database on <i>phpMyAdmin</i> named <span class="bg-secondary border-gray border rounded p-1 d-inline">qlbase</span> and execute the copied contents of <span class="bg-secondary border-gray border rounded p-1 d-inline">db.sql</span> to your MySQL server's terminal. Finally, create another database on <i>phpMyAdmin</i> named <span class="bg-secondary border-gray border rounded p-1 d-inline">qlbase_apps</span>.</p></li>
         <li><p>Cheers! 🥂 You can now open and enjoy your installed QLBase decentralized server!</p></li>
     </ol>
 
