@@ -5,15 +5,27 @@
 	"version": "1.0.0",
 	"description": "Decentralizable, scalable, and reliable backend solution alternative to traditional NoSQL, SaaS, and cloud-based services.",
 	"scripts": {
-		"build-backend": [
+		"linux:build-backend": [
             "echo \"\\033[92m[+]\\033[0m Building backend apps...\"",
             "cd backend/auth && ./build.sh && cd ../..",
             "cd backend/data_analytics && ./build.sh && cd ../..",
             "cd backend/database && ./build.sh && cd ../..",
             "cd backend/forgetpass && ./build.sh && cd ../..",
+            "cd backend/logger && ./build.sh && cd ../..",
 			"cd backend/storage && ./build.sh && cd ../..",
             "cd backend/sms && ./build.sh && cd ../..",
             "cd backend/traffic && ./build.sh && cd ../.."
+		],
+		"windows:build-backend": [
+            "echo [+] Building backend apps...",
+            "cd backend/auth && go build -ldflags=-w -ldflags=-s -o auth && mv ./auth ../../bin/auth && cd ../..",
+            "cd backend/data_analytics && go build -ldflags=-w -ldflags=-s -o data_analytics && mv ./data_analytics ../../bin/data_analytics && cd ../..",
+            "cd backend/database && go build -ldflags=-w -ldflags=-s -o database && mv ./database ../../bin/database && cd ../..",
+            "cd backend/forgetpass && go build -ldflags=-w -ldflags=-s -o forgetpass && mv ./forgetpass ../../bin/forgetpass && cd ../..",
+            "cd backend/logger && go build -ldflags=-w -ldflags=-s -o logger && mv ./logger ../../bin/logger && cd ../..",
+			"cd backend/storage && go build -ldflags=-w -ldflags=-s -o storage && mv ./storage ../../bin/storage && cd ../..",
+            "cd backend/sms && go build -ldflags=-w -ldflags=-s -o sms && mv ./sms ../../bin/sms && cd ../..",
+            "cd backend/traffic && go build -ldflags=-w -ldflags=-s -o traffic && mv ./traffic ../../bin/traffic && cd ../.."
 		],
 		"build-docs": [
 			"cd documentations",
