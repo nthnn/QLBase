@@ -2,6 +2,8 @@
 	"name": "QLBase",
 	"author": "nathannestein",
 	"git": "https://github.com/nthnn/QLBase.git",
+	"version": "1.0.0",
+	"description": "Decentralizable, scalable, and reliable backend solution alternative to traditional NoSQL, SaaS, and cloud-based services.",
 	"scripts": {
 		"build-backend": [
             "echo \"\\033[92m[+]\\033[0m Building backend apps...\"",
