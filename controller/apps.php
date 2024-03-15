@@ -50,6 +50,7 @@ function addNewApp($name, $description) {
     mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_track (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), event VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
     mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_page (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), name VARCHAR(255), category VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
     mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_database (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), mode VARCHAR(2), content MEDIUMBLOB)");
+    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_logs (id INT PRIMARY KEY AUTO_INCREMENT, origin VARCHAR(255), action VARCHAR(255), datetime VARCHAR(255), user_agent VARCHAR(255))");
     mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_storage (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), orig_name VARCHAR(255), mime_type VARCHAR(50), checksum VARCHAR(50))");
 
     return !(!$res);
