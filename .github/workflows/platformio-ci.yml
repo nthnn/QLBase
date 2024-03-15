@@ -19,4 +19,4 @@ jobs:
         run: pip install --upgrade platformio
 
       - name: Build SMS-OTP firmware
-        run: cd sms-otp-firmware && pio run
+        run: cd sms-otp-firmware && python -m platformio run
