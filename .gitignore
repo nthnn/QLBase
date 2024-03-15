@@ -7,6 +7,15 @@ bin/sms
 bin/storage
 bin/traffic
 
+bin/auth.exe
+bin/data_analytics.exe
+bin/database.exe
+bin/forgetpass.exe
+bin/logger.exe
+bin/sms.exe
+bin/storage.exe
+bin/traffic.exe
+
 docs/
 drive/*
 !drive/.htaccess
