@@ -10,13 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/pip
-            ~/.platformio/.cache
-          key: ${{ runner.os }}-pio
-
       - name: Install Python 3.9
         uses: actions/setup-python@v4
         with:
@@ -25,5 +18,5 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
 
-      - name: Build PlatformIO Project
+      - name: Build SMS-OTP firmware
         run: cd sms-otp-firmware && pio run
