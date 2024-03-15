@@ -4,6 +4,7 @@
 </p>
 
 ![PHP Syntax Check](https://github.com/nthnn/QLBase/actions/workflows/php-syntax-check.yml/badge.svg)
+![PlatformIO CI](https://github.com/nthnn/QLBase/actions/workflows/platformio-ci.yml/badge.svg)
 ![Backend Workflow](https://github.com/nthnn/QLBase/actions/workflows/backend.yml/badge.svg)
 ![Vue Docs CI](https://github.com/nthnn/QLBase/actions/workflows/vue-docs.yml/badge.svg)
 ![Spellcheck](https://github.com/nthnn/QLBase/actions/workflows/spellcheck.yml/badge.svg)
