@@ -15,7 +15,7 @@ function requestFileDeletion() {
     deleteBtn.show();
 
     $.ajax({
-        url: "api/index.php?action=file_delete",
+        url: "api/index.php?action=file_delete&dashboard",
         type: "POST",
         dataType: "json",
         headers: {
@@ -55,7 +55,7 @@ const showError = (id, message)=> {
 
 const fetchFiles = ()=> {
     $.post({
-        url: "api/index.php?action=file_fetch_all",
+        url: "api/index.php?action=file_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey

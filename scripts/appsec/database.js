@@ -4,7 +4,7 @@ let prevDBHash = "",
 
 function downloadDb(name) {
     $.post({
-        url: "api/index.php?action=db_read",
+        url: "api/index.php?action=db_read&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -30,7 +30,7 @@ function deleteDb(name) {
 
 function requestDatabaseDeletion() {
     $.post({
-        url: "api/index.php?action=db_delete",
+        url: "api/index.php?action=db_delete&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -66,7 +66,7 @@ function toModeString(mode) {
 
 const fetchDb = ()=> {
     $.post({
-        url: "api/index.php?action=db_fetch_all",
+        url: "api/index.php?action=db_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -140,7 +140,7 @@ $("#create-btn").click(()=> {
     }
 
     $.post({
-        url: "api/index.php?action=db_create",
+        url: "api/index.php?action=db_create&dashboard",
         type: "POST",
         dataType: "json",
         headers: {

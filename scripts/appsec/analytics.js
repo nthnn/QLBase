@@ -125,7 +125,7 @@ function showConfirmAliasDelete(userId) {
 
 const requestDeleteId = ()=> {
     $.post({
-        url: "api/index.php?action=id_delete_by_timestamp",
+        url: "api/index.php?action=id_delete_by_timestamp&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -152,7 +152,7 @@ const requestDeleteId = ()=> {
 
 const requestDeleteTrack = ()=> {
     $.post({
-        url: "api/index.php?action=track_delete_by_timestamp",
+        url: "api/index.php?action=track_delete_by_timestamp&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -179,7 +179,7 @@ const requestDeleteTrack = ()=> {
 
 const requestDeletePage = ()=> {
     $.post({
-        url: "api/index.php?action=page_delete_by_timestamp",
+        url: "api/index.php?action=page_delete_by_timestamp&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -206,7 +206,7 @@ const requestDeletePage = ()=> {
 
 const requestDeleteAlias = ()=> {
     $.post({
-        url: "api/index.php?action=alias_for_user",
+        url: "api/index.php?action=alias_for_user&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -290,7 +290,7 @@ const renderToAliasTable = (anonId, userId)=> {
 
 const fetchAllId = ()=> {
     $.post({
-        url: "api/index.php?action=id_fetch_all",
+        url: "api/index.php?action=id_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -336,7 +336,7 @@ const fetchAllId = ()=> {
 
 const fetchAllTrack = ()=> {
     $.post({
-        url: "api/index.php?action=track_fetch_all",
+        url: "api/index.php?action=track_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -381,7 +381,7 @@ const fetchAllTrack = ()=> {
 
 const fetchAllPage = ()=> {
     $.post({
-        url: "api/index.php?action=page_fetch_all",
+        url: "api/index.php?action=page_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -426,7 +426,7 @@ const fetchAllPage = ()=> {
 
 const fetchAllAlias = ()=> {
     $.post({
-        url: "api/index.php?action=alias_fetch_all",
+        url: "api/index.php?action=alias_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey

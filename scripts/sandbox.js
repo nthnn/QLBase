@@ -202,7 +202,7 @@ $(document).ready(()=> {
                 formData.append(key, reqData[key]);
 
         $.ajax({
-            url: "api/index.php?action=" + $("#action").find(":selected").val(),
+            url: "api/index.php?action=" + $("#action").find(":selected").val() + "&sandbox",
             type: "POST",
             headers: JSON.parse(httpHeaders),
             data: formData,

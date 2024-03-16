@@ -14,7 +14,7 @@ function deleteVerification(recipient, code) {
 
 function requestVerificationDeletion() {
     $.post({
-        url: "api/index.php?action=delete_verification",
+        url: "api/index.php?action=delete_verification&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -40,7 +40,7 @@ function requestVerificationDeletion() {
 
 const fetchSMSLogs = ()=> {
     $.post({
-        url: "api/index.php?action=fetch_all_otp",
+        url: "api/index.php?action=fetch_all_otp&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
