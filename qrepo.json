@@ -14,7 +14,8 @@
             "cd backend/logger && ./build.sh && cd ../..",
 			"cd backend/storage && ./build.sh && cd ../..",
             "cd backend/sms && ./build.sh && cd ../..",
-            "cd backend/traffic && ./build.sh && cd ../.."
+            "cd backend/traffic && ./build.sh && cd ../..",
+			"echo \"\\033[92m[+]\\033[0m Done building bacend apps!\""
 		],
 		"windows:build-backend": [
             "echo [+] Building backend apps...",
@@ -25,7 +26,8 @@
             "cd backend/logger && go build -ldflags=-w -ldflags=-s -o logger.exe && mv ./logger.exe ../../bin/logger.exe && cd ../..",
 			"cd backend/storage && go build -ldflags=-w -ldflags=-s -o storage.exe && mv ./storage.exe ../../bin/storage.exe && cd ../..",
             "cd backend/sms && go build -ldflags=-w -ldflags=-s -o sms.exe && mv ./sms.exe ../../bin/sms.exe && cd ../..",
-            "cd backend/traffic && go build -ldflags=-w -ldflags=-s -o traffic.exe && mv ./traffic.exe ../../bin/traffic.exe && cd ../.."
+            "cd backend/traffic && go build -ldflags=-w -ldflags=-s -o traffic.exe && mv ./traffic.exe ../../bin/traffic.exe && cd ../..",
+			"echo [+] Done building bacend apps!"
 		],
 		"build-docs": [
 			"cd documentations",
