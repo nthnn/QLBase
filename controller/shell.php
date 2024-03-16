@@ -1,6 +1,7 @@
 <?php
-function logShelling($apiKey) {
+function logShelling($apiKey, $sender) {
     $action = "N/A";
+
     if(isset($_GET["action"]) && !empty($_GET["action"]))
         $action = $_GET["action"];
 
@@ -10,12 +11,19 @@ function logShelling($apiKey) {
 
     shell_exec("\"../bin/logger\" \"".$apiKey."\" \"".$origin.
         "\" \"".$action."\" \"".date("Y-m-d H:i:s")."\" \"".
-        $userAgent."\"");
+        $userAgent."\" ".$sender);
 }
 
 function execute($apiKey, $appId, $backend, $args) {
+    $sender = "app";
+
+    if(isset($_GET["dashboard"]) && empty($_GET["dashboard"]))
+        $sender = "dashboard";
+    else if(isset($_GET["sandbox"]) && empty($_GET["sandbox"]))
+        $sender = "sandbox";
+
+    logShelling($apiKey, $sender);
     logNetworkTraffic($apiKey, $appId);
-    logShelling($apiKey);
 
     echo shell_exec("\"../bin/".$backend."\" ".join(" ", $args));
 }
