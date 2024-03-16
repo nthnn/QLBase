@@ -47,8 +47,10 @@ function deleteSession() {
 }
 
 function getIdOfSession() {
-    global $db_conn;
+    if(!isset($_COOKIE["sess_id"]) || empty($_COOKIE["sess_id"]))
+        return -1;
 
+    global $db_conn;
     $res = mysqli_query(
         $db_conn,
         "SELECT user_id FROM sessions WHERE hash=\"".$_COOKIE["sess_id"]."\""
