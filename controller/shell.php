@@ -4,9 +4,13 @@ function logShelling($apiKey) {
     if(isset($_GET["action"]) && !empty($_GET["action"]))
         $action = $_GET["action"];
 
-    shell_exec("\"../bin/logger\" \"".$apiKey."\" \"".$_SERVER["REMOTE_ADDR"].
+    $origin = base64_encode($_SERVER["REMOTE_ADDR"]);
+    $action = base64_encode($action);
+    $userAgent = base64_encode($_SERVER["HTTP_USER_AGENT"]);
+
+    shell_exec("\"../bin/logger\" \"".$apiKey."\" \"".$origin.
         "\" \"".$action."\" \"".date("Y-m-d H:i:s")."\" \"".
-        $_SERVER["HTTP_USER_AGENT"]."\"");
+        $userAgent."\"");
 }
 
 function execute($apiKey, $appId, $backend, $args) {
