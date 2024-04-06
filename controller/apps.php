@@ -5,130 +5,112 @@ include_once("session_ctrl.php");
 include_once("util.php");
 
 global $db_conn;
-$sess_id = getIdOfSession();
+$sess_id = SeesionControl::getIdOfSession();
 
-function validateAppId($id) {
-    if (
-        strlen($id) != 19 ||
-        !preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id)
-    )
-        return false;
+class Apps {
+    public static function validateId($id) {
+        if (
+            strlen($id) != 19 ||
+            !preg_match("/^[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}$/", $id)
+        )
+            return false;
 
-    global $db_conn;
-    $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"" . $id . "\"");
-    $count = mysqli_num_rows($res);
+        global $db_conn;
+        $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"" . $id . "\"");
+        $count = mysqli_num_rows($res);
 
-    mysqli_free_result($res);
-    return $count == 1;
-}
-
-function addNewApp($name, $description) {
-    global $db_conn;
-    global $sess_id;
-
-    $app_id = generateAppID();
-    while(true) {
-        $check = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"".$app_id."\"");
-
-        if(mysqli_num_rows($check) == 1)
-            $app_id = generateAppID();
-        else break;
+        mysqli_free_result($res);
+        return $count == 1;
     }
 
-    $id_hash = sha1(md5($name));
-    $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(md5($id_hash), 24);
-    $res = mysqli_query(
-        $db_conn,
-        "INSERT INTO app (creator_id, app_id, app_key, name, description) VALUES(".
-        $sess_id.", \"".$app_id."\", \"".$app_key."\", \"".$name."\", \"".$description."\")"
-    );
+    public static function create($name, $description) {
+        global $db_conn;
+        global $sess_id;
 
-    global $db_apps_conn;
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_accounts (id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), enabled TINYINT, timedate TIMESTAMP)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_sms_auth (id INT PRIMARY KEY AUTO_INCREMENT, timedate TIMESTAMP, recipient VARCHAR(255), support_email VARCHAR(255), code VARCHAR(6), validated TINYINT)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_id (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_track (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), event VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_page (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), name VARCHAR(255), category VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_database (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), mode VARCHAR(2), content MEDIUMBLOB)");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_logs (id INT PRIMARY KEY AUTO_INCREMENT, origin VARCHAR(255), action VARCHAR(255), datetime VARCHAR(255), user_agent VARCHAR(255), sender VARCHAR(15))");
-    mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_storage (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), orig_name VARCHAR(255), mime_type VARCHAR(50), checksum VARCHAR(50))");
+        $app_id = generateAppID();
+        while(true) {
+            $check = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"".$app_id."\"");
 
-    return !(!$res);
-}
+            if(mysqli_num_rows($check) == 1)
+                $app_id = generateAppID();
+            else break;
+        }
 
-function removeNewApp($name) {
-    global $db_conn;
-    global $sess_id;
+        $id_hash = sha1(md5($name));
+        $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(md5($id_hash), 24);
+        $res = mysqli_query(
+            $db_conn,
+            "INSERT INTO app (creator_id, app_id, app_key, name, description) VALUES(".
+            $sess_id.", \"".$app_id."\", \"".$app_key."\", \"".$name."\", \"".$description."\")"
+        );
 
-    $res = mysqli_query(
-        $db_conn,
-        "DELETE FROM app WHERE name=\"" . $name . "\""
-    );
-    return !(!$res);
-}
+        global $db_apps_conn;
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_accounts (id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), email VARCHAR(255), password VARCHAR(255), enabled TINYINT, timedate TIMESTAMP)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_sms_auth (id INT PRIMARY KEY AUTO_INCREMENT, timedate TIMESTAMP, recipient VARCHAR(255), support_email VARCHAR(255), code VARCHAR(6), validated TINYINT)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_id (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_track (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), event VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_data_analytics_page (id INT PRIMARY KEY AUTO_INCREMENT, tracker VARCHAR(255), anonymous_id VARCHAR(255), user_id VARCHAR(255), name VARCHAR(255), category VARCHAR(255), timedate TIMESTAMP, payload BLOB)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_database (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), mode VARCHAR(2), content MEDIUMBLOB)");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_logs (id INT PRIMARY KEY AUTO_INCREMENT, origin VARCHAR(255), action VARCHAR(255), datetime VARCHAR(255), user_agent VARCHAR(255), sender VARCHAR(15))");
+        mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_storage (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), orig_name VARCHAR(255), mime_type VARCHAR(50), checksum VARCHAR(50))");
 
-function getAppsOfCurrentUser() {
-    global $db_conn;
-    global $sess_id;
+        return !(!$res);
+    }
 
-    $res = mysqli_query(
-        $db_conn,
-        "SELECT name, app_id, description FROM app WHERE creator_id=" . $sess_id
-    );
+    public static function delete($name) {
+        global $db_conn;
+        global $sess_id;
 
-    $ownedApps = array();
-    if (mysqli_num_rows($res) > 0)
-        while ($row = mysqli_fetch_assoc($res))
-            array_push($ownedApps, array($row["name"], $row["app_id"], $row["description"]));
+        $res = mysqli_query(
+            $db_conn,
+            "DELETE FROM app WHERE name=\"" . $name . "\""
+        );
+        return !(!$res);
+    }
 
-    return $ownedApps;
-}
+    public static function getList() {
+        global $db_conn;
+        global $sess_id;
 
-function getAppInfo($name) {
-    global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT name, app_id, description FROM app WHERE creator_id=" . $sess_id
+        );
 
-    $res = mysqli_query(
-        $db_conn,
-        "SELECT id, app_key, app_id, creator_id FROM app WHERE name=\"" . $name . "\""
-    );
+        $ownedApps = array();
+        if (mysqli_num_rows($res) > 0)
+            while ($row = mysqli_fetch_assoc($res))
+                array_push($ownedApps, array($row["name"], $row["app_id"], $row["description"]));
 
-    if (mysqli_num_rows($res) != 1)
-        return null;
+        return $ownedApps;
+    }
 
-    $val = mysqli_fetch_array($res);
-    return array(
-        "id" => $val["id"],
-        "app_key" => $val["app_key"],
-        "app_id" => $val["app_id"],
-        "creator_id" => $val["creator_id"]
-    );
-}
+    public static function getInfoById($user_id, $id) {
+        global $db_conn;
 
-function getAppInfoById($user_id, $id) {
-    global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\" AND creator_id=" . $user_id
+        );
 
-    $res = mysqli_query(
-        $db_conn,
-        "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\" AND creator_id=" . $user_id
-    );
+        if (mysqli_num_rows($res) != 1)
+            return null;
 
-    if (mysqli_num_rows($res) != 1)
-        return null;
+        $val = mysqli_fetch_array($res);
+        return array(
+            "app_id" => $val["app_id"],
+            "app_key" => $val["app_key"],
+            "app_name" => $val["name"],
+            "app_desc" => $val["description"]
+        );
+    }
 
-    $val = mysqli_fetch_array($res);
-    return array(
-        "app_id" => $val["app_id"],
-        "app_key" => $val["app_key"],
-        "app_name" => $val["name"],
-        "app_desc" => $val["description"]
-    );
-}
+    public static function matchApiKeyId($key, $id) {
+        global $db_conn;
+        $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_key=\"".$key."\" AND app_id=\"".$id."\"");
 
-function matchApiKeyAppId($key, $id) {
-    global $db_conn;
-    $res = mysqli_query($db_conn, "SELECT * FROM app WHERE app_key=\"".$key."\" AND app_id=\"".$id."\"");
-
-    return mysqli_num_rows($res) == 1;
+        return mysqli_num_rows($res) == 1;
+    }
 }
 
 ?>
