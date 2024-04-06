@@ -109,7 +109,7 @@ function getAppInfoById($user_id, $id) {
 
     $res = mysqli_query(
         $db_conn,
-        "SELECT app_id, app_key, name FROM app WHERE app_id=\"" . $id . "\" AND creator_id=" . $user_id
+        "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\" AND creator_id=" . $user_id
     );
 
     if (mysqli_num_rows($res) != 1)
@@ -119,7 +119,8 @@ function getAppInfoById($user_id, $id) {
     return array(
         "app_id" => $val["app_id"],
         "app_key" => $val["app_key"],
-        "app_name" => $val["name"]
+        "app_name" => $val["name"],
+        "app_desc" => $val["description"]
     );
 }
 
