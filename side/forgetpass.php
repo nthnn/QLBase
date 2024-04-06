@@ -1,11 +1,12 @@
 <?php
 
 include_once("../controller/db_config.php");
+include_once("../controller/response.php");
 include_once("../controller/validator.php");
 
-header("Content-Type: application/json; charset=utf-8");
-
 global $db_conn;
+
+Response::jsonContent();
 if(!(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST")) {
     Response::failed();
     return;

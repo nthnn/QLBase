@@ -27,7 +27,7 @@ function logNetworkTraffic($apiKey, $appId) {
     exit(0);
 }
 
-header("Content-Type: application/json; charset=utf-8");
+Response::jsonContent();
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 

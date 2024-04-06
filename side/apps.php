@@ -3,6 +3,7 @@
 include_once("../controller/apps.php");
 include_once("../controller/db_config.php");
 include_once("../controller/session_ctrl.php");
+include_once("../controller/response.php");
 include_once("../controller/validator.php");
 
 if(!(isset($_COOKIE["sess_id"]) &&
@@ -13,7 +14,7 @@ if(!(isset($_COOKIE["sess_id"]) &&
 }
 
 if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
-    jsonContentResponse();
+    Response::jsonContent();
     echo "{\"result\": \"1\", \"apps\": {";
 
     $str = "";
