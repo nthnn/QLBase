@@ -1,6 +1,7 @@
 <?php
 
 include_once("../controller/apps.php");
+include_once("../controller/shell.php");
 include_once("../controller/validator.php");
 
 header('Content-Type: application/json; charset=utf-8');
@@ -24,7 +25,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         return;
     }
 
-    echo shell_exec("\"../bin/logger\" dump ".$key);
+    echo Shell::run("../bin/logger", "dump ".$key);
     return;
 }
 

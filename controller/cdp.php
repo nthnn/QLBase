@@ -69,8 +69,7 @@ class ContentDeliveryPage {
 
         header("Content-Type: ".$mimeType);
         header("Content-Transfer-Encoding: Binary");
-
-        shell_exec("../bin/storage extract ../drive/".$name.".zip");
+        Shell::run("../bin/storage", "extract ../drive/".$name.".zip");
 
         $origFile = "../drive/temp/".$origName;
         if(file_exists($origFile)) {

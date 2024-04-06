@@ -24,7 +24,7 @@ if(isset($_POST["ue"]) && !empty($_POST["ue"])) {
         return;
     }
 
-    echo shell_exec("../bin/forgetpass ".$ue);
+    echo Shell::run("../bin/forgetpass", $ue);
     return;
 }
 else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
