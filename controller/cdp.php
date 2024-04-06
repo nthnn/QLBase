@@ -1,10 +1,12 @@
 <?php
-    include_once("../controller/db_config.php");
-    include_once("../controller/validator.php");
 
-    global $db_conn;
+include_once("../controller/db_config.php");
+include_once("../controller/validator.php");
 
-    function hasExpired($time) {
+global $db_conn;
+
+class ContentDeliveryPage {
+    private static function hasExpired($time) {
         if($time == 0)
             return false;
 
@@ -12,7 +14,7 @@
         return $time < (time() - 28800);
     }
 
-    function isValidCDPTicket($ticket) {
+    public static function isValidTicket($ticket) {
         global $db_conn;
 
         $res = mysqli_query($db_conn, "SELECT expiration FROM cdp WHERE ticket=\"".$ticket."\"");
@@ -20,19 +22,19 @@
             $row = mysqli_fetch_row($res);
             mysqli_free_result($res);
 
-            return !hasExpired($row[0]);
+            return !ContentDeliveryPage::hasExpired($row[0]);
         }
 
         mysqli_free_result($res);
         return false;
     }
 
-    function invalidateCDPRequest() {
+    public static function invalidateRequest() {
         header("Location: ../404.html");
         die();
     }
 
-    function getCDPFileInfo($ticket) {
+    public static function getFileInfo($ticket) {
         global $db_conn;
         global $db_apps_conn;
 
@@ -59,7 +61,7 @@
         return $infos;
     }
 
-    function downloadFile($infos) {
+    public static function downloadFile($infos) {
         $apiKey = $infos[0];
         $name = $infos[1];
         $origName = $infos[2];
@@ -77,6 +79,8 @@
 
             unlink($origFile);
         }
-        else invalidateCDPRequest();
+        else ContentDeliveryPage::invalidateRequest();
     }
+}
+
 ?>
