@@ -1626,7 +1626,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             return;
     }
 
-    execute($apiKey, $appId, $backend, $args);
+    Shell::execute($apiKey, $appId, $backend, $args);
     return;
 }
 
