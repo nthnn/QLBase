@@ -1,7 +1,7 @@
 <?php
 
 class Response {
-    private static function jsonContent() {
+    public static function jsonContent() {
         header("Content-Type: application/json; charset=utf-8");
     }
 
