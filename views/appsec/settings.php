@@ -1,3 +1,9 @@
+<?php
+include_once("controller/apps.php");
+include_once("controller/session_ctrl.php");
+
+$appInfo = getAppInfoById(getIdOfSession(), $_GET["id"]);
+?>
 <h1>Settings</h1>
 <hr/>
 
@@ -8,7 +14,7 @@
         </div>
 
         <div class="col-9">
-            <input type="text" class="form-control" id="app-name" placeholder="App Name" />
+            <input type="text" class="form-control" id="app-name" placeholder="App Name" value="<?php echo $appInfo["app_name"]; ?>" />
         </div>
     </div>
 
@@ -18,7 +24,7 @@
         </div>
 
         <div class="col-9">
-            <input type="text" class="form-control" id="app-desc" placeholder="App Description" />
+            <input type="text" class="form-control" id="app-desc" placeholder="App Description" value="<?php echo htmlentities(base64_decode($appInfo["app_desc"])); ?>" />
         </div>
     </div>
 
