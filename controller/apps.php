@@ -27,12 +27,12 @@ class Apps {
         global $db_conn;
         global $sess_id;
 
-        $app_id = generateAppID();
+        $app_id = Util::generateAppID();
         while(true) {
             $check = mysqli_query($db_conn, "SELECT * FROM app WHERE app_id=\"".$app_id."\"");
 
             if(mysqli_num_rows($check) == 1)
-                $app_id = generateAppID();
+                $app_id = Util::generateAppID();
             else break;
         }
 

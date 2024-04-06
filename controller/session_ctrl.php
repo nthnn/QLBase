@@ -27,7 +27,7 @@ class SessionControl {
     public static function create($user_id) {
         global $db_conn;
 
-        $hash = md5(guidv4());
+        $hash = md5(Util::guidv4());
         $result = mysqli_query($db_conn, "INSERT INTO sessions(user_id, hash, user_agent, remote_addr) ".
             "VALUES(".$user_id.", \"".$hash.
             "\", \"".$_SERVER["HTTP_USER_AGENT"].
