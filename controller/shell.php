@@ -11,9 +11,16 @@ class Shell {
         $action = base64_encode($action);
         $userAgent = base64_encode($_SERVER["HTTP_USER_AGENT"]);
 
-        shell_exec("\"../bin/logger\" \"".$apiKey."\" \"".$origin.
+        Shell::run("../bin/logger", "\"".$apiKey."\" \"".$origin.
             "\" \"".$action."\" \"".date("Y-m-d H:i:s")."\" \"".
             $userAgent."\" ".$sender);
+    }
+
+    public static function run($program, $arguments) {
+        if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            $program = str_replace("/", "\\", $program);
+
+        return shell_exec("\"".$program."\" ".$arguments);
     }
 
     public static function execute($apiKey, $appId, $backend, $args) {
@@ -27,7 +34,7 @@ class Shell {
         Shell::log($apiKey, $sender);
         logNetworkTraffic($apiKey, $appId);
 
-        echo shell_exec("\"../bin/".$backend."\" ".join(" ", $args));
+        echo Shell::run("../bin/".$backend, join(" ", $args));
     }
 }
 
