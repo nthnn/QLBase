@@ -37,7 +37,7 @@ if(isset($_GET["login"]) && empty($_GET["login"]) &&
         return;
     }
 
-    if(loginAccount($username, $password)) {
+    if(Account::login($username, $password)) {
         successResponse();
         return;
     }
@@ -76,7 +76,7 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
         return;
     }
 
-    $result = createAccount($name, $username, $email, $password);
+    $result = Account::create($name, $username, $email, $password);
     switch($result) {
         case CreateAccountResponse::DB_ERROR:
             respondWithErrorMessage("Internal database error occured.");
@@ -151,7 +151,7 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
         return;
     }
 
-    if(updateAccount($username, $name, $email, $password, $old))
+    if(Account::update($username, $name, $email, $password, $old))
         successResponse();
     else failedResponse();
 

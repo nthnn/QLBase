@@ -3,7 +3,7 @@
 include_once("controller/account.php");
 include_once("controller/session_ctrl.php");
 
-$username = getAccountUsername(getIdOfSession());
+$username = Account::getUsername(getIdOfSession());
 
 ?>
 <nav class="navbar navbar-expand-lg bg-primary fixed-top shadow" data-bs-theme="dark">

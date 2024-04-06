@@ -5,8 +5,8 @@ include_once("controller/session_ctrl.php");
 
 $user_id = getIdOfSession();
 
-$username = getAccountUsername($user_id);
-$user_info = getAccountInfo($user_id);
+$username = Account::getUsername($user_id);
+$user_info = Account::getInfo($user_id);
 
 $name = $user_info[0];
 $email = $user_info[1];

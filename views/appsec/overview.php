@@ -4,7 +4,7 @@ include_once("controller/account.php");
 
 $userId = getIdOfSession();
 $appInfo = getAppInfoById($userId, $appId);
-$userName = getAccountUsername($userId);
+$userName = Account::getUsername($userId);
 
 ?>
 
