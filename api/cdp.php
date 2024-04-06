@@ -4,15 +4,15 @@
 
     if((!isset($_GET["ticket"]) && empty($_GET["ticket"])) ||
         !validateUuid($_GET["ticket"]))
-        invalidateCDPRequest();
+        ContentDeliveryPage::invalidateRequest();
 
     $ticket = $_GET["ticket"];
-    if(!isValidCDPTicket($ticket))
-        invalidateCDPRequest();
+    if(!ContentDeliveryPage::isValidCDPTicket($ticket))
+        ContentDeliveryPage::invalidateRequest();
 
-    $fileInfos = getCDPFileInfo($ticket);
+    $fileInfos = ContentDeliveryPage::getFileInfo($ticket);
     if(count($fileInfos) == 0)
-        invalidateCDPRequest();
+        ContentDeliveryPage::invalidateRequest();
 
-    downloadFile($fileInfos);
+    ContentDeliveryPage::downloadFile($fileInfos);
 ?>
