@@ -31,7 +31,7 @@ if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
     echo "{\"result\": \"1\", \"apps\": {";
 
     $str = "";
-    foreach(getAppsOfCurrentUser() as $app) {
+    foreach(Apps::getList() as $app) {
         $str .= "\"".$app[0]."\": [\"".$app[1]."\", \"".$app[2]."\"],";
     }
 
@@ -55,7 +55,7 @@ else if(isset($_GET["create"]) && empty($_GET["create"]) &&
         return;
     }
 
-    if(addNewApp($name, $description))
+    if(Apps::create($name, $description))
         successResponse();
     else failedResponse();
     return;

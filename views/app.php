@@ -3,7 +3,7 @@
 include_once("controller/apps.php");
 include_once("controller/session_ctrl.php");
 
-if(!isset($_GET["id"]) || empty($_GET["id"]) || !validateAppId($_GET["id"])) {
+if(!isset($_GET["id"]) || empty($_GET["id"]) || !Apps::validateId($_GET["id"])) {
     header("Location: ?");
     return;
 }
@@ -16,7 +16,7 @@ if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
     $page = $_GET["section"];
 
-$apiKey = getAppInfoById(getIdOfSession(), $appId)["app_key"];
+$apiKey = Apps::getInfoById(getIdOfSession(), $appId)["app_key"];
 ?>
 
 <script>

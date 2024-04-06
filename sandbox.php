@@ -10,7 +10,7 @@
         $id = $_POST["app_id"];
         $key = $_POST["api_key"];
 
-        if(validateAppId($id) || validateApiKey($key)) {
+        if(Apps::validateId($id) || validateApiKey($key)) {
             $appId = $id;
             $apiKey = $key;
         }

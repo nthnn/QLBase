@@ -47,8 +47,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
     if(!isset($_GET["action"]) ||
         empty($_GET["action"]) ||
         !validateApiKey($apiKey) ||
-        !validateAppId($appId) ||
-        !matchApiKeyAppId($apiKey, $appId)) {
+        !Apps::validateId($appId) ||
+        !Apps::matchApiKeyId($apiKey, $appId)) {
         failedResponse();
         return;
     }

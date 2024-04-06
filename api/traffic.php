@@ -19,7 +19,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
     }
 
     $id = $_SERVER["HTTP_QLBASE_APP_ID"];
-    if(!validateAppId($id)) {
+    if(!Apps::validateId($id)) {
         failedResponse();
         return;
     }
