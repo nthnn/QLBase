@@ -62,7 +62,7 @@ class Account {
         global $db_conn;
         $res = mysqli_query($db_conn, "UPDATE accounts SET name=\"".$name.
             "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
-            $username."\" AND password=\"".md5($old)."\" AND id=".SessionControl::getId());
+            $username."\" AND password=\"".md5($old)."\" AND id=".(SessionControl::getId()));
 
         return !(!$res);
     }
