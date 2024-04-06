@@ -12,20 +12,6 @@ if(!(isset($_COOKIE["sess_id"]) &&
     return;
 }
 
-function jsonContentResponse() {
-    header("Content-Type: application/json; charset=utf-8");
-}
-
-function failedResponse() {
-    jsonContentResponse();
-    echo "{\"result\": \"0\"}";
-}
-
-function successResponse() {
-    jsonContentResponse();
-    echo "{\"result\": \"1\"}";
-}
-
 if(isset($_GET["fetch"]) && empty($_GET["fetch"])) {
     jsonContentResponse();
     echo "{\"result\": \"1\", \"apps\": {";
@@ -45,19 +31,19 @@ else if(isset($_GET["create"]) && empty($_GET["create"]) &&
 
     $name = $_POST["name"];
     if(!Validate::appName($name)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
     $description = $_POST["description"];
     if(!Validate::base64($description)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
     if(Apps::create($name, $description))
-        successResponse();
-    else failedResponse();
+        Response::success();
+    else Response::failed();
     return;
 }
 

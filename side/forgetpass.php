@@ -3,15 +3,11 @@
 include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 
-header('Content-Type: application/json; charset=utf-8');
-
-function failedResponse() {
-    echo "{\"result\": \"0\"}";
-}
+header("Content-Type: application/json; charset=utf-8");
 
 global $db_conn;
 if(!(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST")) {
-    failedResponse();
+    Response::failed();
     return;
 }
 
@@ -20,7 +16,7 @@ if(isset($_POST["ue"]) && !empty($_POST["ue"])) {
 
     if(!Validate::username($ue) &&
         !Validate::email($ue)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
@@ -33,19 +29,19 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
 
     $email = $_POST["email"];
     if(!Validate::email($email)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
     $password = $_POST["newpass"];
     if(!Validate::loginPassword($password)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
     $track_id = $_POST["track_id"];
     if(!Validate::uuid($track_id)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
@@ -62,6 +58,6 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
     }
 }
 
-failedResponse();
+Response::failed();
 
 ?>

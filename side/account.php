@@ -5,25 +5,6 @@ include_once("../controller/db_config.php");
 include_once("../controller/session_ctrl.php");
 include_once("../controller/validator.php");
 
-function jsonContentResponse() {
-    header("Content-Type: application/json; charset=utf-8");
-}
-
-function failedResponse() {
-    jsonContentResponse();
-    echo "{\"result\": \"0\"}";
-}
-
-function successResponse() {
-    jsonContentResponse();
-    echo "{\"result\": \"1\"}";
-}
-
-function respondWithErrorMessage($message) {
-    jsonContentResponse();
-    echo "{\"result\": \"0\", \"message\": \"".$message."\"}";
-}
-
 if(isset($_GET["login"]) && empty($_GET["login"]) &&
     isset($_POST["username"]) && !empty($_POST["username"]) &&
     isset($_POST["password"]) && !empty($_POST["password"])) {
@@ -33,16 +14,16 @@ if(isset($_GET["login"]) && empty($_GET["login"]) &&
 
     if(!Validate::username($username) ||
         !Validate::loginPassword($password)) {
-        failedResponse();
+        Response::failed();
         return;
     }
 
     if(Account::login($username, $password)) {
-        successResponse();
+        Response::success();
         return;
     }
 
-    failedResponse();
+    Response::failed();
     return;
 }
 else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
@@ -57,45 +38,45 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
     $password = $_POST["password"];
 
     if(!Validate::name($name)) {
-        respondWithErrorMessage("Invalid name of user.");
+        Response::failedMessage("Invalid name of user.");
         return;
     }
 
     if(!Validate::username($username)) {
-        respondWithErrorMessage("Invalid username");
+        Response::failedMessage("Invalid username");
         return;
     }
 
     if(!Validate::email($email)) {
-        respondWithErrorMessage("Invalid email");
+        Response::failedMessage("Invalid email");
         return;
     }
 
     if(!Validate::loginPassword($password)) {
-        respondWithErrorMessage("Invalid password");
+        Response::failedMessage("Invalid password");
         return;
     }
 
     $result = Account::create($name, $username, $email, $password);
     switch($result) {
         case CreateAccountResponse::DB_ERROR:
-            respondWithErrorMessage("Internal database error occured.");
+            Response::failedMessage("Internal database error occured.");
             return;
 
         case CreateAccountResponse::USERNAME_ALREADY_IN_USE:
-            respondWithErrorMessage("Username already in use.");
+            Response::failedMessage("Username already in use.");
             return;
 
         case CreateAccountResponse::EMAIL_ALREADY_IN_USE:
-            respondWithErrorMessage("Email already in use.");
+            Response::failedMessage("Email already in use.");
             return;
 
         case CreateAccountResponse::SUCCESS:
-            successResponse();
+            Response::success();
             return;
 
         default:
-            respondWithErrorMessage("Internal system error occured.");
+            Response::failedMessage("Internal system error occured.");
             return;
     }
 }
@@ -127,33 +108,33 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
     $old = $_POST["old"];
 
     if(!Validate::name($name)) {
-        respondWithErrorMessage("Invalid name of user.");
+        Response::failedMessage("Invalid name of user.");
         return;
     }
 
     if(!Validate::username($username)) {
-        respondWithErrorMessage("Invalid username");
+        Response::failedMessage("Invalid username");
         return;
     }
 
     if(!Validate::email($email)) {
-        respondWithErrorMessage("Invalid email");
+        Response::failedMessage("Invalid email");
         return;
     }
 
     if(!Validate::loginPassword($password)) {
-        respondWithErrorMessage("Invalid password");
+        Response::failedMessage("Invalid password");
         return;
     }
 
     if(!Validate::loginPassword($old)) {
-        respondWithErrorMessage("Invalid old password");
+        Response::failedMessage("Invalid old password");
         return;
     }
 
     if(Account::update($username, $name, $email, $password, $old))
-        successResponse();
-    else failedResponse();
+        Response::success();
+    else Response::failed();
 
     return;
 }
