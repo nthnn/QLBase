@@ -3,7 +3,7 @@
     include_once("../controller/validator.php");
 
     if((!isset($_GET["ticket"]) && empty($_GET["ticket"])) ||
-        !validateUuid($_GET["ticket"]))
+        !Validate::uuid($_GET["ticket"]))
         ContentDeliveryPage::invalidateRequest();
 
     $ticket = $_GET["ticket"];

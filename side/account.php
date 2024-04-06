@@ -31,8 +31,8 @@ if(isset($_GET["login"]) && empty($_GET["login"]) &&
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    if(!validateUsername($username) ||
-        !validateLoginPassword($password)) {
+    if(!Validate::username($username) ||
+        !Validate::loginPassword($password)) {
         failedResponse();
         return;
     }
@@ -56,22 +56,22 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    if(!validateName($name)) {
+    if(!Validate::name($name)) {
         respondWithErrorMessage("Invalid name of user.");
         return;
     }
 
-    if(!validateUsername($username)) {
+    if(!Validate::username($username)) {
         respondWithErrorMessage("Invalid username");
         return;
     }
 
-    if(!validateEmail($email)) {
+    if(!Validate::email($email)) {
         respondWithErrorMessage("Invalid email");
         return;
     }
 
-    if(!validateLoginPassword($password)) {
+    if(!Validate::loginPassword($password)) {
         respondWithErrorMessage("Invalid password");
         return;
     }
@@ -126,27 +126,27 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
     $password = $_POST["password"];
     $old = $_POST["old"];
 
-    if(!validateName($name)) {
+    if(!Validate::name($name)) {
         respondWithErrorMessage("Invalid name of user.");
         return;
     }
 
-    if(!validateUsername($username)) {
+    if(!Validate::username($username)) {
         respondWithErrorMessage("Invalid username");
         return;
     }
 
-    if(!validateEmail($email)) {
+    if(!Validate::email($email)) {
         respondWithErrorMessage("Invalid email");
         return;
     }
 
-    if(!validateLoginPassword($password)) {
+    if(!Validate::loginPassword($password)) {
         respondWithErrorMessage("Invalid password");
         return;
     }
 
-    if(!validateLoginPassword($old)) {
+    if(!Validate::loginPassword($old)) {
         respondWithErrorMessage("Invalid old password");
         return;
     }

@@ -7,7 +7,7 @@
     }
 
     $id = $_GET["id"];
-    if(!validateUuid($id)) {
+    if(!Validate::uuid($id)) {
         header("Location: ?");
         return;
     }

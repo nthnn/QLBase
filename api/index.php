@@ -46,7 +46,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
     if(!isset($_GET["action"]) ||
         empty($_GET["action"]) ||
-        !validateApiKey($apiKey) ||
+        !Validate::apiKey($apiKey) ||
         !Apps::validateId($appId) ||
         !Apps::matchApiKeyId($apiKey, $appId)) {
         failedResponse();
@@ -76,19 +76,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
 
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
 
             $password = $_POST["password"];
-            if(!validateLoginPassword($password)) {
+            if(!Validate::loginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
@@ -110,19 +110,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
     
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
     
             $password = $_POST["password"];
-            if(!validateLoginPassword($password)) {
+            if(!Validate::loginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
@@ -143,19 +143,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
         
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
         
             $password = $_POST["password"];
-            if(!validateLoginPassword($password)) {
+            if(!Validate::loginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
@@ -174,7 +174,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
@@ -192,7 +192,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
@@ -210,7 +210,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
@@ -228,7 +228,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
@@ -246,7 +246,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
@@ -264,7 +264,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
@@ -282,7 +282,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
@@ -301,13 +301,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $username = $_POST["username"];
-            if(!validateUsername($username)) {
+            if(!Validate::username($username)) {
                 failedResponseMessage("Invalid username string.");
                 return;
             }
         
             $password = $_POST["password"];
-            if(!validateLoginPassword($password)) {
+            if(!Validate::loginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
@@ -326,13 +326,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $email = $_POST["email"];
-            if(!validateEmail($email)) {
+            if(!Validate::email($email)) {
                 failedResponseMessage("Invalid email string.");
                 return;
             }
 
             $password = $_POST["password"];
-            if(!validateLoginPassword($password)) {
+            if(!Validate::loginPassword($password)) {
                 failedResponseMessage("Invalid password hash.");
                 return;
             }
@@ -356,13 +356,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $recipient = $_POST["recipient"];
-            if(!validatePhoneNumber($recipient)) {
+            if(!Validate::phoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
 
             $support = $_POST["support"];
-            if(!validateEmail($support)) {
+            if(!Validate::email($support)) {
                 failedResponseMessage("Invalid support email.");
                 return;
             }
@@ -381,13 +381,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $recipient = $_POST["recipient"];
-            if(!validatePhoneNumber($recipient)) {
+            if(!Validate::phoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
     
             $code = $_POST["code"];
-            if(!validateVerificationCode($code)) {
+            if(!Validate::verificationCode($code)) {
                 failedResponseMessage("Invalid verification code.");
                 return;
             }
@@ -406,13 +406,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $recipient = $_POST["recipient"];
-            if(!validatePhoneNumber($recipient)) {
+            if(!Validate::phoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
         
             $code = $_POST["code"];
-            if(!validateVerificationCode($code)) {
+            if(!Validate::verificationCode($code)) {
                 failedResponseMessage("Invalid verification code.");
                 return;
             }
@@ -436,13 +436,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $recipient = $_POST["recipient"];
-            if(!validatePhoneNumber($recipient)) {
+            if(!Validate::phoneNumber($recipient)) {
                 failedResponseMessage("Invalid recipient string.");
                 return;
             }
         
             $code = $_POST["code"];
-            if(!validateVerificationCode($code)) {
+            if(!Validate::verificationCode($code)) {
                 failedResponseMessage("Invalid verification code.");
                 return;
             }
@@ -464,31 +464,31 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
 
             $timedate = $_POST["timestamp"];
-            if(!validateDateTime($timedate)) {
+            if(!Validate::dateTime($timedate)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
 
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -509,25 +509,25 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
     
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
 
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -546,13 +546,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -571,13 +571,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -595,7 +595,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -614,13 +614,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
    
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $timestamp = $_POST["timestamp"];
-            if(!validateTimestamp($timestamp)) {
+            if(!Validate::timestamp($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -638,7 +638,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -656,7 +656,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $timestamp = $_POST["timestamp"];
-            if(!validateDateTime($timestamp)) {
+            if(!Validate::dateTime($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -684,37 +684,37 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
     
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
     
             $event = $_POST["event"];
-            if(!validateUsername($event)) {
+            if(!Validate::username($event)) {
                 failedResponseMessage("Invalid event name.");
                 return;
             }
     
             $timedate = $_POST["timestamp"];
-            if(!validateDateTime($timedate)) {
+            if(!Validate::dateTime($timedate)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
     
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -736,31 +736,31 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
         
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
     
             $event = $_POST["event"];
-            if(!validateUsername($event)) {
+            if(!Validate::username($event)) {
                 failedResponseMessage("Invalid event name.");
                 return;
             }
     
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -779,13 +779,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -804,13 +804,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -829,13 +829,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
     
             $event = $_POST["event"];
-            if(!validateUsername($event)) {
+            if(!Validate::username($event)) {
                 failedResponseMessage("Invalid event name.");
                 return;
             }
@@ -854,13 +854,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
        
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $timestamp = $_POST["timestamp"];
-            if(!validateTimestamp($timestamp)) {
+            if(!Validate::timestamp($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -878,7 +878,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -896,7 +896,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -914,7 +914,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $event = $_POST["event"];
-            if(!validateUsername($event)) {
+            if(!Validate::username($event)) {
                 failedResponseMessage("Invalid event name.");
                 return;
             }
@@ -932,7 +932,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $timestamp = $_POST["timestamp"];
-            if(!validateDateTime($timestamp)) {
+            if(!Validate::dateTime($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -961,43 +961,43 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
         
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
         
             $name = $_POST["name"];
-            if(!validateUsername($name)) {
+            if(!Validate::username($name)) {
                 failedResponseMessage("Invalid page name.");
                 return;
             }
     
             $category = $_POST["category"];
-            if(!validateUsername($category)) {
+            if(!Validate::username($category)) {
                 failedResponseMessage("Invalid page category.");
                 return;
             }
     
             $timedate = $_POST["timestamp"];
-            if(!validateDateTime($timedate)) {
+            if(!Validate::dateTime($timedate)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
         
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -1029,37 +1029,37 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
             
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
             
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
         
             $name = $_POST["name"];
-            if(!validateUsername($name)) {
+            if(!Validate::username($name)) {
                 failedResponseMessage("Invalid page name.");
                 return;
             }
         
             $category = $_POST["category"];
-            if(!validateUsername($category)) {
+            if(!Validate::username($category)) {
                 failedResponseMessage("Invalid page category.");
                 return;
             }
     
             $payload = $_POST["payload"];
-            if(!validateJson($payload)) {
+            if(!Validate::json($payload)) {
                 failedResponseMessage("Invalid payload JSON string.");
                 return;
             }
@@ -1078,13 +1078,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -1103,13 +1103,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -1128,13 +1128,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $name = $_POST["name"];
-            if(!validateUsername($name)) {
+            if(!Validate::username($name)) {
                 failedResponseMessage("Invalid page name.");
                 return;
             }
@@ -1153,13 +1153,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
         
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
         
             $category = $_POST["category"];
-            if(!validateUsername($category)) {
+            if(!Validate::username($category)) {
                 failedResponseMessage("Invalid page category.");
                 return;
             }
@@ -1178,13 +1178,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
            
             $tracker = $_POST["tracker"];
-            if(!validateTracker($tracker)) {
+            if(!Validate::tracker($tracker)) {
                 failedResponseMessage("Invalid tracking ID.");
                 return;
             }
             
             $timestamp = $_POST["timestamp"];
-            if(!validateTimestamp($timestamp)) {
+            if(!Validate::timestamp($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -1202,7 +1202,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -1220,7 +1220,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
             
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -1238,7 +1238,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
             
             $name = $_POST["name"];
-            if(!validateUsername($name)) {
+            if(!Validate::username($name)) {
                 failedResponseMessage("Invalid page name.");
                 return;
             }
@@ -1256,7 +1256,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
             
             $category = $_POST["category"];
-            if(!validateUsername($category)) {
+            if(!Validate::username($category)) {
                 failedResponseMessage("Invalid page category.");
                 return;
             }
@@ -1274,7 +1274,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $timestamp = $_POST["timestamp"];
-            if(!validateDateTime($timestamp)) {
+            if(!Validate::dateTime($timestamp)) {
                 failedResponseMessage("Invalid timestamp format.");
                 return;
             }
@@ -1297,7 +1297,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -1315,7 +1315,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -1334,13 +1334,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
@@ -1359,13 +1359,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $user_id = $_POST["user_id"];
-            if(!validateUsername($user_id)) {
+            if(!Validate::username($user_id)) {
                 failedResponseMessage("Invalid user ID.");
                 return;
             }
 
             $anon_id = $_POST["anon_id"];
-            if(!validateTracker($anon_id)) {
+            if(!Validate::tracker($anon_id)) {
                 failedResponseMessage("Invalid anonymous ID.");
                 return;
             }
@@ -1390,19 +1390,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
 
             $mode = $_POST["mode"];
-            if(!validateDatabaseMode($mode)) {
+            if(!Validate::dbMode($mode)) {
                 failedResponseMessage("Invalid database mode.");
                 return;
             }
 
             $content = $_POST["content"];
-            if(!validateDatabaseContent($content)) {
+            if(!Validate::dbContent($content)) {
                 failedResponseMessage("Invalid database content.");
                 return;
             }
@@ -1420,7 +1420,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
@@ -1439,13 +1439,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
 
             $mode = $_POST["mode"];
-            if(!validateDatabaseMode($mode)) {
+            if(!Validate::dbMode($mode)) {
                 failedResponseMessage("Invalid database mode.");
                 return;
             }
@@ -1463,7 +1463,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
@@ -1481,7 +1481,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
@@ -1500,13 +1500,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
     
             $content = $_POST["content"];
-            if(!validateDatabaseContent($content)) {
+            if(!Validate::dbContent($content)) {
                 failedResponseMessage("Invalid database mode.");
                 return;
             }
@@ -1524,7 +1524,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $name = $_POST["name"];
-            if(!validateName($name)) {
+            if(!Validate::name($name)) {
                 failedResponseMessage("Invalid database name.");
                 return;
             }
@@ -1565,7 +1565,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateBase64($name)) {
+            if(!Validate::base64($name)) {
                 failedResponseMessage("Invalid file name.");
                 return;
             }
@@ -1583,7 +1583,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
     
             $name = $_POST["name"];
-            if(!validateBase64($name)) {
+            if(!Validate::base64($name)) {
                 failedResponseMessage("Invalid file name.");
                 return;
             }
@@ -1602,7 +1602,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             $name = $_POST["name"];
-            if(!validateBase64($name)) {
+            if(!Validate::base64($name)) {
                 failedResponseMessage("Invalid file name.");
                 return;
             }

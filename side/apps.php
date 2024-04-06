@@ -44,13 +44,13 @@ else if(isset($_GET["create"]) && empty($_GET["create"]) &&
     isset($_POST["description"]) && !empty($_POST["description"])) {
 
     $name = $_POST["name"];
-    if(!validateAppName($name)) {
+    if(!Validate::appName($name)) {
         failedResponse();
         return;
     }
 
     $description = $_POST["description"];
-    if(!validateBase64($description)) {
+    if(!Validate::base64($description)) {
         failedResponse();
         return;
     }

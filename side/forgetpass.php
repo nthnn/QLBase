@@ -18,8 +18,8 @@ if(!(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST")
 if(isset($_POST["ue"]) && !empty($_POST["ue"])) {
     $ue = $_POST["ue"];
 
-    if(!validateUsername($ue) &&
-        !validateEmail($ue)) {
+    if(!Validate::username($ue) &&
+        !Validate::email($ue)) {
         failedResponse();
         return;
     }
@@ -32,19 +32,19 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
     isset($_POST["track_id"]) && !empty($_POST["track_id"])) {
 
     $email = $_POST["email"];
-    if(!validateEmail($email)) {
+    if(!Validate::email($email)) {
         failedResponse();
         return;
     }
 
     $password = $_POST["newpass"];
-    if(!validateLoginPassword($password)) {
+    if(!Validate::loginPassword($password)) {
         failedResponse();
         return;
     }
 
     $track_id = $_POST["track_id"];
-    if(!validateUuid($track_id)) {
+    if(!Validate::uuid($track_id)) {
         failedResponse();
         return;
     }
