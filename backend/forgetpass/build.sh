@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o forgetpass && sudo mv ./forgetpass ../../bin/forgetpass
+go build -buildvcs=false -ldflags "-w -s" -o forgetpass && sudo mv ./forgetpass ../../bin/forgetpass

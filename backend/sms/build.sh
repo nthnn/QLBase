@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o sms && sudo mv ./sms ../../bin/sms
+go build -buildvcs=false -ldflags "-w -s" -o sms && sudo mv ./sms ../../bin/sms

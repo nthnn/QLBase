@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o database && sudo mv ./database ../../bin/database
+go build -buildvcs=false -ldflags "-w -s" -o database && sudo mv ./database ../../bin/database

@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o traffic && sudo mv ./traffic ../../bin/traffic
+go build -buildvcs=false -ldflags "-w -s" -o traffic && sudo mv ./traffic ../../bin/traffic

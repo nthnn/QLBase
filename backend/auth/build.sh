@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o auth && sudo mv ./auth ../../bin/auth
+go build -buildvcs=false -ldflags "-w -s" -o auth && sudo mv ./auth ../../bin/auth

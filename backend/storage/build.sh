@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o storage && sudo mv ./storage ../../bin/storage
+go build -buildvcs=false -ldflags "-w -s" -o storage && sudo mv ./storage ../../bin/storage

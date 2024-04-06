@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o data_analytics && sudo mv ./data_analytics ../../bin/data_analytics
+go build -buildvcs=false -ldflags "-w -s" -o data_analytics && sudo mv ./data_analytics ../../bin/data_analytics

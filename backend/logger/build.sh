@@ -1,1 +1,1 @@
-go build -ldflags "-w -s" -o logger && sudo mv ./logger ../../bin/logger
+go build -buildvcs=false -ldflags "-w -s" -o logger && sudo mv ./logger ../../bin/logger
