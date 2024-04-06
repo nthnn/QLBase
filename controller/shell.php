@@ -1,5 +1,7 @@
 <?php
 
+include_once("../controller/util.php");
+
 class Shell {
     private static function log($apiKey, $sender) {
         $action = "N/A";
@@ -32,7 +34,7 @@ class Shell {
             $sender = "sandbox";
 
         Shell::log($apiKey, $sender);
-        logNetworkTraffic($apiKey, $appId);
+        Util::logTraffic($apiKey, $appId);
 
         echo Shell::run("../bin/".$backend, join(" ", $args));
     }

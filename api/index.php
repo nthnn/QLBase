@@ -5,27 +5,7 @@ include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 include_once("../controller/response.php");
 include_once("../controller/shell.php");
-
-function logNetworkTraffic($apiKey, $appId) {
-    global $db_conn;
-    $dt = date("dmy");
-
-    $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt.
-        "\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
-    
-    if($result) {
-        if(mysqli_num_rows($result) > 0)
-            mysqli_query($db_conn, "UPDATE traffic SET count = count + 1 WHERE date_time=\"".
-                $dt."\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
-        else mysqli_query($db_conn, "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".$dt.
-            "\", \"".$apiKey."\", \"".$appId."\")");
-
-        return;
-    }
-
-    Response::failed();
-    exit(0);
-}
+include_once("../controller/util.php");
 
 Response::jsonContent();
 header("Access-Control-Allow-Origin: *");
@@ -52,7 +32,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
     switch($action) {
         case "handshake":
-            logNetworkTraffic($apiKey, $appId);
+            Util::logTraffic($apiKey, $appId);
             echo "{\"result\": \"1\"}";
             return;
             

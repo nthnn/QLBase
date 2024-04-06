@@ -1,5 +1,8 @@
 <?php
 
+include_once("db_config.php");
+include_once("response.php");
+
 class Util {
     // From https://www.uuidgenerator.net/dev-corner/php
     public static function guidv4($data) {
@@ -18,6 +21,27 @@ class Util {
             substr($hexStr, 4, 4) . '-' .
             substr($hexStr, 8, 4) . '-' .
             substr($hexStr, 12, 4);
+    }
+
+    public static function logTraffic($apiKey, $appId) {
+        global $db_conn;
+        $dt = date("dmy");
+    
+        $result = mysqli_query($db_conn, "SELECT * FROM traffic WHERE date_time=\"".$dt.
+            "\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
+        
+        if($result) {
+            if(mysqli_num_rows($result) > 0)
+                mysqli_query($db_conn, "UPDATE traffic SET count = count + 1 WHERE date_time=\"".
+                    $dt."\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
+            else mysqli_query($db_conn, "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".$dt.
+                "\", \"".$apiKey."\", \"".$appId."\")");
+    
+            return;
+        }
+    
+        Response::failed();
+        exit(0);
     }
 }
 
