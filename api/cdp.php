@@ -7,7 +7,7 @@
         ContentDeliveryPage::invalidateRequest();
 
     $ticket = $_GET["ticket"];
-    if(!ContentDeliveryPage::isValidCDPTicket($ticket))
+    if(!ContentDeliveryPage::isValidTicket($ticket))
         ContentDeliveryPage::invalidateRequest();
 
     $fileInfos = ContentDeliveryPage::getFileInfo($ticket);
