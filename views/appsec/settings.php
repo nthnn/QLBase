@@ -2,7 +2,8 @@
 include_once("controller/apps.php");
 include_once("controller/session_ctrl.php");
 
-$appInfo = Apps::getInfoById(getIdOfSession(), $_GET["id"]);
+$appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
+
 ?>
 <h1>Settings</h1>
 <hr/>

@@ -62,7 +62,7 @@ class Account {
         global $db_conn;
         $res = mysqli_query($db_conn, "UPDATE accounts SET name=\"".$name.
             "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
-            $username."\" AND password=\"".md5($old)."\" AND id=".getIdOfSession());
+            $username."\" AND password=\"".md5($old)."\" AND id=".SessionControl::getId());
 
         return !(!$res);
     }
@@ -81,7 +81,7 @@ class Account {
         if(!$result || mysqli_num_rows($result) == 0)
             return false;
 
-        createSession(mysqli_fetch_array($result)[0]);
+        SessionControl::create(mysqli_fetch_array($result)[0]);
         return true;
     }
 

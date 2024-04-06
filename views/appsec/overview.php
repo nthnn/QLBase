@@ -2,7 +2,7 @@
 
 include_once("controller/account.php");
 
-$userId = getIdOfSession();
+$userId = SessionControl::getId();
 $appInfo = Apps::getInfoById($userId, $appId);
 $userName = Account::getUsername($userId);
 

@@ -3,7 +3,7 @@
 include_once("controller/account.php");
 include_once("controller/session_ctrl.php");
 
-$user_id = getIdOfSession();
+$user_id = SessionControl::getId();
 
 $username = Account::getUsername($user_id);
 $user_info = Account::getInfo($user_id);

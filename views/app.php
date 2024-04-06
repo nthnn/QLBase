@@ -16,7 +16,7 @@ if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
     $page = $_GET["section"];
 
-$apiKey = Apps::getInfoById(getIdOfSession(), $appId)["app_key"];
+$apiKey = Apps::getInfoById(SessionControl::getId(), $appId)["app_key"];
 ?>
 
 <script>

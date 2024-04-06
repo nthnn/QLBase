@@ -19,10 +19,12 @@
 
     function sessionCleanUp() {
         if(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]))
-            deleteSession();
+            SessionControl::delete();
     }
 
-    if(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) && validateSession($sess_id)) {
+    if(isset($_COOKIE["sess_id"]) &&
+        !empty($_COOKIE["sess_id"]) &&
+        SessionControl::validate($sess_id)) {
         if(isset($_GET["page"]) && !empty($_GET["page"]))
             switch($_GET["page"]) {
                 case "settings":

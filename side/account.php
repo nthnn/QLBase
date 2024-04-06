@@ -101,9 +101,9 @@ else if(isset($_GET["signup"]) && empty($_GET["signup"]) &&
 }
 else if(isset($_GET["logout"]) && empty($_GET["logout"])) {
     if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) &&
-        validateSession($_COOKIE["sess_id"])))
+        SessionControl::validate($_COOKIE["sess_id"])))
         http_response_code(403);
-    else deleteSession();
+    else SessionControl::delete();
 
     return;
 }
@@ -115,7 +115,7 @@ else if(isset($_GET["update"]) && empty($_GET["update"]) &&
     isset($_POST["old"]) && !empty($_POST["old"])) {
 
     if(!(isset($_COOKIE["sess_id"]) && !empty($_COOKIE["sess_id"]) &&
-        validateSession($_COOKIE["sess_id"]))) {
+        SessionControl::validate($_COOKIE["sess_id"]))) {
         http_response_code(403);
         return;
     }

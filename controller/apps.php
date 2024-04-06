@@ -5,7 +5,7 @@ include_once("session_ctrl.php");
 include_once("util.php");
 
 global $db_conn;
-$sess_id = SeesionControl::getIdOfSession();
+$sess_id = SessionControl::getId();
 
 class Apps {
     public static function validateId($id) {

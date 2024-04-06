@@ -7,7 +7,7 @@ include_once("../controller/validator.php");
 
 if(!(isset($_COOKIE["sess_id"]) &&
     !empty($_COOKIE["sess_id"]) &&
-    validateSession($_COOKIE["sess_id"]))) {
+    SessionControl::validate($_COOKIE["sess_id"]))) {
     http_response_code(403);
     return;
 }
