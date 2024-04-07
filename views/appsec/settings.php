@@ -29,7 +29,13 @@ $appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
         </div>
     </div>
 
+    <p class="alert alert-info mt-2 d-none" id="settings-success">Changes saved successfully!</p>
+    <p class="alert alert-danger mt-2 d-none" id="settings-error"></p>
+
     <div align="right" class="mt-2">
-        <button class="btn btn-outline-primary px-4">Save</button>
+        <button class="btn btn-outline-primary px-4" id="settings-save">Save</button>
     </div>
 </div>
+
+<script src="scripts/vendors/jquery.min.js"></script>
+<script src="scripts/appsec/settings.js"></script>
