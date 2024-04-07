@@ -1,5 +1,9 @@
-let xLabels = [], yLabels = [];
-(()=> {
+let xLabels = null, yLabels = null;
+
+function getChartData() {
+    xLabels = [];
+    yLabels = [];
+
     $.post({
         url: "api/traffic.php",
         headers: {
@@ -17,7 +21,7 @@ let xLabels = [], yLabels = [];
             }
         }
     });
-})();
+}
 
 let shouldBeShown = true;
 function copyToClipboard(name, value) {
@@ -42,7 +46,9 @@ function copyToClipboard(name, value) {
 }
 
 window.onload = ()=> {
-    new Chart("traffic", {
+    getChartData();
+
+    let chart = new Chart("traffic", {
         type: "line",
         data: {
             labels: xLabels,
@@ -85,4 +91,9 @@ window.onload = ()=> {
 
     $("#btn-copy-key").click(()=> copyToClipboard("API Key", App.appKey));
     $("#btn-copy-id").click(()=> copyToClipboard("API ID", App.appId));
+
+    setInterval(()=> {
+        getChartData();
+        chart.update();
+    }, 1000);
 };
