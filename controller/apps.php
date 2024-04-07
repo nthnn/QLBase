@@ -68,6 +68,19 @@ class Apps {
         return !(!$res);
     }
 
+    public static function update($apiKey, $name, $description) {
+        global $db_conn;
+        global $sess_id;
+
+        $res = mysqli_query(
+            $db_conn,
+            "UPDATE app SET name=\"".$name."\", description=\"".
+                $description."\" WHERE app_key=\"".$apiKey.
+                "\" AND creator_id=\"".$sess_id."\""
+        );
+        return !(!$res);
+    }
+
     public static function getList() {
         global $db_conn;
         global $sess_id;
