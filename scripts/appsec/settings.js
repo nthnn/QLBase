@@ -13,18 +13,24 @@ $("#settings-save").click(()=> {
         $("#settings-error").removeClass("d-none");
         $("#settings-error").html("Name and/or description cannot be empty.");
         $("#settings-error").addClass("d-block");
+
+        return;
     }
 
     if(name.length < 6 || !/^[a-zA-Z0-9_]+$/.test(name)) {
         $("#settings-error").removeClass("d-none");
         $("#settings-error").html("Invalid app name. It must only contain lower case alphabet, digits, and/or an underscore and must be greater than 6 characters.");
         $("#settings-error").addClass("d-block");
+
+        return;
     }
 
     if(description.length < 6) {
         $("#settings-error").removeClass("d-none");
         $("#settings-error").html("Invalid app description. Must be greater than 6.");
         $("#settings-error").addClass("d-block");
+
+        return;
     }
 
     $.post({
