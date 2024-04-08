@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p id="failed-message"></p>
+                <p>Something went wrong while trying to upload file.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

@@ -47,6 +47,45 @@ function requestFileDeletion() {
     });
 }
 
+function uploadFile() {
+    let formData = new FormData();
+    formData.append(
+        "subject",
+        document.querySelector("#subject").files[0]
+    );
+
+    const uploadBtn = RotatingButton("#upload-btn");
+    uploadBtn.show();
+
+    $.ajax({
+        url: "api/index.php?action=file_upload&sandbox",
+        type: "POST",
+        headers: JSON.parse("{\"QLBase-API-Key\": \"" + App.appKey +
+            "\", \"QLBase-App-ID\": \"" + App.appId + "\"}"),
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: (data)=> {
+            if(data.result == "0") {
+                $("#subject-label").html("Choose File");
+                $("#upload-file-modal").modal("hide");
+                $("#failed-modal").modal("show");
+
+                return;
+            }
+
+            setTimeout(()=> {
+                $("#subject-label").html("Choose File");
+                $("#upload-file-modal").modal("hide");
+                $("#success-modal").modal("show");
+
+                uploadBtn.hide();
+            }, 800);
+        }
+    });
+}
+
 const showError = (id, message)=> {
     $("#" + id + "-error").removeClass("d-none");
     $("#" + id + "-error").addClass("d-block");
@@ -100,4 +139,6 @@ $(document).ready(()=> {
 
     fetchFiles();
     setInterval(fetchFiles, 2000);
+
+    $("#upload-btn").click(uploadFile);
 });
