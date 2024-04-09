@@ -204,6 +204,30 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;enabled&gt;"</span>,
 <span class="text-primary">}</span></pre>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Username</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=login_username</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>username</i> &mdash; The username of the account to be logged in.</li>
+        <li><i>password</i> &mdash; The MD5 hashed password string of the account to be logged in.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;password&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>logged_in</i> &mdash; Boolean value (either 0 or 1) that indicates if the account was successfully logged in.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;logged_in&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <hr/>
     <div class="row">
         <div class="col-6">
