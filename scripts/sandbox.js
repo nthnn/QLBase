@@ -35,7 +35,7 @@ const authenticationActions = {
     "delete_by_email": ["Delete by Email", '{\n\t"email": ""\n}'],
     "get_by_username": ["Get by Username", '{\n\t"username": ""\n}'],
     "get_by_email": ["Get by Email", '{\n\t"email": ""\n}'],
-    "enabled_user": ["Enabled User", '{\n\t"username": ""\n}'],
+    "enable_user": ["Enable User", '{\n\t"username": ""\n}'],
     "disable_user": ["Disable User", '{\n\t"username": ""\n}'],
     "is_user_enabled": ["Is User Enabled", '{\n\t"username": ""\n}'],
     "login_username": ["Log-in Username", '{\n\t"username": "",\n\t"password": ""\n}'],

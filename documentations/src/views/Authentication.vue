@@ -83,11 +83,79 @@
 
     <b>Payload Structure</b>
     <ul>
-        <li><b>username</b> &mdash; The username of the account to be deleted.</li>
+        <li><i>username</i> &mdash; The username of the account to be deleted.</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Email</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_email</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>email</i> &mdash; The email of the account to be deleted.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Username</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_username</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>username</i> &mdash; The username of the account to be fetched.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>email</i> &mdash; The email of the fetched user account.</li>
+        <li><i>enabled</i> &mdash; Boolean value (either 0 or 1) that indicates if the account is enabled.</li>
+        <li><i>last_modified</i> &mdash; Last modified date and time of the account in <span class="bg-secondary border-gray border rounded p-1 d-inline">yyyy-mm-dd hh:mm:ss</span> format.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-primary">[</span>
+        <span class="text-danger">"&lt;email&gt;"</span>,
+        <span class="text-danger">"&lt;enabled&gt;"</span>
+        <span class="text-danger">"&lt;last_modified&gt;"</span>
+    <span class="text-primary">]</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Email</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_email</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>email</i> &mdash; The email of the account to be fetched.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>username</i> &mdash; The username of the fetched user account.</li>
+        <li><i>enabled</i> &mdash; Boolean value (either 0 or 1) that indicates if the account is enabled.</li>
+        <li><i>last_modified</i> &mdash; Last modified date and time of the account in <span class="bg-secondary border-gray border rounded p-1 d-inline">yyyy-mm-dd hh:mm:ss</span> format.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-primary">[</span>
+        <span class="text-danger">"&lt;username&gt;"</span>,
+        <span class="text-danger">"&lt;enabled&gt;"</span>
+        <span class="text-danger">"&lt;last_modified&gt;"</span>
+    <span class="text-primary">]</span>
 <span class="text-primary">}</span></pre>
 
     <hr/>
