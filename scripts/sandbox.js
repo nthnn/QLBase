@@ -39,7 +39,7 @@ const authenticationActions = {
     "disable_user": ["Disable User", '{\n\t"username": ""\n}'],
     "is_user_enabled": ["Is User Enabled", '{\n\t"username": ""\n}'],
     "login_username": ["Log-in Username", '{\n\t"username": "",\n\t"password": ""\n}'],
-    "login_email": ["Log-in Email", '{\n\t"username": "",\n\t"password": ""\n}'],
+    "login_email": ["Log-in Email", '{\n\t"email": "",\n\t"password": ""\n}'],
     "fetch_all_users": ["Fetch All Users", '{}']
 };
 
