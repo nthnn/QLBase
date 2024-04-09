@@ -158,6 +158,30 @@
     <span class="text-primary">]</span>
 <span class="text-primary">}</span></pre>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Enable User</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=enable_user</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>username</i> &mdash; The username of the account to be enabled.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Disable User</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=disable_user</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>username</i> &mdash; The username of the account to be disabled.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <hr/>
     <div class="row">
         <div class="col-6">
