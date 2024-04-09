@@ -22,9 +22,9 @@
     </ol>
     <br/>
 
-    <h4 class="border-bottom">🧾 Creating User Accounts</h4>
-    <p>To register a new user account in the QLBase app, you can utilize the dedicated API endpoint. The following comprehensive guide walks you through the process, providing details on the target URL, payload structure, example response, and required HTTP headers.</p>
+    <h4 class="border-bottom">📡 Authentication API Calls</h4>
 
+    <h5 class="mt-4 border-bottom">New User</h5>
     <b>Action URL</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=new_user</pre>
 
@@ -42,13 +42,6 @@
     <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>,
     <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;MD5 hashed string&gt;"</span>,
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
-<span class="text-primary">}</span></pre>
-
-    <b>Example Response</b>
-    <p>Upon successful registration, the API will return a JSON response with a result key indicating the success status:</p>
-    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
-    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
-    <span class="text-muted">// Successfully registered!</span>
 <span class="text-primary">}</span></pre>
 
     <hr/>
