@@ -43,7 +43,7 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-<h5 class="mt-4 border-bottom">Update by Username</h5>
+    <h5 class="mt-4 border-bottom">Update by Username</h5>
     <b>Action URL</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_username</pre>
 
@@ -51,6 +51,25 @@
     <ul>
         <li><b>username</b> &mdash; The username of the account to be updated.</li>
         <li><b>email</b> &mdash; The updated/new email address of the user to be updated.</li>
+        <li><b>password</b> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
+        <li><b>enabled</b> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>,
+    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;MD5 hashed string&gt;"</span>,
+    <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
+<span class="text-primary">}</span></pre>
+
+    <h5 class="mt-4 border-bottom">Update by Email</h5>
+    <b>Action URL</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_email</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><b>username</b> &mdash; The updated/new username of the account to be updated.</li>
+        <li><b>email</b> &mdash; The email address of the user to be updated.</li>
         <li><b>password</b> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
         <li><b>enabled</b> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
