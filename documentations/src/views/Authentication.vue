@@ -81,6 +81,19 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
+    <h5 class="mt-4 border-bottom">Delete by Username</h5>
+    <b>Action URL</b>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_username</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><b>username</b> &mdash; The username of the account to be deleted.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <hr/>
     <div class="row">
         <div class="col-6">
