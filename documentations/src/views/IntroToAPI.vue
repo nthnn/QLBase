@@ -9,6 +9,14 @@
     <span class="text-warning">"QLBase-App-ID"</span>: <span class="text-danger">"&lt;API ID&gt;"</span>
 <span class="text-primary">}</span></pre>
 
+    <h3 class="border-bottom">📩 API Responses</h3>
+    <p>Every response from QLBase's API gateway includes a JSON key named <span class="bg-secondary border-gray border rounded p-1 d-inline">result</span> with a value of either <span class="bg-secondary border-gray border rounded p-1 d-inline">0</span> or <span class="bg-secondary border-gray border rounded p-1 d-inline">1</span>, indicating the success of the request processing. In the event that the <span class="bg-secondary border-gray border rounded p-1 d-inline">result</span> value is <span class="bg-secondary border-gray border rounded p-1 d-inline">0</span>, an additional key named <span class="bg-secondary border-gray border rounded p-1 d-inline">message</span> will be present, containing the error message.</p>
+    <p>Below is an example of error response from an API call:</p>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"0"</span>,
+    <span class="text-warning">"message"</span>: <span class="text-danger">"Insufficient parameter arity."</span>
+<span class="text-primary">}</span></pre>
+
     <h3 class="border-bottom">📱 Services</h3>
     <p>The section delves into QLBase's strengths in user account authentication, ensuring a secure foundation for managing accounts. The integration of SMS verification through OTP adds an extra layer of security to the user authentication process. QLBase's data analytics features come to the forefront, equipping developers with tools for streamlined data identification and manipulation. Database storage is made more accessible through QLBase's scalable solution, complemented by the file storage API that simplifies the management of files within applications.</p>
     <p>This section serves as a practical guide, elucidating QLBase's role as a flexible backend solution designed to meet the diverse needs of application development.</p>
