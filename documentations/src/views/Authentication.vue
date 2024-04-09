@@ -24,16 +24,15 @@
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
 
-    <h5 class="mt-4 border-bottom">New User</h5>
-    <b>Action URL</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth New User</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=new_user</pre>
 
-    <b>Payload Structure</b>
+    <p>Payload Structure:</p>
     <ul>
-        <li><b>username</b> &mdash; The desired username for the new account.</li>
-        <li><b>email</b> &mdash; The email address associated with the new account.</li>
-        <li><b>password</b> &mdash; The MD5 hashed string of the user's chosen password.</li>
-        <li><b>enabled</b> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
+        <li><i>username</i> &mdash; The desired username for the new account.</li>
+        <li><i>email</i> &mdash; The email address associated with the new account.</li>
+        <li><i>password</i> &mdash; The MD5 hashed string of the user's chosen password.</li>
+        <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -43,16 +42,15 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <h5 class="mt-4 border-bottom">Update by Username</h5>
-    <b>Action URL</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Username</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_username</pre>
 
-    <b>Payload Structure</b>
+    <p>Payload Structure</p>
     <ul>
-        <li><b>username</b> &mdash; The username of the account to be updated.</li>
-        <li><b>email</b> &mdash; The updated/new email address of the user to be updated.</li>
-        <li><b>password</b> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
-        <li><b>enabled</b> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
+        <li><i>username</i> &mdash; The username of the account to be updated.</li>
+        <li><i>email</i> &mdash; The updated/new email address of the user to be updated.</li>
+        <li><i>password</i> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
+        <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -62,16 +60,15 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <h5 class="mt-4 border-bottom">Update by Email</h5>
-    <b>Action URL</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Email</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_email</pre>
 
-    <b>Payload Structure</b>
+    <p>Payload Structure</p>
     <ul>
-        <li><b>username</b> &mdash; The updated/new username of the account to be updated.</li>
-        <li><b>email</b> &mdash; The email address of the user to be updated.</li>
-        <li><b>password</b> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
-        <li><b>enabled</b> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
+        <li><i>username</i> &mdash; The updated/new username of the account to be updated.</li>
+        <li><i>email</i> &mdash; The email address of the user to be updated.</li>
+        <li><i>password</i> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
+        <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -81,8 +78,7 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <h5 class="mt-4 border-bottom">Delete by Username</h5>
-    <b>Action URL</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Username</b>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_username</pre>
 
     <b>Payload Structure</b>
