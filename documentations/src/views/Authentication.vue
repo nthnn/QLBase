@@ -25,6 +25,7 @@
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth New User</b>
+    <p>Create a new user on account list of specified QLBase application key and ID.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=new_user</pre>
 
     <p>Payload Structure:</p>
@@ -43,6 +44,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Username</b>
+    <p>Update QLBase application account informations by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_username</pre>
 
     <p>Payload Structure</p>
@@ -61,6 +63,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Email</b>
+    <p>Update QLBase application account information by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_email</pre>
 
     <p>Payload Structure</p>
@@ -79,6 +82,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Username</b>
+    <p>Delete QLBase application account information by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_username</pre>
 
     <b>Payload Structure</b>
@@ -91,6 +95,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Email</b>
+    <p>Delete QLBase application account information by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_email</pre>
 
     <b>Payload Structure</b>
@@ -103,6 +108,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Username</b>
+    <p>Fetch QLBase application account informations specified by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_username</pre>
 
     <b>Payload Structure</b>
@@ -131,6 +137,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Email</b>
+    <p>Fetch QLBase application account informations specified by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_email</pre>
 
     <b>Payload Structure</b>
