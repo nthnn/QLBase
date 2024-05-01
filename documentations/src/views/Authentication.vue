@@ -264,6 +264,47 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;logged_in&gt;"</span>
 <span class="text-primary">}</span></pre>
 
+<b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Fetch All Users</b>
+    <p>Fetch all the QLBase application user informations including username, email, enability, and timestamp of creation.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=fetch_all_users</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of users that contains arrays of user informations. The user information order is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Username of the account</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Email of the user account</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Boolean value to represent if the account is either enabled or disabled.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the account creation with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-primary">[</span>...<span class="text-primary">]</span>
+<span class="text-primary">}</span></pre>
+
     <hr/>
     <div class="row">
         <div class="col-6">
