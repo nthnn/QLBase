@@ -7,6 +7,7 @@ import Firmware from "../views/Firmware.vue";
 import HomeView from "../views/HomeView.vue";
 import IntroToAPI from "../views/IntroToAPI.vue";
 import NotFound from "../views/NotFound.vue";
+import SMSVerification from "../views/SMSVerification.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,11 @@ const router = createRouter({
             path: "/authentication",
             name: "authentication",
             component: Authentication
+        },
+        {
+            path: "/sms-verification",
+            name: "sms-verification",
+            component: SMSVerification
         }
     ]
 });
