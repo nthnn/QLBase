@@ -166,6 +166,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Enable User</b>
+    <p>Enable specified QLBase application user account.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=enable_user</pre>
 
     <b>Payload Structure</b>
@@ -178,6 +179,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Disable User</b>
+    <p>Disable specified QLBase application user account.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=disable_user</pre>
 
     <b>Payload Structure</b>
@@ -190,6 +192,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Is User Enabled</b>
+    <p>Check if the specified QLBase application user account is either enabled or disabled.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=is_user_enabled</pre>
 
     <b>Payload Structure</b>
@@ -212,6 +215,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Username</b>
+    <p>Log-in a specified QLBase application user account using username and an MD5-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=login_username</pre>
 
     <b>Payload Structure</b>
@@ -236,6 +240,7 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Email</b>
+    <p>Log-in a specified QLBase application user account using email and an MD5-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=login_email</pre>
 
     <b>Payload Structure</b>
