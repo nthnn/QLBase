@@ -9,6 +9,7 @@ import IntroToAPI from "../views/IntroToAPI.vue";
 import NotFound from "../views/NotFound.vue";
 import SMSVerification from "../views/SMSVerification.vue";
 import DataAnalytics from "@/views/DataAnalytics.vue";
+import Database from "@/views/Database.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,6 +62,11 @@ const router = createRouter({
             path: "/data-analytics",
             name: "data-analytics",
             component: DataAnalytics
+        },
+        {
+            path: "/database",
+            name: "database",
+            component: Database
         }
     ]
 });
