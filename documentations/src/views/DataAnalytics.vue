@@ -22,6 +22,10 @@
     </ol>
     <br/>
 
+    <div align="center">
+        <img src="@/assets/qlbase-cat-6.png" width="50%" />
+    </div>
+
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
     <hr/>
     <div class="row">
