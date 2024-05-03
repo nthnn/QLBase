@@ -1,6 +1,7 @@
 <?php
 
 include_once("../controller/db_config.php");
+include_once("../controller/response.php");
 include_once("../controller/shell.php");
 include_once("../controller/validator.php");
 
@@ -83,6 +84,30 @@ class ContentDeliveryPage {
             unlink($origFile);
         }
         else ContentDeliveryPage::invalidateRequest();
+    }
+
+    public static function expire($apiKey, $ticket) {
+        global $db_conn;
+        
+        if(!mysqli_query($db_conn, "DELETE FROM cdp WHERE api_key=\"".
+            $apiKey."\" AND ticket=\"".$ticket."\"")) {
+            Response::failed();
+            return;
+        }
+
+        Response::success();
+    }
+
+    public static function expireAll($apiKey) {
+        global $db_conn;
+
+        if(!mysqli_query($db_conn, "DELETE FROM cdp WHERE api_key=\"".
+            $apiKey."\"")) {
+            Response::failed();
+            return;
+        }
+
+        Response::success();
     }
 }
 
