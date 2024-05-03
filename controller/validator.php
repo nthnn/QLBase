@@ -1,6 +1,10 @@
 <?php
 
 class Validate {
+    public static function isEmpty($str) {
+        return $str === "" && strlen($str) == 0;
+    }
+
     public static function username($username) {
         return strlen($username) > 6 &&
             preg_match("/^[a-zA-Z0-9_]+$/", $username);
