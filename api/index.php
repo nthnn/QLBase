@@ -1,6 +1,7 @@
 <?php
 
 include_once("../controller/apps.php");
+include_once("../controller/cdp.php");
 include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 include_once("../controller/response.php");
@@ -1593,7 +1594,28 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "storage";
             array_push($args, "fetch_all", $apiKey);
             break;
-    
+
+        case "cdp_expire_all":
+            Util::logTraffic($apiKey, $appId);
+            ContentDeliveryPage::expireAll($apiKey);
+            return;
+
+        case "cdp_expire_ticket":
+            if(!isset($_POST["ticket"]) || empty($_POST["ticket"])) {
+                Response::failedMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $ticket = $_POST["ticket"];
+            if(!Validate::uuid($ticket)) {
+                Response::failedMessage("Invalid ticket UUIDv4 string.");
+                return;
+            }
+
+            Util::logTraffic($apiKey, $appId);
+            ContentDeliveryPage::expire($apiKey, $ticket);
+            return;
+
         default:
             Response::failed();
             return;
