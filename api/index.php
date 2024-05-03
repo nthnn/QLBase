@@ -1597,6 +1597,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
         case "cdp_expire_all":
             Util::logTraffic($apiKey, $appId);
+            Shell::log($apiKey, Shell::detectSender());
             ContentDeliveryPage::expireAll($apiKey);
             return;
 
@@ -1613,6 +1614,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             }
 
             Util::logTraffic($apiKey, $appId);
+            Shell::log($apiKey, Shell::detectSender());
             ContentDeliveryPage::expire($apiKey, $ticket);
             return;
 
