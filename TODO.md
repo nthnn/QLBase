@@ -1,4 +1,5 @@
 # TODO
 
+- QLBase application deletion button on settings.
 - Transfering QLBase application to another user, notification via recipient email.
-- Adding moderator accounts to a QLBase application.
+- Settings for adding moderator accounts to a QLBase application.
