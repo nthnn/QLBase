@@ -69,9 +69,12 @@ class ContentDeliveryPage {
 
         header("Content-Type: ".$mimeType);
         header("Content-Transfer-Encoding: Binary");
-        Shell::run("../bin/storage", "extract ../drive/".$name.".zip");
+        Shell::run("../bin/storage", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'?
+            "extract ..\\drive\\".$name.".zip" : "extract ../drive/".$name.".zip");
 
-        $origFile = "../drive/temp/".$origName;
+        $origFile = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ?
+            "..\\drive\\temp\\".$origName : "../drive/temp/".$origName;
+
         if(file_exists($origFile)) {
             header("Content-Length: ".filesize($origFile));
             readfile($origFile);
