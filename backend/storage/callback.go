@@ -18,7 +18,8 @@ import (
 func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		temp := args[2]
-		dest := "../drive/" + base64.StdEncoding.EncodeToString([]byte(uuid.New().String()+"-"+args[3]))
+		dest := util.SafePathSanitation("../drive/") +
+			base64.StdEncoding.EncodeToString([]byte(uuid.New().String()+"-"+args[3]))
 
 		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE orig_name=\"" + temp[14:] + "\"")
 		if err != nil {
@@ -103,7 +104,7 @@ func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		if err := os.Remove("../drive/" + fileName + ".zip"); err != nil {
+		if err := os.Remove(util.SafePathSanitation("../drive/") + fileName + ".zip"); err != nil {
 			proc.ShowFailedResponse("Unable to delete file from server storage.")
 			return
 		}
@@ -208,7 +209,7 @@ func downloadCallback(apiKey string, args []string) func(*sql.DB) {
 func extractCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		fileName := args[1]
-		util.ExtractZip(fileName, "../drive/temp")
+		util.ExtractZip(fileName, util.SafePathSanitation("../drive/temp"))
 	}
 }
 
