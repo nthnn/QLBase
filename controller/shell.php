@@ -3,7 +3,7 @@
 include_once("../controller/util.php");
 
 class Shell {
-    private static function log($apiKey, $sender) {
+    public static function log($apiKey, $sender) {
         $action = "N/A";
 
         if(isset($_GET["action"]) && !empty($_GET["action"]))
@@ -25,7 +25,7 @@ class Shell {
         return shell_exec("\"".$program."\" ".$arguments);
     }
 
-    public static function execute($apiKey, $appId, $backend, $args) {
+    public static function detectSender() {
         $sender = "app";
 
         if(isset($_GET["dashboard"]) && empty($_GET["dashboard"]))
@@ -33,7 +33,11 @@ class Shell {
         else if(isset($_GET["sandbox"]) && empty($_GET["sandbox"]))
             $sender = "sandbox";
 
-        Shell::log($apiKey, $sender);
+        return $sender;
+    }
+
+    public static function execute($apiKey, $appId, $backend, $args) {
+        Shell::log($apiKey, Shell::detectSender());
         Util::logTraffic($apiKey, $appId);
 
         echo Shell::run("../bin/".$backend, join(" ", $args));
