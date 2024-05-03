@@ -111,7 +111,10 @@ const storageActions = {
     "file_delete": ["Storage: File Delete", "{\n\t\"name\": \"\"\n}"],
     "file_get": ["Storage: File Fetch", "{\n\t\"name\": \"\"\n}"],
     "file_download": ["Storage: File Download", "{\n\t\"name\": \"\",\n\t\"should_expire\": \"\"\n}"],
-    "file_fetch_all": ["Storage: File Fetch All", "{}"]
+    "file_fetch_all": ["Storage: File Fetch All", "{}"],
+
+    "cdp_expire_all": ["Content Delivery Page: Expire All", "{}"],
+    "cdp_expire_ticket": ["Content Delivery Page: Revoke Ticket", "{\n\t\"ticket\": \"\"\n}"]
 };
 
 const addGroupToActions = (name)=> {
