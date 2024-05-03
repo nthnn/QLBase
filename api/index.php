@@ -1569,7 +1569,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, "download", $apiKey);
         
             if(!isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["should_expire"]) || empty($_POST["should_expire"])) {
+                !isset($_POST["should_expire"]) || Validate::isEmpty($_POST["should_expire"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
