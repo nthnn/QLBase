@@ -47,7 +47,7 @@ watch(
     <br/>
 </template>
 
-<style scoped>
+<style>
     @media only screen and (max-width: 771px) {
         .desktop-only { display: none; }
         .mobile-only { display: block; }
