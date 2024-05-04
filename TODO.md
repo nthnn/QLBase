@@ -7,4 +7,3 @@
 - Button to download logs as CSV file.
 - Database storage usage informations on dashboard.
 - Update README.md screenshots.
-- "Edit this on GitHub" link on documentation pages.
