@@ -1,11 +1,11 @@
 <template>
     <div class="row border-bottom">
         <div class="col-lg-6">
-            <h1>🚀 Deployment</h1>
+            <h3>🚀 Deployment</h3>
         </div>
 
         <div class="col-lg-6 desktop-only" align="right">
-            <div class="pt-4">
+            <div class="pt-2">
                 <a href="https://github.com/nthnn/QLBase/blob/main/documentations/src/views/Deployment.vue"
                     target="_blank" class="text-decoration-none">
                     <span style="margin-top: 2px !important; display: flex; float: right">
