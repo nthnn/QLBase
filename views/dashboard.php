@@ -3,7 +3,27 @@
 include_once("controller/account.php");
 include_once("controller/session_ctrl.php");
 
-$username = Account::getUsername(SessionControl::getId());
+function randomGreeting() {
+    $username = Account::getUsername(SessionControl::getId());
+    $greetings = array(
+        "Hi, {{name}}!",
+        "Hey there, {{name}}!",
+        "Good day, {{name}}!",
+        "How are things, {{name}}?",
+        "{{name}}, what's new?",
+        "{{name}}, it's good to see you.",
+        "Howdy, {{name}}!",
+        "What's up, {{name}}?",
+        "Hello, {{name}}!",
+        "Hi there, {{name}}!"
+    );
+
+    return str_replace(
+        "{{name}}",
+        $username,
+        $greetings[random_int(0, count($greetings) - 1)]
+    );
+}
 
 ?>
 <nav class="navbar navbar-expand-lg bg-primary fixed-top shadow" data-bs-theme="dark">
@@ -57,7 +77,7 @@ $username = Account::getUsername(SessionControl::getId());
 <br/><br/><br/><br/>
 
 <div class="container">
-    <h1>Hi, <?php echo $username; ?>!</h1>
+    <h1><?php echo randomGreeting(); ?></h1>
     <hr/>
 
     <div class="d-none" id="no-app">
