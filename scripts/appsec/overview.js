@@ -45,8 +45,42 @@ function copyToClipboard(name, value) {
     })();
 }
 
+const fetchDiskUsage = ()=> {
+    $.post(
+        "side/apps.php?usage",
+        {api_key: App.appKey},
+        (data)=> {
+            console.log(data);
+            $("#accounts-usage").html(data["accounts"][1] +
+                " kb <i>(Found " + data["accounts"][0] + " rows)</i>");
+
+            $("#database-usage").html(data["database"][1] +
+                " kb <i>(Found " + data["database"][0] + " rows)</i>");
+
+            $("#da-id-usage").html(data["data_analytics_id"][1] +
+                " kb <i>(Found " + data["data_analytics_id"][0] + " rows)</i>");
+
+            $("#da-paging-usage").html(data["data_analytics_page"][1] +
+                " kb <i>(Found " + data["data_analytics_page"][0] + " rows)</i>");
+
+            $("#da-tracker-usage").html(data["data_analytics_track"][1] +
+                " kb <i>(Found " + data["data_analytics_track"][0] + " rows)</i>");
+
+            $("#activity-logs-usage").html(data["logs"][1] +
+                " kb <i>(Found " + data["logs"][0] + " rows)</i>");
+
+            $("#sms-auth-usage").html(data["sms_auth"][1] +
+                " kb <i>(Found " +data["sms_auth"][0] + " rows)</i>");
+
+            $("#storage-usage").html(data["storage"][1] +
+                " kb <i>(Found " + data["storage"][0] + " rows)</i>");
+        }
+    );
+};
+
 window.onload = ()=> {
     getChartData();
+    fetchDiskUsage();
 
     let chart = new Chart("traffic", {
         type: "line",
@@ -95,5 +129,7 @@ window.onload = ()=> {
     setInterval(()=> {
         getChartData();
         chart.update();
+
+        fetchDiskUsage();
     }, 1000);
 };
