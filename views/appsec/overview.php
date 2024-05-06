@@ -67,7 +67,42 @@ $userName = Account::getUsername($userId);
         <canvas id="traffic" style="width:100%;max-width:700px"></canvas>
     </div>
 </div>
-<br/>
+
+<h3>Disk Usage</h3>
+<table class="table table-hover">
+    <tr>
+        <th>Accounts</th>
+        <td><span id="accounts-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Database</th>
+        <td><span id="database-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Data Analytics Identification</th>
+        <td><span id="da-id-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Data Analytics Paging</th>
+        <td><span id="da-paging-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Data Analytics Tracker</th>
+        <td><span id="da-tracker-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Activity Logs</th>
+        <td><span id="activity-logs-usage"></span></td>
+    </tr>
+    <tr>
+        <th>SMS Authentication</th>
+        <td><span id="sms-auth-usage"></span></td>
+    </tr>
+    <tr>
+        <th>Storage</th>
+        <td><span id="storage-usage"></span></td>
+    </tr>
+</table>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="toast-copied" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
