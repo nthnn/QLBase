@@ -45,6 +45,19 @@ else if(isset($_GET["create"]) && empty($_GET["create"]) &&
     if(Apps::create($name, $description))
         Response::success();
     else Response::failed();
+
+    return;
+}
+else if(isset($_GET["usage"]) && empty($_GET["usage"]) &&
+    isset($_POST["api_key"]) && !empty($_POST["api_key"])) {
+    $apiKey = $_POST["api_key"];
+    if(!Validate::apiKey($apiKey)) {
+        Response::failed();
+        return;
+    }
+
+    Response::jsonContent();
+    echo Apps::getAppStorageUsage($apiKey);
     return;
 }
 
