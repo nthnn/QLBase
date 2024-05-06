@@ -140,15 +140,23 @@ class Apps {
 
         $data = array();
         foreach ($tables as $table) {
-            $sql = "SELECT table_name, (data_length + index_length) / 1024 AS 'size' 
+            $sql = "SELECT table_name,
+                        (data_length + index_length) / 1024 AS 'size'
                     FROM information_schema.TABLES 
                     WHERE table_schema = 'qlbase_apps' 
                     AND table_name = '".$table."'";
 
             $result = mysqli_query($db_apps_conn, $sql);
             if(mysqli_num_rows($result) > 0)
-                while($row = mysqli_fetch_assoc($result))
-                    $data[str_replace($apiKey."_", "", $row["table_name"])] = $row["size"];
+                while($row = mysqli_fetch_assoc($result)) {
+                    $res = mysqli_fetch_assoc(mysqli_query(
+                        $db_apps_conn,
+                        "SELECT COUNT(*) as count FROM ".$table
+                    ));
+
+                    $data[str_replace($apiKey."_", "", $row["table_name"])] =
+                        array($res["count"], str_replace(".000", "", $res["count"]));
+                }
         }
 
         return json_encode($data);
