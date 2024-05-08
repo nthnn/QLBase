@@ -67,7 +67,7 @@ class Account {
         return !(!$res);
     }
 
-    public static function login($username, $password) {
+    public static function login($username, $password, $createSession = true) {
         if(!Account::hasAccountForUsername($username))
             return false;
 
@@ -81,7 +81,9 @@ class Account {
         if(!$result || mysqli_num_rows($result) == 0)
             return false;
 
-        SessionControl::create(mysqli_fetch_array($result)[0]);
+        if($createSession)
+            SessionControl::create(mysqli_fetch_array($result)[0]);
+
         return true;
     }
 
