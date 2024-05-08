@@ -1,3 +1,49 @@
+const showError = (message)=> {
+    $("#deletion-error").removeClass("d-none")
+    $("#deletion-error").addClass("d-block");
+    $("#deletion-error").html(message);
+}, hideError = ()=> {
+    $("#deletion-error").removeClass("d-block");
+    $("#deletion-error").addClass("d-none");
+};
+
+const deleteBtn = RotatingButton("#delete-btn");
+$("#delete-btn").click(()=> {
+    const username = $("#deletion-username").val();
+    const password = $("#deletion-password").val();
+    let hasError = false;
+
+    deleteBtn.show();
+    hideError();
+
+    if(!username ||
+        username === "" ||
+        !/^[a-zA-Z0-9_]+$/.test(username)) {
+        showError("Invalid username string.");
+        hasError = true;
+    }
+
+    if(!password ||
+        password === "" ||
+        !isStrongPassword(password)) {
+        showError("Invalid password string.");
+        hasError = true;
+    }
+
+    if(hasError) {
+        deleteBtn.hide();
+        return;
+    }
+});
+
+$("#show-delete-modal").click(()=> {
+    $("#deletion-username").val("");
+    $("#deletion-password").val("");
+
+    hideError();
+    $("#delete-modal").modal("show");
+});
+
 $("#settings-save").click(()=> {
     let name = $("#app-name").val(),
         description = $("#app-desc").val();
