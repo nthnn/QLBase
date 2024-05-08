@@ -71,22 +71,11 @@
                 <li class="breadcrumb-item">Cloud Storage</li>
             </ol>
         </div>
-    </div>
-</div>
-<br/>
 
-<div class="row m-0 p-0">
-    <div class="col-6 m-0 p-0">
-        <img src="./assets/screenshot_right.png" width="100%" />
+        <div class="mobile-only">
+            <hr/>
+        </div>
     </div>
-
-    <div class="col-6 m-0 p-0">
-        <img src="./assets/screenshot_left.png" width="100%" />
-    </div>
-</div>
-
-<div class="mobile-break d-block">
-    <br/>
 </div>
 
 <div class="container">
