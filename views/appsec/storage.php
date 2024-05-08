@@ -1,4 +1,9 @@
-<h1>File Storage</h1>
+<div class="row">
+    <div class="col-6"><h1>File Storage</h1></div>
+    <div class="col-6" align="right">
+        <a class="btn btn-primary" target="_blank" href="docs/<?php echo $docsLink; ?>">API Documentations</a>
+    </div>
+</div>
 <hr/>
 
 <table class="table table-hover w-100" id="storage-table" cellspacing="0">

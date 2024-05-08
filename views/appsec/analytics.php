@@ -111,7 +111,12 @@
     </div>
 </div>
 
-<h1>Data Analytics</h1>
+<div class="row">
+    <div class="col-6"><h1>Data Analytics</h1></div>
+    <div class="col-6" align="right">
+        <a class="btn btn-primary" target="_blank" href="docs/<?php echo $docsLink; ?>">API Documentations</a>
+    </div>
+</div>
 <hr/>
 
 <ul class="nav nav-tabs" role="tablist">
