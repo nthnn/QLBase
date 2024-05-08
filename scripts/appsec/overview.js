@@ -50,7 +50,6 @@ const fetchDiskUsage = ()=> {
         "side/apps.php?usage",
         {api_key: App.appKey},
         (data)=> {
-            console.log(data);
             $("#accounts-usage").html(data["accounts"][1] +
                 " kb <i>(Found " + data["accounts"][0] + " rows)</i>");
 
