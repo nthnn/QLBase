@@ -13,6 +13,10 @@
     </tbody>
 </table>
 
+<div class="w-100 mt-2" align="center">
+    <button class="btn btn-outline-primary" onclick="downloadLogs()">Download Logs</button>
+</div>
+
 <hr/>
 <div class="w-100">
     <input type="checkbox" id="hide-selfreqs" onclick="fetchLogs()" checked />
