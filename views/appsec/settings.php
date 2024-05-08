@@ -69,20 +69,19 @@ $appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
                 </button>
             </div>
             <div class="modal-body">
-                <p>Enter your log-in credentials to ensure deletion of &quot;<?php echo $appName; ?>&quot;</p>
+                <p>Enter your log-in credentials to ensure deletion of &quot;<b><?php echo $appName; ?></b>&quot;</p>
                 <hr/>
 
-                <label for="username" class="form-label">Username</label>
-                        <input type="text" id="username" class="form-control" placeholder="Username" />
-                        <p class="text-danger d-none" id="username-error"></p>
+                <label for="deletion-username" class="form-label">Username</label>
+                <input type="text" id="deletion-username" class="form-control" placeholder="Username" />
 
-                        <label for="password" class="form-label mt-2">Password</label>
-                        <input type="password" id="password" class="form-control" placeholder="Password" />
-                        <p class="text-danger d-none" id="password-error"></p>
-                        <br/>
+                <label for="deletion-password" class="form-label mt-2">Password</label>
+                <input type="password" id="deletion-password" class="form-control" placeholder="Password" />
+                <br/>
 
-                        <p class="text-danger d-none" id="login-error"></p>
+                <p class="text-danger d-none" id="deletion-error"></p>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
