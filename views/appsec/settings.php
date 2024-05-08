@@ -77,9 +77,8 @@ $appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
 
                 <label for="deletion-password" class="form-label mt-2">Password</label>
                 <input type="password" id="deletion-password" class="form-control" placeholder="Password" />
-                <br/>
 
-                <p class="text-danger d-none" id="deletion-error"></p>
+                <p class="text-danger d-none mt-2" id="deletion-error"></p>
             </div>
 
             <div class="modal-footer">
