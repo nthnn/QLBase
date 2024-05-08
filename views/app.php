@@ -27,7 +27,9 @@ $docsLink = "";
 if($page != "logs" && $page != "settings" && $page != "overview")
     $docsLink = $docs[$page];
 
-$apiKey = Apps::getInfoById(SessionControl::getId(), $appId)["app_key"];
+$appInfos = Apps::getInfoById(SessionControl::getId(), $appId);
+$appName = $appInfos["app_name"];
+$apiKey = $appInfos["app_key"];
 ?>
 
 <script>
