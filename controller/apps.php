@@ -155,7 +155,7 @@ class Apps {
                     ));
 
                     $data[str_replace($apiKey."_", "", $row["table_name"])] =
-                        array($res["count"], str_replace(".000", "", $res["count"]));
+                        array($res["count"], str_replace(".000", "", $row["size"]));
                 }
         }
 
