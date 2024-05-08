@@ -35,6 +35,23 @@ $appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
     <div align="right" class="mt-2">
         <button class="btn btn-outline-primary px-4" id="settings-save">Save</button>
     </div>
+    <hr/>
+
+    <div class="card border-danger mt-2">
+        <div class="card-title bg-danger text-white py-1 px-2">Danger Zone</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Delete this app</b>
+                    <p>This app will no longer be recoverable once deleted, please be sure.</p>
+                </div>
+
+                <div class="col-md-6">
+                    <button id="delete-app" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="delete-modal">Delete App</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="scripts/vendors/jquery.min.js"></script>
