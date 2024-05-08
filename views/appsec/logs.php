@@ -1,4 +1,9 @@
-<h1>Log Reports</h1>
+<div class="row">
+    <div class="col-6"><h1>Log Reports</h1></div>
+    <div class="col-6" align="right">
+        <button class="btn btn-outline-primary" onclick="downloadLogs()">Download Logs</button>
+    </div>
+</div>
 <hr/>
 
 <table id="logs-table" class="table table-hover w-100" cellspacing="0">
@@ -12,12 +17,8 @@
     <tbody id="logs-table-body">
     </tbody>
 </table>
-
-<div class="w-100 mt-2" align="center">
-    <button class="btn btn-outline-primary" onclick="downloadLogs()">Download Logs</button>
-</div>
-
 <hr/>
+
 <div class="w-100">
     <input type="checkbox" id="hide-selfreqs" onclick="fetchLogs()" checked />
     <label for="hide-selfreqs">Hide self-requests on logs</label>
