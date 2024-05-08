@@ -10,11 +10,22 @@ if(!isset($_GET["id"]) || empty($_GET["id"]) || !Apps::validateId($_GET["id"])) 
 
 $appId = $_GET["id"];
 $page = "overview";
-$pages = ["auth", "sms", "db", "analytics", "ml", "storage", "logs", "settings"];
+$pages = ["auth", "sms", "db", "analytics", "storage", "logs", "settings"];
+$docs = [
+    "auth" =>       "authentication",
+    "sms" =>        "sms-verification",
+    "db" =>         "database",
+    "analytics" =>  "data-analytics",
+    "storage" =>    "file-storage"
+];
 
 if(isset($_GET["section"]) && !empty($_GET["section"]) &&
     in_array($_GET["section"], $pages))
     $page = $_GET["section"];
+
+$docsLink = "";
+if($page != "logs" && $page != "settings" && $page != "overview")
+    $docsLink = $docs[$page];
 
 $apiKey = Apps::getInfoById(SessionControl::getId(), $appId)["app_key"];
 ?>
