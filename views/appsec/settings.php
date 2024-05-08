@@ -69,7 +69,19 @@ $appInfo = Apps::getInfoById(SessionControl::getId(), $_GET["id"]);
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete &quot;<?php echo $appName; ?>&quot;?</p>
+                <p>Enter your log-in credentials to ensure deletion of &quot;<?php echo $appName; ?>&quot;</p>
+                <hr/>
+
+                <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Username" />
+                        <p class="text-danger d-none" id="username-error"></p>
+
+                        <label for="password" class="form-label mt-2">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password" />
+                        <p class="text-danger d-none" id="password-error"></p>
+                        <br/>
+
+                        <p class="text-danger d-none" id="login-error"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
