@@ -60,6 +60,32 @@ else if(isset($_GET["usage"]) && empty($_GET["usage"]) &&
     echo Apps::getAppStorageUsage($apiKey);
     return;
 }
+else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
+    isset($_POST["api_key"]) && !empty($_POST["api_key"]) &&
+    isset($_POST["username"]) && !empty($_POST["username"]) &&
+    isset($_POST["password"]) && !empty($_POST["password"])) {
+    $apiKey = $_POST["api_key"];
+    if(!Validate::apiKey($apiKey)) {
+        Response::failed();
+        return;
+    }
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    if(!Validate::username($username) ||
+        !Validate::loginPassword($password)) {
+        Response::failed();
+        return;
+    }
+
+    if(!Account::login($username, $password, false)) {
+        Response::failed();
+        return;
+    }
+
+    Response::jsonContent();
+    return;
+}
 
 http_response_code(403);
 
