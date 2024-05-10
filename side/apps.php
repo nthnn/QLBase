@@ -84,6 +84,15 @@ else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
     }
 
     Response::jsonContent();
+    $tables = [
+        "_accounts", "_database", "_data_analytics_id",
+        "_data_analytics_page", "_data_analytics_track",
+        "_logs", "_sms_auth", "_storage"
+    ];
+    foreach($tables as $table)
+        if(!mysqli_query($db_apps_conn, "DROP TABLE ".$apiKey.$table))
+            Response::failedMessage("Something went wrong dropping tables on database.");
+
     return;
 }
 
