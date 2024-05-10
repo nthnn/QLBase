@@ -90,9 +90,27 @@ else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
         "_logs", "_sms_auth", "_storage"
     ];
     foreach($tables as $table)
-        if(!mysqli_query($db_apps_conn, "DROP TABLE ".$apiKey.$table))
+        if(!mysqli_query($db_apps_conn, "DROP TABLE ".$apiKey.$table)) {
             Response::failedMessage("Something went wrong dropping tables on database.");
+            return;
+        }
 
+    if(!mysqli_query($db_conn, "DELETE FROM app WHERE app_key=\"".$apiKey."\"")) {
+        Response::failedMessage("Failed to delete app on ownership records.");
+        return;
+    }
+
+    if(!mysqli_query($db_conn, "DELETE FROM cdp WHERE api_key=\"".$apiKey."\"")) {
+        Response::failedMessage("Failed to delete CDP-related resource file records.");
+        return;
+    }
+
+    if(!mysqli_query($db_conn, "DELETE FROM traffic WHERE api_key=\"".$apiKey."\"")) {
+        Response::failedMessage("Failed to delete traffic logs.");
+        return;
+    }
+
+    Response::success();
     return;
 }
 
