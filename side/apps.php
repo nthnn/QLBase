@@ -1,5 +1,6 @@
 <?php
 
+include_once("../controller/account.php");
 include_once("../controller/apps.php");
 include_once("../controller/db_config.php");
 include_once("../controller/session_ctrl.php");
