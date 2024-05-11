@@ -34,6 +34,29 @@ $("#delete-btn").click(()=> {
         deleteBtn.hide();
         return;
     }
+
+    $.post({
+        url: "side/apps.php?delete_app",
+        headers: {
+            "QLBase-App-ID": App.appId,
+            "QLBase-API-Key": App.appKey
+        },
+        data: {
+            username: username,
+            password: CryptoJS.MD5(password).toString(),
+            api_key: App.appKey
+        },
+        success: (data)=> {
+            if(data.result == '0') {
+                showError(data.message);
+                deleteBtn.hide();
+
+                return;
+            }
+
+            window.location.href = ".";
+        }
+    });
 });
 
 $("#show-delete-modal").click(()=> {
