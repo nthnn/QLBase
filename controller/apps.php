@@ -118,6 +118,18 @@ class Apps {
         ) > 0;
     }
 
+    public static function owner($appId) {
+        global $db_conn;
+        global $sess_id;
+
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE app_id = \"".$appId."\" AND creator_id=".$sess_id
+        );
+
+        return mysqli_num_rows($res) == 1;
+    }
+
     public static function getInfoById($id) {
         global $db_conn;
 
@@ -126,7 +138,7 @@ class Apps {
             "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\""
         );
 
-        if (mysqli_num_rows($res) != 1)
+        if(mysqli_num_rows($res) != 1)
             return null;
 
         $val = mysqli_fetch_array($res);
