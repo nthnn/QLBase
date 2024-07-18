@@ -3,7 +3,7 @@
 include_once("controller/account.php");
 
 $userId = SessionControl::getId();
-$appInfo = Apps::getInfoById($userId, $appId);
+$appInfo = Apps::getInfoById($appId);
 $userName = Account::getUsername($userId);
 
 ?>
@@ -29,10 +29,6 @@ $userName = Account::getUsername($userId);
     <div class="col-sm-5">
         <h3>Summary</h3>
         <table class="table table-hover">
-            <tr>
-                <th>Owner</th>
-                <td><?php echo $userName; ?></td>
-            </tr>
             <tr>
                 <th>App Name</th>
                 <td class="p-2"><?php echo $appInfo["app_name"]; ?></td>
