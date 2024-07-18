@@ -9,6 +9,11 @@ if(!isset($_GET["id"]) || empty($_GET["id"]) || !Apps::validateId($_GET["id"])) 
 }
 
 $appId = $_GET["id"];
+if(!Apps::owned($appId)) {
+    header("Location: ?");
+    return;
+}
+
 $page = "overview";
 $pages = ["auth", "sms", "db", "analytics", "storage", "logs", "settings"];
 $docs = [
@@ -27,7 +32,7 @@ $docsLink = "";
 if($page != "logs" && $page != "settings" && $page != "overview")
     $docsLink = $docs[$page];
 
-$appInfos = Apps::getInfoById(SessionControl::getId(), $appId);
+$appInfos = Apps::getInfoById($appId);
 $appName = $appInfos["app_name"];
 $apiKey = $appInfos["app_key"];
 ?>
