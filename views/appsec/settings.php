@@ -3,6 +3,7 @@ include_once("controller/apps.php");
 include_once("controller/session_ctrl.php");
 
 $appInfo = Apps::getInfoById($_GET["id"]);
+$appId = $appInfo["app_id"];
 
 ?>
 <h1>Settings</h1>
@@ -35,8 +36,9 @@ $appInfo = Apps::getInfoById($_GET["id"]);
     <div align="right" class="mt-2">
         <button class="btn btn-outline-primary px-4" id="settings-save">Save</button>
     </div>
-    <hr/>
 
+    <?php if(Apps::owner($appId)) { ?>
+    <hr/>
     <div class="card border-danger mt-2">
         <div class="card-title bg-danger text-white py-1 px-2">Danger Zone</div>
         <div class="card-body">
@@ -57,6 +59,7 @@ $appInfo = Apps::getInfoById($_GET["id"]);
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>
 
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modalLabel" aria-hidden="true">
