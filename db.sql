@@ -36,6 +36,13 @@ CREATE TABLE `sessions` (
   `remote_addr` varchar(255) NOT NULL
 );
 
+CREATE TABLE `shared_access` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
+  `app_id` varchar(255) NOT NULL,
+  `app_key` varchar(255) NOT NULL,
+  `friend` int(11) NOT NULL
+);
+
 CREATE TABLE `traffic` (
   `app_id` varchar(255) NOT NULL,
   `api_key` varchar(255) NOT NULL,
