@@ -87,23 +87,43 @@ class Apps {
 
         $res = mysqli_query(
             $db_conn,
-            "SELECT name, app_id, description FROM app WHERE creator_id=" . $sess_id
+            "SELECT DISTINCT a.name, a.app_id, a.description ".
+            "FROM app a ".
+            "LEFT JOIN shared_access sa ON a.app_id = sa.app_id AND a.app_key = sa.app_key ".
+            "WHERE a.creator_id=".$sess_id." OR sa.friend=".$sess_id
         );
 
         $ownedApps = array();
-        if (mysqli_num_rows($res) > 0)
+        if(mysqli_num_rows($res) > 0)
             while ($row = mysqli_fetch_assoc($res))
                 array_push($ownedApps, array($row["name"], $row["app_id"], $row["description"]));
 
         return $ownedApps;
     }
 
-    public static function getInfoById($user_id, $id) {
+    public static function owned($appId) {
+        global $db_conn;
+        global $sess_id;
+
+        return mysqli_num_rows(
+            mysqli_query(
+                $db_conn,
+                "SELECT 1 ".
+                "FROM app a ".
+                "LEFT JOIN shared_access sa ON a.app_id = sa.app_id AND a.app_key = sa.app_key ".
+                "WHERE (a.creator_id = ".$sess_id." OR sa.friend = ".$sess_id.") ".
+                "AND a.app_id = \"".$appId."\" ".
+                "LIMIT 1"
+            )
+        ) > 0;
+    }
+
+    public static function getInfoById($id) {
         global $db_conn;
 
         $res = mysqli_query(
             $db_conn,
-            "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\" AND creator_id=" . $user_id
+            "SELECT app_id, app_key, name, description FROM app WHERE app_id=\"" . $id . "\""
         );
 
         if (mysqli_num_rows($res) != 1)
