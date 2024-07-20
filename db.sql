@@ -46,6 +46,6 @@ CREATE TABLE `shared_access` (
 CREATE TABLE `traffic` (
   `app_id` varchar(255) NOT NULL,
   `api_key` varchar(255) NOT NULL,
-  `date_time` varchar(255) DEFAULT DATE_FORMAT(CURRENT_DATE, '%d%m%Y'),
+  `date_time` varchar(255) NOT NULL,
   `count` int(11) DEFAULT 1
 );
