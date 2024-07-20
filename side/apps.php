@@ -112,6 +112,24 @@ else if(isset($_GET["share_app"]) && empty($_GET["share_app"]) &&
     Apps::shareApp($username, $password, $apiKey, $apiId, $email);
     return;
 }
+else if(isset($_GET["unshare_app"]) && empty($_GET["unshare_app"]) &&
+    isset($_POST["api_key"]) && !empty($_POST["api_key"]) &&
+    isset($_POST["email"]) && !empty($_POST["email"])) {
+    $apiKey = $_POST["api_key"];
+    if(!Validate::apiKey($apiKey)) {
+        Response::failed();
+        return;
+    }
+
+    $email = $_POST["email"];
+    if(!Validate::email($email)) {
+        Response::failed();
+        return;
+    }
+
+    Apps::unshareApp($apiKey, $email);
+    return;
+}
 else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
     isset($_POST["api_key"]) && !empty($_POST["api_key"]) &&
     isset($_POST["username"]) && !empty($_POST["username"]) &&
