@@ -1,5 +1,6 @@
 <?php
 
+include_once("account.php");
 include_once("db_config.php");
 include_once("session_ctrl.php");
 include_once("util.php");
@@ -192,6 +193,72 @@ class Apps {
         }
 
         return json_encode($data);
+    }
+
+    public static function listSharedAccessors($apiKey) {
+        global $db_conn;
+
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT accounts.name, accounts.email ".
+            "FROM accounts JOIN shared_access ".
+            "ON accounts.id = shared_access.friend ".
+            "WHERE shared_access.app_key = \"".$apiKey."\""
+        );
+
+        $data = array();
+        while($row = mysqli_fetch_assoc($res))
+            $data[$row["name"]] = $row["email"];
+
+        return json_encode($data);
+    }
+
+    public static function shareApp($username, $password, $appKey, $appId, $email) {
+        if(!Account::login($username, $password, false)) {
+            Response::failedMessage("Invalid username and/or password.");
+            return;
+        }
+
+        global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT id FROM accounts WHERE email=\"".$email."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Something went wrong.");
+            return;
+        }
+
+        $recipientId = mysqli_fetch_array($res)[0];
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM shared_access WHERE friend=".$recipientId." AND app_id=\"".$appId."\""
+        );
+
+        if(!$res) {
+            Response::failedMessage("Something went wrong.");
+            return;
+        }
+
+        if(mysqli_num_rows($res) == 1) {
+            Response::failedMessage("App already shared with specified user.");
+            return;
+        }
+
+        $res = mysqli_query(
+            $db_conn,
+            "INSERT INTO shared_access (app_id, app_key, friend) ".
+            "VALUES(\"".$appId."\", \"".$appKey."\", ".$recipientId.")"
+        );
+
+        if(!$res) {
+            Response::failedMessage("Something went wrong.");
+            return;
+        }
+
+        Response::success();
+        return;
     }
 }
 
