@@ -213,13 +213,24 @@ class Apps {
         return json_encode($data);
     }
 
-    public static function shareApp($username, $password, $appKey, $appId, $email) {
+    public static function shareApp($originId, $username, $password, $appKey, $appId, $email) {
         if(!Account::login($username, $password, false)) {
             Response::failedMessage("Invalid username and/or password.");
             return;
         }
 
         global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE creator_id=".$originId." AND app_id=\"".$appId."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Request origin is not the owner.");
+            return;
+        }
+        mysqli_free_result($res);
+
         $res = mysqli_query(
             $db_conn,
             "SELECT id FROM accounts WHERE email=\"".$email."\""
@@ -261,8 +272,19 @@ class Apps {
         return;
     }
 
-    public static function unshareApp($apiKey, $email) {
+    public static function unshareApp($originId, $apiKey, $email) {
         global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE creator_id=".$originId." AND app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Request origin is not the owner.");
+            return;
+        }
+        mysqli_free_result($res);
+
         $res = mysqli_query(
             $db_conn,
             "SELECT id FROM accounts WHERE email=\"".$email."\""
