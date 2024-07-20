@@ -72,6 +72,7 @@ function uploadFile() {
                 $("#upload-file-modal").modal("hide");
                 $("#failed-modal").modal("show");
 
+                uploadBtn.hide();
                 return;
             }
 
