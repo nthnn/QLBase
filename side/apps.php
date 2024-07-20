@@ -109,7 +109,7 @@ else if(isset($_GET["share_app"]) && empty($_GET["share_app"]) &&
         return;
     }
 
-    Apps::shareApp($username, $password, $apiKey, $apiId, $email);
+    Apps::shareApp(SessionControl::getId(), $username, $password, $apiKey, $apiId, $email);
     return;
 }
 else if(isset($_GET["unshare_app"]) && empty($_GET["unshare_app"]) &&
@@ -127,7 +127,7 @@ else if(isset($_GET["unshare_app"]) && empty($_GET["unshare_app"]) &&
         return;
     }
 
-    Apps::unshareApp($apiKey, $email);
+    Apps::unshareApp(SessionControl::getId(), $apiKey, $email);
     return;
 }
 else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
