@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="db-mode" id="write-mode" value="w"></input
+                        <input class="form-check-input" type="radio" name="db-mode" id="write-mode" value="w"></input>
                         <label class="form-check-label" for="write-mode">Write Mode</label>
                     </div>
 
