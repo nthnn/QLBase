@@ -67,6 +67,10 @@ $("#show-delete-modal").click(()=> {
     $("#delete-modal").modal("show");
 });
 
+$("#show-remove-modal").click(()=> {
+    $("#remove-modal").modal("show");
+});
+
 $("#settings-save").click(()=> {
     let name = $("#app-name").val(),
         description = $("#app-desc").val();
