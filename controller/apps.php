@@ -260,6 +260,41 @@ class Apps {
         Response::success();
         return;
     }
+
+    public static function unshareApp($apiKey, $email) {
+        global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT id FROM accounts WHERE email=\"".$email."\""
+        );
+
+        if(!$res || mysqli_num_rows($res) != 1) {
+            Response::failedMessage("User not found.");
+            return;
+        }
+
+        $subjectId = mysqli_fetch_array($res)[0];
+        mysqli_free_result($res);
+
+        $res = mysqli_query(
+            $db_conn,
+            "DELETE FROM shared_access WHERE app_key=\"".$apiKey."\" AND friend=\"".$subjectId."\""
+        );
+
+        if(mysqli_affected_rows($db_conn) != 1) {
+            Response::failedMessage("User not listed on shared accessors.");
+            return;
+        }
+
+        if($res) {
+            Response::success();
+            return;
+        }
+        mysqli_free_result($res);
+
+        Response::failed();
+        return;
+    }
 }
 
 ?>
