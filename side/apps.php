@@ -61,6 +61,57 @@ else if(isset($_GET["usage"]) && empty($_GET["usage"]) &&
     echo Apps::getAppStorageUsage($apiKey);
     return;
 }
+else if(isset($_GET["shared_list"]) && empty($_GET["shared_list"]) &&
+    isset($_POST["api_key"]) && !empty($_POST["api_key"])) {
+    $apiKey = $_POST["api_key"];
+    if(!Validate::apiKey($apiKey)) {
+        Response::failed();
+        return;
+    }
+
+    Response::jsonContent();
+    echo Apps::listSharedAccessors($apiKey);
+    return;
+}
+else if(isset($_GET["share_app"]) && empty($_GET["share_app"]) &&
+    isset($_POST["api_key"]) && !empty($_POST["api_key"]) &&
+    isset($_POST["api_id"]) && !empty($_POST["api_id"]) &&
+    isset($_POST["uname"]) && !empty($_POST["uname"]) &&
+    isset($_POST["pword"]) && !empty($_POST["pword"]) &&
+    isset($_POST["email"]) && !empty($_POST["email"])) {
+    $apiKey = $_POST["api_key"];
+    if(!Validate::apiKey($apiKey)) {
+        Response::failed();
+        return;
+    }
+
+    $apiId = $_POST["api_id"];
+    if(!Validate::apiId($apiId)) {
+        Response::failed();
+        return;
+    }
+
+    $username = $_POST["uname"];
+    if(!Validate::username($username)) {
+        Response::failed();
+        return;
+    }
+
+    $password = $_POST["pword"];
+    if(!Validate::loginPassword($password)) {
+        Response::failed();
+        return;
+    }
+
+    $email = $_POST["email"];
+    if(!Validate::email($email)) {
+        Response::failed();
+        return;
+    }
+
+    Apps::shareApp($username, $password, $apiKey, $apiId, $email);
+    return;
+}
 else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
     isset($_POST["api_key"]) && !empty($_POST["api_key"]) &&
     isset($_POST["username"]) && !empty($_POST["username"]) &&
