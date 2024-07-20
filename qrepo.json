@@ -45,13 +45,19 @@
 			"qrepo run clean-up",
 			"echo \"\\033[92m[+]\\033[0m Deployment-ready successfully generated!\""
 		],
-		"start": [
+		"darwin:start": [
 			"cd /Applications/XAMPP/xamppfiles",
 			"sudo ./xampp start"
 		],
-		"stop": [
+		"linux:start": [
+			"/opt/lampp/xampp start"
+		],
+		"darwin:stop": [
 			"cd /Applications/XAMPP/xamppfiles",
 			"sudo ./xampp stop"
+		],
+		"linux:stop": [
+			"/opt/lampp/xampp stop"
 		],
 		"zip-up": [
 			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
