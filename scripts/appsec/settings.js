@@ -1,10 +1,10 @@
-const showError = (message)=> {
-    $("#deletion-error").removeClass("d-none")
-    $("#deletion-error").addClass("d-block");
-    $("#deletion-error").html(message);
-}, hideError = ()=> {
-    $("#deletion-error").removeClass("d-block");
-    $("#deletion-error").addClass("d-none");
+const showError = (id, message)=> {
+    $("#" + id + "-error").removeClass("d-none")
+    $("#" + id + "-error").addClass("d-block");
+    $("#" + id + "-error").html(message);
+}, hideError = (id)=> {
+    $("#" + id + "-error").removeClass("d-block");
+    $("#" + id + "-error").addClass("d-none");
 };
 
 const deleteBtn = RotatingButton("#delete-btn");
@@ -14,19 +14,19 @@ $("#delete-btn").click(()=> {
     let hasError = false;
 
     deleteBtn.show();
-    hideError();
+    hideError("deletion");
 
     if(!username ||
         username === "" ||
         !/^[a-zA-Z0-9_]+$/.test(username)) {
-        showError("Invalid username string.");
+        showError("deletion", "Invalid username string.");
         hasError = true;
     }
 
     if(!password ||
         password === "" ||
         !isStrongPassword(password)) {
-        showError("Invalid password string.");
+        showError("deletion", "Invalid password string.");
         hasError = true;
     }
 
@@ -48,9 +48,10 @@ $("#delete-btn").click(()=> {
         },
         success: (data)=> {
             if(data.result == '0') {
-                showError(data.message);
-                deleteBtn.hide();
+                showError("deletion", data.message);
+                $("#remove-modal").modal("hide");
 
+                deleteBtn.hide();
                 return;
             }
 
@@ -59,11 +60,30 @@ $("#delete-btn").click(()=> {
     });
 });
 
+$("#remove-btn").click(()=> {
+    $.post(
+        "side/apps.php?unshare_app",
+        {
+            api_key: App.appKey,
+            email: App.email
+        },
+        (r)=> {
+            hideError("remove");
+            if(r.result == '1') {
+                window.location.reload();
+                return;
+            }
+
+            showError("remove", r.message);
+        }
+    );
+});
+
 $("#show-delete-modal").click(()=> {
     $("#deletion-username").val("");
     $("#deletion-password").val("");
 
-    hideError();
+    hideError("deletion");
     $("#delete-modal").modal("show");
 });
 
