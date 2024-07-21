@@ -285,7 +285,7 @@ class Apps {
             "SELECT * FROM shared_access WHERE friend=".$originId." AND app_key=\"".$apiKey."\""
         );
 
-        if(mysqli_num_rows($res) != 1 ||
+        if(mysqli_num_rows($res) != 1 &&
             mysqli_num_rows($sharedRes) != 1) {
             Response::failedMessage("Request origin is not the owner.");
             return;
