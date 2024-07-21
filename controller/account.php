@@ -101,7 +101,6 @@ class Account {
         $results = mysqli_fetch_array($res);
         $array = array($results[0], $results[1]);
 
-        mysqli_free_result($res);
         return $array;
     }
 
@@ -117,8 +116,6 @@ class Account {
             return null;
 
         $username = mysqli_fetch_array($res)[0];
-        mysqli_free_result($res);
-
         return $username;
     }
 }

@@ -274,16 +274,25 @@ class Apps {
 
     public static function unshareApp($originId, $apiKey, $email) {
         global $db_conn;
+
         $res = mysqli_query(
             $db_conn,
             "SELECT * FROM app WHERE creator_id=".$originId." AND app_key=\"".$apiKey."\""
         );
 
-        if(mysqli_num_rows($res) != 1) {
+        $sharedRes = mysqli_query(
+            $db_conn,
+            "SELECT * FROM shared_access WHERE friend=".$originId." AND app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1 ||
+            mysqli_num_rows($sharedRes) != 1) {
             Response::failedMessage("Request origin is not the owner.");
             return;
         }
+
         mysqli_free_result($res);
+        mysqli_free_result($sharedRes);
 
         $res = mysqli_query(
             $db_conn,
