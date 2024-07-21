@@ -34,6 +34,7 @@ if($page != "logs" && $page != "settings" && $page != "overview")
     $docsLink = $docs[$page];
 
 $username = Account::getUsername(SessionControl::getId());
+$email = Account::getInfo(SessionControl::getId())[1];
 $appInfos = Apps::getInfoById($appId);
 $appName = $appInfos["app_name"];
 $apiKey = $appInfos["app_key"];
@@ -42,7 +43,8 @@ $apiKey = $appInfos["app_key"];
 <script>
 const App = {
     appId: "<?php echo $appId; ?>",
-    appKey: "<?php echo $apiKey; ?>"
+    appKey: "<?php echo $apiKey; ?>",
+    email: "<?php echo $email; ?>"
 };
 </script>
 

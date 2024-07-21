@@ -18,7 +18,6 @@
     $res = mysqli_query($db_conn, "SELECT * FROM recovery WHERE track_id=\"".$id."\"");
     $count = mysqli_num_rows($res);
 
-    mysqli_free_result($res);
     if($count != 1) {
         header("Location: ?");
         return;
