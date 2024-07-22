@@ -3,6 +3,7 @@
 include_once("controller/account.php");
 include_once("controller/apps.php");
 include_once("controller/session_ctrl.php");
+include_once("controller/sms_service.php");
 
 if(!isset($_GET["id"]) || empty($_GET["id"]) || !Apps::validateId($_GET["id"])) {
     header("Location: ?");
@@ -117,12 +118,14 @@ const App = {
                         Authentication
                     </a>
 
+                    <?php if(isSMSServiceEnabled()) { ?>
                     <a href="<?php echo "?page=app&id=".$appId."&section=sms"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                         </svg>
                         SMS Verification
                     </a>
+                    <?php } ?>
 
                     <a href="<?php echo "?page=app&id=".$appId."&section=analytics"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
@@ -178,11 +181,13 @@ const App = {
                         </svg>
                     </a>
 
+                    <?php if(isSMSServiceEnabled()) { ?>
                     <a href="<?php echo "?page=app&id=".$appId."&section=sms"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                         </svg>
                     </a>
+                    <?php } ?>
 
                     <a href="<?php echo "?page=app&id=".$appId."&section=analytics"; ?>" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" width="14" height="14" class="board-icons">
