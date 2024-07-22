@@ -7,6 +7,45 @@ const showError = (id, message)=> {
     $("#" + id + "-error").addClass("d-none");
 };
 
+let prevSharedAccessHash = null,
+    sharedAccessContent = [];
+const renderSharedList = ()=> {
+    if(sharedAccessContent.length == 0) {
+        $("#shared-access-tbody").html("<tr><td colspan=\"3\" align=\"center\">No shared access yet.</td></tr>");
+        return;
+    }
+
+    let contents = "";
+    for(let data of sharedAccessContent)
+        contents += "<tr><td>" + data[0] + "</td><td>" + data[1] + "</td><td></td></tr>";
+
+    $("#shared-access-tbody").html(contents);
+},fetchSharedList = ()=> {
+    $.post({
+        url: "side/apps.php?shared_list",
+        data: {
+            api_key: App.appKey
+        },
+        success: (data)=> {
+            let hash = CryptoJS.MD5(data.toString()).toString();
+            if(hash == prevSharedAccessHash)
+                return;
+            prevSharedAccessHash = hash;
+
+            if(data.length == 0) {
+                prevSharedAccessHash = null;
+                sharedAccessContent = [];
+
+                renderSharedList();
+                return;
+            }
+
+            sharedAccessContent = data;
+            renderSharedList();
+        }
+    });
+};
+
 const deleteBtn = RotatingButton("#delete-btn");
 $("#delete-btn").click(()=> {
     const username = $("#deletion-username").val();
@@ -119,6 +158,8 @@ $("#share-btn").click(()=> {
             if(r.result == "1") {
                 $("#share-access-modal").modal("hide");
                 $("#access-shared-modal").modal("show");
+
+                fetchSharedList();
                 return;
             }
 
@@ -208,3 +249,6 @@ $("#settings-save").click(()=> {
         }
     });
 });
+
+fetchSharedList();
+setInterval(fetchSharedList, 2000);
