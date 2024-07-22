@@ -195,8 +195,18 @@ class Apps {
         return json_encode($data);
     }
 
-    public static function listSharedAccessors($apiKey) {
+    public static function listSharedAccessors($originId, $apiKey) {
         global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE creator_id=".$originId." AND app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Request origin is not the owner.");
+            return;
+        }
+        mysqli_free_result($res);
 
         $res = mysqli_query(
             $db_conn,
@@ -208,7 +218,7 @@ class Apps {
 
         $data = array();
         while($row = mysqli_fetch_assoc($res))
-            $data[$row["name"]] = $row["email"];
+            $data[] = array($row["name"], $row["email"]);
 
         return json_encode($data);
     }
