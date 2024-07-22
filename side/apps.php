@@ -154,6 +154,12 @@ else if(isset($_GET["delete_app"]) && empty($_GET["delete_app"]) &&
     }
 
     Response::jsonContent();
+
+    $res = mysqli_query($db_apps_conn, "SELECT name FROM ".$apiKey."_storage");
+    while($row = mysqli_fetch_row($res))
+        unlink("../drive/".$row[0].".zip");
+    mysqli_free_result($res);
+
     $tables = [
         "_accounts", "_database", "_data_analytics_id",
         "_data_analytics_page", "_data_analytics_track",
