@@ -30,6 +30,7 @@ CREATE TABLE `recovery` (
 );
 
 CREATE TABLE `sessions` (
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `hash` varchar(255) NOT NULL,
   `user_agent` varchar(255) NOT NULL,
