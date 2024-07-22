@@ -79,6 +79,29 @@ $("#remove-btn").click(()=> {
     );
 });
 
+$("#share-btn").click(()=> {
+    $.post(
+        "side/apps.php?share_app",
+        {
+            api_key: App.appKey,
+            api_id: App.appId,
+            uname: $("#share-username").val(),
+            pword: CryptoJS.MD5($("#share-password").val()).toString(),
+            email: App.email
+        },
+        (r)=> {
+            hideError("share");
+            if(r.result == "1") {
+                $("#share-access-modal").modal("hide");
+                $("#access-shared-modal").modal("show");
+                return;
+            }
+
+            showError("share", r.message);
+        }
+    );
+});
+
 $("#show-delete-modal").click(()=> {
     $("#deletion-username").val("");
     $("#deletion-password").val("");
