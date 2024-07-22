@@ -91,8 +91,9 @@
 <span class="text-danger">password</span>&#61;<span class="text-success">&lt;smtp password&gt;</span>
 
 [env]
-<span class="text-danger">home</span>=<span class="text-success">http://localhost:8080/QLBase</span></pre>
-            <p>The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
+<span class="text-danger">home</span>=<span class="text-success">http://localhost:8080/QLBase</span>
+<span class="text-danger">sms</span>=<span class="text-success">enabled</span></pre>
+            <p>The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. The SMS service enability can also be configured with either "enabled" or "disabled" value. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
         </li>
         <li>
             <p>On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder. Changing permissions can be done by opening the <span class="bg-secondary border-gray border rounded p-1 d-inline">bin</span> folder in the terminal and typing the following:</p>
