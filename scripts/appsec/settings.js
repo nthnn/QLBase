@@ -87,6 +87,15 @@ $("#show-delete-modal").click(()=> {
     $("#delete-modal").modal("show");
 });
 
+$("#show-share-modal").click(()=> {
+    $("#share-username").val("");
+    $("#share-password").val("");
+    $("#share-email").val("");
+
+    hideError("share");
+    $("#share-access-modal").modal("show");
+});
+
 $("#show-remove-modal").click(()=> {
     $("#remove-modal").modal("show");
 });
