@@ -40,7 +40,7 @@ const fetchLogs = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             let hideSelfReqs = $("#hide-selfreqs").is(":checked");

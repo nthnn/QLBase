@@ -28,7 +28,7 @@ function requestFileDeletion() {
         success: (data)=> {
             deleteBtn.hide();
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-message").html("Somthing went wrong.");
                 $("#failed-modal").modal("show");
 
@@ -101,7 +101,7 @@ const fetchFiles = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevFilesHash == CryptoJS.MD5(JSON.stringify(data)).toString())

@@ -24,7 +24,7 @@ function requestVerificationDeletion() {
             code: deletableOTP
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             $("#success-message").html("Removed OTP verification.");
@@ -46,7 +46,7 @@ const fetchSMSLogs = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevSMSHash == CryptoJS.MD5(JSON.stringify(data)).toString())

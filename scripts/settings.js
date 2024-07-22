@@ -69,7 +69,7 @@ $(document).ready(()=> {
                 password: CryptoJS.MD5(oldPassword).toString()
             },
             (r)=> {
-                if(r.result == '1') {
+                if(r.result == "1") {
                     $.post(
                         "side/account.php?update",
                         {
@@ -80,7 +80,7 @@ $(document).ready(()=> {
                             old: CryptoJS.MD5(oldPassword).toString()
                         },
                         (rs)=> {
-                            if(rs.result == '1')
+                            if(rs.result == "1")
                                 window.location.reload();
                             else showError("save", rs.message);
                         }

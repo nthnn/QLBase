@@ -35,7 +35,7 @@ const fetchApps = ()=>
         "side/apps.php?fetch",
         {},
         (data)=> {
-            if(data.result == '1')
+            if(data.result == "1")
                 renderApps(data.apps);
         }
     ).fail(()=> {});
@@ -87,7 +87,7 @@ $(document).ready(()=> {
             (data)=> {
                 addBtn.hide();
 
-                if(data.result == '0') {
+                if(data.result == "0") {
                     $("#app-description-error").removeClass("d-none");
                     $("#app-description-error").addClass("d-block");
                     $("#app-description-error").html("Something went wrong.");

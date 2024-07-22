@@ -11,7 +11,7 @@ function getChartData() {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             let traffic = data.traffic, j = 30;

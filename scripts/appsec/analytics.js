@@ -137,7 +137,7 @@ const requestDeleteId = ()=> {
         success: (data)=> {
             $("#confirm-delete-modal").modal("hide");
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-delete-modal-msg").html("Failed to delete identification track.");
                 $("#failed-delete-modal").modal("show");
     
@@ -164,7 +164,7 @@ const requestDeleteTrack = ()=> {
         success: (data)=> {
             $("#confirm-delete-modal").modal("hide");
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-delete-modal-msg").html("Failed to delete tracker.");
                 $("#failed-delete-modal").modal("show");
     
@@ -191,7 +191,7 @@ const requestDeletePage = ()=> {
         success: (data)=> {
             $("#confirm-delete-modal").modal("hide");
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-delete-modal-msg").html("Failed to delete page tracker.");
                 $("#failed-delete-modal").modal("show");
     
@@ -218,7 +218,7 @@ const requestDeleteAlias = ()=> {
         success: (data)=> {
             $("#confirm-delete-modal").modal("hide");
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-delete-modal-msg").html("Failed to delete aliased records.");
                 $("#failed-delete-modal").modal("show");
     
@@ -296,7 +296,7 @@ const fetchAllId = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevIdHash == CryptoJS.MD5(JSON.stringify(data)).toString())
@@ -342,7 +342,7 @@ const fetchAllTrack = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevTrackHash == CryptoJS.MD5(JSON.stringify(data)).toString())
@@ -387,7 +387,7 @@ const fetchAllPage = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevPageHash == CryptoJS.MD5(JSON.stringify(data)).toString())
@@ -432,7 +432,7 @@ const fetchAllAlias = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevAliasHash == CryptoJS.MD5(JSON.stringify(data)).toString())

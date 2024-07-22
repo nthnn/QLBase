@@ -44,7 +44,7 @@ function requestUserDeletion() {
         success: (data)=> {
             deleteBtn.hide();
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#failed-message").html("Somthing went wrong.");
                 $("#failed-modal").modal("show");
 
@@ -124,7 +124,7 @@ function requestSaveEdit() {
         success: (data)=> {
             editBtn.hide();
 
-            if(data.result == '0') {
+            if(data.result == "0") {
                 showError("edit", data.message);
                 return;
             }
@@ -159,7 +159,7 @@ const fetchUsers = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevUsersHash == CryptoJS.MD5(JSON.stringify(data)).toString())
@@ -261,7 +261,7 @@ $(document).ready(()=> {
             success: (data)=> {
                 addBtn.hide();
 
-                if(data.result == '0') {
+                if(data.result == "0") {
                     showError("add", data.message);
                     return;
                 }

@@ -34,7 +34,7 @@ $(document).ready(()=> {
             (data)=> {
                 forgotBtn.hide();
 
-                if(data.result == '1')
+                if(data.result == "1")
                     showMessage("#ue-success", "Recovery email was sent.");
                 else showMessage("#ue-error", data.message);
             }

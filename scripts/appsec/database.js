@@ -13,7 +13,7 @@ function downloadDb(name) {
             name: name
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             saveAs(new Blob([atob(data.value)], {type: 'application/json'}), name + ".json");
@@ -39,7 +39,7 @@ function requestDatabaseDeletion() {
             name: deletableDbName
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             $("#success-message").html("Deleted database '" + deletableDbName + "' permanently.");
@@ -72,7 +72,7 @@ const fetchDb = ()=> {
             "QLBase-API-Key": App.appKey
         },
         success: (data)=> {
-            if(data.result == '0')
+            if(data.result == "0")
                 return;
 
             if(prevDBHash == CryptoJS.MD5(JSON.stringify(data)).toString())
@@ -154,7 +154,7 @@ $("#create-btn").click(()=> {
         },
         success: (data)=> {
             createBtn.hide();
-            if(data.result == '0') {
+            if(data.result == "0") {
                 $("#db-create-error")
                     .removeClass("d-none")
                     .addClass("d-block");
