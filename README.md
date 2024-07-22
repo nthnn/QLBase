@@ -135,9 +135,10 @@ To simplify the deployment process of QLBase, a `deploy.sh` bash script is provi
 
     [env]
     home=http://localhost:8080/QLBase
+    sms=enabled
     ```
 
-    The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. And lastly, the environment section defines the root URL of the current QLBase runtime.
+    The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. The SMS service enability can also be configured with either "enabled" or "disabled" value. And lastly, the environment section defines the root URL of the current QLBase runtime.
 
 5. On UNIX-based and UNIX-like operating systems (such as Linux and OSX), you are required to change the permissions of binary files inside the `bin` folder. Changing permissions can be done by opening the bin folder in the terminal and typing the following:
 
