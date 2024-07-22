@@ -2,4 +2,4 @@
 
 - Email notification on shared access updates (add/remove).
 - Argument validations on back-end.
-- SMS service accessibility via configuration file.
+- Same configuration for controller/db_config.php based on config.ini
