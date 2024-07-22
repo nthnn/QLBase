@@ -269,7 +269,6 @@ class Apps {
         }
 
         Response::success();
-        return;
     }
 
     public static function unshareApp($originId, $apiKey, $email) {
@@ -324,7 +323,60 @@ class Apps {
         mysqli_free_result($res);
 
         Response::failed();
-        return;
+    }
+
+    public static function deleteApp($originId, $apiKey, $username, $password) {
+        global $db_conn;
+        global $db_apps_conn;
+
+        if(!Account::login($username, $password, false)) {
+            Response::failedMessage("Authentication failed.");
+            return;
+        }
+
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE creator_id=".$originId." AND app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Request origin is not the owner.");
+            return;
+        }
+        mysqli_free_result($res);
+
+        $res = mysqli_query($db_apps_conn, "SELECT name FROM ".$apiKey."_storage");
+        while($row = mysqli_fetch_row($res))
+            unlink("../drive/".$row[0].".zip");
+        mysqli_free_result($res);
+    
+        $tables = [
+            "_accounts", "_database", "_data_analytics_id",
+            "_data_analytics_page", "_data_analytics_track",
+            "_logs", "_sms_auth", "_storage"
+        ];
+        foreach($tables as $table)
+            if(!mysqli_query($db_apps_conn, "DROP TABLE ".$apiKey.$table)) {
+                Response::failedMessage("Something went wrong dropping tables on database.");
+                return;
+            }
+    
+        if(!mysqli_query($db_conn, "DELETE FROM app WHERE app_key=\"".$apiKey."\"")) {
+            Response::failedMessage("Failed to delete app on ownership records.");
+            return;
+        }
+    
+        if(!mysqli_query($db_conn, "DELETE FROM cdp WHERE api_key=\"".$apiKey."\"")) {
+            Response::failedMessage("Failed to delete CDP-related resource file records.");
+            return;
+        }
+    
+        if(!mysqli_query($db_conn, "DELETE FROM traffic WHERE api_key=\"".$apiKey."\"")) {
+            Response::failedMessage("Failed to delete traffic logs.");
+            return;
+        }
+    
+        Response::success();
     }
 }
 
