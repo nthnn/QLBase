@@ -70,7 +70,7 @@ else if(isset($_GET["shared_list"]) && empty($_GET["shared_list"]) &&
     }
 
     Response::jsonContent();
-    echo Apps::listSharedAccessors($apiKey);
+    echo Apps::listSharedAccessors(SessionControl::getId(), $apiKey);
     return;
 }
 else if(isset($_GET["share_app"]) && empty($_GET["share_app"]) &&
