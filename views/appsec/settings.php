@@ -182,6 +182,30 @@ $appId = $appInfo["app_id"];
     </div>
 </div>
 
+<div class="modal fade" id="access-shared-modal" tabindex="-1" role="dialog" aria-labelledby="access-shared-modalLabel" aria-hidden="true">
+    <div class="modal-dialog shadow" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="access-shared-modalLabel">Access Shared Modal</h5>
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>User was added to shared accessors.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18" class="mb-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="share-access-modal" tabindex="-1" role="dialog" aria-labelledby="share-access-modalLabel" aria-hidden="true">
     <div class="modal-dialog shadow" role="document">
         <div class="modal-content">
@@ -199,12 +223,11 @@ $appId = $appInfo["app_id"];
 
                 <label for="share-password" class="form-label mt-2">Password</label>
                 <input type="password" id="share-password" class="form-control" placeholder="Password" />
-
-                <p class="text-danger d-none mt-2 mb-0 pb-0" id="share-error"></p>
                 <hr/>
 
                 <label for="share-email" class="form-label">Recipient Email</label>
                 <input type="email" id="share-email" class="form-control" placeholder="Recipient Email" />
+                <p class="text-danger d-none mt-2 mb-0 pb-0" id="share-error"></p>
             </div>
 
             <div class="modal-footer">
