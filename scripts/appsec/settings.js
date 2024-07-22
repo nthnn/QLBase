@@ -80,14 +80,39 @@ $("#remove-btn").click(()=> {
 });
 
 $("#share-btn").click(()=> {
+    let email = $("#share-email").val(),
+        username = $("#share-username").val(),
+        password = CryptoJS.MD5($("#share-password").val()).toString();
+
+    if(!username ||
+        username === "" ||
+        !/^[a-zA-Z0-9_]+$/.test(username)) {
+        showError("share", "Invalid username string.");
+        return;
+    }
+
+    if(!password ||
+        password === "" ||
+        !/^[a-f0-9]{32}$/.test(password)) {
+        showError("share", "Invalid password string.");
+        return;
+    }
+
+    if(!email ||
+        email.length == 0 ||
+        !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
+        showError("share", "Invalid email address.");
+        return;
+    }
+
     $.post(
         "side/apps.php?share_app",
         {
             api_key: App.appKey,
             api_id: App.appId,
-            uname: $("#share-username").val(),
-            pword: CryptoJS.MD5($("#share-password").val()).toString(),
-            email: App.email
+            uname: username,
+            pword: password,
+            email: email
         },
         (r)=> {
             hideError("share");
