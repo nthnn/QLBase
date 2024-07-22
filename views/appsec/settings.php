@@ -57,6 +57,17 @@ $appId = $appInfo["app_id"];
                     </button>
                 </div>
             </div>
+            <hr/>
+
+            <b>Shared Access</b>
+            <p>Shared access allows other users to access this application's dashboard.</p>
+
+            <button type="button" id="show-delete-modal" class="btn btn-outline-danger w-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" stroke-width="0.8" stroke="currentColor" width="18" height="18" class="mb-1">
+                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                </svg>
+                Share Access
+            </button>
             <?php
                 }
                 else {
