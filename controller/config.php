@@ -31,15 +31,17 @@
 
 include_once("shell.php");
 
-$config_file = parse_ini_file(
-    Shell::getCurrentOS() == "linux" ?
-        "bin".DIRECTORY_SEPARATOR."config.ini" :
-        dirname(__FILE__).DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."bin".DIRECTORY_SEPARATOR."config.ini",
+$config = parse_ini_file(
+    dirname(__FILE__).
+        DIRECTORY_SEPARATOR."..".
+        DIRECTORY_SEPARATOR."bin".
+        DIRECTORY_SEPARATOR."config.ini",
     true
 );
 
 class Config {
     public static function getDBServerAddress() {
+        global $config;
         if(isset($config["database"]["server"]))
             return $config["database"]["server"];
 
@@ -47,6 +49,7 @@ class Config {
     }
 
     public static function getDBServerUsername() {
+        global $config;
         if(isset($config["database"]["username"]))
             return $config["database"]["username"];
 
@@ -54,6 +57,7 @@ class Config {
     }
 
     public static function getDBServerPassword() {
+        global $config;
         if(isset($config["database"]["password"]))
             return $config["database"]["password"];
 
@@ -61,6 +65,7 @@ class Config {
     }
 
     public static function getInternalDatabaseName() {
+        global $config;
         if(isset($config["database"]["system"]))
             return $config["database"]["system"];
 
@@ -68,6 +73,7 @@ class Config {
     }
 
     public static function getAppDatabaseName() {
+        global $config;
         if(isset($config["database"]["name"]))
             return $config["database"]["name"];
 
@@ -75,8 +81,11 @@ class Config {
     }
 
     public static function isSMSServiceEnabled() {
-        return isset($config["env"]["sms"]) &&
-            $config["env"]["sms"] === "enabled";
+        global $config;
+        if(isset($config["env"]["sms"]))
+            return $config["env"]["sms"] === "enabled";
+
+        return true;
     }
 }
 
