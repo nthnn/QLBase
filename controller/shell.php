@@ -1,8 +1,17 @@
 <?php
 
-include_once("../controller/util.php");
+include_once("util.php");
 
 class Shell {
+    public static function getCurrentOS() {
+        if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            return 'win';
+        if(strtoupper(PHP_OS) === 'LINUX' || strtoupper(PHP_OS) === 'UNIX')
+            return 'linux';
+    
+        return 'unknown';
+    }
+
     public static function log($apiKey, $sender) {
         $action = "N/A";
 
