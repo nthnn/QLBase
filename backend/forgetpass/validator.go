@@ -27,7 +27,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package main
+package main
 
 import (
 	"net/mail"

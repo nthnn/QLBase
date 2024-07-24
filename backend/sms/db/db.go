@@ -27,7 +27,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package db
+package db
 
 import (
 	"database/sql"

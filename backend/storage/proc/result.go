@@ -27,7 +27,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package proc
+package proc
 
 import "fmt"
 

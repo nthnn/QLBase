@@ -27,7 +27,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package serport
+package serport
 
 import "github.com/jacobsa/go-serial/serial"
 

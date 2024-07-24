@@ -27,7 +27,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package util
+package util
 
 import (
 	"archive/zip"
