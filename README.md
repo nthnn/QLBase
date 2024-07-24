@@ -291,4 +291,8 @@ QLBase developers are profoundly grateful for your support! Your generosity allo
 
 The use of QLBase is governed by the terms and conditions of MIT License. It's important to adhere to these licensing requirement when using or distributing QLBase components. The entire QLBase system, including the server-side, back-end, and the source files for the Arduino firmware used in the SMS service, is licensed under the [MIT License](LICENSE).
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fnthnn%2FQLBase.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fnthnn%2FQLBase?ref=badge_large)
+<p align="center">
+    <a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fnthnn%2FQLBase?ref=badge_large">
+        <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fnthnn%2FQLBase.svg?type=large" />
+    </a>
+</p>
