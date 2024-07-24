@@ -46,12 +46,18 @@
 			"qrepo run clean-up",
 			"echo \"\\033[92m[+]\\033[0m Deployment-ready successfully generated!\""
 		],
+		"windows:start": [
+			"C:\\xampp\\xampp_start.exe"
+		],
 		"darwin:start": [
 			"cd /Applications/XAMPP/xamppfiles",
 			"sudo ./xampp start"
 		],
 		"linux:start": [
 			"/opt/lampp/xampp start"
+		],
+		"windows:stop": [
+			"C:\\xampp\\xampp_stop.exe"
 		],
 		"darwin:stop": [
 			"cd /Applications/XAMPP/xamppfiles",
