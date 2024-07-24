@@ -368,7 +368,7 @@ class Apps {
 
         $res = mysqli_query($db_apps_conn, "SELECT name FROM ".$apiKey."_storage");
         while($row = mysqli_fetch_row($res))
-            unlink("../drive/".$row[0].".zip");
+            unlink("..".DIRECTORY_SEPARATOR ."drive".DIRECTORY_SEPARATOR.$row[0].".zip");
         mysqli_free_result($res);
     
         $tables = [
