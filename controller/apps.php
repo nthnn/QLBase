@@ -201,7 +201,7 @@ class Apps {
         $data = array();
         foreach ($tables as $table) {
             $sql = "SELECT table_name,
-                        (data_length + index_length) / 1024 AS 'size'
+                        round((data_length + index_length) / 1024, 2) AS 'size'
                     FROM information_schema.TABLES 
                     WHERE table_schema = 'qlbase_apps' 
                     AND table_name = '".$table."'";
