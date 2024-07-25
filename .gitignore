@@ -3,6 +3,7 @@ bin/data_analytics
 bin/database
 bin/forgetpass
 bin/logger
+bin/notifier
 bin/sms
 bin/storage
 bin/traffic
