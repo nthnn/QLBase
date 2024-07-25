@@ -32,6 +32,7 @@
 include_once("account.php");
 include_once("db_config.php");
 include_once("session_ctrl.php");
+include_once("shell.php");
 include_once("util.php");
 
 global $db_conn;
@@ -316,6 +317,26 @@ class Apps {
             return;
         }
 
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT name FROM app WHERE app_key=\"".$appKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Something went wrong.");
+            return;
+        }
+
+        shell_exec(
+            "..".DIRECTORY_SEPARATOR.
+            "bin".DIRECTORY_SEPARATOR.
+            "notifier add \"".
+            $username."\" \"".
+            (mysqli_fetch_row($res)[0])."\" \"".
+            $email."\""
+        );
+        mysqli_free_result($res);
+
         Response::success();
     }
 
@@ -364,13 +385,41 @@ class Apps {
             return;
         }
 
-        if($res) {
-            Response::success();
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT name FROM app WHERE app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Something went wrong.");
             return;
         }
+
+        $appName = mysqli_fetch_row($res)[0];
         mysqli_free_result($res);
 
-        Response::failed();
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT username FROM accounts WHERE id=".$subjectId
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Something went wrong.");
+            return;
+        }
+
+        $username = mysqli_fetch_row($res)[0];
+        mysqli_free_result($res);
+
+        shell_exec(
+            "..".DIRECTORY_SEPARATOR.
+            "bin".DIRECTORY_SEPARATOR.
+            "notifier remove \"".
+            $username."\" \"".
+            $appName."\" \"".
+            $email."\""
+        );
+        Response::success();
     }
 
     public static function deleteApp($originId, $apiKey, $username, $password) {
