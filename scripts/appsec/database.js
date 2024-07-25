@@ -1,8 +1,20 @@
+import * as monaco from "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/+esm";
+
 let prevDBHash = "",
     deletableDbName = null,
     dataTable = null;
 
-function downloadDb(name) {
+let createDbEditor = monaco.editor.create(document.querySelector('#db-content'), {
+    automaticLayout: true,
+    value: "{}",
+    tabSize: 4,
+    language: "javascript",
+    semanticHighlighting: { enabled: true },
+    dimension: { height: 120 },
+    minimap: { enabled: false }
+});
+
+window.downloadDb = (name)=> {
     $.post({
         url: "api/index.php?action=db_read&dashboard",
         headers: {
@@ -21,14 +33,14 @@ function downloadDb(name) {
     });
 }
 
-function deleteDb(name) {
+window.deleteDb = (name)=> {
     deletableDbName = name;
 
     $("#deletable-name").html(deletableDbName);
     $("#confirm-delete-modal").modal("show");
 }
 
-function requestDatabaseDeletion() {
+window.requestDatabaseDeletion = ()=> {
     $.post({
         url: "api/index.php?action=db_delete&dashboard",
         headers: {
@@ -113,7 +125,7 @@ const createBtn = RotatingButton("#create-btn");
 $("#create-btn").click(()=> {
     let dbName = $("#db-name").val(),
         dbMode = $("input[name=\"db-mode\"]:checked").val(),
-        dbContent = $("#db-content").val();
+        dbContent = createDbEditor.getValue();
 
     createBtn.show();
     $("#db-name-error")
