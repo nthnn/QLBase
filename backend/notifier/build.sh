@@ -1,0 +1,1 @@
+go build -buildvcs=false -ldflags "-w -s" -o notifier && sudo mv ./notifier ../../bin/notifier
