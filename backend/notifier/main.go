@@ -29,5 +29,21 @@
 
 package main
 
+import "os"
+
 func main() {
+	if len(os.Args) != 5 {
+		os.Exit(0)
+	}
+
+	status := os.Args[1]
+	if status != "add" && status != "remove" {
+		os.Exit(0)
+	}
+
+	originUser := os.Args[2]
+	appName := os.Args[3]
+	recipientEmail := os.Args[4]
+
+	sendNotification(status, originUser, appName, recipientEmail)
 }
