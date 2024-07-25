@@ -51,12 +51,28 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
         "SELECT track_id FROM recovery WHERE email=\"".$email."\" LIMIT 1"
     );
     if(mysqli_num_rows($result) == 1 && mysqli_fetch_row($result)[0] == $track_id) {
-        mysqli_query($db_conn, "UPDATE accounts SET password=\"".md5($password)."\" WHERE email=\"".$email."\"");
-        mysqli_query($db_conn, "DELETE FROM recovery WHERE email=\"".$email."\"");
+        freeDBQuery(
+            mysqli_query(
+                $db_conn,
+                "UPDATE accounts SET password=\"".md5($password).
+                "\" WHERE email=\"".$email."\""
+            )
+        );
+
+        freeDBQuery(
+            mysqli_query(
+                $db_conn,
+                "DELETE FROM recovery WHERE email=\"".$email."\""
+            )
+        );
+
         echo "{\"result\": \"1\"}";
+        freeDBQuery($result);
 
         return;
     }
+
+    freeDBQuery($result);
 }
 
 Response::failed();
