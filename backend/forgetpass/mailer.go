@@ -45,7 +45,7 @@ var from string = ""
 
 func generateFromEmailTemplate(url string, tracker string) string {
 	wd, _ := os.Getwd()
-	data, err := os.ReadFile(wd + "/../bin/forget-pass-template.html")
+	data, err := os.ReadFile(wd + "/../bin/template-forget-pass.html")
 
 	if err != nil {
 		proc.ShowFailedResponse("Internal error occured.")
