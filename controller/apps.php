@@ -335,6 +335,17 @@ class Apps {
         global $db_conn;
         $res = mysqli_query(
             $db_conn,
+            "SELECT * FROM accounts WHERE id=".$originId." AND username=\"".$username."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Account must be the same with the application owner.");
+            return;
+        }
+        freeDBQuery($res);
+
+        $res = mysqli_query(
+            $db_conn,
             "SELECT * FROM accounts WHERE id=".$originId." AND email=\"".$email."\""
         );
 
