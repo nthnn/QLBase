@@ -449,6 +449,10 @@ class Apps {
             return;
         }
 
+        $notifyEmail = true;
+        if(mysqli_num_rows($sharedRes) == 1)
+            $notifyEmail = false;
+
         freeDBQuery($res);
         freeDBQuery($sharedRes);
 
@@ -476,40 +480,43 @@ class Apps {
         }
         freeDBQuery($res);
 
-        $res = mysqli_query(
-            $db_conn,
-            "SELECT name FROM app WHERE app_key=\"".$apiKey."\""
-        );
+        if($notifyEmail) {
+            $res = mysqli_query(
+                $db_conn,
+                "SELECT name FROM app WHERE app_key=\"".$apiKey."\""
+            );
 
-        if(mysqli_num_rows($res) != 1) {
-            Response::failedMessage("Something went wrong.");
-            return;
+            if(mysqli_num_rows($res) != 1) {
+                Response::failedMessage("Something went wrong.");
+                return;
+            }
+
+            $appName = mysqli_fetch_row($res)[0];
+            freeDBQuery($res);
+
+            $res = mysqli_query(
+                $db_conn,
+                "SELECT username FROM accounts WHERE id=".$subjectId
+            );
+
+            if(mysqli_num_rows($res) != 1) {
+                Response::failedMessage("Something went wrong.");
+                return;
+            }
+
+            $username = mysqli_fetch_row($res)[0];
+            freeDBQuery($res);
+
+            shell_exec(
+                "..".DIRECTORY_SEPARATOR.
+                "bin".DIRECTORY_SEPARATOR.
+                "notifier remove \"".
+                $username."\" \"".
+                $appName."\" \"".
+                $email."\""
+            );
         }
 
-        $appName = mysqli_fetch_row($res)[0];
-        freeDBQuery($res);
-
-        $res = mysqli_query(
-            $db_conn,
-            "SELECT username FROM accounts WHERE id=".$subjectId
-        );
-
-        if(mysqli_num_rows($res) != 1) {
-            Response::failedMessage("Something went wrong.");
-            return;
-        }
-
-        $username = mysqli_fetch_row($res)[0];
-        freeDBQuery($res);
-
-        shell_exec(
-            "..".DIRECTORY_SEPARATOR.
-            "bin".DIRECTORY_SEPARATOR.
-            "notifier remove \"".
-            $username."\" \"".
-            $appName."\" \"".
-            $email."\""
-        );
         Response::success();
     }
 
