@@ -136,7 +136,7 @@
                 </div>
 
                 <label for="db-content" class="form-label mt-2">Database Content</label>
-                <textarea class="form-control" id="db-content" name="db-content" placeholder="Database Content" rows="5">{}</textarea>
+                <div id="db-content" class="form-control p-0 m-0" style="height: 200px"></div>
                 <p class="text-danger d-none" id="db-content-error"></p>
 
                 <p class="text-danger d-none mt-2" id="db-create-error"></p>
@@ -168,6 +168,6 @@
 <script src="scripts/vendors/FileSaver.min.js"></script>
 <script src="scripts/datatable-init.js"></script>
 <script src="scripts/rotating-button.js"></script>
-<script src="scripts/appsec/database.js"></script>
+<script src="scripts/appsec/database.js" type="module"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>
