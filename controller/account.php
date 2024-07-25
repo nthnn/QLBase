@@ -44,24 +44,28 @@ enum CreateAccountResponse {
 class Account {
     private static function hasAccountForEmail($email) {
         global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM accounts WHERE email=\"".$email."\""
+        );
 
-        return mysqli_num_rows(
-            mysqli_query(
-                $db_conn,
-                "SELECT * FROM accounts WHERE email=\"".$email."\""
-            )
-        ) != 0;
+        $result = mysqli_num_rows($res) != 0;
+        freeDBQuery($res);
+
+        return $result;
     }
 
     private static function hasAccountForUsername($username) {
         global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM accounts WHERE username=\"".$username."\""
+        );
 
-        return mysqli_num_rows(
-            mysqli_query(
-                $db_conn,
-                "SELECT * FROM accounts WHERE username=\"".$username."\""
-            )
-        ) != 0;
+        $result = mysqli_num_rows($res) != 0;
+        freeDBQuery($res);
+
+        return $result;
     }
 
     public static function create($name, $username, $email, $password) {
@@ -79,9 +83,12 @@ class Account {
             "\", \"".md5($password)."\")"
         );
 
-        return $result ?
+        $status = $result ?
             CreateAccountResponse::SUCCESS :
             CreateAccountResponse::DB_ERROR;
+        freeDBQuery($result);
+
+        return $status;
     }
 
     public static function update($username, $name, $email, $password, $old) {
@@ -93,7 +100,10 @@ class Account {
             "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
             $username."\" AND password=\"".md5($old)."\" AND id=".(SessionControl::getId()));
 
-        return !(!$res);
+        $result = !(!$res);
+        freeDBQuery($res);
+
+        return $result;
     }
 
     public static function login($username, $password, $createSession = true) {
@@ -113,6 +123,7 @@ class Account {
         if($createSession)
             SessionControl::create(mysqli_fetch_array($result)[0]);
 
+        freeDBQuery($result);
         return true;
     }
 
@@ -130,6 +141,7 @@ class Account {
         $results = mysqli_fetch_array($res);
         $array = array($results[0], $results[1]);
 
+        freeDBQuery($res);
         return $array;
     }
 
@@ -145,6 +157,8 @@ class Account {
             return null;
 
         $username = mysqli_fetch_array($res)[0];
+        freeDBQuery($res);
+
         return $username;
     }
 }

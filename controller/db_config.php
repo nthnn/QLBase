@@ -49,4 +49,9 @@ $db_apps_conn = mysqli_connect(
     Config::getAppDatabaseName()
 );
 
+function freeDBQuery($res) {
+    if($res instanceof mysqli_result && $res != null)
+        mysqli_free_result($res);
+}
+
 ?>

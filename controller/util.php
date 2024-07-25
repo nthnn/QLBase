@@ -60,15 +60,28 @@ class Util {
         
         if($result) {
             if(mysqli_num_rows($result) > 0)
-                mysqli_query($db_conn, "UPDATE traffic SET count = count + 1 WHERE date_time=\"".
-                    $dt."\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\"");
-            else mysqli_query($db_conn, "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".$dt.
-                "\", \"".$apiKey."\", \"".$appId."\")");
-    
+                freeDBQuery(
+                    mysqli_query(
+                        $db_conn,
+                        "UPDATE traffic SET count = count + 1 WHERE date_time=\"".
+                        $dt."\" AND api_key=\"".$apiKey."\" AND app_id=\"".$appId."\""
+                    )
+                );
+            else freeDBQuery(
+                mysqli_query(
+                    $db_conn,
+                    "INSERT INTO traffic (date_time, api_key, app_id) VALUES(\"".
+                    $dt."\", \"".$apiKey."\", \"".$appId."\")"
+                )
+            );
+
+            freeDBQuery($result);
             return;
         }
-    
+
         Response::failed();
+        freeDBQuery($result);
+
         exit(0);
     }
 }
