@@ -31,6 +31,7 @@ package main
 
 import (
 	"database/sql"
+	"os"
 	"strconv"
 
 	"github.com/nthnn/QLBase/auth/proc"
@@ -41,6 +42,21 @@ func createUserCallback(apiKey string, args []string) func(*sql.DB) {
 	email := args[3]
 	password := args[4]
 	enabled := 0
+
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
+
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
+
+	if !validatePassword(password) {
+		proc.ShowFailedResponse("Invalid password hash string.")
+		os.Exit(0)
+	}
 
 	if args[5] == "true" {
 		enabled = 1
@@ -109,6 +125,21 @@ func updateByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	password := args[4]
 	enabled := 0
 
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
+
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
+
+	if !validatePassword(password) {
+		proc.ShowFailedResponse("Invalid password hash string.")
+		os.Exit(0)
+	}
+
 	if args[5] == "true" {
 		enabled = 1
 	} else if args[5] == "false" {
@@ -156,6 +187,21 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	password := args[4]
 	enabled := 0
 
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
+
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
+
+	if !validatePassword(password) {
+		proc.ShowFailedResponse("Invalid password hash string.")
+		os.Exit(0)
+	}
+
 	if args[5] == "true" {
 		enabled = 1
 	} else if args[5] == "false" {
@@ -166,7 +212,7 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
-			"_accounts WHERE username=\"" + username + "\"")
+			"_accounts WHERE email=\"" + email + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -199,6 +245,10 @@ func updateByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 
 func deleteByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		check, err := d.Query("SELECT * FROM " + apiKey +
@@ -236,6 +286,10 @@ func deleteByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 
 func deleteByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		check, err := d.Query("SELECT * FROM " + apiKey +
@@ -310,6 +364,10 @@ func fetchAllUserCallback(apiKey string) func(*sql.DB) {
 
 func getByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT email, enabled, timedate FROM " + apiKey +
@@ -350,6 +408,10 @@ func getByUsernameCallback(apiKey string, args []string) func(*sql.DB) {
 
 func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT username, enabled, timedate FROM " + apiKey +
@@ -390,6 +452,10 @@ func getByEmailCallback(apiKey string, args []string) func(*sql.DB) {
 
 func enableUser(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -426,6 +492,10 @@ func enableUser(apiKey string, args []string) func(*sql.DB) {
 
 func disableUser(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -462,6 +532,10 @@ func disableUser(apiKey string, args []string) func(*sql.DB) {
 
 func isUserEnabled(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -509,6 +583,16 @@ func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
 	password := args[3]
 
+	if !validateUsername(username) {
+		proc.ShowFailedResponse("Invalid username string.")
+		os.Exit(0)
+	}
+
+	if !validatePassword(password) {
+		proc.ShowFailedResponse("Invalid password hash string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
 			"_accounts WHERE username=\"" + username +
@@ -537,6 +621,16 @@ func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
 	password := args[3]
+
+	if !validateEmail(email) {
+		proc.ShowFailedResponse("Invalid email string.")
+		os.Exit(0)
+	}
+
+	if !validatePassword(password) {
+		proc.ShowFailedResponse("Invalid password hash string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
