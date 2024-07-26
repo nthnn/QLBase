@@ -31,21 +31,47 @@ package main
 
 import (
 	"database/sql"
+	"os"
 
 	"github.com/nthnn/QLBase/data_analytics/proc"
 )
 
 func createIdCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	timestamp := args[5]
 	payload := args[6]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_id (tracker, anonymous_id, user_id, timedate, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" + user_id + "\", \"" + timestamp +
+			tracker + "\", \"" + anonId + "\", \"" + userId + "\", \"" + timestamp +
 			"\", \"" + payload + "\")")
 
 		if err != nil {
@@ -60,14 +86,34 @@ func createIdCallback(apiKey string, args []string) func(*sql.DB) {
 
 func createIdLiveTimestampCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	payload := args[5]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_id (tracker, anonymous_id, user_id, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" + user_id + "\", \"" + payload + "\")")
+			tracker + "\", \"" + anonId + "\", \"" + userId + "\", \"" + payload + "\")")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -82,6 +128,16 @@ func createIdLiveTimestampCallback(apiKey string, args []string) func(*sql.DB) {
 func deleteIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	anonId := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
@@ -103,6 +159,16 @@ func deleteIdByUserId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	anonId := args[3]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_id WHERE tracker=\"" +
@@ -123,6 +189,16 @@ func deleteIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	timestamp := args[3]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_id WHERE tracker=\"" +
@@ -141,6 +217,10 @@ func deleteIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id, timedate, CONVERT(payload USING utf8) FROM " +
@@ -182,6 +262,10 @@ func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 
 func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, timedate, CONVERT(payload USING utf8) FROM " +
@@ -224,6 +308,10 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 
 func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	timestamp := args[2]
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, user_id, CONVERT(payload USING utf8) FROM " +
@@ -310,16 +398,41 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 
 func createTrackCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	event := args[5]
 	timestamp := args[6]
 	payload := args[7]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_track (tracker, anonymous_id, user_id, event, timedate, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" + user_id + "\", \"" + event +
+			tracker + "\", \"" + anonId + "\", \"" + userId + "\", \"" + event +
 			"\", \"" + timestamp + "\", \"" + payload + "\")")
 
 		if err != nil {
@@ -334,16 +447,36 @@ func createTrackCallback(apiKey string, args []string) func(*sql.DB) {
 
 func createTrackLiveTimestampCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	event := args[5]
 	payload := args[6]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_track (tracker, anonymous_id, user_id, event, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" +
-			user_id + "\", \"" + event + "\", \"" +
+			tracker + "\", \"" + anonId + "\", \"" +
+			userId + "\", \"" + event + "\", \"" +
 			payload + "\")")
 
 		if err != nil {
@@ -359,6 +492,16 @@ func createTrackLiveTimestampCallback(apiKey string, args []string) func(*sql.DB
 func deleteTrackByAnonId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	anonId := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
@@ -380,6 +523,16 @@ func deleteTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	userId := args[3]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_track WHERE tracker=\"" +
@@ -399,6 +552,16 @@ func deleteTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 func deleteTrackByEvent(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	event := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(event) {
+		proc.ShowFailedResponse("Invalid event name string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
@@ -420,6 +583,16 @@ func deleteTrackByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	timestamp := args[3]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_track WHERE tracker=\"" +
@@ -438,6 +611,10 @@ func deleteTrackByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 func getTrackByAnonId(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id, event, timedate, CONVERT(payload USING utf8) FROM " +
@@ -480,6 +657,10 @@ func getTrackByAnonId(apiKey string, args []string) func(*sql.DB) {
 
 func getTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, event, timedate, CONVERT(payload USING utf8) FROM " +
@@ -522,6 +703,10 @@ func getTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 
 func getTrackByEvent(apiKey string, args []string) func(*sql.DB) {
 	event := args[2]
+	if !validateUsername(event) {
+		proc.ShowFailedResponse("Invalid event name string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id, anonymous_id, timedate, CONVERT(payload USING utf8) FROM " +
@@ -564,6 +749,10 @@ func getTrackByEvent(apiKey string, args []string) func(*sql.DB) {
 
 func getTrackByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	timestamp := args[2]
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, user_id, event, CONVERT(payload USING utf8) FROM " +
@@ -652,17 +841,52 @@ func fetchAllTrack(apiKey string, args []string) func(*sql.DB) {
 
 func createPageCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	name := args[5]
 	category := args[6]
 	timestamp := args[7]
 	payload := args[8]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(name) {
+		proc.ShowFailedResponse("Invalid page name string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(category) {
+		proc.ShowFailedResponse("Invalid page category string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_page (tracker, anonymous_id, user_id, name, category, timedate, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" + user_id + "\", \"" + name +
+			tracker + "\", \"" + anonId + "\", \"" + userId + "\", \"" + name +
 			"\", \"" + category + "\", \"" + timestamp + "\", \"" + payload + "\")")
 
 		if err != nil {
@@ -677,17 +901,47 @@ func createPageCallback(apiKey string, args []string) func(*sql.DB) {
 
 func createPageLiveTimestampCallback(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	anonymous_id := args[3]
-	user_id := args[4]
+	anonId := args[3]
+	userId := args[4]
 	name := args[5]
 	category := args[6]
 	payload := args[7]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(name) {
+		proc.ShowFailedResponse("Invalid page name string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(category) {
+		proc.ShowFailedResponse("Invalid page category string.")
+		os.Exit(0)
+	}
+
+	if !validatePayload(payload) {
+		proc.ShowFailedResponse("Invalid payload string content.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("INSERT INTO " + apiKey +
 			"_data_analytics_page (tracker, anonymous_id, user_id, name, category, payload) VALUES(\"" +
-			tracker + "\", \"" + anonymous_id + "\", \"" +
-			user_id + "\", \"" + name + "\", \"" + category + "\", \"" +
+			tracker + "\", \"" + anonId + "\", \"" +
+			userId + "\", \"" + name + "\", \"" + category + "\", \"" +
 			payload + "\")")
 
 		if err != nil {
@@ -703,6 +957,16 @@ func createPageLiveTimestampCallback(apiKey string, args []string) func(*sql.DB)
 func deletePageByAnonId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	anonId := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
@@ -724,6 +988,16 @@ func deletePageByUserId(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	userId := args[3]
 
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_page WHERE tracker=\"" +
@@ -742,13 +1016,23 @@ func deletePageByUserId(apiKey string, args []string) func(*sql.DB) {
 
 func deletePageByName(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	event := args[3]
+	name := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(name) {
+		proc.ShowFailedResponse("Invalid page name string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_page WHERE tracker=\"" +
 			tracker + "\" AND name=\"" +
-			event + "\"")
+			name + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -762,13 +1046,23 @@ func deletePageByName(apiKey string, args []string) func(*sql.DB) {
 
 func deletePageByCategory(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
-	event := args[3]
+	category := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateUsername(category) {
+		proc.ShowFailedResponse("Invalid page category string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
 			"_data_analytics_page WHERE tracker=\"" +
 			tracker + "\" AND category=\"" +
-			event + "\"")
+			category + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -783,6 +1077,16 @@ func deletePageByCategory(apiKey string, args []string) func(*sql.DB) {
 func deletePageByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	tracker := args[2]
 	timestamp := args[3]
+
+	if !validateTracker(tracker) {
+		proc.ShowFailedResponse("Invalid tracker ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("DELETE FROM " + apiKey +
@@ -802,6 +1106,10 @@ func deletePageByTimestamp(apiKey string, args []string) func(*sql.DB) {
 
 func getPageByAnonId(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id, name, category, timedate, CONVERT(payload USING utf8) FROM " +
@@ -845,6 +1153,10 @@ func getPageByAnonId(apiKey string, args []string) func(*sql.DB) {
 
 func getPageByUserId(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, name, category, timedate, CONVERT(payload USING utf8) FROM " +
@@ -888,6 +1200,10 @@ func getPageByUserId(apiKey string, args []string) func(*sql.DB) {
 
 func getPageByName(apiKey string, args []string) func(*sql.DB) {
 	name := args[2]
+	if !validateUsername(name) {
+		proc.ShowFailedResponse("Invalid page name string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id anonymous_id, category, timedate, CONVERT(payload USING utf8) FROM " +
@@ -931,6 +1247,10 @@ func getPageByName(apiKey string, args []string) func(*sql.DB) {
 
 func getPageByCategory(apiKey string, args []string) func(*sql.DB) {
 	category := args[2]
+	if !validateUsername(category) {
+		proc.ShowFailedResponse("Invalid page category string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, user_id anonymous_id, name, timedate, CONVERT(payload USING utf8) FROM " +
@@ -974,6 +1294,10 @@ func getPageByCategory(apiKey string, args []string) func(*sql.DB) {
 
 func getPageByTimestamp(apiKey string, args []string) func(*sql.DB) {
 	timestamp := args[2]
+	if !validateTimestamp(timestamp) {
+		proc.ShowFailedResponse("Invalid timestamp string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT tracker, anonymous_id, user_id, name, category, CONVERT(payload USING utf8) FROM " +
@@ -1064,6 +1388,10 @@ func fetchAllPage(apiKey string, args []string) func(*sql.DB) {
 
 func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		id := ""
@@ -1109,6 +1437,10 @@ func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
 
 func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		id := ""
@@ -1156,6 +1488,16 @@ func aliasForAnon(apiKey string, args []string) func(*sql.DB) {
 	anonId := args[2]
 	userId := args[3]
 
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		_, err := d.Query("UPDATE " + apiKey +
 			"_data_analytics_id SET user_id=\"" + userId +
@@ -1192,6 +1534,16 @@ func aliasForAnon(apiKey string, args []string) func(*sql.DB) {
 func aliasForUser(apiKey string, args []string) func(*sql.DB) {
 	userId := args[2]
 	anonId := args[3]
+
+	if !validateTracker(anonId) {
+		proc.ShowFailedResponse("Invalid anonymous ID string.")
+		os.Exit(0)
+	}
+
+	if !validateTracker(userId) {
+		proc.ShowFailedResponse("Invalid user ID string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		_, err := d.Query("UPDATE " + apiKey +
