@@ -30,6 +30,7 @@
 package main
 
 import(
+	"encoding/base64"
 	"encoding/json"
 	"regexp"
 	"time"
@@ -39,7 +40,7 @@ func validateTracker(tracker string) bool {
 	if tracker == "null" {
 		return true
 	}
-	
+
 	if len(tracker) >= 6 {
 		valid, _ := regexp.MatchString("^[A-Za-z]+$", tracker)
 		return valid
@@ -71,5 +72,16 @@ func validateTimestamp(datetime string) bool {
 
 func validatePayload(jsonString string) bool {
 	var js interface{}
-	return json.Unmarshal([]byte(jsonString), &js) == nil
+
+    decoded, err := base64.StdEncoding.DecodeString(jsonString)
+	if err != nil {
+		return false
+	}
+
+	decoded, err = base64.StdEncoding.DecodeString(string(decoded))
+	if err != nil {
+		return false
+	}
+
+	return json.Unmarshal(decoded, &js) == nil
 }
