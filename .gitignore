@@ -13,6 +13,7 @@ bin/data_analytics.exe
 bin/database.exe
 bin/forgetpass.exe
 bin/logger.exe
+bin/notifier.exe
 bin/sms.exe
 bin/storage.exe
 bin/traffic.exe
