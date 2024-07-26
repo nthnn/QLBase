@@ -139,7 +139,7 @@ func main() {
 		callback = fetchAllTrack(apiKey, args)
 
 	case "page_create":
-		failOnUmatchedArgSize(8, args)
+		failOnUmatchedArgSize(9, args)
 		callback = createPageCallback(apiKey, args)
 
 	case "page_create_live_timestamp":
