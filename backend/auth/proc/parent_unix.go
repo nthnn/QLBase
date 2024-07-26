@@ -1,9 +1,10 @@
+//go:build !windows
 // +build !windows
 
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -13,11 +14,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -39,12 +40,10 @@ import (
 	"strings"
 )
 
-func isPHPProcess(name string) bool {
-	return name == "php" || name == "php-cgi"
-}
-
 func IsParentProcessPHP() bool {
 	ppid := os.Getppid()
+	httpd := "/opt/lampp/bin/httpd "
+
 	parentCommContent, err := ioutil.ReadFile(
 		fmt.Sprintf("/proc/%d/comm", ppid),
 	)
@@ -54,7 +53,7 @@ func IsParentProcessPHP() bool {
 	}
 
 	parentProcessName := strings.TrimSpace(string(parentCommContent))
-	if isPHPProcess(parentProcessName) {
+	if strings.HasPrefix(parentProcessName, httpd) {
 		return true
 	}
 
@@ -70,7 +69,7 @@ func IsParentProcessPHP() bool {
 			" ",
 		)
 
-		if isPHPProcess(parentCmdline) {
+		if strings.HasPrefix(parentCmdline, httpd) {
 			return true
 		}
 	}
@@ -104,7 +103,7 @@ func IsParentProcessPHP() bool {
 		return false
 	}
 
-	if isPHPProcess(strings.TrimSpace(string(parentCommContent))) {
+	if strings.HasPrefix(strings.TrimSpace(string(parentCommContent)), httpd) {
 		return true
 	}
 
@@ -120,7 +119,7 @@ func IsParentProcessPHP() bool {
 			" ",
 		)
 
-		if strings.HasPrefix(parentCmdline, "/opt/lampp/bin/httpd") {
+		if strings.HasPrefix(parentCmdline, httpd) {
 			return true
 		}
 	}
