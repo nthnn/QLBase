@@ -8,9 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="overflow-auto bg-secondary p-2 border border-gray rounded" style="height: 200px">
-                    <pre id="payload-content"></pre>
-                </div>
+                <div id="payload-content" class="form-control p-0 m-0" style="height: 200px"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" onclick="downloadContent('payload.json', $('#payload-content').text())">
@@ -249,6 +247,7 @@
 <script src="scripts/util.js"></script>
 <script src="scripts/rotating-button.js"></script>
 <script src="scripts/datatable-init.js"></script>
+<script src="scripts/appsec/payload-viewer.js" type="module"></script>
 <script src="scripts/appsec/analytics.js"></script>
 
 <style>@import url("styles/jquery.dataTables.min.css");</style>
