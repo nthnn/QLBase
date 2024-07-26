@@ -238,7 +238,12 @@ func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, timedate, payload string
 			query.Scan(&tracker, &user_id, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -282,7 +287,12 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, timedate, payload string
 			query.Scan(&tracker, &anon_id, &timedate, &payload)
 
-			results = append(results, []string{tracker, anon_id, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -328,7 +338,12 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -368,7 +383,13 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, timestamp, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &timestamp, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, timestamp, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				timestamp,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -387,7 +408,7 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + payload +
+				"\", " + decodeBase64(payload) +
 				"], "
 		}
 		result = result[0:len(result)-2] + "]"
@@ -632,7 +653,13 @@ func getTrackByAnonId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, event, timedate, payload string
 			query.Scan(&tracker, &user_id, &event, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, event, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				event,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -678,7 +705,13 @@ func getTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, event, timedate, payload string
 			query.Scan(&tracker, &anon_id, &event, &timedate, &payload)
 
-			results = append(results, []string{tracker, anon_id, event, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				event,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -724,7 +757,13 @@ func getTrackByEvent(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, anon_id, timedate, payload string
 			query.Scan(&tracker, &user_id, &anon_id, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, anon_id, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				anon_id,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -769,7 +808,13 @@ func getTrackByTimestamp(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, event, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &event, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, event, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				event,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -810,7 +855,14 @@ func fetchAllTrack(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, event, timestamp, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &event, &timestamp, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, event, timestamp, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				event,
+				timestamp,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -830,7 +882,7 @@ func fetchAllTrack(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + payload +
+				"\", " + decodeBase64(payload) +
 				"], "
 		}
 		result = result[0:len(result)-2] + "]"
@@ -1127,7 +1179,14 @@ func getPageByAnonId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, name, category, timedate, payload string
 			query.Scan(&tracker, &user_id, &name, &category, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, name, category, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				name,
+				category,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -1174,7 +1233,14 @@ func getPageByUserId(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, name, category, timedate, payload string
 			query.Scan(&tracker, &anon_id, &name, &category, &timedate, &payload)
 
-			results = append(results, []string{tracker, anon_id, name, category, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				name,
+				category,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -1221,7 +1287,14 @@ func getPageByName(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, anon_id, category, timedate, payload string
 			query.Scan(&tracker, &user_id, &anon_id, &category, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, anon_id, category, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				anon_id,
+				category,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -1268,7 +1341,14 @@ func getPageByCategory(apiKey string, args []string) func(*sql.DB) {
 			var tracker, user_id, anon_id, name, timedate, payload string
 			query.Scan(&tracker, &user_id, &anon_id, &name, &timedate, &payload)
 
-			results = append(results, []string{tracker, user_id, anon_id, name, timedate, payload})
+			results = append(results, []string{
+				tracker,
+				user_id,
+				anon_id,
+				name,
+				timedate,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -1314,7 +1394,14 @@ func getPageByTimestamp(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, name, category, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &name, &category, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, name, category, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				name,
+				category,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
@@ -1356,7 +1443,15 @@ func fetchAllPage(apiKey string, args []string) func(*sql.DB) {
 			var tracker, anon_id, user_id, name, category, timestamp, payload string
 			query.Scan(&tracker, &anon_id, &user_id, &name, &category, &timestamp, &payload)
 
-			results = append(results, []string{tracker, anon_id, user_id, name, category, timestamp, payload})
+			results = append(results, []string{
+				tracker,
+				anon_id,
+				user_id,
+				name,
+				category,
+				timestamp,
+				decodeBase64(payload),
+			})
 		}
 
 		if len(results) == 0 {
