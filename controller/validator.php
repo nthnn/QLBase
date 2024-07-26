@@ -99,7 +99,7 @@ class Validate {
     }
 
     public static function json($json) {
-        json_decode($json);
+        json_decode(base64_decode($json));
         return json_last_error() === 0;
     }
 
