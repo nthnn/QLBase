@@ -44,6 +44,10 @@ func failOnUmatchedArgSize(size int, args []string) {
 }
 
 func main() {
+	if !proc.IsParentProcessPHP() {
+		os.Exit(0)
+	}
+
 	if len(os.Args) < 3 {
 		proc.ShowFailedResponse("Invalid argument arity.")
 		os.Exit(0)
