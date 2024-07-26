@@ -1201,7 +1201,7 @@ func getPageByAnonId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][6]) +
+				"\", " + decodeBase64(results[i][5]) +
 				"], "
 		}
 		result = result[0:len(result)-2] + "]"
@@ -1272,7 +1272,7 @@ func getPageByName(apiKey string, args []string) func(*sql.DB) {
 	}
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, user_id anonymous_id, category, timedate, CONVERT(payload USING utf8) FROM " +
+		query, err := d.Query("SELECT tracker, user_id, anonymous_id, category, timedate, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_page WHERE name=\"" +
 			name + "\"")
 
@@ -1326,7 +1326,7 @@ func getPageByCategory(apiKey string, args []string) func(*sql.DB) {
 	}
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT tracker, user_id anonymous_id, name, timedate, CONVERT(payload USING utf8) FROM " +
+		query, err := d.Query("SELECT tracker, user_id, anonymous_id, name, timedate, CONVERT(payload USING utf8) FROM " +
 			apiKey + "_data_analytics_page WHERE category=\"" +
 			category + "\"")
 
