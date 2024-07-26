@@ -1,9 +1,10 @@
+//go:build !windows
 // +build !windows
 
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -13,11 +14,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -29,102 +30,99 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
- package proc
+package proc
 
- import (
-	 "fmt"
-	 "io/ioutil"
-	 "os"
-	 "strconv"
-	 "strings"
- )
- 
- func isPHPProcess(name string) bool {
-	 return name == "php" || name == "php-cgi"
- }
- 
- func IsParentProcessPHP() bool {
-	 ppid := os.Getppid()
-	 parentCommContent, err := ioutil.ReadFile(
-		 fmt.Sprintf("/proc/%d/comm", ppid),
-	 )
- 
-	 if err != nil {
-		 return false
-	 }
- 
-	 parentProcessName := strings.TrimSpace(string(parentCommContent))
-	 if isPHPProcess(parentProcessName) {
-		 return true
-	 }
- 
-	 parentCmdlineContent, err := ioutil.ReadFile(
-		 fmt.Sprintf("/proc/%d/cmdline", ppid),
-	 )
-	 if err == nil {
-		 parentCmdline := strings.Join(
-			 strings.Split(
-				 string(parentCmdlineContent),
-				 "\x00",
-			 ),
-			 " ",
-		 )
- 
-		 if isPHPProcess(parentCmdline) {
-			 return true
-		 }
-	 }
- 
-	 ppidFileContent, err := ioutil.ReadFile(
-		 fmt.Sprintf("/proc/%d/status", ppid),
-	 )
-	 if err != nil {
-		 return false
-	 }
- 
-	 var gppid int
-	 ppidLines := strings.Split(string(ppidFileContent), "\n")
- 
-	 for _, line := range ppidLines {
-		 if strings.HasPrefix(line, "PPid:") {
-			 gppid, err = strconv.Atoi(strings.Fields(line)[1])
- 
-			 if err != nil {
-				 return false
-			 }
- 
-			 break
-		 }
-	 }
- 
-	 parentCommContent, err = ioutil.ReadFile(
-		 fmt.Sprintf("/proc/%d/comm", gppid),
-	 )
-	 if err != nil {
-		 return false
-	 }
- 
-	 if isPHPProcess(strings.TrimSpace(string(parentCommContent))) {
-		 return true
-	 }
- 
-	 parentCmdlineContent, err = ioutil.ReadFile(
-		 fmt.Sprintf("/proc/%d/cmdline", gppid),
-	 )
-	 if err == nil {
-		 parentCmdline := strings.Join(
-			 strings.Split(
-				 string(parentCmdlineContent),
-				 "\x00",
-			 ),
-			 " ",
-		 )
- 
-		 if strings.HasPrefix(parentCmdline, "/opt/lampp/bin/httpd") {
-			 return true
-		 }
-	 }
- 
-	 return false
- }
- 
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func IsParentProcessPHP() bool {
+	ppid := os.Getppid()
+	httpd := "/opt/lampp/bin/httpd "
+
+	parentCommContent, err := ioutil.ReadFile(
+		fmt.Sprintf("/proc/%d/comm", ppid),
+	)
+
+	if err != nil {
+		return false
+	}
+
+	parentProcessName := strings.TrimSpace(string(parentCommContent))
+	if strings.HasPrefix(parentProcessName, httpd) {
+		return true
+	}
+
+	parentCmdlineContent, err := ioutil.ReadFile(
+		fmt.Sprintf("/proc/%d/cmdline", ppid),
+	)
+	if err == nil {
+		parentCmdline := strings.Join(
+			strings.Split(
+				string(parentCmdlineContent),
+				"\x00",
+			),
+			" ",
+		)
+
+		if strings.HasPrefix(parentCmdline, httpd) {
+			return true
+		}
+	}
+
+	ppidFileContent, err := ioutil.ReadFile(
+		fmt.Sprintf("/proc/%d/status", ppid),
+	)
+	if err != nil {
+		return false
+	}
+
+	var gppid int
+	ppidLines := strings.Split(string(ppidFileContent), "\n")
+
+	for _, line := range ppidLines {
+		if strings.HasPrefix(line, "PPid:") {
+			gppid, err = strconv.Atoi(strings.Fields(line)[1])
+
+			if err != nil {
+				return false
+			}
+
+			break
+		}
+	}
+
+	parentCommContent, err = ioutil.ReadFile(
+		fmt.Sprintf("/proc/%d/comm", gppid),
+	)
+	if err != nil {
+		return false
+	}
+
+	if strings.HasPrefix(strings.TrimSpace(string(parentCommContent)), httpd) {
+		return true
+	}
+
+	parentCmdlineContent, err = ioutil.ReadFile(
+		fmt.Sprintf("/proc/%d/cmdline", gppid),
+	)
+	if err == nil {
+		parentCmdline := strings.Join(
+			strings.Split(
+				string(parentCmdlineContent),
+				"\x00",
+			),
+			" ",
+		)
+
+		if strings.HasPrefix(parentCmdline, httpd) {
+			return true
+		}
+	}
+
+	return false
+}
