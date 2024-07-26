@@ -67,7 +67,8 @@ function showPayload(type, payload) {
     else if(type == 2)
         payloadData = pagePayloads[payload];
 
-    $("#payload-content").html(
+    payloadRefreshContent(
+        "#payload-content",
         JSON.stringify(payloadData, undefined, 4)
     );
     $("#payload-modal").modal("show");
