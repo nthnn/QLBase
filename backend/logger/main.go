@@ -34,6 +34,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/nthnn/QLBase/logger/proc"
 )
 
 func dumpLogs() {
@@ -63,6 +65,10 @@ func dumpLogs() {
 }
 
 func main() {
+	if !proc.IsParentProcessPHP() {
+		os.Exit(0)
+	}
+
 	if len(os.Args) == 3 {
 		dumpLogs()
 		os.Exit(0)
@@ -79,6 +85,12 @@ func main() {
 	dateTime := args[3]
 	userAgent := args[4]
 	sender := args[5]
+
+	if !validateApiKey(apiKey) ||
+		!validateTimestamp(dateTime) ||
+		!validateSender(sender) {
+		os.Exit(0)
+	}
 
 	DispatchWithCallback(func(db *sql.DB) {
 		query, _ := db.Query("INSERT INTO " + apiKey +
