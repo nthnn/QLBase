@@ -33,6 +33,10 @@ import(
 	"regexp"
 )
 
+func validateApiKey(key string) bool {
+	return regexp.MustCompile("^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$").MatchString(key)
+}
+
 func validateUsername(username string) bool {
 	if len(username) <= 6 {
 		return false
