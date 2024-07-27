@@ -17,7 +17,7 @@
             "cd backend/sms && ./build.sh && cd ../..",
             "cd backend/traffic && ./build.sh && cd ../..",
 			"echo \"\\033[92m[+]\\033[0m Done building backend apps!\"",
-			"chmod +x bin/*"
+			"chmod +x bin/* && chmod 644 bin/*.html"
 		],
 		"windows:build-backend": [
             "echo [+] Building backend apps...",
