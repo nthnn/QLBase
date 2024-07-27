@@ -29,6 +29,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+include_once("db_config.php");
 include_once("util.php");
 
 class Shell {
@@ -66,6 +67,21 @@ class Shell {
     }
 
     public static function execute($apiKey, $appId, $backend, $args) {
+        global $db_conn;
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app WHERE app_id=\"".$appId.
+                "\" AND app_key=\"".$apiKey."\""
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Invalid API key and/or ID.");
+            freeDbQuery($res);
+
+            return;
+        }
+        freeDbQuery($res);
+
         Shell::log($apiKey, Shell::detectSender());
         Util::logTraffic($apiKey, $appId);
 
