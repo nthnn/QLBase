@@ -31,17 +31,33 @@ package main
 
 import (
 	"database/sql"
+	"os"
 	"strings"
 
 	"github.com/nthnn/QLBase/database/proc"
 )
 
 func createDbCallback(apiKey string, args []string) func(*sql.DB) {
-	return func(d *sql.DB) {
-		name := args[2]
-		mode := args[3]
-		contents := args[4]
+	name := args[2]
+	mode := args[3]
+	contents := args[4]
 
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
+	if !validateDbMode(mode) {
+		proc.ShowFailedResponse("Invalid database I/O permission mode.")
+		os.Exit(0)
+	}
+
+	if !validateContent(contents) {
+		proc.ShowFailedResponse("Invalid database JSON content.")
+		os.Exit(0)
+	}
+
+	return func(d *sql.DB) {
 		query, err := d.Query("SELECT id FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -75,8 +91,13 @@ func createDbCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func getByNameCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
 		query, err := d.Query("SELECT id FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
@@ -117,7 +138,7 @@ func getByNameCallback(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		if strings.Contains(mode, "r") {
-			proc.ShowResult("[\"" + mode + "\", \"" + content + "\"]")
+			proc.ShowResult("[\"" + mode + "\", " + decodeBase64(content) + "]")
 		} else {
 			proc.ShowResult("[\"" + mode + "\"]")
 		}
@@ -127,9 +148,20 @@ func getByNameCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func setDbModeCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	mode := args[3]
+
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
+	if !validateDbMode(mode) {
+		proc.ShowFailedResponse("Invalid database I/O permission mode.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
-		mode := args[3]
 		query, err := d.Query("SELECT id FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
@@ -169,8 +201,13 @@ func setDbModeCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func getDbModeCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
 		query, err := d.Query("SELECT id FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
@@ -214,9 +251,15 @@ func getDbModeCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func readDbCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
-		query, err := d.Query("SELECT mode, content FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
+		query, err := d.Query("SELECT mode, content FROM " +
+			apiKey + "_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -248,16 +291,28 @@ func readDbCallback(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		proc.ShowResult("\"" + content + "\"")
+		proc.ShowResult(decodeBase64(content))
 		query.Close()
 	}
 }
 
 func writeDbCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	content := args[3]
+
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
+	if !validateContent(content) {
+		proc.ShowFailedResponse("Invalid database JSON content.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
-		content := args[3]
-		query, err := d.Query("SELECT mode FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
+		query, err := d.Query("SELECT mode FROM " + apiKey +
+			"_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -304,9 +359,15 @@ func writeDbCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func deleteDbCallback(apiKey string, args []string) func(*sql.DB) {
+	name := args[2]
+	if !validateDbName(name) {
+		proc.ShowFailedResponse("Invalid database name string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		name := args[2]
-		query, err := d.Query("SELECT id FROM " + apiKey + "_database WHERE name=\"" + name + "\"")
+		query, err := d.Query("SELECT id FROM " + apiKey +
+			"_database WHERE name=\"" + name + "\"")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
