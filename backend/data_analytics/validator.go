@@ -36,6 +36,10 @@ import(
 	"time"
 )
 
+func validateApiKey(key string) bool {
+	return regexp.MustCompile("^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$").MatchString(key)
+}
+
 func validateTracker(tracker string) bool {
 	if tracker == "null" {
 		return true
