@@ -80,6 +80,10 @@ $("#recover-btn").click(()=> {
         (r)=> {
             recoverButton.hide();
             if(r.result == 1) {
+                $("#email").val(""),
+                $("#new-password").val(""),
+                $("#confirm-password").val("");
+
                 showMessage("#success-msg", "Password changed! You can now log-in.");
                 return;
             }
