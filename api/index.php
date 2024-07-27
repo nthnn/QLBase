@@ -1494,8 +1494,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
 
         case "db_write":
             $backend = "database";
-            array_push($args, "set_db_mode", $apiKey);
-    
+            array_push($args, "write_db", $apiKey);
+
             if(!isset($_POST["name"]) || empty($_POST["name"]) ||
                 !isset($_POST["content"]) || empty($_POST["content"])) {
                 Response::failedMessage("Insufficient parameter arity.");
