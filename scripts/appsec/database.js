@@ -202,6 +202,9 @@ $("#create-btn").click(()=> {
                 return;
             }
 
+            createDbEditor.setValue("{}");
+            $("input[name=\"db-mode\"]:checked").val("false");
+            $("#db-name").val("");
             $("#create-db-modal").modal("hide");
             $("#success-modal").modal("show");
         }
