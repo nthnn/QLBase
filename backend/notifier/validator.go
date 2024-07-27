@@ -29,35 +29,27 @@
 
 package main
 
-import (
-	"os"
-
-	"github.com/nthnn/QLBase/notifier/proc"
+import(
+	"regexp"
 )
+   
+func validateEmail(email string) bool {
+	return regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`).MatchString(email)
+}
 
-func main() {
-	if !proc.IsParentProcessPHP() {
-		os.Exit(0)
+func validateAppName(name string) bool {
+	if len(name) <= 6 {
+		return false
 	}
 
-	if len(os.Args) != 5 {
-		os.Exit(0)
+	return regexp.MustCompile("^[a-zA-Z0-9_]+$").MatchString(name)
+}
+
+func validateUsername(username string) bool {
+	if len(username) <= 6 {
+		return false
 	}
 
-	status := os.Args[1]
-	if status != "add" && status != "remove" {
-		os.Exit(0)
-	}
-
-	originUser := os.Args[2]
-	appName := os.Args[3]
-	recipientEmail := os.Args[4]
-
-	if !validateUsername(originUser) ||
-		!validateAppName(appName) ||
-		!validateEmail(recipientEmail) {
-		os.Exit(0)
-	}
-
-	sendNotification(status, originUser, appName, recipientEmail)
+	valid, _ := regexp.MatchString("^[a-zA-Z0-9_]+$", username)
+	return valid
 }
