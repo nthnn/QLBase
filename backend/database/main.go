@@ -57,6 +57,11 @@ func main() {
 	args := os.Args[1:]
 	apiKey := args[1]
 
+	if !validateApiKey(apiKey) {
+		proc.ShowFailedResponse("Invalid API key string.")
+		os.Exit(0)
+	}
+
 	switch args[0] {
 	case "create":
 		failOnUmatchedArgSize(5, args)

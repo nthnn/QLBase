@@ -35,6 +35,10 @@ import(
 	"regexp"
 )
  
+func validateApiKey(key string) bool {
+	return regexp.MustCompile("^qba_[0-9a-fA-F]{10}_[0-9a-fA-F]{8}$").MatchString(key)
+}
+
 func validateDbName(name string) bool {
 	nameLen := len(name)
 	if !regexp.MustCompile("^[A-Za-z\\s\"-]+$").MatchString(name) ||
