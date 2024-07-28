@@ -31,7 +31,6 @@ package db
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 	"strconv"
 
@@ -79,7 +78,6 @@ func DispatchWithCallback(callback func(*sql.DB)) {
 	db_conn, err := ConnectDB(db_config)
 
 	if err != nil {
-		fmt.Println(err)
 		return
 	}
 	defer db_conn.Close()

@@ -31,11 +31,11 @@
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/nthnn/QLBase/traffic/proc"
 )
 
 type DBConfig struct {
@@ -80,8 +80,8 @@ func DispatchWithCallback(callback func(*sql.DB)) {
 	db_conn, err := ConnectDB(db_config)
 
 	if err != nil {
-		fmt.Println(err)
-		return
+		proc.ShowFailedResponse("Internal error occured.")
+		os.Exit(0)
 	}
 	defer db_conn.Close()
 

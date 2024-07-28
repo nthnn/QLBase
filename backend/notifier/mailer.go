@@ -31,7 +31,6 @@ package main
 
 import(
 	"net/smtp"
-	"fmt"
 	"os"
 	"strings"
 
@@ -102,13 +101,11 @@ func sendNotification(status, originUser, appName, recipientEmail string) {
 	message := []byte(subject + mime + body)
 
 	auth := getEmailAuth()
-	err := smtp.SendMail(
+	smtp.SendMail(
 		address,
 		auth,
 		from,
 		to,
 		message,
 	)
-
-	fmt.Printf("%s\r\n", err)
 }
