@@ -1629,6 +1629,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             Shell::log($apiKey, Shell::detectSender());
             ContentDeliveryPage::expireAll($apiKey);
             return;
+            
 
         case "cdp_expire_ticket":
             if(!isset($_POST["ticket"]) || empty($_POST["ticket"])) {

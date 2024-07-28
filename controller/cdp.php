@@ -40,7 +40,8 @@ class ContentDeliveryPage {
     private static function hasExpired($time) {
         if($time == 0)
             return false;
-        return $time < (time() - 28800);
+
+        return $time < time();
     }
 
     public static function isValidTicket($ticket) {
@@ -102,11 +103,15 @@ class ContentDeliveryPage {
 
         header("Content-Type: ".$mimeType);
         header("Content-Transfer-Encoding: Binary");
-        Shell::run("../bin/storage", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'?
-            "extract ..\\drive\\".$name.".zip" : "extract ../drive/".$name.".zip");
 
-        $origFile = strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ?
-            "..\\drive\\temp\\".$origName : "../drive/temp/".$origName;
+        Shell::run("../bin/storage", "extract ".$apiKey.
+            " ..".DIRECTORY_SEPARATOR.
+            "drive".DIRECTORY_SEPARATOR.$name.".zip");
+
+        $origFile = "..".DIRECTORY_SEPARATOR.
+            "drive".DIRECTORY_SEPARATOR.
+            "temp".DIRECTORY_SEPARATOR.
+            $origName;
 
         if(file_exists($origFile)) {
             header("Content-Length: ".filesize($origFile));
