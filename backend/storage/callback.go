@@ -45,8 +45,13 @@ import (
 )
 
 func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
+	temp := args[2]
+	if !validateFilename(temp) {
+		proc.ShowFailedResponse("Invalid file name string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		temp := args[2]
 		dest := util.SafePathSanitation("../drive/") +
 			base64.StdEncoding.EncodeToString([]byte(uuid.New().String()+"-"+args[3]))
 
@@ -110,9 +115,13 @@ func fileUploadCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
-	return func(d *sql.DB) {
-		fileName := args[2]
+	fileName := args[2]
+	if !validateBase64Filename(fileName) {
+		proc.ShowFailedResponse("Invalid file name string from base64.")
+		os.Exit(0)
+	}
 
+	return func(d *sql.DB) {
 		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\"")
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
@@ -150,10 +159,17 @@ func deleteFileCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func getFileCallback(apiKey string, args []string) func(*sql.DB) {
-	return func(d *sql.DB) {
-		fileName := args[2]
+	fileName := args[2]
+	if !validateBase64Filename(fileName) {
+		proc.ShowFailedResponse("Invalid file name string from base64.")
+		os.Exit(0)
+	}
 
-		query, err := d.Query("SELECT orig_name, mime_type, checksum FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\" LIMIT 1")
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT orig_name, mime_type, checksum FROM " +
+			apiKey + "_storage WHERE name=\"" +
+			fileName + "\" LIMIT 1")
+
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			return
@@ -186,11 +202,24 @@ func getFileCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func downloadCallback(apiKey string, args []string) func(*sql.DB) {
-	return func(d *sql.DB) {
-		fileName := args[2]
-		shouldExpire := args[3]
+	fileName := args[2]
+	shouldExpire := args[3]
 
-		query, err := d.Query("SELECT id FROM " + apiKey + "_storage WHERE name=\"" + fileName + "\"")
+	if !validateBase64Filename(fileName) {
+		proc.ShowFailedResponse("Invalid file name string from base64.")
+		os.Exit(0)
+	}
+
+	if shouldExpire != "0" && shouldExpire != "1" {
+		proc.ShowFailedResponse("Expirable value must be 0 or 1.")
+		os.Exit(0)
+	}
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT id FROM " + apiKey +
+			"_storage WHERE name=\"" +
+			fileName + "\"")
+
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			return
@@ -212,7 +241,7 @@ func downloadCallback(apiKey string, args []string) func(*sql.DB) {
 
 		var timestamp int64 = 0
 		if shouldExpire == "1" {
-			timestamp = time.Now().Unix()
+			timestamp = time.Now().Add(24 * time.Hour).Unix()
 		}
 
 		ticket := uuid.New().String()
@@ -236,15 +265,22 @@ func downloadCallback(apiKey string, args []string) func(*sql.DB) {
 }
 
 func extractCallback(apiKey string, args []string) func(*sql.DB) {
+	fileName := args[2]
+	if !validateFilename(fileName) {
+		proc.ShowFailedResponse("Invalid file name string from base64.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
-		fileName := args[1]
 		util.ExtractZip(fileName, util.SafePathSanitation("../drive/temp"))
 	}
 }
 
 func fetchAllCallback(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT name, orig_name, mime_type, checksum FROM " + apiKey + "_storage")
+		query, err := d.Query("SELECT name, orig_name, mime_type, checksum FROM " +
+			apiKey + "_storage")
+
 		if err != nil {
 			proc.ShowFailedResponse("Something went wrong.")
 			return
