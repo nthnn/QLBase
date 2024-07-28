@@ -73,11 +73,11 @@ const authenticationActions = {
 };
 
 const smsActions = {
-    "sms_verification": ["SMS Verification", '{\n\t"recipient": "",\n\t"support": ""\n}'],
-    "sms_validate": ["SMS Validate", '{\n\t"recipient": "",\n\t"code": ""\n}'],
-    "sms_is_validate": ["SMS Is Validate", '{\n\t"recipient": "",\n\t"code": ""\n}'],
-    "fetch_all_otp": ["Fetch All OTP", '{}'],
-    "delete_verification": ["Delete Verification", '{\n\t"recipient": "",\n\t"code": ""\n}']
+    "sms_verification": ["SMS: Send Verification", '{\n\t"recipient": "",\n\t"support": ""\n}'],
+    "sms_validate": ["SMS: Validate", '{\n\t"recipient": "",\n\t"code": ""\n}'],
+    "sms_is_validated": ["SMS: Is Validated", '{\n\t"recipient": "",\n\t"code": ""\n}'],
+    "sms_fetch_all": ["SMS: Fetch All OTP", '{}'],
+    "sms_delete_otp": ["SMS: Delete Verification", '{\n\t"recipient": "",\n\t"code": ""\n}']
 };
 
 const dataAnalyticsActions = {
