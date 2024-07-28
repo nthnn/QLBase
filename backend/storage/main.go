@@ -44,6 +44,10 @@ func failOnUnmatchedArgSize(size int, args []string) {
 }
 
 func main() {
+	if !proc.IsParentProcessPHP() {
+		os.Exit(0)
+	}
+
 	if len(os.Args) < 3 {
 		proc.ShowFailedResponse("Invalid argument arity.")
 		os.Exit(0)
@@ -52,6 +56,11 @@ func main() {
 	var callback func(*sql.DB) = func(d *sql.DB) {}
 	args := os.Args[1:]
 	apiKey := args[1]
+
+	if !validateApiKey(apiKey) {
+		proc.ShowFailedResponse("Invalid API key string.")
+		os.Exit(0)
+	}
 
 	switch args[0] {
 	case "upload":
@@ -71,7 +80,7 @@ func main() {
 		callback = downloadCallback(apiKey, args)
 
 	case "extract":
-		failOnUnmatchedArgSize(2, args)
+		failOnUnmatchedArgSize(3, args)
 		callback = extractCallback(apiKey, args)
 
 	case "fetch_all":
