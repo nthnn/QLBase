@@ -419,18 +419,18 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 Response::failedMessage("Invalid verification code.");
                 return;
             }
-        
+
             array_push($args, $recipient, $code);
             break;
 
-        case "fetch_all_otp":
+        case "sms_fetch_all":
             $backend = "sms";
-            array_push($args, "fetch_all_otp", $apiKey);
+            array_push($args, "sms_fetch_all", $apiKey);
             break;
 
-        case "delete_verification":
+        case "sms_delete_otp":
             $backend = "sms";
-            array_push($args, "delete_verification", $apiKey);
+            array_push($args, "sms_delete_otp", $apiKey);
 
             if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
                 !isset($_POST["code"]) || empty($_POST["code"])) {
