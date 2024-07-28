@@ -41,7 +41,7 @@ import (
 func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {
 	port, err := serial.Open(options)
 	if err != nil {
-		proc.ShowFailedResponse("Internal error occured.")
+		proc.ShowFailedResponse("Failed to open SMS firmware gateway.")
 		os.Exit(0)
 	}
 
@@ -51,9 +51,8 @@ func OpenSMSFirmwareConnection(options serial.OpenOptions) io.ReadWriteCloser {
 
 func WriteToFirmwareSerial(portStream io.ReadWriteCloser, content string) int {
 	n, err := portStream.Write([]byte(content))
-
 	if err != nil {
-		proc.ShowFailedResponse("Internal error occured.")
+		proc.ShowFailedResponse("Failed to send data to SMS gateway.")
 		os.Exit(0)
 	}
 
