@@ -31,48 +31,32 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
-	"math/rand"
 	"os"
-	"regexp"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/nthnn/QLBase/sms/proc"
 	"github.com/nthnn/QLBase/sms/serport"
 )
 
-func isValidPhoneNumber(phone_number string) bool {
-	regex := regexp.MustCompile(`^\+\d{2,3}.+$`)
-	return regex.MatchString(phone_number)
-}
-
-func generateRandom6DigitString() string {
-	rand.Seed(time.Now().UnixNano())
-	return fmt.Sprintf("%06d", rand.Intn(1000000))
-}
-
 func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 	phoneNumber := args[2]
-	if !isValidPhoneNumber(phoneNumber) {
+	emailSupport := args[3]
+
+	if !validatePhoneNumber(phoneNumber) {
 		proc.ShowFailedResponse("Invalid phone number.")
 		os.Exit(0)
 	}
 
-	emailSupport := args[3]
-	code := generateRandom6DigitString()
-
-	portList := serport.GetArduinoSerialDevices()
-	if len(portList) < 1 {
-		proc.ShowFailedResponse("No available SMS hardware found.")
+	if !validateEmail(emailSupport) {
+		proc.ShowFailedResponse("Invalid email address string.")
 		os.Exit(0)
 	}
 
+	code := generateRandom6DigitString()
 	port := serport.OpenSMSFirmwareConnection(
-		serport.ConnectToSMSFirmware(portList[0]),
-	)
-
+		serport.ConnectToSMSFirmware(
+			serport.GetSerialDeviceName()))
 	serport.WriteToFirmwareSerial(
 		port,
 		phoneNumber+","+
@@ -98,6 +82,16 @@ func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 func validateVerificationCode(apiKey string, args []string) func(*sql.DB) {
 	phoneNumber := args[2]
 	code := args[3]
+
+	if !validatePhoneNumber(phoneNumber) {
+		proc.ShowFailedResponse("Invalid phone number.")
+		os.Exit(0)
+	}
+
+	if !validateOTP(code) {
+		proc.ShowFailedResponse("Invalid OTP string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
@@ -137,6 +131,16 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 	phoneNumber := args[2]
 	code := args[3]
 
+	if !validatePhoneNumber(phoneNumber) {
+		proc.ShowFailedResponse("Invalid phone number.")
+		os.Exit(0)
+	}
+
+	if !validateOTP(code) {
+		proc.ShowFailedResponse("Invalid OTP string.")
+		os.Exit(0)
+	}
+
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT validated FROM " + apiKey +
 			"_sms_auth WHERE recipient=\"" + phoneNumber +
@@ -147,23 +151,16 @@ func isCodeValidated(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		var validated bool = false
+		enabled := 0
 		count := 0
 		for query.Next() {
-			query.Scan(&validated)
+			query.Scan(&enabled)
 			count += 1
 		}
 
 		if count != 1 {
 			proc.ShowFailedResponse("Recipient and code did not match.")
 			return
-		}
-
-		enabled := 1
-		if validated {
-			enabled = 1
-		} else {
-			enabled = 0
 		}
 
 		proc.ShowResult("\"" + strconv.Itoa(enabled) + "\"")
@@ -213,6 +210,16 @@ func fetchAllOTP(apiKey string, args []string) func(*sql.DB) {
 func deleteVerification(apiKey string, args []string) func(d *sql.DB) {
 	recipient := args[2]
 	code := args[3]
+
+	if !validatePhoneNumber(recipient) {
+		proc.ShowFailedResponse("Invalid recipient phone number.")
+		os.Exit(0)
+	}
+
+	if !validateOTP(code) {
+		proc.ShowFailedResponse("Invalid OTP string.")
+		os.Exit(0)
+	}
 
 	return func(d *sql.DB) {
 		query, err := d.Query("SELECT * FROM " + apiKey +
