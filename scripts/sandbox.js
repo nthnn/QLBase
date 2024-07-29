@@ -57,19 +57,19 @@ let editor = monaco.editor.create(document.querySelector('#content'), {
 });
 
 const authenticationActions = {
-    "new_user": ["New User", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
-    "update_by_username": ["Update by Username", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
-    "update_by_email": ["Update by Email", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
-    "delete_by_username": ["Delete by Username", '{\n\t"username": ""\n}'],
-    "delete_by_email": ["Delete by Email", '{\n\t"email": ""\n}'],
-    "get_by_username": ["Get by Username", '{\n\t"username": ""\n}'],
-    "get_by_email": ["Get by Email", '{\n\t"email": ""\n}'],
-    "enable_user": ["Enable User", '{\n\t"username": ""\n}'],
-    "disable_user": ["Disable User", '{\n\t"username": ""\n}'],
-    "is_user_enabled": ["Is User Enabled", '{\n\t"username": ""\n}'],
-    "login_username": ["Log-in Username", '{\n\t"username": "",\n\t"password": ""\n}'],
-    "login_email": ["Log-in Email", '{\n\t"email": "",\n\t"password": ""\n}'],
-    "fetch_all_users": ["Fetch All Users", '{}']
+    "auth_create_user": ["Auth: Create User", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
+    "auth_update_by_username": ["Auth: Update by Username", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
+    "auth_update_by_email": ["Auth: Update by Email", '{\n\t"username": "",\n\t"email": "",\n\t"password": "",\n\t"enabled": "1"\n}'],
+    "auth_delete_by_username": ["Auth: Delete by Username", '{\n\t"username": ""\n}'],
+    "auth_delete_by_email": ["Auth: Delete by Email", '{\n\t"email": ""\n}'],
+    "auth_get_by_username": ["Auth: Get by Username", '{\n\t"username": ""\n}'],
+    "auth_get_by_email": ["Auth: Get by Email", '{\n\t"email": ""\n}'],
+    "auth_enable_user": ["Auth: Enable User", '{\n\t"username": ""\n}'],
+    "auth_disable_user": ["Auth: Disable User", '{\n\t"username": ""\n}'],
+    "auth_is_enabled": ["Auth: Is User Enabled", '{\n\t"username": ""\n}'],
+    "auth_login_username": ["Auth: Log-in Username", '{\n\t"username": "",\n\t"password": ""\n}'],
+    "auth_login_email": ["Auth: Log-in Email", '{\n\t"email": "",\n\t"password": ""\n}'],
+    "auth_fetch_all": ["Auth: Fetch All Users", '{}']
 };
 
 const smsActions = {
