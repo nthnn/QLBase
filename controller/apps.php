@@ -524,21 +524,23 @@ class Apps {
         global $db_conn;
         global $db_apps_conn;
 
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT * FROM app JOIN accounts ".
+            "ON app.creator_id = accounts.id WHERE accounts.username=\"".
+            $username."\" AND app.creator_id=".$originId
+        );
+
+        if(mysqli_num_rows($res) != 1) {
+            Response::failedMessage("Account must be the same with the application owner.");
+            return;
+        }
+        freeDBQuery($res);
+
         if(!Account::login($username, $password, false)) {
             Response::failedMessage("Authentication failed.");
             return;
         }
-
-        $res = mysqli_query(
-            $db_conn,
-            "SELECT * FROM app WHERE creator_id=".$originId." AND app_key=\"".$apiKey."\""
-        );
-
-        if(mysqli_num_rows($res) != 1) {
-            Response::failedMessage("Request origin is not the owner.");
-            return;
-        }
-        freeDBQuery($res);
 
         $res = mysqli_query($db_apps_conn, "SELECT name FROM ".$apiKey."_storage");
         while($row = mysqli_fetch_row($res))
