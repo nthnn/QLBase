@@ -39,10 +39,15 @@ const showError = (id, message)=> {
 let prevSharedAccessHash = null,
     sharedAccessContent = [],
     tobeRemovedAccessor = null;
+let shareBtn = RotatingButton("#share-btn"),
+    removeBtn = RotatingButton("#remove-access-btn");
+
 const removeSharedAccess = (email)=> {
     tobeRemovedAccessor = email;
     $("#remove-access-modal").modal("show");
 }, removeAccess = ()=> {
+    removeBtn.show();
+
     $.post({
         url: "side/apps.php?unshare_app",
         data: {
@@ -50,6 +55,7 @@ const removeSharedAccess = (email)=> {
             email: tobeRemovedAccessor
         },
         success: (data)=> {
+            removeBtn.hide();
             $("#remove-access-modal").modal("hide");
 
             if(data.result == "0") {
@@ -170,6 +176,8 @@ $("#remove-btn").click(()=> {
 });
 
 $("#share-btn").click(()=> {
+    shareBtn.show();
+
     let email = $("#share-email").val(),
         username = $("#share-username").val(),
         password = CryptoJS.MD5($("#share-password").val()).toString();
@@ -178,6 +186,8 @@ $("#share-btn").click(()=> {
         username === "" ||
         !/^[a-zA-Z0-9_]+$/.test(username)) {
         showError("share", "Invalid username string.");
+        shareBtn.hide();
+
         return;
     }
 
@@ -185,6 +195,8 @@ $("#share-btn").click(()=> {
         password === "" ||
         !/^[a-f0-9]{32}$/.test(password)) {
         showError("share", "Invalid password string.");
+        shareBtn.hide();
+
         return;
     }
 
@@ -192,6 +204,8 @@ $("#share-btn").click(()=> {
         email.length == 0 ||
         !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
         showError("share", "Invalid email address.");
+        shareBtn.hide();
+
         return;
     }
 
@@ -205,7 +219,9 @@ $("#share-btn").click(()=> {
             email: email
         },
         (r)=> {
+            shareBtn.hide();
             hideError("share");
+
             if(r.result == "1") {
                 $("#share-access-modal").modal("hide");
                 $("#access-shared-modal").modal("show");
