@@ -66,7 +66,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             echo "{\"result\": \"1\"}";
             return;
             
-        case "new_user":
+        case "auth_create_user":
             $backend = "auth";
             array_push($args, "create", $apiKey);
 
@@ -100,7 +100,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username, $email, $password, $enabled);
             break;
 
-        case "update_by_username":
+        case "auth_update_by_username":
             $backend = "auth";
             array_push($args, "update_by_username", $apiKey);
     
@@ -134,7 +134,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username, $email, $password, $enabled);
             break;
 
-        case "update_by_email":
+        case "auth_update_by_email":
             $backend = "auth";
             array_push($args, "update_by_email", $apiKey);
         
@@ -167,7 +167,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $email, $username, $password, $enabled);
             break;
     
-        case "delete_by_username":
+        case "auth_delete_by_username":
             $backend = "auth";
             array_push($args, "delete_by_username", $apiKey);
 
@@ -185,7 +185,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username);
             break;
 
-        case "delete_by_email":
+        case "auth_delete_by_email":
             $backend = "auth";
             array_push($args, "delete_by_email", $apiKey);
 
@@ -203,7 +203,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $email);
             break;
 
-        case "get_by_username":
+        case "auth_get_by_username":
             $backend = "auth";
             array_push($args, "get_by_username", $apiKey);
     
@@ -221,7 +221,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username);
             break;
 
-        case "get_by_email":
+        case "auth_get_by_email":
             $backend = "auth";
             array_push($args, "get_by_email", $apiKey);
 
@@ -239,7 +239,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $email);
             break;
 
-        case "enable_user":
+        case "auth_enable_user":
             $backend = "auth";
             array_push($args, "enable_user", $apiKey);
 
@@ -257,7 +257,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username);
             break;
 
-        case "disable_user":
+        case "auth_disable_user":
             $backend = "auth";
             array_push($args, "disable_user", $apiKey);
     
@@ -275,7 +275,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username);
             break;
     
-        case "is_user_enabled":
+        case "auth_is_enabled":
             $backend = "auth";
             array_push($args, "is_user_enabled", $apiKey);
         
@@ -293,7 +293,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username);
             break;
 
-        case "login_username":
+        case "auth_login_username":
             $backend = "auth";
             array_push($args, "login_username", $apiKey);
 
@@ -318,7 +318,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $username, $password);
             break;
 
-        case "login_email":
+        case "auth_login_email":
             $backend = "auth";
             array_push($args, "login_email", $apiKey);
 
@@ -343,7 +343,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             array_push($args, $email, $password);
             break;
 
-        case "fetch_all_users":
+        case "auth_fetch_all":
             $backend = "auth";
             array_push($args, "fetch_all", $apiKey);
             break;
