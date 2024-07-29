@@ -46,6 +46,10 @@ func failOnUmatchedArgSize(size int, args []string) {
 }
 
 func main() {
+	if !proc.IsParentProcessPHP() {
+		os.Exit(0)
+	}
+
 	if len(os.Args) != 3 {
 		proc.ShowFailedResponse("Invalid argument arity.")
 		os.Exit(0)
@@ -53,6 +57,16 @@ func main() {
 
 	apiKey := os.Args[1]
 	appId := os.Args[2]
+
+	if !validateApiKey(apiKey) {
+		proc.ShowFailedResponse("Invalid API key string.")
+		os.Exit(0)
+	}
+
+	if !validateApiId(appId) {
+		proc.ShowFailedResponse("Invalid API ID string.")
+		os.Exit(0)
+	}
 
 	DispatchWithCallback(func(db *sql.DB) {
 		query, err := db.Query("SELECT count FROM traffic WHERE api_key=\"" + apiKey +
