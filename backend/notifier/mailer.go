@@ -67,6 +67,8 @@ func generateFromEmailTemplate(status, originUser, appName string) string {
 		path = "/../bin/template-added-access.html"
 	} else if status == "remove" {
 		path = "/../bin/template-removed-access.html"
+	} else if status == "deletion" {
+		path = "/../bin/template-app-removed.html"
 	} else {
 		os.Exit(0)
 	}

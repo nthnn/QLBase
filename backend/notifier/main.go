@@ -45,7 +45,9 @@ func main() {
 	}
 
 	status := os.Args[1]
-	if status != "add" && status != "remove" {
+	if status != "add" &&
+		status != "remove" &&
+		status != "deletion" {
 		os.Exit(0)
 	}
 
