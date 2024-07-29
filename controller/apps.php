@@ -494,24 +494,11 @@ class Apps {
             $appName = mysqli_fetch_row($res)[0];
             freeDBQuery($res);
 
-            $res = mysqli_query(
-                $db_conn,
-                "SELECT username FROM accounts WHERE id=".$subjectId
-            );
-
-            if(mysqli_num_rows($res) != 1) {
-                Response::failedMessage("Something went wrong.");
-                return;
-            }
-
-            $username = mysqli_fetch_row($res)[0];
-            freeDBQuery($res);
-
             shell_exec(
                 "..".DIRECTORY_SEPARATOR.
                 "bin".DIRECTORY_SEPARATOR.
                 "notifier remove \"".
-                $username."\" \"".
+                Account::getUsername($originId)."\" \"".
                 $appName."\" \"".
                 $email."\""
             );
@@ -546,7 +533,51 @@ class Apps {
         while($row = mysqli_fetch_row($res))
             unlink("..".DIRECTORY_SEPARATOR ."drive".DIRECTORY_SEPARATOR.$row[0].".zip");
         freeDBQuery($res);
-    
+
+        $res = mysqli_query(
+            $db_conn,
+            "SELECT DISTINCT a.email FROM accounts a ".
+            "JOIN shared_access sa ON sa.friend=a.id ".
+            "WHERE sa.app_key=\"".$apiKey."\";"
+        );
+
+        if(mysqli_num_rows($res) > 0) {
+            $sharedAccess = mysqli_fetch_array($res);
+            freeDBQuery($res);
+            error_log(join(", ", $sharedAccess));
+
+            $res = mysqli_query(
+                $db_conn,
+                "SELECT name FROM app WHERE app_key=\"".$apiKey."\""
+            );
+
+            if(mysqli_num_rows($res) != 1) {
+                Response::failedMessage("Something went wrong.");
+                return;
+            }
+
+            $appName = mysqli_fetch_row($res)[0];
+            freeDBQuery($res);
+
+            foreach($sharedAccess as $email)
+                shell_exec(
+                    "..".DIRECTORY_SEPARATOR.
+                    "bin".DIRECTORY_SEPARATOR.
+                    "notifier deletion \"".
+                    $username."\" \"".
+                    $appName."\" \"".
+                    $email."\""
+                );
+        }
+        else freeDBQuery($res);
+
+        freeDBQuery(
+            mysqli_query(
+                $db_conn,
+                "DELETE FROM shared_access WHERE app_key=\"".$apiKey."\""
+            )
+        );
+
         $tables = [
             "_accounts", "_database", "_data_analytics_id",
             "_data_analytics_page", "_data_analytics_track",
