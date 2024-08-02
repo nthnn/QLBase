@@ -45,7 +45,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth New User</b>
     <p>Create a new user on account list of specified QLBase application key and ID.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=new_user</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_create_user</pre>
 
     <p>Payload Structure:</p>
     <ul>
@@ -64,7 +64,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Username</b>
     <p>Update QLBase application account informations by username of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_username</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_update_by_username</pre>
 
     <p>Payload Structure</p>
     <ul>
@@ -83,7 +83,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Email</b>
     <p>Update QLBase application account information by email of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=update_by_email</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_update_by_email</pre>
 
     <p>Payload Structure</p>
     <ul>
@@ -102,7 +102,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Username</b>
     <p>Delete QLBase application account information by username of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_username</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_delete_by_username</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -115,7 +115,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Email</b>
     <p>Delete QLBase application account information by email of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=delete_by_email</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_delete_by_email</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -128,7 +128,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Username</b>
     <p>Fetch QLBase application account informations specified by username of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_username</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_get_by_username</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -157,7 +157,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Email</b>
     <p>Fetch QLBase application account informations specified by email of user.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=get_by_email</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_get_by_email</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -186,7 +186,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Enable User</b>
     <p>Enable specified QLBase application user account.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=enable_user</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_enable_user</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -199,7 +199,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Disable User</b>
     <p>Disable specified QLBase application user account.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=disable_user</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_disable_user</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -212,7 +212,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Is User Enabled</b>
     <p>Check if the specified QLBase application user account is either enabled or disabled.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=is_user_enabled</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_is_enabled</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -235,7 +235,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Username</b>
     <p>Log-in a specified QLBase application user account using username and an MD5-hashed password string.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=login_username</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_username</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -260,7 +260,7 @@
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Email</b>
     <p>Log-in a specified QLBase application user account using email and an MD5-hashed password string.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=login_email</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_email</pre>
 
     <b>Payload Structure</b>
     <ul>
@@ -285,7 +285,7 @@
 
 <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Fetch All Users</b>
     <p>Fetch all the QLBase application user informations including username, email, enability, and timestamp of creation.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=fetch_all_users</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_fetch_all</pre>
 
     <b>Example Payload</b>
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
