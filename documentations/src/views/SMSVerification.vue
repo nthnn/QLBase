@@ -41,7 +41,32 @@
     <br/>
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
-    <hr/>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Verification</b>
+    <p>Send one-time password to a specified recipient's phone number including a support email via SMS.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_verification</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>phone_number</i> &mdash; The phone number of recipient (must include the country code).</li>
+        <li><i>email</i> &mdash; The email address of the service support.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"recipient"</span>: <span class="text-danger">"&lt;phone_number&gt;"</span>,
+    <span class="text-warning">"support"</span>: <span class="text-danger">"&lt;email&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>otp</i> &mdash; 6-digit one-time password sent to the recipient via SMS.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/authentication" class="btn btn-primary">
