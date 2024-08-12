@@ -65,7 +65,7 @@
     <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
     <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>,
     <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>,
-    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Create with Timestamp</b>
@@ -84,7 +84,52 @@
     <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
     <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
     <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>,
-    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Delete by Anonymous ID</b>
+    <p>Deletes an identification by a specified anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_delete_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Delete by User ID</b>
+    <p>Deletes an identification by a specified username.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_delete_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of the tracker to be deleted. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Delete by Timestamp</b>
+    <p>Deletes an identification by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_delete_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format <i>Y-m-d H:i:s</i>)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
 <span class="text-primary">}</span></pre>
 
     <div class="row">
