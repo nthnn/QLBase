@@ -97,6 +97,66 @@
     <span class="text-warning">"code"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
 <span class="text-primary">}</span></pre>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Fetch All</b>
+    <p>Fetch all the sent OTP of the specified app (based on the key and ID).</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of SMS OTP informations that was sent by the specified app. The SMS OTP information order is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Phone number of the recipient</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>6-digit OTP code</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Support email included on the SMS</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the sent SMS OTP with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><i>0</i> to specify if the OTP was not yet validate; otherwise <i>1</i></td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
+    <span class="text-warning">"value"</span>: <span class="text-primary">[</span>...<span class="text-primary">]</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Delete OTP</b>
+    <p>Delete an SMS OTP from the records.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_delete_otp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>phone_number</i> &mdash; The phone number of recipient (must include the country code).</li>
+        <li><i>otp</i> &mdash; The OTP code to be removed.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"recipient"</span>: <span class="text-danger">"&lt;phone_number&gt;"</span>,
+    <span class="text-warning">"code"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/authentication" class="btn btn-primary">
