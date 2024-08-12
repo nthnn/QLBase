@@ -46,7 +46,47 @@
     </div>
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
-    <hr/>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Create</b>
+    <p>Create new identification tracker with a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_create</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format <i>Y-m-d H:i:s</i>)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>,
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Create with Timestamp</b>
+    <p>Create new identification tracker with current date and time as timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_create_live_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>,
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/sms-verification" class="btn btn-primary">
