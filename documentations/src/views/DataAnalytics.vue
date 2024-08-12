@@ -55,7 +55,7 @@
     <ul>
         <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
         <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
-        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
         <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format <i>Y-m-d H:i:s</i>)</li>
         <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
     </ul>
@@ -76,7 +76,7 @@
     <ul>
         <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
         <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
-        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
         <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
     </ul>
 
@@ -109,7 +109,7 @@
     <p>Payload Structure:</p>
     <ul>
         <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
-        <li><i>username</i> &mdash; The username string of the tracker to be deleted. (Should be a-z, A-Z, 0-9, _ and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of the tracker to be deleted. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -131,6 +131,172 @@
     <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
     <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
 <span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Get by Anonymous ID</b>
+    <p>Fetches an identification by a specified anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_get_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of identification tracks. The array of identification tracks' order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Get by User ID</b>
+    <p>Fetches an identification by a specified username.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_get_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of identification tracks. The array of identification tracks' order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Get by Timestamp</b>
+    <p>Fetches an identification by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_get_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format <i>Y-m-d H:i:s</i>)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of identification tracks. The array of identification tracks' order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Identification: Fetch All</b>
+    <p>Fetches all recorded identification trackers.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=id_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of all identification tracks recorded. The array of identification tracks' order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
 
     <div class="row">
         <div class="col-6">
