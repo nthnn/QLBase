@@ -67,6 +67,36 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
 <span class="text-primary">}</span></pre>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Validate</b>
+    <p>Validate an OTP digits received by the user/client.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_validate</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>phone_number</i> &mdash; The phone number of recipient (must include the country code).</li>
+        <li><i>otp</i> &mdash; The 6-digit OTP received by the user to be validated.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"recipient"</span>: <span class="text-danger">"&lt;phone_number&gt;"</span>,
+    <span class="text-warning">"code"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Is Validated</b>
+    <p>Check if an OTP code received by the recipient was already validated.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_is_validated</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>phone_number</i> &mdash; The phone number of recipient (must include the country code).</li>
+        <li><i>otp</i> &mdash; The 6-digit OTP received by the user to be checked if already validated.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"recipient"</span>: <span class="text-danger">"&lt;phone_number&gt;"</span>,
+    <span class="text-warning">"code"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/authentication" class="btn btn-primary">
