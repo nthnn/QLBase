@@ -92,7 +92,9 @@
 
 <span class="text-warning">[env]</span>
 <span class="text-danger">home</span>=<span class="text-success">http://localhost:8080/QLBase</span>
-<span class="text-danger">sms</span>=<span class="text-success">enabled</span></pre>
+<span class="text-danger">sms</span>=<span class="text-success">enabled</span>
+<span class="text-danger">sms_serial</span>=<span class="text-success">/dev/ttyUSB0</span>
+<span class="text-danger">timezone</span>=<span class="text-success">Asia/Manila</span></pre>
             <p>The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. The SMS service enability can also be configured with either "enabled" or "disabled" value. And lastly, the environment section defines the root URL of the current QLBase runtime.</p>
         </li>
         <li>
