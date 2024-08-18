@@ -30,6 +30,7 @@
  */
 
 include_once("config.php");
+date_default_timezone_set(Config::timezone());
 
 $db_server = Config::getDBServerAddress();
 $db_username = Config::getDBServerUsername();

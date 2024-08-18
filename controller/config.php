@@ -87,6 +87,14 @@ class Config {
 
         return true;
     }
+
+    public static function timezone() {
+        global $config;
+        if(isset($config["env"]["timezone"]))
+            return $config["env"]["timezone"];
+
+        return date_default_timezone_get();
+    }
 }
 
 ?>
