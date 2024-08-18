@@ -31,11 +31,17 @@
 
 include_once("../controller/db_config.php");
 include_once("../controller/response.php");
+include_once("../controller/tor_detection.php");
 include_once("../controller/validator.php");
 
-global $db_conn;
+if(TorDetection::isExitNode()) {
+    http_response_code(403);
+    return;
+}
 
+global $db_conn;
 Response::jsonContent();
+
 if(!(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST")) {
     Response::failed();
     return;

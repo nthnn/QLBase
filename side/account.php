@@ -31,9 +31,15 @@
 
 include_once("../controller/account.php");
 include_once("../controller/db_config.php");
-include_once("../controller/session_ctrl.php");
 include_once("../controller/response.php");
+include_once("../controller/session_ctrl.php");
+include_once("../controller/tor_detection.php");
 include_once("../controller/validator.php");
+
+if(TorDetection::isExitNode()) {
+    http_response_code(403);
+    return;
+}
 
 if(isset($_GET["login"]) && empty($_GET["login"]) &&
     isset($_POST["username"]) && !empty($_POST["username"]) &&

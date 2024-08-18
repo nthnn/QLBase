@@ -31,9 +31,15 @@
 
 include_once("../controller/apps.php");
 include_once("../controller/db_config.php");
-include_once("../controller/session_ctrl.php");
 include_once("../controller/response.php");
+include_once("../controller/session_ctrl.php");
+include_once("../controller/tor_detection.php");
 include_once("../controller/validator.php");
+
+if(TorDetection::isExitNode()) {
+    http_response_code(403);
+    return;
+}
 
 if(!(isset($_COOKIE["sess_id"]) &&
     !empty($_COOKIE["sess_id"]) &&
