@@ -1,6 +1,12 @@
 <?php
     include_once("controller/session_ctrl.php");
-
+    include_once("controller/tor_detection.php");
+    
+    if(TorDetection::isExitNode()) {
+        http_response_code(403);
+        return;
+    }
+    
     $view = "home";
     $title = "QLBase | Home";
     $sess_id = isset($_COOKIE["sess_id"]) ? $_COOKIE["sess_id"] : "";
