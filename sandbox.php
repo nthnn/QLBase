@@ -1,4 +1,11 @@
 <?php
+    include_once("controller/tor_detection.php");
+
+    if(TorDetection::isExitNode()) {
+        http_response_code(403);
+        return;
+    }
+
     $appId = "";
     $apiKey = "";
 
