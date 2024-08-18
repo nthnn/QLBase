@@ -18,6 +18,8 @@ bin/sms.exe
 bin/storage.exe
 bin/traffic.exe
 
+!bin/tor-exit-nodes
+
 docs/
 drive/*
 !drive/.htaccess
