@@ -30,9 +30,15 @@
  */
 
 include_once("../controller/apps.php");
-include_once("../controller/shell.php");
 include_once("../controller/response.php");
+include_once("../controller/shell.php");
+include_once("../controller/tor_detection.php");
 include_once("../controller/validator.php");
+
+if(TorDetection::isExitNode()) {
+    http_response_code(403);
+    return;
+}
 
 Response::jsonContent();
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&

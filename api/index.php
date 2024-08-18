@@ -35,7 +35,13 @@ include_once("../controller/db_config.php");
 include_once("../controller/validator.php");
 include_once("../controller/response.php");
 include_once("../controller/shell.php");
+include_once("../controller/tor_detection.php");
 include_once("../controller/util.php");
+
+if(TorDetection::isExitNode()) {
+    http_response_code(403);
+    return;
+}
 
 Response::jsonContent();
 header("Access-Control-Allow-Origin: *");
