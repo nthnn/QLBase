@@ -136,6 +136,8 @@ To simplify the deployment process of QLBase, a `deploy.sh` bash script is provi
     [env]
     home=http://localhost:8080/QLBase
     sms=enabled
+    sms_serial=/dev/ttyUSB0
+    timezone=Asia/Manila
     ```
 
     The database section defines the MySQL server, username, password, database name, and the server port. While the SMTP server defines the host address/name, server port, from (email address of origin), and password; this SMTP configuration will be used as email gateway for recovering forgotten passwords of users. The SMS service enability can also be configured with either "enabled" or "disabled" value. And lastly, the environment section defines the root URL of the current QLBase runtime.
