@@ -55,7 +55,7 @@ class TorDetection {
         }
         else if(time() - filemtime($cachedFile) > 1200) {
             unlink($cachedFile);
-            Tor::updateExitNodeList();
+            TorDetection::updateExitNodeList();
         }
 
         $fileHandle = fopen($cachedFile, "r");
