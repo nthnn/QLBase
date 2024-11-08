@@ -68,9 +68,13 @@
 		"linux:stop": [
 			"/opt/lampp/xampp stop"
 		],
-		"zip-up": [
+		"linux:zip-up": [
 			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
 			"zip -q -r qlbase.zip api assets bin components controller docs drive scripts side styles views favicon.ico .htaccess 404.html index.php sandbox.php"
+		],
+		"windows:zip-up": [
+			"echo \"\\033[92m[+]\\033[0m Zipping deployment entity...\"",
+			"powershell -Command \"Compress-Archive -Path @( 'api', 'assets', 'bin', 'components', 'controller', 'docs', 'drive', 'scripts', 'side', 'styles', 'views', 'favicon.ico', '.htaccess', '404.html', 'index.php', 'sandbox.php' ) -DestinationPath qlbase.zip -Force\""
 		]
 	}
 }
