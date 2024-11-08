@@ -138,7 +138,7 @@
 
     <p>Payload Structure:</p>
     <ul>
-        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -386,6 +386,251 @@
     <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
     <span class="text-warning">"event"</span>: <span class="text-danger">"&lt;tag&gt;"</span>
 <span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Delete by Timestamp</b>
+    <p>Delete tracker record(s) by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_delete_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the tracker on the record to be deleted. (Should be in format Y-m-d H:i:s)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Get by Anonymous ID</b>
+    <p>Fetches an tracker by a specified anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_get_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of trackers. The array of tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Event name of the fetched tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Get by User ID</b>
+    <p>Fetches an tracker by a specified username ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_get_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username string of the tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of trackers. The array of tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Event name of the fetched tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Get by Event</b>
+    <p>Fetches an tracker by a specified event tag.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_get_by_event</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username string of the tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The event name string of tracker to be fetched. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"event"</span>: <span class="text-danger">"&lt;tag&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of trackers. The array of tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Get by Timestamp</b>
+    <p>Fetches an tracker by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_get_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format Y-m-d H:i:s)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of trackers. The array of tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Event name of the fetched tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Fetch All</b>
+    <p>Fetches all recorded trackers.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of all trackers recorded. The array of trackers' order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Event name of the tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Timestamp of the identification tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
 
     <div class="row">
         <div class="col-6">
