@@ -112,8 +112,8 @@ const dataAnalyticsActions = {
     "page_delete_by_timestamp": ["Page: Delete by Timestamp", "{\n\t\"tracker\": \"\",\n\t\"timestamp\": \"\"\n}"],
     "page_get_by_anon_id": ["Page: Fetch by Anon ID", "{\n\t\"anon_id\": \"\"\n}"],
     "page_get_by_user_id": ["Page: Fetch by User ID", "{\n\t\"user_id\": \"\"\n}"],
-    "page_get_by_name": ["Page: Fetch by Name", "{\n\t\"user_id\": \"\",\n\t\"name\": \"\"\n}"],
-    "page_get_by_category": ["Page: Fetch by Category", "{\n\t\"user_id\": \"\",\n\t\"category\": \"\"\n}"],
+    "page_get_by_name": ["Page: Fetch by Name", "{\n\t\"name\": \"\"\n}"],
+    "page_get_by_category": ["Page: Fetch by Category", "{\n\t\"category\": \"\"\n}"],
     "page_get_by_timestamp": ["Page: Fetch by Timestamp", "{\n\t\"timestamp\": \"\"\n}"],
     "page_fetch_all": ["Page: Fetch All", "{}"],
 
