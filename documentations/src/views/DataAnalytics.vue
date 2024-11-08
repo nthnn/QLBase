@@ -298,6 +298,95 @@
         </li>
     </ul>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Create New</b>
+    <p>Creates a new tracker for data analytics with a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_create</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The event name string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format Y-m-d H:i:s)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"event"</span>: <span class="text-danger">"&lt;tag&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Create New with Timestamp</b>
+    <p>Creates a new tracker for data analytics with the current time and date as timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_create_live_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The event name string of tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"event"</span>: <span class="text-danger">"&lt;tag&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Delete by Anonymous ID</b>
+    <p>Delete tracker record by anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_delete_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Delete by User ID</b>
+    <p>Delete tracker record by user ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_delete_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>user</i> &mdash; The username string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Track: Delete by Event</b>
+    <p>Delete tracker record(s) by event tag.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=track_delete_by_event</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The event name string of the tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"event"</span>: <span class="text-danger">"&lt;tag&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/sms-verification" class="btn btn-primary">
