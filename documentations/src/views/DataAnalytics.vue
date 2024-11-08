@@ -632,6 +632,427 @@
         </li>
     </ul>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Create New</b>
+    <p>Creates a new page tracker for data analytics with a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_create</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of page tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of page tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The name string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>type</i> &mdash; The category type string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format Y-m-d H:i:s)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;tag&gt;"</span>,
+    <span class="text-warning">"category"</span>: <span class="text-danger">"&lt;category&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Create New with Timestamp</b>
+    <p>Creates a new page tracker for data analytics with the current time and date as timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_create_live_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of page tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of page tracker. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The name string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>type</i> &mdash; The category type string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON data as payload.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;tag&gt;"</span>,
+    <span class="text-warning">"category"</span>: <span class="text-danger">"&lt;category&gt;"</span>,
+    <span class="text-warning">"payload"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Delete by Anonymous ID</b>
+    <p>Delete page tracker record by anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_delete_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Delete by User ID</b>
+    <p>Delete page tracker record by user ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_delete_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>user</i> &mdash; The username string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;user&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Delete by Name</b>
+    <p>Delete page tracker record(s) by name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_delete_by_name</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>tag</i> &mdash; The name string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;tag&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Delete by Category</b>
+    <p>Delete page tracker record(s) by category type.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_delete_by_category</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>type</i> &mdash; The category type string of page tracker. (Should be a-z, A-Z, 0-9, and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"category"</span>: <span class="text-danger">"&lt;type&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Delete by Timestamp</b>
+    <p>Delete page tracker record(s) by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_delete_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The identification string of the page tracker to be deleted. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>datetime</i> &mdash; Timestamp of the page tracker on the record to be deleted. (Should be in format Y-m-d H:i:s)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"tracker"</span>: <span class="text-danger">"&lt;id&gt;"</span>,
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Get by Anonymous ID</b>
+    <p>Fetches an page tracker by a specified anonymous ID.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_get_by_anon_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>anonymous</i> &mdash; The anonymous string of the page tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Page name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Category type of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Timestamp of the identification page tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Get by User ID</b>
+    <p>Fetches an page tracker by a specified username.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_get_by_user_id</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username string of the page tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Page name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Category type of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Timestamp of the identification page tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Get by Name</b>
+    <p>Fetches an page tracker by a specified page name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_get_by_name</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>tag</i> &mdash; The name string of the page tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;tag&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Category type of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Timestamp of the identification page tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Get by Category</b>
+    <p>Fetches an page tracker by a specified category type.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_get_by_category</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>type</i> &mdash; The category type of the page tracker to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"category"</span>: <span class="text-danger">"&lt;type&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Username name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Timestamp of the identification page tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Get by Timestamp</b>
+    <p>Fetches an page tracker by a specified timestamp.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_get_by_timestamp</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>datetime</i> &mdash; Timestamp of the identification on the record. (Should be in format Y-m-d H:i:s)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"timestamp"</span>: <span class="text-danger">"&lt;datetime&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Category type of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Page: Fetch All</b>
+    <p>Fetches all recorded page trackers.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=page_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of page trackers. The array of page tracker's order of items is as the following table below:
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Tracker identification string</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Username name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Name of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Category type of the fetched page tracker</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Timestamp of the identification page tracker with the format &quot;<i>YYYY-mm-dd hh:mm:ss</i>&quot;</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>The data payload in JSON form.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/sms-verification" class="btn btn-primary">
