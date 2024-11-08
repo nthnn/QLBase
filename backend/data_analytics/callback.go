@@ -1491,42 +1491,42 @@ func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		id := ""
 		err := d.QueryRow("SELECT user_id FROM " + apiKey +
-			"_data_analytics_id WHERE user_id <> \"null\" AND anonymous_id=\"" +
-			anonId + "\"").Scan(&id)
+			"_data_analytics_id WHERE user_id != \"null\" AND anonymous_id=\"" +
+			anonId + "\" LIMIT 1").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
+			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
 			return
 		}
 
 		err = d.QueryRow("SELECT user_id FROM " + apiKey +
-			"_data_analytics_page WHERE user_id <> \"null\" AND anonymous_id=\"" +
-			anonId + "\"").Scan(&id)
+			"_data_analytics_page WHERE user_id != \"null\" AND anonymous_id=\"" +
+			anonId + "\" LIMIT 1").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
+			return
 		}
-
+	
 		err = d.QueryRow("SELECT user_id FROM " + apiKey +
-			"_data_analytics_track WHERE user_id <> \"null\" AND anonymous_id=\"" +
-			anonId + "\"").Scan(&id)
+			"_data_analytics_track WHERE user_id != \"null\" AND anonymous_id=\"" +
+			anonId + "\" LIMIT 1").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
+			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
 			return
 		}
 
-		proc.ShowResult("\"null\"")
+		proc.ShowResult("\"0\"")
 	}
 }
 
@@ -1540,42 +1540,42 @@ func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 	return func(d *sql.DB) {
 		id := ""
 		err := d.QueryRow("SELECT anonymous_id FROM " + apiKey +
-			"_data_analytics_id WHERE anonymous_id <> \"null\" AND user_id=\"" +
-			userId + "\"").Scan(&id)
+			"_data_analytics_id WHERE anonymous_id != \"null\" AND user_id=\"" +
+			userId + "\" LIMITI").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
+			return
 		}
-
+	
 		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
-			"_data_analytics_page WHERE anonymous_id <> \"null\" AND user_id=\"" +
-			userId + "\"").Scan(&id)
+			"_data_analytics_page WHERE anonymous_id != \"null\" AND user_id=\"" +
+			userId + "\" LIMIT 1").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
+			return
 		}
-
+	
 		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
-			"_data_analytics_track WHERE anonymous_id <> \"null\" AND user_id=\"" +
-			userId + "\"").Scan(&id)
+			"_data_analytics_track WHERE anonymous_id != \"null\" AND user_id=\"" +
+			userId + "\" LIMIT 1").Scan(&id)
 
-		if err == sql.ErrNoRows {
-			proc.ShowResult("\"null\"")
-			return
-		} else if err != nil {
+		if err != nil && err != sql.ErrNoRows {
 			proc.ShowFailedResponse("Internal error occured.")
 			return
+		} else if id != "" {
+			proc.ShowResult("\"1\"")
+			return
 		}
-
-		proc.ShowResult("\"null\"")
+	
+		proc.ShowResult("\"0\"")
 	}
 }
 
