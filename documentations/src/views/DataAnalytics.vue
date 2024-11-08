@@ -1053,6 +1053,100 @@
         </li>
     </ul>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Alias: Has Anonymous Alias</b>
+    <p>Check anonymous ID if it has a username aliasing.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=alias_anon_has</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>anonymous</i> &mdash; The anonymous ID to be checked. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; Returns <i>1</i> if the anonymous ID has a username alias, otherwise <i>0</i>.</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Alias: Has User Alias</b>
+    <p>Check username if it has an anonymous ID aliasing.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=alias_user_has</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username string to be checked. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; Returns <i>1</i> if the username has an anonymous ID alias, otherwise <i>0</i>.</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Alias: Set For Anonymous ID</b>
+    <p>Set the username for all the associated and matching anonymous ID for all the trackers.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=alias_for_anon</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>anonymous</i> &mdash; The anonymous ID where the username alias will be placed. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>username</i> &mdash; The username string for all the matching anonymous ID. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+        <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>,
+        <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+<b class="mt-4 mb-2 d-block border-bottom fw-bold">Alias: Set For User ID</b>
+    <p>Set the anonymous ID for all the associated and matching username for all the trackers.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=alias_for_user</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>username</i> &mdash; The username where the anonymous ID alias will be placed. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>anonymous</i> &mdash; The anonymous ID for all the matching username. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+        <span class="text-warning">"user_id"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
+        <span class="text-warning">"anon_id"</span>: <span class="text-danger">"&lt;anonymous&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Alias: Fetch All</b>
+    <p>Fetch all the alias matches for each anonymous ID and username string.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=alias_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of alias that contains the pairs of each anonymous IDs and usernames.
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Username string of the pair.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anonymous ID string of the pair.</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/sms-verification" class="btn btn-primary">
