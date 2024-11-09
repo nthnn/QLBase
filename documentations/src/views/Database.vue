@@ -44,6 +44,183 @@
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
     <hr/>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Create</b>
+    <p>Create new JSON-based data storage database.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_create</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be created. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>permissions</i> &mdash; The database mode permissions; must be only either &quot;w&quot;, &quot;r&quot;, &quot;wr&quot;, or &quot;rw&quot;. (&quot;w&quot; for writing permission and &quot;r&quot; for reading permission)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON database.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>,
+    <span class="text-warning">"mode"</span>: <span class="text-danger">"&lt;permissions&gt;"</span>,
+    <span class="text-warning">"content"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Get by Name</b>
+    <p>Fetch database permissions and stored data content by name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_get_by_name</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of fetched database informations.
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>The database mode permissions; either "w", "r", "wr", or "rw". ("w" for writing permission and "r" for reading permission)</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Base64 string that contains a JSON database</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Set Mode</b>
+    <p>Set new permissions to a database by name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_set_mode</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name where the new permissions will be made. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>permissions</i> &mdash; The database mode new permissions; must be only either &quot;w&quot;, &quot;r&quot;, &quot;wr&quot;, or &quot;rw&quot;. (&quot;w&quot; for writing permission and &quot;r&quot; for reading permission)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>,
+    <span class="text-warning">"mode"</span>: <span class="text-danger">"&lt;permissions&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Get Mode</b>
+    <p>Get designated permissions of a database by name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_get_mode</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; This key will contain database mode permissions of the specified database name; either "w", "r", "wr", or "rw". ("w" for writing permission and "r" for reading permission)</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Read Content</b>
+    <p>Fetch the whole stored data from a specified database name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_read</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; This key will contain database in JSON object form.</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Write Content</b>
+    <p>Overwrite the whole stored data contents of a specified database name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_write</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON database.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>,
+    <span class="text-warning">"content"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Write Content</b>
+    <p>Overwrite the whole stored data contents of a specified database name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_write</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+        <li><i>data</i> &mdash; Base64 string that contains a JSON database.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>,
+    <span class="text-warning">"content"</span>: <span class="text-danger">"&lt;data&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+<b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Delete</b>
+    <p>Delete a whole database by a specified name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_write</pre>
+    <div class="alert alert-danger">
+        <p class="mb-0">This action cannot be reversed.</p>
+    </div>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>database</i> &mdash; The database name to be fetched. (Should be a-z or A-Z and greater than or equals to 6 characters)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;database&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Fetch All</b>
+    <p>Fetch all database list of names and permissions.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of fetched database names and permissions.
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>The name of the fetched database.</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>The database mode permissions; either "w", "r", "wr", or "rw". ("w" for writing permission and "r" for reading permission)</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/data-analytics" class="btn btn-primary">
