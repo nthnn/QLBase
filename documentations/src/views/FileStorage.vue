@@ -108,6 +108,82 @@
         </li>
     </ul>
 
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Storage: File Download</b>
+    <p>Generate a CDP-accessible ticket for a specified stored file on the server via assigned name. If successful, the file will be accessible on <span class="bg-secondary px-1 border d-inline">api/cdp.php?ticket=&lt;generated_ticket&gt;</span></p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=file_download</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>assigned_name</i> &mdash; The assigned name of the file for the ticket to be generated.</li>
+        <li><i>expiring</i> &mdash; Boolean value to specify if the ticket will expire. (<i>0</i> for <i>false</i> and <i>1</i> for <i>true</i>)</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;assigned_name&gt;"</span>,
+    <span class="text-warning">"should_expire"</span>: <span class="text-danger">"&lt;expiring&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; The ticket string in UUID form for the CDP-accessible file.</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Storage: File Fetch All</b>
+    <p>Fetch the assigned name, original file name, mime type, and the checksum of all the uploaded files.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=file_fetch_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of all the fetched file information
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Assigned file name for the fetched file</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Original file name when it was uploaded</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>File mime type of the fetched file</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Checksum of the fetched file in MD5 hash</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">CDP: Expire All</b>
+    <p>Expire all the tickets generated for the CDP (Content Delivery Page). This action will revoke all the generated tickets including the no expiration tickets.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=cdp_expire_all</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">CDP: Expire Ticket</b>
+    <p>Revoke a specified generated ticket for the CDP (Content Delivery Page).</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=cdp_expire_ticket</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>id</i> &mdash; The generated ticket to be revoked.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"ticket"</span>: <span class="text-danger">"&lt;id&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/database" class="btn btn-primary">
