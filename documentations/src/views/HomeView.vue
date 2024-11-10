@@ -11,8 +11,8 @@ import { RouterLink } from "vue-router";
     </center>
 
     <p class="badges">
-        <img src="https://github.com/nthnn/QLBase/actions/workflows/qlbase_build.yml/badge.svg" class="px-1" alt="Backend Workflow" />
-        <img src="https://github.com/nthnn/QLBase/actions/workflows/php-syntax-check.yml/badge.svg" class="pr-1" alt="PHP Syntax Check" />
+        <img src="https://github.com/nthnn/QLBase/actions/workflows/qlbase_build.yml/badge.svg" class="pr-1" alt="QLBase Build Workflow" />
+        <img src="https://github.com/nthnn/QLBase/actions/workflows/php-syntax-check.yml/badge.svg" class="px-1" alt="PHP Syntax Check" />
         <img src="https://github.com/nthnn/QLBase/actions/workflows/platformio-ci.yml/badge.svg" class="pr-1" alt="PlatformIO CI" />
         <img src="https://github.com/nthnn/QLBase/actions/workflows/spellcheck.yml/badge.svg" class="px-1" alt="Spellcheck" />
         <img src="https://img.shields.io/github/issues/nthnn/QLBase.svg" class="px-1" alt="GitHub Issues" />
