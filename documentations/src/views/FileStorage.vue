@@ -44,7 +44,70 @@
     <br/>
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
-    <hr/>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Storage: File Upload</b>
+    <p>Uploads a file to be stored on the server. The file must be uploaded included in the form via POST method.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=file_upload</pre>
+
+    <b>Example Payload</b>
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li><i>value</i> &mdash; The name in base-64 form of the file in the server. This is the key string used when performing actions to the associated file.</li>
+    </ul>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Storage: File Delete</b>
+    <p>Delete a stored file on the server via assigned name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=file_delete</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>assigned_name</i> &mdash; The assigned name of the file to be deleted.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;assigned_name&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Storage: File Fetch</b>
+    <p>Fetch information from a stored file on the server via assigned name.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=file_get</pre>
+
+    <p>Payload Structure:</p>
+    <ul>
+        <li><i>assigned_name</i> &mdash; The assigned name of the file to be fetched.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"name"</span>: <span class="text-danger">"&lt;assigned_name&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b>Response Data</b>
+    <ul>
+        <li>
+            <i>value</i> &mdash; This key will contain a 2D array of fetched file information
+            <table class="table table-hover">
+                <tr>
+                    <th>Array Index</th>
+                    <th>Index Content</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Original file name when it was uploaded</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>File mime type of the fetched file</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Checksum of the fetched file in MD5 hash</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+
     <div class="row">
         <div class="col-6">
             <RouterLink to="/database" class="btn btn-primary">
