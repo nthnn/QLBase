@@ -28,17 +28,6 @@ import { RouterLink } from 'vue-router';
         </div>
     </div>
     <br/>
-
-    <div class="card card-body border-primary border shadow">
-        <h3 class="m-0 mb-2">QLBase Webapp</h3>
-        <p>Fundamentals of navigation, usage, and functionalities for the QLBase webapp.</p>
-        <div class="btn-group-vertical w-100 rounded">
-            <RouterLink to="/webapp" class="btn btn-outline-primary">Webapp Basics</RouterLink>
-            <RouterLink to="/account-recovery" class="btn btn-outline-primary">Account Recovery</RouterLink>
-            <RouterLink to="/sandbox" class="btn btn-outline-primary">Sandbox</RouterLink>
-        </div>
-    </div>
-    <br/>
 </template>
 
 <style scoped>
