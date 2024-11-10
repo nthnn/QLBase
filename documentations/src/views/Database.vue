@@ -43,7 +43,6 @@
     <br/>
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
-    <hr/>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Create</b>
     <p>Create new JSON-based data storage database.</p>
