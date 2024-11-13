@@ -1,7 +1,7 @@
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -11,11 +11,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -34,6 +34,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/google/uuid"
 	"github.com/nthnn/QLBase/auth/proc"
 )
 
@@ -608,12 +609,21 @@ func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 			count += 1
 		}
 
-		if count == 1 {
-			proc.ShowResult("\"1\"")
-		} else {
-			proc.ShowResult("\"0\"")
+		if count != 1 {
+			proc.ShowResult("\"error\"")
 		}
 
+		uuid := uuid.New().String()
+		query, err = d.Query("INSERT INTO " + apiKey +
+			"_account_session (username, uuid) VALUES(\"" +
+			username + "\", \"" + uuid + "\")")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowResult("\"" + uuid + "\"")
 		query.Close()
 	}
 }
