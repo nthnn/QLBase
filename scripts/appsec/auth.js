@@ -60,7 +60,7 @@ function requestUserDeletion() {
     deleteBtn.show();
 
     $.ajax({
-        url: "api/index.php?action=delete_by_username&dashboard",
+        url: "api/index.php?action=auth_delete_by_username&dashboard",
         type: "POST",
         dataType: "json",
         headers: {
@@ -137,7 +137,7 @@ function requestSaveEdit() {
     }
 
     $.post({
-        url: "api/index.php?action=update_by_username&dashboard",
+        url: "api/index.php?action=auth_update_by_username&dashboard",
         type: "POST",
         dataType: "json",
         headers: {
@@ -182,7 +182,7 @@ const showError = (id, message)=> {
 
 const fetchUsers = ()=> {
     $.post({
-        url: "api/index.php?action=fetch_all_users&dashboard",
+        url: "api/index.php?action=auth_fetch_all&dashboard",
         headers: {
             "QLBase-App-ID": App.appId,
             "QLBase-API-Key": App.appKey
@@ -274,7 +274,7 @@ $(document).ready(()=> {
         }
 
         $.post({
-            url: "api/index.php?action=new_user&dashboard",
+            url: "api/index.php?action=auth_create_user&dashboard",
             type: "POST",
             dataType: "json",
             headers: {
