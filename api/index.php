@@ -321,7 +321,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 return;
             }
 
-            array_push($args, $username, $password);
+            array_push(
+                $args,
+                $username,
+                $password,
+                base64_encode($_SERVER['HTTP_USER_AGENT']),
+                $_SERVER['REMOTE_ADDR']
+            );
             break;
 
         case "auth_login_email":
@@ -346,7 +352,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
                 return;
             }
 
-            array_push($args, $email, $password);
+            array_push(
+                $args,
+                $email,
+                $password,
+                base64_encode($_SERVER['HTTP_USER_AGENT']),
+                $_SERVER['REMOTE_ADDR']
+            );
             break;
 
         case "auth_fetch_all":
