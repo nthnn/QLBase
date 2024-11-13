@@ -83,6 +83,13 @@ class Apps {
         }
         freeDBQuery($create);
 
+        $create = mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_account_session (id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), uuid VARCHAR(255))");
+        if(!$create) {
+            freeDBQuery($create);
+            return false;
+        }
+        freeDBQuery($create);
+
         $create = mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_sms_auth (id INT PRIMARY KEY AUTO_INCREMENT, timedate TIMESTAMP, recipient VARCHAR(255), support_email VARCHAR(255), code VARCHAR(6), validated TINYINT)");
         if(!$create) {
             freeDBQuery($create);
@@ -579,9 +586,10 @@ class Apps {
         );
 
         $tables = [
-            "_accounts", "_database", "_data_analytics_id",
-            "_data_analytics_page", "_data_analytics_track",
-            "_logs", "_sms_auth", "_storage"
+            "_accounts", "_account_session", "_database",
+            "_data_analytics_id", "_data_analytics_page",
+            "_data_analytics_track", "_logs", "_sms_auth",
+            "_storage"
         ];
         foreach($tables as $table) {
             $query = mysqli_query(
