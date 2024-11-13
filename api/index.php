@@ -361,6 +361,27 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             );
             break;
 
+        case "auth_logout":
+            $backend = "auth";
+            array_push($args, "logout", $apiKey);
+
+            if(!isset($_POST["sess_id"]) || empty($_POST["sess_id"])) {
+                Response::failedMessage("Insufficient parameter arity.");
+                return;
+            }
+
+            $sessionId = $_POST["sess_id"];
+            if(!Validate::authSessionId($sessionId)) {
+                Response::failedMessage("Invalid session ID string.");
+                return;
+            }
+
+            array_push(
+                $args,
+                $sessionId
+            );
+            break;
+
         case "auth_fetch_all":
             $backend = "auth";
             array_push($args, "fetch_all", $apiKey);
