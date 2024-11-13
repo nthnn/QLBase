@@ -296,6 +296,19 @@
     <span class="text-warning">"sess_id"</span>: <span class="text-danger">"&lt;uuid&gt;"</span>
 <span class="text-primary">}</span></pre>
 
+<b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Validate Session</b>
+    <p>Check the validity of the session ID (in UUID form).</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_validate_session</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>uuid</i> &mdash; The session ID (in UUID form) to be checked.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"sess_id"</span>: <span class="text-danger">"&lt;uuid&gt;"</span>
+<span class="text-primary">}</span></pre>
+
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Fetch All Users</b>
     <p>Fetch all the QLBase application user informations including username, email, enability, and timestamp of creation.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_fetch_all</pre>
