@@ -111,6 +111,10 @@ func main() {
 		failOnUnmatchedArgSize(6, args)
 		callback = loginUserWithEmail(apiKey, args)
 
+	case "logout":
+		failOnUnmatchedArgSize(3, args)
+		callback = logout(apiKey, args)
+
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
 

@@ -683,3 +683,25 @@ func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
 		query.Close()
 	}
 }
+
+func logout(apiKey string, args []string) func(*sql.DB) {
+	sessionId := args[2]
+
+	validationErr := uuid.Validate(sessionId)
+	if validationErr != nil {
+		proc.ShowFailedResponse("Invalid session ID string.")
+		os.Exit(0)
+	}
+
+	return func(d *sql.DB) {
+		_, err := d.Query("DELETE FROM " + apiKey +
+			"_account_session WHERE uuid=\"" + sessionId + "\"")
+
+		if err != nil {
+			proc.ShowResult("\"0\"")
+			return
+		}
+
+		proc.ShowResult("\"1\"")
+	}
+}
