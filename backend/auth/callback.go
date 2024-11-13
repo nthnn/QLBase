@@ -583,6 +583,8 @@ func isUserEnabled(apiKey string, args []string) func(*sql.DB) {
 func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 	username := args[2]
 	password := args[3]
+	useragent := args[4]
+	address := args[5]
 
 	if !validateUsername(username) {
 		proc.ShowFailedResponse("Invalid username string.")
@@ -610,13 +612,14 @@ func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 		}
 
 		if count != 1 {
-			proc.ShowResult("\"error\"")
+			proc.ShowResult("\"0\"")
 		}
 
 		uuid := uuid.New().String()
 		query, err = d.Query("INSERT INTO " + apiKey +
-			"_account_session (username, uuid) VALUES(\"" +
-			username + "\", \"" + uuid + "\")")
+			"_account_session (username, uuid, useragent, address) VALUES(\"" +
+			username + "\", \"" + uuid + "\", \"" +
+			useragent + "\", \"" + address + "\")")
 
 		if err != nil {
 			proc.ShowFailedResponse("Internal error occured.")
@@ -631,6 +634,8 @@ func loginUserWithUsername(apiKey string, args []string) func(*sql.DB) {
 func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
 	email := args[2]
 	password := args[3]
+	useragent := args[4]
+	address := args[5]
 
 	if !validateEmail(email) {
 		proc.ShowFailedResponse("Invalid email string.")
@@ -643,7 +648,7 @@ func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
 	}
 
 	return func(d *sql.DB) {
-		query, err := d.Query("SELECT * FROM " + apiKey +
+		query, err := d.Query("SELECT username FROM " + apiKey +
 			"_accounts WHERE email=\"" + email +
 			"\" AND password=\"" + password + "\"")
 
@@ -652,17 +657,29 @@ func loginUserWithEmail(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
+		username := ""
 		count := 0
 		for query.Next() {
+			query.Scan(&username)
 			count += 1
 		}
 
-		if count == 1 {
-			proc.ShowResult("\"1\"")
-		} else {
+		if count != 1 {
 			proc.ShowResult("\"0\"")
 		}
 
+		uuid := uuid.New().String()
+		query, err = d.Query("INSERT INTO " + apiKey +
+			"_account_session (username, uuid, useragent, address) VALUES(\"" +
+			username + "\", \"" + uuid + "\", \"" +
+			useragent + "\", \"" + address + "\")")
+
+		if err != nil {
+			proc.ShowFailedResponse("Internal error occured.")
+			return
+		}
+
+		proc.ShowResult("\"" + uuid + "\"")
 		query.Close()
 	}
 }
