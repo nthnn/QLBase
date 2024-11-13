@@ -57,7 +57,11 @@ window.downloadDb = (name)=> {
             if(data.result == "0")
                 return;
 
-            saveAs(new Blob([atob(data.value)], {type: 'application/json'}), name + ".json");
+            saveAs(
+                new Blob([JSON.stringify(data.value)],
+                {type: 'application/json'}),
+                name + ".json"
+            );
         }
     });
 }
