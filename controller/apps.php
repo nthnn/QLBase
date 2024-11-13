@@ -83,7 +83,7 @@ class Apps {
         }
         freeDBQuery($create);
 
-        $create = mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_account_session (id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), uuid VARCHAR(255))");
+        $create = mysqli_query($db_apps_conn, "CREATE TABLE ".$app_key."_account_session (id INT PRIMARY KEY AUTO_INCREMENT, username VARCHAR(255), uuid VARCHAR(255), useragent VARCHAR(1024), address VARCHAR(64))");
         if(!$create) {
             freeDBQuery($create);
             return false;
