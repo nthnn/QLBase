@@ -43,7 +43,7 @@
 
     <h4 class="border-bottom">📡 Authentication API Calls</h4>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth New User</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: New User</b>
     <p>Create a new user on account list of specified QLBase application key and ID.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_create_user</pre>
 
@@ -62,7 +62,7 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Username</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Update by Username</b>
     <p>Update QLBase application account informations by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_update_by_username</pre>
 
@@ -81,7 +81,7 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Update by Email</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Update by Email</b>
     <p>Update QLBase application account information by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_update_by_email</pre>
 
@@ -100,7 +100,7 @@
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Username</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Delete by Username</b>
     <p>Delete QLBase application account information by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_delete_by_username</pre>
 
@@ -113,7 +113,7 @@
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Delete by Email</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Delete by Email</b>
     <p>Delete QLBase application account information by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_delete_by_email</pre>
 
@@ -126,7 +126,7 @@
     <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Username</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Get by Username</b>
     <p>Fetch QLBase application account informations specified by username of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_get_by_username</pre>
 
@@ -155,7 +155,7 @@
     <span class="text-primary">]</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Get by Email</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Get by Email</b>
     <p>Fetch QLBase application account informations specified by email of user.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_get_by_email</pre>
 
@@ -184,7 +184,7 @@
     <span class="text-primary">]</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Enable User</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Enable User</b>
     <p>Enable specified QLBase application user account.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_enable_user</pre>
 
@@ -197,7 +197,7 @@
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Disable User</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Disable User</b>
     <p>Disable specified QLBase application user account.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_disable_user</pre>
 
@@ -210,7 +210,7 @@
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Is User Enabled</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Is User Enabled</b>
     <p>Check if the specified QLBase application user account is either enabled or disabled.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_is_enabled</pre>
 
@@ -233,7 +233,7 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;enabled&gt;"</span>,
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Username</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Login Username</b>
     <p>Log-in a specified QLBase application user account using username and an MD5-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_username</pre>
 
@@ -258,7 +258,7 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;logged_in&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Login Email</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Login Email</b>
     <p>Log-in a specified QLBase application user account using email and an MD5-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_email</pre>
 
@@ -283,7 +283,20 @@
     <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;logged_in&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-<b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth Fetch All Users</b>
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Logout</b>
+    <p>Revoke the validity of the session ID (in UUID form) to logout the authenticated account.</p>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_logout</pre>
+
+    <b>Payload Structure</b>
+    <ul>
+        <li><i>uuid</i> &mdash; The session ID (in UUID form) to be revoked.</li>
+    </ul>
+
+    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
+    <span class="text-warning">"sess_id"</span>: <span class="text-danger">"&lt;uuid&gt;"</span>
+<span class="text-primary">}</span></pre>
+
+    <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Fetch All Users</b>
     <p>Fetch all the QLBase application user informations including username, email, enability, and timestamp of creation.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_fetch_all</pre>
 
