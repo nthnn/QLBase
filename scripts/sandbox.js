@@ -69,6 +69,7 @@ const authenticationActions = {
     "auth_is_enabled": ["Auth: Is User Enabled", '{\n\t"username": ""\n}'],
     "auth_login_username": ["Auth: Log-in Username", '{\n\t"username": "",\n\t"password": ""\n}'],
     "auth_login_email": ["Auth: Log-in Email", '{\n\t"email": "",\n\t"password": ""\n}'],
+    "auth_logout": ["Auth: Logout", '{\n\t"sess_id": ""\n}'],
     "auth_fetch_all": ["Auth: Fetch All Users", '{}']
 };
 
