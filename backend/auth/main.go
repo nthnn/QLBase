@@ -115,6 +115,10 @@ func main() {
 		failOnUnmatchedArgSize(3, args)
 		callback = logout(apiKey, args)
 
+	case "validate_session":
+		failOnUnmatchedArgSize(5, args)
+		callback = validateSession(apiKey, args)
+
 	case "fetch_all":
 		callback = fetchAllUserCallback(apiKey)
 

@@ -705,3 +705,39 @@ func logout(apiKey string, args []string) func(*sql.DB) {
 		proc.ShowResult("\"1\"")
 	}
 }
+
+func validateSession(apiKey string, args []string) func(*sql.DB) {
+	sessionId := args[2]
+	useragent := args[3]
+	address := args[4]
+
+	validationErr := uuid.Validate(sessionId)
+	if validationErr != nil {
+		proc.ShowFailedResponse("Invalid session ID string.")
+		os.Exit(0)
+	}
+
+	return func(d *sql.DB) {
+		query, err := d.Query("SELECT * FROM " + apiKey +
+			"_account_session WHERE uuid=\"" + sessionId +
+			"\" AND useragent=\"" + useragent +
+			"\" AND address=\"" + address + "\"")
+
+		if err != nil {
+			proc.ShowResult("\"0\"")
+			return
+		}
+
+		count := 0
+		for query.Next() {
+			count += 1
+		}
+
+		if count != 1 {
+			proc.ShowResult("\"0\"")
+			return
+		}
+
+		proc.ShowResult("\"1\"")
+	}
+}
