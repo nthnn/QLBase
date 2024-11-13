@@ -1,7 +1,7 @@
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -11,11 +11,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -37,7 +37,7 @@ import (
 	"github.com/nthnn/QLBase/sms/proc"
 )
 
-func failOnUmatchedArgSize(size int, args []string) {
+func failOnUnmatchedArgSize(size int, args []string) {
 	if len(args) != size {
 		proc.ShowFailedResponse("Invalid parameter arity.")
 		os.Exit(-1)
@@ -65,23 +65,23 @@ func main() {
 
 	switch args[0] {
 	case "verify":
-		failOnUmatchedArgSize(4, args)
+		failOnUnmatchedArgSize(4, args)
 		callback = sendSMSVerification(apiKey, args)
 
 	case "validate":
-		failOnUmatchedArgSize(4, args)
+		failOnUnmatchedArgSize(4, args)
 		callback = validateVerificationCode(apiKey, args)
 
 	case "is_validated":
-		failOnUmatchedArgSize(4, args)
+		failOnUnmatchedArgSize(4, args)
 		callback = isCodeValidated(apiKey, args)
 
 	case "sms_fetch_all":
-		failOnUmatchedArgSize(2, args)
+		failOnUnmatchedArgSize(2, args)
 		callback = fetchAllOTP(apiKey, args)
 
 	case "sms_delete_otp":
-		failOnUmatchedArgSize(4, args)
+		failOnUnmatchedArgSize(4, args)
 		callback = deleteVerification(apiKey, args)
 
 	default:
