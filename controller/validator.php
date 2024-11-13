@@ -142,6 +142,11 @@ class Validate {
         return !(json_decode($decoded) === null &&
             json_last_error() !== JSON_ERROR_NONE);
     }
+
+    public static function authSessionId($uuid) {
+        $pattern = "/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i";
+        return preg_match($pattern, $uuid) === 1;
+    }
 }
 
 ?>
