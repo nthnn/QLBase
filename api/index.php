@@ -38,6 +38,10 @@ include_once("../controller/shell.php");
 include_once("../controller/tor_detection.php");
 include_once("../controller/util.php");
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: GET, POST");
+
 if(TorDetection::isExitNode()) {
     http_response_code(403);
     return;
