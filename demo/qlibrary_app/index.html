@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Demo library app for QLBase." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>QLibrary App Demo (QLBase)</title>
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+</head>
+<body>
+    <header class="header sticky-top px-4 pt-4">
+        <nav class="navbar navbar-expand-lg bg-dark border-secondary mx-lg-4" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">📚 QLibrary <small><small class="d-block text-secondary">Demo library app that uses QLBase.</small></small></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="main-navbar">
+                    <div class="navbar-nav me-auto">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload a Book</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+                    </div>
+
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2 bg-light text-white" type="search" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="px-4">
+        <div class="px-4 pt-4">
+            <h4>Available Books</h4>
+            <hr/>
+
+            <div id="loading-view" class="pt-4 pb-1" align="center">
+                <img src="https://media.tenor.com/mTz7WCbH92oAAAAj/book-transparent.gif" width="180" />
+                <p class="text-muted">Loading books...</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mt-4"/>
+    <footer class="pb-4">
+        <div align="center">
+            Copyright 2024 &copy; <a class="text-decoration-none" href="https://github.com/nthnn/QLBase" target="_blank">QLBase</a>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About QLibrary</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>QLibrary is a demonstration application using the services provided by local QLBase server.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload a Book</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+</body>
+</html>
