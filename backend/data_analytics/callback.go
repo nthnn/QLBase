@@ -1,7 +1,7 @@
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -11,11 +11,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -256,8 +256,8 @@ func getIdByAnonId(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", " + decodeBase64(results[i][3]) +
-				"], "
+				"\", \"" + results[i][3] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -306,8 +306,8 @@ func getIdByUserId(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", " + decodeBase64(results[i][3]) +
-				"], "
+				"\", \"" + results[i][3] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -357,8 +357,8 @@ func getIdByTimestamp(apiKey string, args []string) func(*sql.DB) {
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
-				"\", " + decodeBase64(results[i][3]) +
-				"], "
+				"\", \"" + results[i][3] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -399,17 +399,12 @@ func fetchAllId(apiKey string, args []string) func(*sql.DB) {
 
 		result := "["
 		for i := 0; i < len(results); i++ {
-			payload := decodeBase64(results[i][4])
-			if payload == "" {
-				payload = "{}"
-			}
-
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + decodeBase64(payload) +
-				"], "
+				"\", \"" + results[i][4] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -673,8 +668,8 @@ func getTrackByAnonId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + decodeBase64(results[i][4]) +
-				"], "
+				"\", \"" + results[i][4] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -725,8 +720,8 @@ func getTrackByUserId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + decodeBase64(results[i][4]) +
-				"], "
+				"\", \"" + results[i][4] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -777,8 +772,8 @@ func getTrackByEvent(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + decodeBase64(results[i][4]) +
-				"], "
+				"\", \"" + results[i][4] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -829,8 +824,8 @@ func getTrackByTimestamp(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
-				"\", " + decodeBase64(results[i][4]) +
-				"], "
+				"\", \"" + results[i][4] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -872,18 +867,13 @@ func fetchAllTrack(apiKey string, args []string) func(*sql.DB) {
 
 		result := "["
 		for i := 0; i < len(results); i++ {
-			payload := decodeBase64(results[i][5])
-			if payload == "" {
-				payload = "{}"
-			}
-
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(payload) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1201,8 +1191,8 @@ func getPageByAnonId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][5]) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1255,8 +1245,8 @@ func getPageByUserId(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][5]) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1309,8 +1299,8 @@ func getPageByName(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][5]) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1363,8 +1353,8 @@ func getPageByCategory(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][5]) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1417,8 +1407,8 @@ func getPageByTimestamp(apiKey string, args []string) func(*sql.DB) {
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
-				"\", " + decodeBase64(results[i][5]) +
-				"], "
+				"\", \"" + results[i][5] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1461,19 +1451,14 @@ func fetchAllPage(apiKey string, args []string) func(*sql.DB) {
 
 		result := "["
 		for i := 0; i < len(results); i++ {
-			payload := decodeBase64(results[i][6])
-			if payload == "" {
-				payload = "{}"
-			}
-
 			result += "[\"" + results[i][0] +
 				"\", \"" + results[i][1] +
 				"\", \"" + results[i][2] +
 				"\", \"" + results[i][3] +
 				"\", \"" + results[i][4] +
 				"\", \"" + results[i][5] +
-				"\", " + payload +
-				"], "
+				"\", \"" + results[i][6] +
+				"\"], "
 		}
 		result = result[0:len(result)-2] + "]"
 
@@ -1513,7 +1498,7 @@ func aliasAnonHas(apiKey string, args []string) func(*sql.DB) {
 			proc.ShowResult("\"1\"")
 			return
 		}
-	
+
 		err = d.QueryRow("SELECT user_id FROM " + apiKey +
 			"_data_analytics_track WHERE user_id != \"null\" AND anonymous_id=\"" +
 			anonId + "\" LIMIT 1").Scan(&id)
@@ -1550,7 +1535,7 @@ func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 			proc.ShowResult("\"1\"")
 			return
 		}
-	
+
 		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
 			"_data_analytics_page WHERE anonymous_id != \"null\" AND user_id=\"" +
 			userId + "\" LIMIT 1").Scan(&id)
@@ -1562,7 +1547,7 @@ func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 			proc.ShowResult("\"1\"")
 			return
 		}
-	
+
 		err = d.QueryRow("SELECT anonymous_id FROM " + apiKey +
 			"_data_analytics_track WHERE anonymous_id != \"null\" AND user_id=\"" +
 			userId + "\" LIMIT 1").Scan(&id)
@@ -1574,7 +1559,7 @@ func aliasUserHas(apiKey string, args []string) func(*sql.DB) {
 			proc.ShowResult("\"1\"")
 			return
 		}
-	
+
 		proc.ShowResult("\"0\"")
 	}
 }
