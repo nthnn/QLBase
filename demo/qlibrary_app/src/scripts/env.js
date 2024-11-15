@@ -27,9 +27,11 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+// These are the localized version of the app
+// key and ID on the development environment.
 var Environment = {
-    key: "qba_d21d9a39a3_5b2a102f",
-    id: "336f-207b-e073-61cd",
+    key: "qba_64acab8cb5_52d86536",
+    id: "8293-ac53-cc4c-cd93",
     action: (act)=> "http://localhost/qlbase/api/index.php?action=" + act,
     cdp: (ticket)=> "http://localhost/qlbase/api/cdp.php?ticket=" + ticket
 };
