@@ -35,6 +35,7 @@
 		"build-docs": [
 			"cd documentations",
             "npm install",
+			"npm audit fix --force",
             "npm run build-local",
             "cd .."
 		],
