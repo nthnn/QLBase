@@ -69,7 +69,7 @@ function showPayload(type, payload) {
 
     payloadRefreshContent(
         "#payload-content",
-        JSON.stringify(payloadData, undefined, 4)
+        JSON.stringify(JSON.parse(atob(payloadData)), undefined, 4)
     );
     $("#payload-modal").modal("show");
 }
