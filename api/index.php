@@ -66,6 +66,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         return;
     }
 
+    $postData = $_POST;
+    if(count($postData) == 0)
+        $postData = json_decode(
+            file_get_contents("php://input"),
+            true
+        );
+
     $action = $_GET["action"];
     $backend = "";
     $args = array();
@@ -80,33 +87,33 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "create", $apiKey);
 
-            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
-                !isset($_POST["email"]) || empty($_POST["email"]) ||
-                !isset($_POST["password"]) || empty($_POST["password"]) ||
-                !isset($_POST["enabled"])) {
+            if(!isset($postData["username"]) || empty($postData["username"]) ||
+                !isset($postData["email"]) || empty($postData["email"]) ||
+                !isset($postData["password"]) || empty($postData["password"]) ||
+                !isset($postData["enabled"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
             }
 
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
             }
 
-            $password = $_POST["password"];
+            $password = $postData["password"];
             if(!Validate::loginPassword($password)) {
                 Response::failedMessage("Invalid password hash.");
                 return;
             }
 
-            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
+            $enabled = $postData["enabled"] == "1" ? "true" : "false";
             array_push($args, $username, $email, $password, $enabled);
             break;
 
@@ -114,33 +121,33 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "update_by_username", $apiKey);
     
-            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
-                !isset($_POST["email"]) || empty($_POST["email"]) ||
-                !isset($_POST["password"]) || empty($_POST["password"]) ||
-                !isset($_POST["enabled"])) {
+            if(!isset($postData["username"]) || empty($postData["username"]) ||
+                !isset($postData["email"]) || empty($postData["email"]) ||
+                !isset($postData["password"]) || empty($postData["password"]) ||
+                !isset($postData["enabled"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
             }
     
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
             }
     
-            $password = $_POST["password"];
+            $password = $postData["password"];
             if(!Validate::loginPassword($password)) {
                 Response::failedMessage("Invalid password hash.");
                 return;
             }
     
-            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
+            $enabled = $postData["enabled"] == "1" ? "true" : "false";
             array_push($args, $username, $email, $password, $enabled);
             break;
 
@@ -148,32 +155,32 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "update_by_email", $apiKey);
         
-            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
-                !isset($_POST["email"]) || empty($_POST["email"]) ||
-                !isset($_POST["password"]) || empty($_POST["password"])) {
+            if(!isset($postData["username"]) || empty($postData["username"]) ||
+                !isset($postData["email"]) || empty($postData["email"]) ||
+                !isset($postData["password"]) || empty($postData["password"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
             }
         
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
             }
         
-            $password = $_POST["password"];
+            $password = $postData["password"];
             if(!Validate::loginPassword($password)) {
                 Response::failedMessage("Invalid password hash.");
                 return;
             }
         
-            $enabled = $_POST["enabled"] == "1" ? "true" : "false";
+            $enabled = $postData["enabled"] == "1" ? "true" : "false";
             array_push($args, $email, $username, $password, $enabled);
             break;
     
@@ -181,12 +188,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "delete_by_username", $apiKey);
 
-            if(!isset($_POST["username"]) || empty($_POST["username"])) {
+            if(!isset($postData["username"]) || empty($postData["username"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
@@ -199,12 +206,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "delete_by_email", $apiKey);
 
-            if(!isset($_POST["email"]) || empty($_POST["email"])) {
+            if(!isset($postData["email"]) || empty($postData["email"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
@@ -217,12 +224,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "get_by_username", $apiKey);
     
-            if(!isset($_POST["username"]) || empty($_POST["username"])) {
+            if(!isset($postData["username"]) || empty($postData["username"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
@@ -235,12 +242,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "get_by_email", $apiKey);
 
-            if(!isset($_POST["email"]) || empty($_POST["email"])) {
+            if(!isset($postData["email"]) || empty($postData["email"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
@@ -253,12 +260,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "enable_user", $apiKey);
 
-            if(!isset($_POST["username"]) || empty($_POST["username"])) {
+            if(!isset($postData["username"]) || empty($postData["username"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
@@ -271,12 +278,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "disable_user", $apiKey);
     
-            if(!isset($_POST["username"]) || empty($_POST["username"])) {
+            if(!isset($postData["username"]) || empty($postData["username"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
@@ -289,12 +296,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "is_user_enabled", $apiKey);
         
-            if(!isset($_POST["username"]) || empty($_POST["username"])) {
+            if(!isset($postData["username"]) || empty($postData["username"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
@@ -307,19 +314,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "login_username", $apiKey);
 
-            if(!isset($_POST["username"]) || empty($_POST["username"]) ||
-                !isset($_POST["password"]) || empty($_POST["password"])) {
+            if(!isset($postData["username"]) || empty($postData["username"]) ||
+                !isset($postData["password"]) || empty($postData["password"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $username = $_POST["username"];
+            $username = $postData["username"];
             if(!Validate::username($username)) {
                 Response::failedMessage("Invalid username string.");
                 return;
             }
         
-            $password = $_POST["password"];
+            $password = $postData["password"];
             if(!Validate::loginPassword($password)) {
                 Response::failedMessage("Invalid password hash.");
                 return;
@@ -338,19 +345,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "login_email", $apiKey);
 
-            if(!isset($_POST["email"]) || empty($_POST["email"]) ||
-                !isset($_POST["password"]) || empty($_POST["password"])) {
+            if(!isset($postData["email"]) || empty($postData["email"]) ||
+                !isset($postData["password"]) || empty($postData["password"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $email = $_POST["email"];
+            $email = $postData["email"];
             if(!Validate::email($email)) {
                 Response::failedMessage("Invalid email string.");
                 return;
             }
 
-            $password = $_POST["password"];
+            $password = $postData["password"];
             if(!Validate::loginPassword($password)) {
                 Response::failedMessage("Invalid password hash.");
                 return;
@@ -369,12 +376,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "logout", $apiKey);
 
-            if(!isset($_POST["sess_id"]) || empty($_POST["sess_id"])) {
+            if(!isset($postData["sess_id"]) || empty($postData["sess_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $sessionId = $_POST["sess_id"];
+            $sessionId = $postData["sess_id"];
             if(!Validate::authSessionId($sessionId)) {
                 Response::failedMessage("Invalid session ID string.");
                 return;
@@ -390,12 +397,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "auth";
             array_push($args, "validate_session", $apiKey);
 
-            if(!isset($_POST["sess_id"]) || empty($_POST["sess_id"])) {
+            if(!isset($postData["sess_id"]) || empty($postData["sess_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $sessionId = $_POST["sess_id"];
+            $sessionId = $postData["sess_id"];
             if(!Validate::authSessionId($sessionId)) {
                 Response::failedMessage("Invalid session ID string.");
                 return;
@@ -418,19 +425,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "sms";
             array_push($args, "verify", $apiKey);
 
-            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
-                !isset($_POST["support"]) || empty($_POST["support"])) {
+            if(!isset($postData["recipient"]) || empty($postData["recipient"]) ||
+                !isset($postData["support"]) || empty($postData["support"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $recipient = $_POST["recipient"];
+            $recipient = $postData["recipient"];
             if(!Validate::phoneNumber($recipient)) {
                 Response::failedMessage("Invalid recipient string.");
                 return;
             }
 
-            $support = $_POST["support"];
+            $support = $postData["support"];
             if(!Validate::email($support)) {
                 Response::failedMessage("Invalid support email.");
                 return;
@@ -443,19 +450,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "sms";
             array_push($args, "validate", $apiKey);
     
-            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
-                !isset($_POST["code"]) || empty($_POST["code"])) {
+            if(!isset($postData["recipient"]) || empty($postData["recipient"]) ||
+                !isset($postData["code"]) || empty($postData["code"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $recipient = $_POST["recipient"];
+            $recipient = $postData["recipient"];
             if(!Validate::phoneNumber($recipient)) {
                 Response::failedMessage("Invalid recipient string.");
                 return;
             }
     
-            $code = $_POST["code"];
+            $code = $postData["code"];
             if(!Validate::verificationCode($code)) {
                 Response::failedMessage("Invalid verification code.");
                 return;
@@ -468,19 +475,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "sms";
             array_push($args, "is_validated", $apiKey);
 
-            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
-                !isset($_POST["code"]) || empty($_POST["code"])) {
+            if(!isset($postData["recipient"]) || empty($postData["recipient"]) ||
+                !isset($postData["code"]) || empty($postData["code"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $recipient = $_POST["recipient"];
+            $recipient = $postData["recipient"];
             if(!Validate::phoneNumber($recipient)) {
                 Response::failedMessage("Invalid recipient string.");
                 return;
             }
         
-            $code = $_POST["code"];
+            $code = $postData["code"];
             if(!Validate::verificationCode($code)) {
                 Response::failedMessage("Invalid verification code.");
                 return;
@@ -498,19 +505,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "sms";
             array_push($args, "sms_delete_otp", $apiKey);
 
-            if(!isset($_POST["recipient"]) || empty($_POST["recipient"]) ||
-                !isset($_POST["code"]) || empty($_POST["code"])) {
+            if(!isset($postData["recipient"]) || empty($postData["recipient"]) ||
+                !isset($postData["code"]) || empty($postData["code"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $recipient = $_POST["recipient"];
+            $recipient = $postData["recipient"];
             if(!Validate::phoneNumber($recipient)) {
                 Response::failedMessage("Invalid recipient string.");
                 return;
             }
         
-            $code = $_POST["code"];
+            $code = $postData["code"];
             if(!Validate::verificationCode($code)) {
                 Response::failedMessage("Invalid verification code.");
                 return;
@@ -523,40 +530,40 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_create", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
 
-            $timedate = $_POST["timestamp"];
+            $timedate = $postData["timestamp"];
             if(!Validate::dateTime($timedate)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
             }
 
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -569,33 +576,33 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_create_live_timestamp", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
     
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
 
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -608,19 +615,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_delete_by_anon_id", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -633,19 +640,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_delete_by_user_id", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -658,12 +665,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_get_by_anon_id", $apiKey);
 
-            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -676,19 +683,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_delete_by_timestamp", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
    
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::timestamp($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -701,12 +708,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_get_by_user_id", $apiKey);
 
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -719,12 +726,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "id_get_by_timestamp", $apiKey);
 
-            if(!isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::dateTime($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -742,47 +749,47 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_create", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["event"]) || empty($_POST["event"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["event"]) || empty($postData["event"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
     
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
     
-            $event = $_POST["event"];
+            $event = $postData["event"];
             if(!Validate::username($event)) {
                 Response::failedMessage("Invalid event name.");
                 return;
             }
     
-            $timedate = $_POST["timestamp"];
+            $timedate = $postData["timestamp"];
             if(!Validate::dateTime($timedate)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
             }
     
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -794,41 +801,41 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
         case "track_create_live_timestamp":
             $backend = "data_analytics";
             array_push($args, "track_create_live_timestamp", $apiKey);
-    
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["event"]) || empty($_POST["event"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["event"]) || empty($postData["event"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
         
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
     
-            $event = $_POST["event"];
+            $event = $postData["event"];
             if(!Validate::username($event)) {
                 Response::failedMessage("Invalid event name.");
                 return;
             }
     
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -841,19 +848,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_delete_by_anon_id", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -866,19 +873,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_delete_by_user_id", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -891,19 +898,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_delete_by_event", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["event"]) || empty($_POST["event"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["event"]) || empty($postData["event"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
     
-            $event = $_POST["event"];
+            $event = $postData["event"];
             if(!Validate::username($event)) {
                 Response::failedMessage("Invalid event name.");
                 return;
@@ -916,19 +923,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_delete_by_timestamp", $apiKey);
         
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
        
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::timestamp($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -941,12 +948,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_get_by_anon_id", $apiKey);
     
-            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -959,12 +966,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_get_by_user_id", $apiKey);
     
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -977,12 +984,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_get_by_event", $apiKey);
     
-            if(!isset($_POST["event"]) || empty($_POST["event"])) {
+            if(!isset($postData["event"]) || empty($postData["event"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $event = $_POST["event"];
+            $event = $postData["event"];
             if(!Validate::username($event)) {
                 Response::failedMessage("Invalid event name.");
                 return;
@@ -995,12 +1002,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "track_get_by_timestamp", $apiKey);
     
-            if(!isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::dateTime($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -1018,54 +1025,54 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_create", $apiKey);
     
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["category"]) || empty($_POST["category"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["category"]) || empty($postData["category"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
         
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
         
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::username($name)) {
                 Response::failedMessage("Invalid page name.");
                 return;
             }
     
-            $category = $_POST["category"];
+            $category = $postData["category"];
             if(!Validate::username($category)) {
                 Response::failedMessage("Invalid page category.");
                 return;
             }
     
-            $timedate = $_POST["timestamp"];
+            $timedate = $postData["timestamp"];
             if(!Validate::dateTime($timedate)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
             }
         
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -1087,47 +1094,47 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_create_live_timestamp", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["category"]) || empty($_POST["category"]) ||
-                !isset($_POST["payload"]) || empty($_POST["payload"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["category"]) || empty($postData["category"]) ||
+                !isset($postData["payload"]) || empty($postData["payload"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
             
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
             
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
         
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::username($name)) {
                 Response::failedMessage("Invalid page name.");
                 return;
             }
         
-            $category = $_POST["category"];
+            $category = $postData["category"];
             if(!Validate::username($category)) {
                 Response::failedMessage("Invalid page category.");
                 return;
             }
     
-            $payload = $_POST["payload"];
+            $payload = $postData["payload"];
             if(!Validate::json($payload)) {
                 Response::failedMessage("Invalid payload JSON string.");
                 return;
@@ -1140,19 +1147,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_delete_by_anon_id", $apiKey);
         
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -1165,19 +1172,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_delete_by_user_id", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -1190,19 +1197,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_delete_by_name", $apiKey);
         
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::username($name)) {
                 Response::failedMessage("Invalid page name.");
                 return;
@@ -1215,19 +1222,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_delete_by_category", $apiKey);
         
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["category"]) || empty($_POST["category"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["category"]) || empty($postData["category"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
         
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
         
-            $category = $_POST["category"];
+            $category = $postData["category"];
             if(!Validate::username($category)) {
                 Response::failedMessage("Invalid page category.");
                 return;
@@ -1240,19 +1247,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_delete_by_timestamp", $apiKey);
 
-            if(!isset($_POST["tracker"]) || empty($_POST["tracker"]) ||
-                !isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["tracker"]) || empty($postData["tracker"]) ||
+                !isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
            
-            $tracker = $_POST["tracker"];
+            $tracker = $postData["tracker"];
             if(!Validate::tracker($tracker)) {
                 Response::failedMessage("Invalid tracking ID.");
                 return;
             }
             
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::timestamp($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -1265,12 +1272,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_get_by_anon_id", $apiKey);
 
-            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -1283,12 +1290,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_get_by_user_id", $apiKey);
         
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
             
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -1301,12 +1308,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_get_by_name", $apiKey);
         
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
             
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::username($name)) {
                 Response::failedMessage("Invalid page name.");
                 return;
@@ -1319,12 +1326,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_get_by_category", $apiKey);
         
-            if(!isset($_POST["category"]) || empty($_POST["category"])) {
+            if(!isset($postData["category"]) || empty($postData["category"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
             
-            $category = $_POST["category"];
+            $category = $postData["category"];
             if(!Validate::username($category)) {
                 Response::failedMessage("Invalid page category.");
                 return;
@@ -1337,12 +1344,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "page_get_by_timestamp", $apiKey);
         
-            if(!isset($_POST["timestamp"]) || empty($_POST["timestamp"])) {
+            if(!isset($postData["timestamp"]) || empty($postData["timestamp"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $timestamp = $_POST["timestamp"];
+            $timestamp = $postData["timestamp"];
             if(!Validate::dateTime($timestamp)) {
                 Response::failedMessage("Invalid timestamp format.");
                 return;
@@ -1360,12 +1367,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "alias_anon_has", $apiKey);
 
-            if(!isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -1378,12 +1385,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "alias_user_has", $apiKey);
 
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -1396,19 +1403,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "alias_for_anon", $apiKey);
 
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
@@ -1421,19 +1428,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "data_analytics";
             array_push($args, "alias_for_user", $apiKey);
 
-            if(!isset($_POST["user_id"]) || empty($_POST["user_id"]) ||
-                !isset($_POST["anon_id"]) || empty($_POST["anon_id"])) {
+            if(!isset($postData["user_id"]) || empty($postData["user_id"]) ||
+                !isset($postData["anon_id"]) || empty($postData["anon_id"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $user_id = $_POST["user_id"];
+            $user_id = $postData["user_id"];
             if(!Validate::username($user_id)) {
                 Response::failedMessage("Invalid user ID.");
                 return;
             }
 
-            $anon_id = $_POST["anon_id"];
+            $anon_id = $postData["anon_id"];
             if(!Validate::tracker($anon_id)) {
                 Response::failedMessage("Invalid anonymous ID.");
                 return;
@@ -1451,26 +1458,26 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "create", $apiKey);
 
-            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["mode"]) || empty($_POST["mode"]) ||
-                !isset($_POST["content"]) || empty($_POST["content"])) {
+            if(!isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["mode"]) || empty($postData["mode"]) ||
+                !isset($postData["content"]) || empty($postData["content"])) {
                     Response::failedMessage("Insufficient parameter arity.");
                     return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
             }
 
-            $mode = $_POST["mode"];
+            $mode = $postData["mode"];
             if(!Validate::dbMode($mode)) {
                 Response::failedMessage("Invalid database mode.");
                 return;
             }
 
-            $content = $_POST["content"];
+            $content = $postData["content"];
             if(!Validate::dbContent($content)) {
                 Response::failedMessage("Invalid database content.");
                 return;
@@ -1483,12 +1490,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "get_by_name", $apiKey);
 
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
@@ -1501,19 +1508,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "set_db_mode", $apiKey);
 
-            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["mode"]) || empty($_POST["mode"])) {
+            if(!isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["mode"]) || empty($postData["mode"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
             }
 
-            $mode = $_POST["mode"];
+            $mode = $postData["mode"];
             if(!Validate::dbMode($mode)) {
                 Response::failedMessage("Invalid database mode.");
                 return;
@@ -1526,12 +1533,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "get_db_mode", $apiKey);
     
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
@@ -1544,12 +1551,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "read_db", $apiKey);
         
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
@@ -1562,19 +1569,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "write_db", $apiKey);
 
-            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["content"]) || empty($_POST["content"])) {
+            if(!isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["content"]) || empty($postData["content"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
             }
     
-            $content = $_POST["content"];
+            $content = $postData["content"];
             if(!Validate::dbContent($content)) {
                 Response::failedMessage("Invalid database mode.");
                 return;
@@ -1587,12 +1594,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "database";
             array_push($args, "delete_db", $apiKey);
         
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::name($name)) {
                 Response::failedMessage("Invalid database name.");
                 return;
@@ -1628,12 +1635,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "storage";
             array_push($args, "delete", $apiKey);
 
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::base64($name)) {
                 Response::failedMessage("Invalid file name.");
                 return;
@@ -1646,12 +1653,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "storage";
             array_push($args, "get", $apiKey);
     
-            if(!isset($_POST["name"]) || empty($_POST["name"])) {
+            if(!isset($postData["name"]) || empty($postData["name"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
     
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::base64($name)) {
                 Response::failedMessage("Invalid file name.");
                 return;
@@ -1664,19 +1671,19 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             $backend = "storage";
             array_push($args, "download", $apiKey);
         
-            if(!isset($_POST["name"]) || empty($_POST["name"]) ||
-                !isset($_POST["should_expire"]) || Validate::isEmpty($_POST["should_expire"])) {
+            if(!isset($postData["name"]) || empty($postData["name"]) ||
+                !isset($postData["should_expire"]) || Validate::isEmpty($postData["should_expire"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $name = $_POST["name"];
+            $name = $postData["name"];
             if(!Validate::base64($name)) {
                 Response::failedMessage("Invalid file name.");
                 return;
             }
 
-            $shouldExpire = $_POST["should_expire"];
+            $shouldExpire = $postData["should_expire"];
             if($shouldExpire != "0" && $shouldExpire != "1") {
                 Response::failedMessage("Invalid should_expire parameter value.");
                 return;
@@ -1698,12 +1705,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] === "POST" &&
             
 
         case "cdp_expire_ticket":
-            if(!isset($_POST["ticket"]) || empty($_POST["ticket"])) {
+            if(!isset($postData["ticket"]) || empty($postData["ticket"])) {
                 Response::failedMessage("Insufficient parameter arity.");
                 return;
             }
 
-            $ticket = $_POST["ticket"];
+            $ticket = $postData["ticket"];
             if(!Validate::uuid($ticket)) {
                 Response::failedMessage("Invalid ticket UUIDv4 string.");
                 return;
