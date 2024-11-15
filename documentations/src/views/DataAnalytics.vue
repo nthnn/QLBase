@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -210,7 +210,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -252,7 +252,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -292,7 +292,7 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -442,7 +442,7 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -488,7 +488,7 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -536,7 +536,7 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -582,7 +582,7 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -626,7 +626,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -799,7 +799,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -849,7 +849,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -899,7 +899,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -949,7 +949,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -999,7 +999,7 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
@@ -1047,7 +1047,7 @@
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td>The data payload in JSON form.</td>
+                    <td>The JSON data payload in base-64 string form.</td>
                 </tr>
             </table>
         </li>
