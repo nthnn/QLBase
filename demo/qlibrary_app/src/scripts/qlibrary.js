@@ -207,7 +207,6 @@ const updateAvailableBooks = ()=> {
             bookList.html("");
             prevData = JSON.stringify(data);
 
-            console.log(data.value);
             if(Object.keys(data.value).length == 0) {
                 $("#no-books-yet").removeClass("d-none");
                 $("#no-books-yet").addClass("d-block");
