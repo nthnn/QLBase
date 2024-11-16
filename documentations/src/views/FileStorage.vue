@@ -52,6 +52,10 @@
     <b>Example Payload</b>
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{}</span></pre>
 
+    <div class="alert alert-warning">
+        The POST request method should contain the file with the name <i>&quot;subject&quot; on the request data.</i>
+    </div>
+
     <b>Response Data</b>
     <ul>
         <li><i>value</i> &mdash; The name in base-64 form of the file in the server. This is the key string used when performing actions to the associated file.</li>
