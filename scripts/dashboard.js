@@ -48,7 +48,7 @@ const renderApps = (apps)=> {
 
     for(let i = 0; i < keys.length; i++) {
         if(count == 3) {
-            stringified += "</div><br/><div class=\"row equal-cols\">";
+            stringified += "</div><div class=\"row equal-cols\">";
             count = 0;
         }
 
