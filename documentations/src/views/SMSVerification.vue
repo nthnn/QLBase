@@ -57,16 +57,6 @@
     <span class="text-warning">"support"</span>: <span class="text-danger">"&lt;email&gt;"</span>
 <span class="text-primary">}</span></pre>
 
-    <b>Response Data</b>
-    <ul>
-        <li><i>otp</i> &mdash; 6-digit one-time password sent to the recipient via SMS.</li>
-    </ul>
-
-    <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
-    <span class="text-warning">"result"</span>: <span class="text-danger">"1"</span>,
-    <span class="text-warning">"value"</span>: <span class="text-danger">"&lt;otp&gt;"</span>
-<span class="text-primary">}</span></pre>
-
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">SMS Validate</b>
     <p>Validate an OTP digits received by the user/client.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=sms_validate</pre>
