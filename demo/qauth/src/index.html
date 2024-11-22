@@ -1,0 +1,237 @@
+<!--
+    This file is part of QLBase (https://github.com/nthnn/QLBase).
+    Copyright 2024 - Nathanne Isip
+    
+    Permission is hereby granted, free of charge,
+    to any person obtaining a copy of this software
+    and associated documentation files (the “Software”),
+    to deal in the Software without restriction,
+    including without limitation the rights to use, copy,
+    modify, merge, publish, distribute, sublicense, and/or
+    sell copies of the Software, and to permit persons to
+    whom the Software is furnished to do so, subject to
+    the following conditions:
+    
+    The above copyright notice and this permission notice
+    shall be included in all copies or substantial portions
+    of the Software.
+    
+    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
+    ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+    TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+    SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+    ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+    OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Demo authentication app with QLBase." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>QAuth Demo</title>
+
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+</head>
+<body>
+    <br/>
+
+    <div class="w-100 mt-4 px-4">
+        <div class="row">
+            <div class="col-lg-1"></div>
+
+            <div class="col-lg-5">
+                <div class="card border border-secondary mb-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <h1 class="card-title">Log-in</h1>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" id="login-username" placeholder="Username" />
+
+                        <label class="form-label mt-2">Password</label>
+                        <input type="password" class="form-control" id="login-password" placeholder="Password" />
+
+                        <p class="mt-2 text-danger d-none" id="login-error"></p>
+                        <button id="login" class="btn btn-outline-primary w-100 mt-4">Log-in</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card border border-secondary mb-4">
+                    <div class="card-header">
+                        <h1 class="card-title">Sign-up</h1>
+                    </div>
+                    <div class="card-body">
+                        <label class="form-label mt-2" for="signup-username">Username</label>
+                        <input type="text" class="form-control" id="signup-username" placeholder="Username" />
+
+                        <label class="form-label mt-2" for="signup-email">Email</label>
+                        <input type="email" class="form-control" id="signup-email" placeholder="Email" />
+
+                        <label class="form-label mt-2" for="signup-password">Password</label>
+                        <input type="password" class="form-control" id="signup-password" placeholder="Password" />
+
+                        <label class="form-label mt-2" for="signup-ptn">Phone Number</label>
+                        <input type="text" class="form-control" id="signup-ptn" placeholder="Phone Number" />
+
+                        <p class="mt-2 text-danger d-none" id="signup-error"></p>
+                        <button id="signup" class="btn btn-outline-primary w-100 mt-4">Sign-up</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+    <br/>
+
+    <div class="modal fade" id="recoverModal" tabindex="-1" aria-labelledby="recoverModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recoverModalLabel">Reset Password</h5>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label" for="recover-ptn">Phone Number</label>
+                    <input type="text" class="form-control" id="recover-ptn" placeholder="Phone Number" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary rounded" id="recover-btn">Recover</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signupSuccessModal" tabindex="-1" aria-labelledby="signupSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupSuccessModalLabel">Sign-up Success</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Account has been created, you can now log-in!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+    <script src="scripts/md5.min.js"></script>
+    <script src="scripts/js.cookie.min.js"></script>
+    <script src="scripts/env.js"></script>
+
+    <script>
+        $("#signup").on("click", ()=> {
+            $("#signup-error").removeClass("d-block");
+            $("#signup-error").addClass("d-none");
+
+            let dbData = new FormData();
+            dbData.append("name", $("#signup-username").val());
+            dbData.append("mode", "rw");
+            dbData.append("content", btoa(JSON.stringify({
+                "phonenumber": $("#signup-ptn").val()
+            })));
+
+            $.ajax({
+                url: Environment.action("db_create"),
+                type: "POST",
+                headers: {
+                    "QLBase-API-Key": Environment.key,
+                    "QLBase-App-ID": Environment.id
+                },
+                data: dbData,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: (data)=> {
+                    if(data.result != '1') {
+                        $("#signup-error").removeClass("d-none");
+                        $("#signup-error").addClass("d-block");
+                        $("#signup-error").html(data.message);
+
+                        return;
+                    }
+
+                    let formData = new FormData();
+                    formData.append("username", $("#signup-username").val());
+                    formData.append("email", $("#signup-email").val());
+                    formData.append("password", md5($("#signup-password").val()));
+                    formData.append("enabled", "1");
+
+                    $.ajax({
+                        url: Environment.action("auth_create_user"),
+                        type: "POST",
+                        headers: {
+                            "QLBase-API-Key": Environment.key,
+                            "QLBase-App-ID": Environment.id
+                        },
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: (data)=> {
+                            if(data.result != '1') {
+                                $("#signup-error").removeClass("d-none");
+                                $("#signup-error").addClass("d-block");
+                                $("#signup-error").html(data.message);
+
+                                return;
+                            }
+
+                            $("#signupSuccessModal").modal("toggle");
+                        }
+                    });
+                }
+            });
+        });
+
+        $("#login").on("click", ()=> {
+            $("#login-error").removeClass("d-block");
+            $("#login-error").addClass("d-none");
+
+            let username = $("#login-username").val();
+            let formData = new FormData();
+            formData.append("username", username);
+            formData.append("password", md5($("#login-password").val()));
+
+            $.ajax({
+                url: Environment.action("auth_login_username"),
+                type: "POST",
+                headers: {
+                    "QLBase-API-Key": Environment.key,
+                    "QLBase-App-ID": Environment.id
+                },
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: (data)=> {
+                    if(data.result != '1') {
+                        $("#login-error").removeClass("d-none");
+                        $("#login-error").addClass("d-block");
+                        $("#login-error").html(data.message);
+
+                        return;
+                    }
+
+                    Cookies.set("session", data.value);
+                    window.location.href = "verify.html?username=" + username;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
