@@ -74,7 +74,7 @@ func sendSMSVerification(apiKey string, args []string) func(*sql.DB) {
 			return
 		}
 
-		proc.ShowResult("\"" + code + "\"")
+		proc.ShowSuccessResponse()
 		query.Close()
 	}
 }
