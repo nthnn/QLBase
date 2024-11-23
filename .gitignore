@@ -31,3 +31,6 @@ qlbase.zip
 
 .DS_Store
 screenshots/.DS_Store
+
+tools/latency_graph.png
+tools/latency_results.csv
