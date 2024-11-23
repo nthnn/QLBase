@@ -178,7 +178,7 @@
 
 <b class="mt-4 mb-2 d-block border-bottom fw-bold">Database: Delete</b>
     <p>Delete a whole database by a specified name.</p>
-    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_write</pre>
+    <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=db_delete</pre>
     <div class="alert alert-danger">
         <p class="mb-0">This action cannot be reversed.</p>
     </div>
