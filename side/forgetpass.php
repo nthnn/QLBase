@@ -30,6 +30,7 @@
  */
 
 include_once("../controller/db_config.php");
+include_once("../controller/hash_helper.php");
 include_once("../controller/response.php");
 include_once("../controller/tor_detection.php");
 include_once("../controller/validator.php");
@@ -89,7 +90,7 @@ else if(isset($_POST["email"]) && !empty($_POST["email"]) &&
         freeDBQuery(
             mysqli_query(
                 $db_conn,
-                "UPDATE accounts SET password=\"".md5($password).
+                "UPDATE accounts SET password=\"".hashString($password).
                 "\" WHERE email=\"".$email."\""
             )
         );
