@@ -57,7 +57,7 @@ actions = [
 ]
 results = []
 
-password = hashlib.md5("test".encode()).hexdigest()
+password = hashlib.sha512("test".encode()).hexdigest()
 body = {
     "handshake": {},
     "auth_delete_by_username": {
