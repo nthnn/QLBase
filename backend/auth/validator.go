@@ -1,7 +1,7 @@
 /*
  * This file is part of QLBase (https://github.com/nthnn/QLBase).
  * Copyright 2024 - Nathanne Isip
- * 
+ *
  * Permission is hereby granted, free of charge,
  * to any person obtaining a copy of this software
  * and associated documentation files (the “Software”),
@@ -11,11 +11,11 @@
  * sell copies of the Software, and to permit persons to
  * whom the Software is furnished to do so, subject to
  * the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice
  * shall be included in all copies or substantial portions
  * of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
@@ -29,7 +29,7 @@
 
 package main
 
-import(
+import (
 	"regexp"
 )
 
@@ -50,6 +50,7 @@ func validateEmail(email string) bool {
 	return regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`).MatchString(email)
 }
 
-func validatePassword(md5 string) bool {
-	return regexp.MustCompile(`^[a-fA-F0-9]{32}$`).MatchString(md5)
+func validatePassword(hash string) bool {
+	return regexp.MustCompile(`^[a-fA-F0-9]{128}$`).MatchString(hash) &&
+		len(hash) == 128
 }
