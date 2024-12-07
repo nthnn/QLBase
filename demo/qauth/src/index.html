@@ -129,7 +129,7 @@
 
     <script src="scripts/jquery.min.js"></script>
     <script src="scripts/bootstrap.bundle.min.js"></script>
-    <script src="scripts/md5.min.js"></script>
+    <script src="scripts/sha512.min.js"></script>
     <script src="scripts/js.cookie.min.js"></script>
     <script src="scripts/env.js"></script>
 
@@ -168,7 +168,7 @@
                     let formData = new FormData();
                     formData.append("username", $("#signup-username").val());
                     formData.append("email", $("#signup-email").val());
-                    formData.append("password", md5($("#signup-password").val()));
+                    formData.append("password", sha512($("#signup-password").val()));
                     formData.append("enabled", "1");
 
                     $.ajax({
@@ -205,7 +205,7 @@
             let username = $("#login-username").val();
             let formData = new FormData();
             formData.append("username", username);
-            formData.append("password", md5($("#login-password").val()));
+            formData.append("password", sha512($("#login-password").val()));
 
             $.ajax({
                 url: Environment.action("auth_login_username"),
