@@ -106,7 +106,7 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Checksum of the fetched file in MD5 hash</td>
+                    <td>Checksum of the fetched file in SHA-512 hash</td>
                 </tr>
             </table>
         </li>
@@ -162,7 +162,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Checksum of the fetched file in MD5 hash</td>
+                    <td>Checksum of the fetched file in SHA-512 hash</td>
                 </tr>
             </table>
         </li>

@@ -51,14 +51,14 @@
     <ul>
         <li><i>username</i> &mdash; The desired username for the new account.</li>
         <li><i>email</i> &mdash; The email address associated with the new account.</li>
-        <li><i>password</i> &mdash; The MD5 hashed string of the user's chosen password.</li>
+        <li><i>password</i> &mdash; The SHA-512 hashed string of the user's chosen password.</li>
         <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
     <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>,
-    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;MD5 hashed string&gt;"</span>,
+    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;SHA-512 hashed string&gt;"</span>,
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
@@ -70,14 +70,14 @@
     <ul>
         <li><i>username</i> &mdash; The username of the account to be updated.</li>
         <li><i>email</i> &mdash; The updated/new email address of the user to be updated.</li>
-        <li><i>password</i> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
+        <li><i>password</i> &mdash; The updated/new password hashed in SHA-512 encryption of the user to be updated.</li>
         <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
     <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>,
-    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;MD5 hashed string&gt;"</span>,
+    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;SHA-512 hashed string&gt;"</span>,
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
@@ -89,14 +89,14 @@
     <ul>
         <li><i>username</i> &mdash; The updated/new username of the account to be updated.</li>
         <li><i>email</i> &mdash; The email address of the user to be updated.</li>
-        <li><i>password</i> &mdash; The updated/new password hashed in MD5 encryption of the user to be updated.</li>
+        <li><i>password</i> &mdash; The updated/new password hashed in SHA-512 encryption of the user to be updated.</li>
         <li><i>enabled</i> &mdash; A binary flag (0 or 1) indicating whether the account should be enabled (1) or disabled (0).</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
     <span class="text-warning">"username"</span>: <span class="text-danger">"&lt;username&gt;"</span>,
     <span class="text-warning">"email"</span>: <span class="text-danger">"&lt;email&gt;"</span>,
-    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;MD5 hashed string&gt;"</span>,
+    <span class="text-warning">"password"</span>: <span class="text-danger">"&lt;SHA-512 hashed string&gt;"</span>,
     <span class="text-warning">"enabled"</span>: <span class="text-danger">"0|1"</span>
 <span class="text-primary">}</span></pre>
 
@@ -234,13 +234,13 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Login Username</b>
-    <p>Log-in a specified QLBase application user account using username and an MD5-hashed password string.</p>
+    <p>Log-in a specified QLBase application user account using username and an SHA-512-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_username</pre>
 
     <b>Payload Structure</b>
     <ul>
         <li><i>username</i> &mdash; The username of the account to be logged in.</li>
-        <li><i>password</i> &mdash; The MD5 hashed password string of the account to be logged in.</li>
+        <li><i>password</i> &mdash; The SHA-512 hashed password string of the account to be logged in.</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
@@ -259,13 +259,13 @@
 <span class="text-primary">}</span></pre>
 
     <b class="mt-4 mb-2 d-block border-bottom fw-bold">Auth: Login Email</b>
-    <p>Log-in a specified QLBase application user account using email and an MD5-hashed password string.</p>
+    <p>Log-in a specified QLBase application user account using email and an SHA-512-hashed password string.</p>
     <pre class="bg-secondary border-gray border rounded p-2">api/index.php?action=auth_login_email</pre>
 
     <b>Payload Structure</b>
     <ul>
         <li><i>email</i> &mdash; The email of the account to be logged in.</li>
-        <li><i>password</i> &mdash; The MD5 hashed password string of the account to be logged in.</li>
+        <li><i>password</i> &mdash; The SHA-512 hashed password string of the account to be logged in.</li>
     </ul>
 
     <pre class="bg-secondary border-gray border rounded p-2"><span class="text-primary">{</span>
