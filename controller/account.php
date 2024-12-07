@@ -30,6 +30,7 @@
  */
 
 include_once("db_config.php");
+include_once("hash_helper.php");
 include_once("session_ctrl.php");
 
 global $db_conn;
@@ -80,7 +81,7 @@ class Account {
             $db_conn,
             "INSERT INTO accounts (name, username, email, password) ".
             "VALUES (\"".$name."\", \"".$username."\", \"".$email.
-            "\", \"".md5($password)."\")"
+            "\", \"".hashString($password)."\")"
         );
 
         $status = $result ?
@@ -97,8 +98,8 @@ class Account {
 
         global $db_conn;
         $res = mysqli_query($db_conn, "UPDATE accounts SET name=\"".$name.
-            "\", email=\"".$email."\", password=\"".md5($password)."\" WHERE username=\"".
-            $username."\" AND password=\"".md5($old)."\" AND id=".(SessionControl::getId()));
+            "\", email=\"".$email."\", password=\"".hashString($password)."\" WHERE username=\"".
+            $username."\" AND password=\"".hashString($old)."\" AND id=".(SessionControl::getId()));
 
         $result = !(!$res);
         freeDBQuery($res);
@@ -114,7 +115,7 @@ class Account {
         $result = mysqli_query(
             $db_conn,
             "SELECT id FROM accounts WHERE ".
-            "username=\"".$username."\" AND password=\"".md5($password)."\""
+            "username=\"".$username."\" AND password=\"".hashString($password)."\""
         );
 
         if(!$result || mysqli_num_rows($result) == 0)

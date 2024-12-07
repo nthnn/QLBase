@@ -30,6 +30,7 @@
  */
 
 include_once("db_config.php");
+include_once("hash_helper.php");
 include_once("util.php");
 
 global $db_conn;
@@ -65,7 +66,7 @@ class SessionControl {
     public static function create($user_id) {
         global $db_conn;
 
-        $hash = md5(Util::guidv4(null));
+        $hash = hashString(Util::guidv4(null));
         $result = mysqli_query(
             $db_conn,
             "INSERT INTO sessions(user_id, hash, user_agent, remote_addr) ".

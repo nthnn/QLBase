@@ -31,6 +31,7 @@
 
 include_once("account.php");
 include_once("db_config.php");
+include_once("hash_helper.php");
 include_once("session_ctrl.php");
 include_once("shell.php");
 include_once("util.php");
@@ -67,8 +68,8 @@ class Apps {
             freeDBQuery($check);
         }
 
-        $id_hash = sha1(md5($name));
-        $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(md5($id_hash), 24);
+        $id_hash = sha1(hashString($name));
+        $app_key = "qba_" . substr_replace($id_hash, '', 10) . "_" . substr(hashString($id_hash), 120);
         $res = mysqli_query(
             $db_conn,
             "INSERT INTO app (creator_id, app_id, app_key, name, description) VALUES(".

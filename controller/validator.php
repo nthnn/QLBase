@@ -49,7 +49,7 @@ class Validate {
     }
 
     public static function loginPassword($password) {
-        return strlen($password) === 32 &&
+        return strlen($password) === 128 &&
             preg_match("/^[a-f0-9]+$/", $password);
     }
 
