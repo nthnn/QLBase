@@ -78,9 +78,10 @@ const fetchSMSLogs = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevSMSHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevSMSHash == tempHash)
                 return;
-            prevSMSHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevSMSHash = tempHash;
 
             if(data.value.length == 0 && (prevSMSHash != "" ||
                 prevSMSHash == "5e28988ff412b216da4a633fa9ff52f5")) {

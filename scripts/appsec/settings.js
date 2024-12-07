@@ -84,7 +84,7 @@ const removeSharedAccess = (email)=> {
             api_key: App.appKey
         },
         success: (data)=> {
-            let hash = CryptoJS.MD5(data.toString()).toString();
+            let hash = sha512(data.toString());
             if(hash == prevSharedAccessHash)
                 return;
             prevSharedAccessHash = hash;
@@ -139,7 +139,7 @@ $("#delete-btn").click(()=> {
         },
         data: {
             username: username,
-            password: CryptoJS.MD5(password).toString(),
+            password: sha512(password),
             api_key: App.appKey
         },
         success: (data)=> {
@@ -180,7 +180,7 @@ $("#share-btn").click(()=> {
 
     let email = $("#share-email").val(),
         username = $("#share-username").val(),
-        password = CryptoJS.MD5($("#share-password").val()).toString();
+        password = sha512($("#share-password").val());
 
     if(!username ||
         username === "" ||

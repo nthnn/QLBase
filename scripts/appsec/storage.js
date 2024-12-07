@@ -133,9 +133,10 @@ const fetchFiles = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevFilesHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevFilesHash == tempHash)
                 return;
-            prevFilesHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevFilesHash = tempHash;
 
             if(data.value.length == 0 && (prevFilesHash != "" ||
                 prevFilesHash != "")) {

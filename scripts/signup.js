@@ -83,7 +83,7 @@ $(document).ready(()=> {
             return;
         }
 
-        const hashedPassword = CryptoJS.MD5(password).toString();
+        const hashedPassword = sha512(password);
         $.post(
             "side/account.php?signup",
             {

@@ -95,7 +95,7 @@ $(document).ready(()=> {
             "side/account.php?login",
             {
                 username: username,
-                password: CryptoJS.MD5(oldPassword).toString()
+                password: sha512(oldPassword)
             },
             (r)=> {
                 if(r.result == "1") {
@@ -105,8 +105,8 @@ $(document).ready(()=> {
                             username: username,
                             name: name,
                             email: email,
-                            password: CryptoJS.MD5(newPassword).toString(),
-                            old: CryptoJS.MD5(oldPassword).toString()
+                            password: sha512(newPassword),
+                            old: sha512(oldPassword)
                         },
                         (rs)=> {
                             if(rs.result == "1")

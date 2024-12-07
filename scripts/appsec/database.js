@@ -120,9 +120,10 @@ const fetchDb = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevDBHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevDBHash == tempHash)
                 return;
-            prevDBHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevDBHash = tempHash;
 
             if(data.value.length == 0 && (prevDBHash != "" ||
                 prevDBHash == "5e28988ff412b216da4a633fa9ff52f5")) {

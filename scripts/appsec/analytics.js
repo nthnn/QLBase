@@ -329,11 +329,12 @@ const fetchAllId = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevIdHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevIdHash == tempHash)
                 return;
 
             prevIdContent = data.value;
-            prevIdHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevIdHash = tempHash;
 
             if(prevIdContent.length == 0 && (prevIdHash != "" ||
                 prevIdHash == "5e28988ff412b216da4a633fa9ff52f5")) {
@@ -375,11 +376,12 @@ const fetchAllTrack = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevTrackHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevTrackHash == tempHash)
                 return;
 
             prevTrackContent = data.value;
-            prevTrackHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevTrackHash = tempHash;
 
             if(prevTrackContent.length == 0 && (prevTrackHash != "" ||
                 prevTrackHash == "5e28988ff412b216da4a633fa9ff52f5")) {
@@ -420,11 +422,12 @@ const fetchAllPage = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevPageHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevPageHash == tempHash)
                 return;
 
             prevPageContent = data.value;
-            prevPageHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevPageHash = tempHash;
 
             if(prevPageContent.length == 0 && (prevPageHash != "" ||
                 prevPageHash == "5e28988ff412b216da4a633fa9ff52f5")) {
@@ -465,11 +468,12 @@ const fetchAllAlias = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevAliasHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevAliasHash == tempHash)
                 return;
 
             prevAliasContent = data.value;
-            prevAliasHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevAliasHash = tempHash;
 
             if(prevAliasContent.length == 0 && (prevAliasHash != "" ||
                 prevAliasHash == "5e28988ff412b216da4a633fa9ff52f5")) {

@@ -147,7 +147,7 @@ function requestSaveEdit() {
         data: {
             username: username,
             email: email,
-            password: CryptoJS.MD5(password).toString(),
+            password: sha512(password),
             enabled: ($("#enabled-edit").is(":checked") ? 1 : 0)
         },
         success: (data)=> {
@@ -191,9 +191,10 @@ const fetchUsers = ()=> {
             if(data.result == "0")
                 return;
 
-            if(prevUsersHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+            let tempHash = sha512(JSON.stringify(data));
+            if(prevUsersHash == tempHash)
                 return;
-            prevUsersHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevUsersHash = tempHash;
 
             if(data.value.length == 0 && (prevUsersHash != "" ||
                 prevUsersHash != "")) {
@@ -284,7 +285,7 @@ $(document).ready(()=> {
             data: {
                 username: username,
                 email: email,
-                password: CryptoJS.MD5(password).toString(),
+                password: sha512(password),
                 enabled: ($("#enabled-edit").is(":checked") ? 1 : 0)
             },
             success: (data)=> {

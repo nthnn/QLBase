@@ -142,4 +142,5 @@ $(document).ready(()=> {
     });
 
     fetchApps();
+    setInterval(fetchApps, 1000);
 });

@@ -70,7 +70,7 @@ $(document).ready(()=> {
             "side/account.php?login",
             {
                 username: username,
-                password: CryptoJS.MD5(password).toString()
+                password: sha512(password)
             },
             (r)=> {
                 loginButton.hide();

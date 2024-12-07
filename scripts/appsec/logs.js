@@ -72,14 +72,15 @@ const fetchLogs = ()=> {
             if(data.result == "0")
                 return;
 
-            let hideSelfReqs = $("#hide-selfreqs").is(":checked");
+            let hideSelfReqs = $("#hide-selfreqs").is(":checked"),
+                tempHash = sha512(JSON.stringify(data));
             if(prevHideState == hideSelfReqs &&
-                prevLogsHash == CryptoJS.MD5(JSON.stringify(data)).toString())
+                prevLogsHash == tempHash)
                 return;
 
             prevLogsContents = data;
             prevHideState = hideSelfReqs;
-            prevLogsHash = CryptoJS.MD5(JSON.stringify(data)).toString();
+            prevLogsHash = tempHash;
 
             if(data.length == 0 && (prevLogsHash != "" ||
                 prevLogsHash != "")) {

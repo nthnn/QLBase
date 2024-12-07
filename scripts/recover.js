@@ -74,7 +74,7 @@ $("#recover-btn").click(()=> {
         "side/forgetpass.php",
         {
             email: email,
-            newpass: CryptoJS.MD5(password).toString(),
+            newpass: sha512(password),
             track_id: trackId
         },
         (r)=> {
